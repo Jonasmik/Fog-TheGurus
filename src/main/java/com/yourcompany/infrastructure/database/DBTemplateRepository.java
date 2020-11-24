@@ -22,7 +22,7 @@ public class DBTemplateRepository implements TemplateRepository {
     }
 
     @Override
-    public List<Template> findAll() {
+    public List<Template> findAll() throws NoSuchTemplateExists {
         return null;
     }
 
@@ -32,7 +32,7 @@ public class DBTemplateRepository implements TemplateRepository {
     }
 
     @Override
-    public Template create(TemplateFactory factory) {
+    public Template create(TemplateFactory factory) throws NoSuchTemplateExists {
         return null;
     }
 }

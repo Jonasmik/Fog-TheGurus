@@ -9,7 +9,7 @@ import java.util.List;
  * Implemented in the DBTemplateRepository
  */
 public interface TemplateRepository {
-    List<Template> findAll();
+    List<Template> findAll() throws NoSuchTemplateExists;
     Template findById(int id) throws NoSuchTemplateExists;
-    Template create(TemplateFactory factory);
+    Template create(TemplateFactory factory) throws NoSuchTemplateExists;
 }
