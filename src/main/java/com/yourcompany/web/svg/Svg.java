@@ -21,6 +21,7 @@ public class Svg extends Tag {
     /**
      * Implemente because of the Svg class extending Tag. It is used as the start of an svg doc.
      */
+    @Override
     public String renderAttributes() {
         return String.format(
                 "xmlns=\"http://www.w3.org/2000/svg\""
