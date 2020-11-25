@@ -6,7 +6,16 @@
 <jsp:include page="WEB-INF/includes/header.jsp" flush="true"/>
 
 <!-- Insert title -->
-<title>Template: Home</title>
+
+<c:choose>
+    <c:when test="${sessionScope.user == null}">
+        <title>Fog: Hjem</title>
+    </c:when>
+    <c:when test="${sessionScope.user != null}">
+        <title>Fog: Kundeside</title>
+    </c:when>
+</c:choose>
+
 
 <%
     if (request.getServletContext().getAttribute("version") == null) {

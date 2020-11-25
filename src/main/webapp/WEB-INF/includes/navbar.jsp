@@ -15,7 +15,7 @@
                     <a class="nav-link my-navlinks" href="#">Hjem</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link my-navlinks" href="#">Bestil</a>
+                    <a class="nav-link my-navlinks" href="Main?target=redirect&destination=createorder">Bestil</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">

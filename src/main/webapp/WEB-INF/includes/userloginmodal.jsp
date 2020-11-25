@@ -15,9 +15,9 @@
                             <nav>
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <a class="nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home"
-                                       role="tab" aria-controls="nav-home" aria-selected="true">Login</a>
+                                       role="tab" aria-controls="nav-home" aria-selected="true">Log ind</a>
                                     <a class="nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile"
-                                       role="tab" aria-controls="nav-profile" aria-selected="false">Sign up</a>
+                                       role="tab" aria-controls="nav-profile" aria-selected="false">Opret bruger</a>
                                 </div>
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
@@ -26,9 +26,9 @@
                                     <br>
                                     <form class="form-signin" action="Main" method="POST">
                                         <input type="hidden" name="target" value="authorizeuser">
-                                        <label for="loginEmail" class="sr-only">Email adresse</label>
+                                        <label for="loginEmail" class="sr-only">E-mail adresse</label>
                                         <input type="email" id="loginEmail" class="form-control" name="email"
-                                               placeholder="Email adresse" required=""
+                                               placeholder="E-mail adresse" required=""
                                                autofocus="">
                                         <small style="margin-bottom: 5px" id="loginemailHelp"
                                                class="form-text text-muted">Vi
@@ -53,11 +53,11 @@
                                         <label for="signupName" class="sr-only">Navn</label>
                                         <input style="margin-bottom: 15px" type="text" id="signupName"
                                                class="form-control" name="name"
-                                               placeholder="Indtast Navn" required=""
+                                               placeholder="Indtast navn" required=""
                                                autofocus="">
                                         <label for="signupEmail" class="sr-only">Email adresse</label>
                                         <input type="email" id="signupEmail" class="form-control" name="email"
-                                               placeholder="Indtast Email adresse" required=""
+                                               placeholder="Indtast e-mail adresse" required=""
                                                autofocus="">
                                         <small style="margin-bottom: 5px" id="signupemailHelp"
                                                class="form-text text-muted">Vi
@@ -65,11 +65,11 @@
                                         <label for="signupPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 15px" type="password" id="signupPassword"
                                                class="form-control" name="password1"
-                                               placeholder="Indtast Password" required="">
+                                               placeholder="Indtast password" required="">
                                         <label for="signupPassword2" class="sr-only">Password2</label>
                                         <input style="margin-bottom: 25px" type="password" id="signupPassword2"
                                                class="form-control" name="password2"
-                                               placeholder="Indtast Password" required="">
+                                               placeholder="Gentag password" required="">
                                         <hr class="w-100">
                                         <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-block w-50 btn-primary">
