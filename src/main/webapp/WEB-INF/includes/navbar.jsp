@@ -21,7 +21,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
                     <c:if test="${sessionScope.user == null}">
-                        <a class="nav-link my-navlinks" href="#" data-toggle="modal" data-target="#myModal"><strong>Log ind</strong></a>
+                        <a class="nav-link my-navlinks" href="#" data-toggle="modal" data-target="#loginModal"><strong>Log ind</strong></a>
                     </c:if>
                 </li>
             </ul>

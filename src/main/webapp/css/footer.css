@@ -1,0 +1,42 @@
+.my-footerheader {
+    font-family: 'Big Shoulders Display', sans-serif;
+    color: white !important;
+    border-bottom: 1px solid #50a8fd;
+    padding-bottom: 5px;
+}
+
+.my-footerdropdown {
+    padding-left: 0;
+    padding-right: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.my-footerlinks {
+    color: white !important;
+}
+
+.my-footerlinks:hover {
+    color: #50a8fd !important;
+}
+
+footer {
+    width: 100%;
+    margin: auto;
+    height: auto;
+    padding-top: 8px;
+    background-color: #003d76;
+}
+
+.footer-hr {
+    background-color: #50a8fd;
+}
+
+.bottom-footer {
+    margin-top: 10px;
+}
+
+.fog-info {
+    color: white !important;
+    font-size: 20px !important;
+}

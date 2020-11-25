@@ -9,7 +9,7 @@
 <title>Template: Home</title>
 
 <%
-    if (request.getServletContext().getAttribute("version") == null ) {
+    if (request.getServletContext().getAttribute("version") == null) {
         request.getServletContext().setAttribute("version", Template.getVERSION());
     }
 %>
@@ -20,7 +20,10 @@
 <jsp:include page="WEB-INF/includes/navbar.jsp" flush="true"/>
 
 <main role="main" class="container flex-shrink-0">
-    <h1>Resterende Template!</h1>
+    <c:if test="${sessionScope.user == null}">
+        <jsp:include page="WEB-INF/includes/userloginmodal.jsp" flush="true"/>
+    </c:if>
+    <h1>Fog Carport </h1>
 </main>
 
 <!-- Include footer -->
