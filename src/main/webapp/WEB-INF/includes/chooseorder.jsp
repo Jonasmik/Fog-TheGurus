@@ -145,7 +145,7 @@
                                         "Vælg .."</p>
                                     <h4>Beregn 15 cm tagudhæng på hver side af redskabsrummet.</h4>
                                     <label for="flatRedskabsRumBredde">Redskabsrum bredde</label>
-                                    <select class="form-control" id="flatRedskabsRumBredde">
+                                    <select class="form-control" id="flatRedskabsRumBredde" disabled>
                                         <option selected>Vælg bredde</option>
                                         <option>210 cm</option>
                                         <option>240 cm</option>
@@ -189,10 +189,14 @@
 
             function showFlatRoofOptions() {
                 var x = document.getElementById("mySecondExtraRoom");
+                var width = document.getElementById("flatRedskabsRumBredde");
+
                 if (x.style.display === "none") {
                     x.style.display = "block";
+                    width.disabled = false;
                 } else {
                     x.style.display = "none";
+                    width.disabled = true;
                 }
             }
         </script>
