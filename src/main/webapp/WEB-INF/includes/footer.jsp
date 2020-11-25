@@ -89,7 +89,7 @@
                                 Johannes Fog</p>
                             <p class="fog-info"><i class="fas fa-phone-alt"
                                                    style="border: 1px solid white; border-radius: 40px; padding: 7px; margin-right: 10px"></i>
-                                20 57 56 01</p>
+                                98 71 23 77</p>
                             <p class="fog-info"><i class="far fa-envelope"
                                                    style="border: 1px solid white; border-radius: 40px; padding: 7px; margin-right: 10px"></i>
                                 Send e-mail</p>
@@ -117,6 +117,7 @@
         </div>
     </div>
 </footer>
+
 
 <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
         integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

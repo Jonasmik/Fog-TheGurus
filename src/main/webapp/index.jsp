@@ -1,4 +1,4 @@
-<%@ page import="com.yourcompany.api.Template" %>
+<%@ page import="com.yourcompany.api.Fog" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
@@ -19,7 +19,7 @@
 
 <%
     if (request.getServletContext().getAttribute("version") == null) {
-        request.getServletContext().setAttribute("version", Template.getVERSION());
+        request.getServletContext().setAttribute("version", Fog.getVERSION());
     }
 %>
 
