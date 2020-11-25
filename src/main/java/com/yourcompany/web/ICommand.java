@@ -4,6 +4,7 @@ package com.yourcompany.web;
 import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.TemplateFacade;
+import com.yourcompany.api.facades.UserFacade;
 import com.yourcompany.web.commands.Redirect;
 import com.yourcompany.web.commands.UnknownCommand;
 
@@ -28,6 +29,9 @@ public abstract class ICommand {
     private static void initCommands() {
         commands = new HashMap<>();
         commands.put("redirect", new Redirect());
+        commands.put("authorizeuser", new AuthorizeUser());
+        commands.put("createuser", new CreateUser());
+
     }
 
     static ICommand from(HttpServletRequest request) {
@@ -39,14 +43,14 @@ public abstract class ICommand {
     }
 
     //Creates the com.yourcompany.api, with this you will be able to just call com.yourcompany.api.get().YOURMETHOD()
-    protected static final Template api;
+    protected static final Fog api;
 
     static {
-        api = createTemplate();
+        api = createFog();
     }
 
-    private static Template createTemplate() {
-        return new Template(TemplateFacade.getInstance());
+    private static Fog createFog() {
+        return new Fog(UserFacade.getInstance());
     }
 
     //used by every command, and called by the invoker.
