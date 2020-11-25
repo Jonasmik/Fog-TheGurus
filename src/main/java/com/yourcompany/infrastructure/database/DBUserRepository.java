@@ -1,16 +1,14 @@
 package com.yourcompany.infrastructure.database;
 
-import com.sun.jdi.connect.Connector;
 import com.yourcompany.api.factories.UserFactory;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.domain.user.UserRepository;
+import com.yourcompany.exceptions.NoSuchUserExists;
 import com.yourcompany.exceptions.UserValidationError;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.NoSuchElementException;
 
 public class DBUserRepository implements UserRepository {
     private final Database db;
@@ -52,7 +50,51 @@ public class DBUserRepository implements UserRepository {
 
 
     @Override
-    public User createUser(UserFactory userFactory) {
-        return null;
+    public User createUser(UserFactory userFactory, byte[] salt, byte[] secret) throws NoSuchUserExists {
+        int id;
+        try (Connection conn = db.connect()) {
+            PreparedStatement ps =
+                    conn.prepareStatement(
+                            "INSERT INTO users (name, email, salt, secret, role) " +
+                                    "VALUE (?,?,?,?,?);",
+                            Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, userFactory.getName());
+            ps.setString(2, userFactory.getEmail());
+            ps.setBytes(3, salt);
+            ps.setBytes(4, secret);
+            ps.setString( 5, "customer");
+            try {
+                ps.executeUpdate();
+            } catch (SQLIntegrityConstraintViolationException e) {
+                throw new NoSuchUserExists(userFactory.getName());
+            }
+
+            ResultSet rs = ps.getGeneratedKeys();
+            if (rs.next()) {
+                id = rs.getInt(1);
+            } else {
+                throw new NoSuchUserExists(userFactory.getName());
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return findUserById(id);
+    }
+
+    private User findUserById(int id) throws NoSuchUserExists {
+        try(Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement(
+                    "SELECT * FROM users WHERE id = ?;");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            if(rs.next()) {
+                return loadUser(rs);
+            } else {
+                System.err.println("No version in properties.");
+                throw new NoSuchElementException("No user with id: " + id);
+            }
+        } catch (SQLException e) {
+            throw new NoSuchUserExists(e.getMessage());
+        }
     }
 }

@@ -1,18 +1,13 @@
 package com.yourcompany.api.facades;
 
-import com.yourcompany.api.factories.TemplateFactory;
 import com.yourcompany.api.factories.UserFactory;
-import com.yourcompany.domain.Template;
-import com.yourcompany.domain.TemplateRepository;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.domain.user.UserRepository;
-import com.yourcompany.exceptions.NoSuchTemplateExists;
+import com.yourcompany.exceptions.NoSuchUserExists;
 import com.yourcompany.exceptions.UserValidationError;
-import com.yourcompany.infrastructure.database.DBTemplateRepository;
 import com.yourcompany.infrastructure.database.DBUserRepository;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
-import javax.validation.ValidationException;
 import java.util.List;
 
 public class UserFacade {
@@ -36,8 +31,15 @@ public class UserFacade {
         return instance;
     }
 
-    public User createUser(UserFactory factory) {
-        return null;
+    public User createUser(UserFactory userFactory) throws NoSuchUserExists {
+        byte[] salt = User.generateSalt();
+        byte[] secret = new byte[0];
+        try {
+            secret = User.calculateSecret(salt, userFactory.getPassword());
+        } catch (UserValidationError validationError) {
+            validationError.printStackTrace();
+        }
+        return repo.createUser(userFactory, salt, secret);
     }
 
     public User authorizeUser(String email, String password) throws UserValidationError {
