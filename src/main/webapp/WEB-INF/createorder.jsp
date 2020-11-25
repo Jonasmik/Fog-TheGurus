@@ -6,7 +6,7 @@
 <jsp:include page="includes/header.jsp" flush="true"/>
 
 <!-- Insert title -->
-<title>Fog: Errorpage</title>
+<title>Fog: Bestilling</title>
 
 <body class="d-flex flex-column h-100 bg-light">
 
