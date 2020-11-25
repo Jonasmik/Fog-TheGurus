@@ -1,0 +1,27 @@
+.foglogoheader {
+    margin-right: 20px;
+}
+
+.nav-container {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.my-navlinks:hover {
+    color: #50a8fd !important;
+}
+
+.my-navlinks {
+    font-family: 'Big Shoulders Display', sans-serif;
+    color: #ffffff !important;
+    font-size: 25px;
+    margin: 10px;
+}
+
+nav {
+    width: 80%;
+    margin: auto;
+    height: auto;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}

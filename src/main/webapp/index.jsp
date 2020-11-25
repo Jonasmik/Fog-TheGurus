@@ -1,3 +1,4 @@
+<%@ page import="com.yourcompany.api.Template" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
@@ -7,7 +8,13 @@
 <!-- Insert title -->
 <title>Template: Home</title>
 
-<body class="d-flex flex-column h-100 text-center bg-light">
+<%
+    if (request.getServletContext().getAttribute("version") == null ) {
+        request.getServletContext().setAttribute("version", Template.getVERSION());
+    }
+%>
+
+<body class="d-flex flex-column h-100 bg-light">
 
 <!-- Include navbar -->
 <jsp:include page="WEB-INF/includes/navbar.jsp" flush="true"/>
@@ -18,5 +25,7 @@
 
 <!-- Include footer -->
 <jsp:include page="WEB-INF/includes/footer.jsp" flush="true"/>
+
 </body>
+
 </html>
