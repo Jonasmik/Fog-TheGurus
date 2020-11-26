@@ -18,7 +18,7 @@
     </c:if>
     <!-- Called if an error happens in the system -->
     <div class="alert alert-danger border-danger">
-        <h1>Error</h1>
+        <h1>Fejl</h1>
         <c:if test="${requestScope.error != null}">
             <h4>${requestScope.error}</h4>
         </c:if>
@@ -28,7 +28,7 @@
     <form action="Main" method="get">
         <input type="hidden" name="target" value="redirect">
         <input type="hidden" name="destination" value="index">
-        <button type="submit" class="btn btn-secondary">Back to the main menu</button>
+        <button type="submit" class="btn btn-secondary">Tilbage til hjemmesiden</button>
     </form>
 
 </main>

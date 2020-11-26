@@ -4,6 +4,12 @@
     <form method="post">
         <div class="row">
             <div class="col">
+                <div class="alert alert-danger border-danger">
+                    <c:if test="${requestScope.preorderfail != null}">
+                        <h1>Fejl</h1>
+                        <h4>${requestScope.preorderfail}</h4>
+                    </c:if>
+                </div>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
