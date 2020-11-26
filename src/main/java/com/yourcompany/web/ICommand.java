@@ -3,7 +3,6 @@ package com.yourcompany.web;
 
 import com.yourcompany.api.*;
 
-import com.yourcompany.api.facades.TemplateFacade;
 import com.yourcompany.api.facades.UserFacade;
 import com.yourcompany.web.commands.Redirect;
 import com.yourcompany.web.commands.UnknownCommand;

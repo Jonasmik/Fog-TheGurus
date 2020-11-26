@@ -2,6 +2,7 @@ package com.yourcompany.web;
 
 import com.yourcompany.domain.user.User;
 import com.yourcompany.exceptions.UserValidationError;
+import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

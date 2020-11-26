@@ -140,7 +140,7 @@
 
                             <div class="form-group">
                                 <label for="skråAdditionals">Evt. bemærkninger</label>
-                                <textarea class="form-control" id="skråAdditionals" name="angledadditional"
+                                <textarea maxlength="255" class="form-control" id="skråAdditionals" name="angledadditional"
                                           rows="3"></textarea>
                             </div>
 
@@ -251,7 +251,7 @@
 
                             <div class="form-group">
                                 <label for="flatBemærkning">Evt. bemærkninger</label>
-                                <textarea class="form-control" id="flatBemærkning" name="flatadditionals"
+                                <textarea maxlength="255" class="form-control" id="flatBemærkning" name="flatadditionals"
                                           rows="3"></textarea>
                             </div>
 
