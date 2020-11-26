@@ -86,7 +86,7 @@
                         <div class="col-lg-3 col-md-12">
                             <p class="fog-info" style="padding-top: 20px"><i class="fas fa-users"
                                                                              style="border: 1px solid white; border-radius: 40px; padding: 7px; margin-right: 10px"></i>
-                                Johannes Fog</p>
+                                NOT Johannes Fog</p>
                             <p class="fog-info"><i class="fas fa-phone-alt"
                                                    style="border: 1px solid white; border-radius: 40px; padding: 7px; margin-right: 10px"></i>
                                 98 71 23 77</p>
@@ -104,13 +104,13 @@
             <div class="bottom-footer d-lg-flex h-auto w-100">
                 <div class="col-lg-8 col-md-12">
                     <p>
-                        Johannes Fog A/S - Fogvej 15 - 2800 Lyngby - CVR-nr. 12313374321
+                        NOT Johannes Fog A/S - Fogvej 15 - 2800 Lyngby - NOT FOG-CVR-nr. 12313374321
                     </p>
                 </div>
                 <div class="col-lg-1"></div>
                 <div class="col-lg-3 col-md-12">
                     <p>
-                        Fog version (${applicationScope.version})
+                        NOT Fog version (${applicationScope.version})
                     </p>
                 </div>
             </div>

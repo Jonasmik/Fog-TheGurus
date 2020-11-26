@@ -31,14 +31,19 @@ public class CreateUser extends ICommand {
             HttpSession session = request.getSession();
 
 
-            if (user.getRole().equals("lagermedarbejder")) {
-                session.setAttribute("lagermedarbejder", user.getRole());
-            } else if (user.getRole().equals("salgsmedarbejder")) {
-                session.setAttribute("salgsmedarbejder", user.getRole());
-            } else if (user.getRole().equals("afdelingsleder")) {
-                session.setAttribute("afdelingsleder", user.getRole());
-            } else if (user.getRole().equals("kunde")) {
-                session.setAttribute("kunde", user.getRole());
+            switch (user.getRole()) {
+                case "lagermedarbejder":
+                    session.setAttribute("lagermedarbejder", user.getRole());
+                    break;
+                case "salgsmedarbejder":
+                    session.setAttribute("salesman", user.getRole());
+                    break;
+                case "afdelingsleder":
+                    session.setAttribute("afdelingsleder", user.getRole());
+                    break;
+                default:
+                    session.setAttribute("customer", user.getRole());
+                    break;
             }
 
             request.getServletContext().setAttribute("notloggedin", null);

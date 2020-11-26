@@ -32,13 +32,13 @@ public class AuthorizeUser extends ICommand {
                 session.setAttribute("lagermedarbejder", user.getRole());
                 break;
             case "salgsmedarbejder":
-                session.setAttribute("salgsmedarbejder", user.getRole());
+                session.setAttribute("salesman", user.getRole());
                 break;
             case "afdelingsleder":
                 session.setAttribute("afdelingsleder", user.getRole());
                 break;
             default:
-                session.setAttribute("kunde", user.getRole());
+                session.setAttribute("customer", user.getRole());
                 break;
         }
 
