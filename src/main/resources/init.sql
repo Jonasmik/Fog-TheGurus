@@ -5,7 +5,7 @@ use fogdb;
 DROP USER IF EXISTS 'fogdb'@localhost;
 
 create user 'fogdb'@'localhost';
-grant all privileges on cupcake.* to 'fogdb'@'localhost';
+grant all privileges on fogdb.* to 'fogdb'@'localhost';
 flush privileges;
 
 DROP TABLE IF EXISTS properties;
