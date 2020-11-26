@@ -71,7 +71,7 @@ DROP TABLE IF EXISTS preorders;
 CREATE TABLE preorders (
                            id INT PRIMARY KEY AUTO_INCREMENT,
                            customerid INT NOT NULL,
-                           salesmanid INT NOT NULL,
+                           salesmanid INT DEFAULT NULL,
                            carportid INT NOT NULL,
                            FOREIGN KEY (customerid) REFERENCES customers(userid),
                            FOREIGN KEY (salesmanid) REFERENCES salesmen(userid),
