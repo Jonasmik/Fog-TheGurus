@@ -20,9 +20,17 @@
             </ul>
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <c:if test="${sessionScope.user == null}">
-                        <a class="nav-link my-navlinks" href="#" data-toggle="modal" data-target="#loginModal"><strong>Log ind</strong></a>
-                    </c:if>
+                    <c:choose>
+
+                        <c:when test="${sessionScope.user.role.equals('customer')}">
+                            <a class="nav-link my-navlinks" href="#" data-toggle="modal" data-target="#logoutModal"><strong>Log ud</strong></a>
+                        </c:when>
+
+                        <c:when test="${sessionScope.user == null}">
+                            <a class="nav-link my-navlinks" href="#" data-toggle="modal" data-target="#loginModal"><strong>Log ind</strong></a>
+                        </c:when>
+
+                    </c:choose>
                 </li>
             </ul>
         </div>

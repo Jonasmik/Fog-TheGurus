@@ -17,6 +17,11 @@
     <c:if test="${sessionScope.user == null}">
         <jsp:include page="includes/userloginmodal.jsp" flush="true"/>
     </c:if>
+    <c:if test="${sessionScope.user != null}">
+        <jsp:include page="includes/userlogoutmodal.jsp" flush="true"/>
+    </c:if>
+
+    <h1 style="padding-left: 18px">Byg din egen Carport</h1>
 
     <jsp:include page="includes/chooseorder.jsp" flush="true"/>
 

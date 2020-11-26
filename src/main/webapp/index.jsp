@@ -32,6 +32,10 @@
     <c:if test="${sessionScope.user == null}">
         <jsp:include page="WEB-INF/includes/userloginmodal.jsp" flush="true"/>
     </c:if>
+    <c:if test="${sessionScope.user != null}">
+        <jsp:include page="WEB-INF/includes/userlogoutmodal.jsp" flush="true"/>
+    </c:if>
+
     <h1>Fog Carport </h1>
 </main>
 

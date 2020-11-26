@@ -52,7 +52,7 @@
                                         <input type="hidden" name="target" value="createuser">
                                         <label for="signupName" class="sr-only">Navn</label>
                                         <input style="margin-bottom: 15px" type="text" id="signupName"
-                                               class="form-control" name="name"
+                                               class="form-control" name="username"
                                                placeholder="Indtast navn" required=""
                                                autofocus="">
                                         <label for="signupEmail" class="sr-only">Email adresse</label>
