@@ -31,6 +31,8 @@ public abstract class ICommand {
         commands.put("redirect", new Redirect());
         commands.put("authorizeuser", new AuthorizeUser());
         commands.put("createuser", new CreateUser());
+        commands.put("flatroofpreorder", new FlatRoofPreOrder());
+
 
     }
 
