@@ -1,0 +1,5 @@
+
+[
+java:S2259"BA "NullPointerException" could be thrown; "user" is nullable here.(®Ýé²ýÿÿÿÿ
+S
+java:S2441":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ
