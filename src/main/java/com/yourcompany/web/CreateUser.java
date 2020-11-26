@@ -2,7 +2,7 @@ package com.yourcompany.web;
 
 import com.yourcompany.api.factories.UserFactory;
 import com.yourcompany.domain.user.User;
-import com.yourcompany.exceptions.NoSuchUserExists;
+import com.yourcompany.exceptions.UserValidationError;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,15 +18,16 @@ public class CreateUser extends ICommand {
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
         userFactory.setPassword(password1);
-        if (userFactory.isValid() || Objects.equals(password1, password2)) {
+        if (userFactory.isValid() && Objects.equals(password1, password2)) {
 
             User user = null;
             try {
                 user = api.getUserFacade().createUser(userFactory);
-            } catch (NoSuchUserExists e) {
-                request.setAttribute("error", e.getMessage());
+            } catch (UserValidationError e) {
+                request.setAttribute("error", "That user already exists");
                 return "errorpage";
             }
+
             HttpSession session = request.getSession();
 
 

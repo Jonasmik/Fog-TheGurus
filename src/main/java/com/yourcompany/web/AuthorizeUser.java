@@ -12,12 +12,19 @@ public class AuthorizeUser extends ICommand {
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User user = null;
+        User user;
         try {
             user = api.getUserFacade().authorizeUser(email, password);
         } catch (UserValidationError userValidationError) {
-            request.setAttribute("loginerror", "Email eller password var ugyldigt");
+            request.setAttribute("error", "E-mail eller password var ugyldig");
+            return "errorpage";
         }
+
+        if (user == null) {
+            request.setAttribute("error", "E-mail eller password var ugyldig");
+            return "errorpage";
+        }
+
         HttpSession session = request.getSession();
 
         switch (user.getRole()) {
