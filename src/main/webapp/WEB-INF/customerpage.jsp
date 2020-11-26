@@ -18,21 +18,33 @@
 
     <h1>Profil side</h1>
 
-    <h3 style="padding-top: 20px">Forespørgelser</h3>
-    <c:if test="${requestScope.preorder == null}">
-        <p>Du har ikke nogle forespørgelser</p>
-    </c:if>
+    <div class="row">
+        <div class="col-md-4" style="background-color: rgba(173,216,230, 0.2); border-radius: 30px; padding: 15px">
+            <h3>Information</h3>
+            <p>Navn: ${sessionScope.user.name}</p>
+            <p>Email: ${sessionScope.user.email}</p>
+            <button type="button" class="btn btn-secondary">Rediger Information</button>
 
-    <h3>Aktive tilbud</h3>
-    <c:if test="${requestScope.offer == null}">
-        <p>Du har ikke nogle aktive tilbud</p>
-    </c:if>
+            <h3 style="padding-top: 40px">Sikkerhed</h3>
+            <button type="button" class="btn btn-secondary">Rediger password</button>
+        </div>
+        <div class="col-md-8">
+            <h3 style="padding-top: 20px">Forespørgelser</h3>
+            <c:if test="${requestScope.preorder == null}">
+                <p>Du har ikke nogle forespørgelser</p>
+            </c:if>
 
-    <h3>Afgivet ordre</h3>
-    <c:if test="${requestScope.order == null}">
-        <p>Du har ikke nogle købte ordre</p>
-    </c:if>
+            <h3>Aktive tilbud</h3>
+            <c:if test="${requestScope.offer == null}">
+                <p>Du har ikke nogle aktive tilbud</p>
+            </c:if>
 
+            <h3>Afgivet ordre</h3>
+            <c:if test="${requestScope.order == null}">
+                <p>Du har ikke nogle aftivet ordre</p>
+            </c:if>
+        </div>
+    </div>
 
 </main>
 
