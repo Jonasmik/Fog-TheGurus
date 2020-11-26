@@ -2,7 +2,8 @@
 <div class="nav-container py-3" style="background-color: #0D2069">
     <nav class="navbar navbar-expand-md navbar-dark">
 
-        <a href="#"><img class="foglogoheader" src="${pageContext.request.contextPath}/images/fogheaderlogo3.png" alt="FogLogo"/></a>
+        <a href="#"><img class="foglogoheader" src="${pageContext.request.contextPath}/images/fogheaderlogo3.png"
+                         alt="FogLogo"/></a>
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02"
                 aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
@@ -19,19 +20,37 @@
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item">
-                    <c:choose>
+                <c:choose>
 
-                        <c:when test="${sessionScope.user.role.equals('customer')}">
-                            <a class="nav-link my-navlinks" href="#" data-toggle="modal" data-target="#logoutModal"><strong>Log ud</strong></a>
-                        </c:when>
+                    <c:when test="${sessionScope.user.role.equals('customer')}">
+                        <li class="nav-item">
+                            <a class="nav-link my-navlinks"
+                               href="Main?target=redirect&destination=customerpage">${sessionScope.user.name}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link my-navlinks" href="#" data-toggle="modal"
+                               data-target="#logoutModal"><strong>Log
+                                ud</strong></a>
+                        </li>
+                    </c:when>
 
-                        <c:when test="${sessionScope.user == null}">
-                            <a class="nav-link my-navlinks" href="#" data-toggle="modal" data-target="#loginModal"><strong>Log ind</strong></a>
-                        </c:when>
+                    <c:when test="${sessionScope.user.role.equals('salesman')}">
+                        <li class="nav-item">
+                            <a class="nav-link my-navlinks" href="#" data-toggle="modal"
+                               data-target="#logoutModal"><strong>Log
+                                ud</strong></a>
+                        </li>
+                    </c:when>
 
-                    </c:choose>
-                </li>
+                    <c:when test="${sessionScope.user == null}">
+                        <li class="nav-item">
+                            <a class="nav-link my-navlinks" href="#" data-toggle="modal"
+                               data-target="#loginModal"><strong>Log
+                                ind</strong></a>
+                        </li>
+                    </c:when>
+
+                </c:choose>
             </ul>
         </div>
     </nav>

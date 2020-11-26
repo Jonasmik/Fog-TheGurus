@@ -12,8 +12,11 @@
                 <p>Er du sikker på at du vil logge ud ${sessionScope.user.name}?</p>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary">Log ud</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Nej</button>
+                <form action="Main" method="post">
+                    <input type="hidden" name="target" value="logoutuser">
+                    <button type="submit" class="btn btn-primary">Log ud</button>
+                </form>
             </div>
         </div>
     </div>

@@ -24,6 +24,8 @@ public class Redirect extends ICommand {
                 break;
             case "createorder":
                 break;
+            case "customerpage":
+                break;
             default:
                 request.setAttribute("error", "This site does not exist");
                 destination = "errorpage";
