@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<div class="nav-container py-3" style="background-color: #69696e">
+<div class="nav-container py-2" id="showUserMenu" style="background-color: rgba(80,80,81, 0.5); display: none">
     <nav class="navbar navbar-expand-md navbar-dark">
 
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#admincustomerpage"
@@ -21,3 +21,16 @@
         </div>
     </nav>
 </div>
+
+<script>
+    function showUserMenu() {
+        const x = document.getElementById("showUserMenu");
+
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        } else {
+            x.style.display = "none";
+        }
+    }
+</script>
+

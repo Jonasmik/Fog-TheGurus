@@ -182,6 +182,14 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label for="flatcarportTag">Carport Tag</label>
+                                <select class="form-control" id="flatcarportTag" name="roof">
+                                    <option selected>Vælg tagtype/farve</option>
+                                    <option>Plasttrapezplader</option>
+                                </select>
+                            </div>
+
                             <div class="form-check">
                                 <label>
                                     <input class="form-check-input" style="padding-top: 20px; padding-bottom: 20px;"
