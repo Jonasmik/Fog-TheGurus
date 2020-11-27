@@ -19,14 +19,17 @@ public class CreateUser extends ICommand {
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
         userFactory.setPassword(password1);
+
+        String index = "index";
+
         if (userFactory.isValid() && Objects.equals(password1, password2)) {
 
             User user = null;
             try {
                 user = api.getUserFacade().createUser(userFactory);
             } catch (UserValidationError e) {
-                request.setAttribute("error", "That user already exists");
-                return "errorpage";
+                request.setAttribute("loginfail", "Den e-mail er allerede i brug");
+                return index;
             }
 
             HttpSession session = request.getSession();
@@ -50,10 +53,10 @@ public class CreateUser extends ICommand {
             request.getServletContext().setAttribute("notloggedin", null);
             session.setAttribute("user", user);
 
-            return "index";
+            return index;
         } else {
-            request.setAttribute("error", "De 2 passwords matchede ikke");
-            return "errorpage";
+            request.setAttribute("loginfail", "De 2 passwords matchede ikke");
+            return index;
         }
 
     }
