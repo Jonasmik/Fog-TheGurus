@@ -17,13 +17,13 @@ public class AuthorizeUser extends ICommand {
         try {
             user = api.getUserFacade().authorizeUser(email, password);
         } catch (UserValidationError userValidationError) {
-            request.setAttribute("error", "E-mail eller password var ugyldig");
-            return "errorpage";
+            request.setAttribute("loginfail", "E-mail eller password var ugyldig");
+            return "index";
         }
 
         if (user == null) {
-            request.setAttribute("error", "E-mail eller password var ugyldig");
-            return "errorpage";
+            request.setAttribute("loginfail", "E-mail eller password var ugyldig");
+            return "index";
         }
 
         HttpSession session = request.getSession();

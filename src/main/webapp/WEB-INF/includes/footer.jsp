@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 <footer class="footer flex-shrink-0 text-white">
     <div class="container">
@@ -46,8 +47,15 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#" data-toggle="modal"
-                                           data-target="#loginModal">Bliv kunde i Fog</a>
+                                        <c:choose>
+                                            <c:when test="${sessionScope.user == null}">
+                                                <a class="my-footerlinks" href="#" data-toggle="modal"
+                                                   data-target="#loginModal">Bliv kunde i Fog</a>
+                                            </c:when>
+                                            <c:when test="${sessionScope.user != null}">
+                                                <a class="my-footerlinks" href="Main?target=redirect&destination=createorder">Bliv kunde i Fog</a>
+                                            </c:when>
+                                        </c:choose>
                                     </li>
                                 </ul>
                             </div>
@@ -82,13 +90,13 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#">Facebook</a>
+                                        <a class="my-footerlinks" href="https://www.facebook.com/">Facebook</a>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#">Instagram</a>
+                                        <a class="my-footerlinks" href="https://www.instagram.com/">Instagram</a>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#">LinkedIn</a>
+                                        <a class="my-footerlinks" href="https://www.linkedin.com/">LinkedIn</a>
                                     </li>
                                 </ul>
                             </div>
@@ -220,14 +228,18 @@
     </div>
 </footer>
 
+<c:if test="${requestScope.loginfail == null}">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+            integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+            integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
+</c:if>
 <script src="${pageContext.request.contextPath}/js/cookies.js"></script>
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
-        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
-        crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/d558e38d6e.js" crossorigin="anonymous"></script>

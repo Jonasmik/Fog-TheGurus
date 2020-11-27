@@ -1,7 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-
             <div class="modal fade" id="loginModal">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -25,6 +25,11 @@
                                      aria-labelledby="nav-home-tab">
                                     <br>
                                     <form class="form-signin" action="Main" method="POST">
+                                        <c:if test="${requestScope.loginfail != null}">
+                                            <div class="alert alert-danger border-danger">
+                                                <p>${requestScope.loginfail}</p>
+                                            </div>
+                                        </c:if>
                                         <input type="hidden" name="target" value="authorizeuser">
                                         <label for="loginEmail" class="sr-only">E-mail adresse</label>
                                         <input type="email" id="loginEmail" class="form-control" name="email"

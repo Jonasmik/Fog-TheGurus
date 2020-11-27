@@ -19,6 +19,7 @@ public class Redirect extends ICommand {
 
         String destination = request.getParameter("destination");
         User user = (User) request.getSession().getAttribute("user");
+        String errorpage = "errorpage";
 
         switch (destination){
 
@@ -30,11 +31,11 @@ public class Redirect extends ICommand {
                 break;
             case "adminpage":
 
-                if ("salesman".equals(user.getRole())) {
-                    //generate stuff for the salesman
-                } else {
+                if(user == null){
                     request.setAttribute("error", "Du er desvære ikke en adminstrator, men godt forsøgt");
-                    return "errorpage";
+                    return errorpage;
+                } else if(user.getRole().equals("salesman")) {
+                    //generate stuff for the salesman
                 }
 
                 break;
