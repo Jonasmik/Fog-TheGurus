@@ -3,7 +3,6 @@ package com.yourcompany.api.facades;
 import com.yourcompany.api.factories.UserFactory;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.domain.user.UserRepository;
-import com.yourcompany.exceptions.NoSuchUserExists;
 import com.yourcompany.exceptions.UserValidationError;
 import com.yourcompany.infrastructure.database.DBUserRepository;
 import com.yourcompany.infrastructure.dbsetup.Database;
@@ -31,35 +30,25 @@ public class UserFacade {
         return instance;
     }
 
-    public User createUser(UserFactory userFactory) throws NoSuchUserExists {
+    public User createUser(UserFactory userFactory) throws UserValidationError {
         byte[] salt = User.generateSalt();
         byte[] secret = new byte[0];
-        try {
-            secret = User.calculateSecret(salt, userFactory.getPassword());
-        } catch (UserValidationError validationError) {
-            validationError.printStackTrace();
-        }
+        secret = User.calculateSecret(salt, userFactory.getPassword());
         return repo.createUser(userFactory, salt, secret);
     }
 
     public User authorizeUser(String email, String password) throws UserValidationError {
-        User user = repo.authorizeUser(email);
-        if(user == null){
+        User user = null;
+        user = repo.authorizeUser(email);
+        if (user == null) {
             return null;
         }
-
-        try {
-            if (user.isPasswordCorrect(password)) {
-                return user;
-            } else {
-                user = null;
-                return user;
-            }
-        } catch (UserValidationError validationError) {
-            validationError.printStackTrace();
+        if (user.isPasswordCorrect(password)) {
+            return user;
+        } else {
+            user = null;
+            return user;
         }
-
-        return null;
     }
 
     public List<User> findAll() {

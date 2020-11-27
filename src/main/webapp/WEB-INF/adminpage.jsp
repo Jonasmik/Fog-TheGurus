@@ -14,16 +14,17 @@
 <jsp:include page="includes/navbar.jsp" flush="true"/>
 
 <main role="main" class="container flex-shrink-0">
-    <c:if test="${sessionScope.user == null}">
-        <jsp:include page="includes/userloginmodal.jsp" flush="true"/>
-    </c:if>
     <c:if test="${sessionScope.user != null}">
         <jsp:include page="includes/userlogoutmodal.jsp" flush="true"/>
     </c:if>
 
-    <h1 style="padding-left: 18px">Byg din egen Carport</h1>
+    <c:choose>
 
-    <jsp:include page="includes/chooseorder.jsp" flush="true"/>
+        <c:when test="${sessionScope.user.role.equals('salesman')}">
+            <jsp:include page="includes/salesmanpage.jsp" flush="true"/>
+        </c:when>
+
+    </c:choose>
 
 </main>
 

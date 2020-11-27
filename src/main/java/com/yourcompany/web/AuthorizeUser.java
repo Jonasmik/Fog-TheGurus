@@ -2,6 +2,7 @@ package com.yourcompany.web;
 
 import com.yourcompany.domain.user.User;
 import com.yourcompany.exceptions.UserValidationError;
+import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,12 +13,19 @@ public class AuthorizeUser extends ICommand {
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
-        User user = null;
+        User user;
         try {
             user = api.getUserFacade().authorizeUser(email, password);
         } catch (UserValidationError userValidationError) {
-            request.setAttribute("loginerror", "Email eller password var ugyldigt");
+            request.setAttribute("error", "E-mail eller password var ugyldig");
+            return "errorpage";
         }
+
+        if (user == null) {
+            request.setAttribute("error", "E-mail eller password var ugyldig");
+            return "errorpage";
+        }
+
         HttpSession session = request.getSession();
 
         switch (user.getRole()) {
@@ -25,13 +33,13 @@ public class AuthorizeUser extends ICommand {
                 session.setAttribute("lagermedarbejder", user.getRole());
                 break;
             case "salgsmedarbejder":
-                session.setAttribute("salgsmedarbejder", user.getRole());
+                session.setAttribute("salesman", user.getRole());
                 break;
             case "afdelingsleder":
                 session.setAttribute("afdelingsleder", user.getRole());
                 break;
             default:
-                session.setAttribute("kunde", user.getRole());
+                session.setAttribute("customer", user.getRole());
                 break;
         }
 

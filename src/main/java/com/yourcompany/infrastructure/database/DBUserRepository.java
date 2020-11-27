@@ -3,7 +3,6 @@ package com.yourcompany.infrastructure.database;
 import com.yourcompany.api.factories.UserFactory;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.domain.user.UserRepository;
-import com.yourcompany.exceptions.NoSuchUserExists;
 import com.yourcompany.exceptions.UserValidationError;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
@@ -50,7 +49,7 @@ public class DBUserRepository implements UserRepository {
 
 
     @Override
-    public User createUser(UserFactory userFactory, byte[] salt, byte[] secret) throws NoSuchUserExists {
+    public User createUser(UserFactory userFactory, byte[] salt, byte[] secret) throws UserValidationError {
         int id;
         try (Connection conn = db.connect()) {
             PreparedStatement ps =
@@ -66,14 +65,14 @@ public class DBUserRepository implements UserRepository {
             try {
                 ps.executeUpdate();
             } catch (SQLIntegrityConstraintViolationException e) {
-                throw new NoSuchUserExists(userFactory.getName());
+                throw new UserValidationError(e.getMessage());
             }
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
                 id = rs.getInt(1);
             } else {
-                throw new NoSuchUserExists(userFactory.getName());
+                throw new UserValidationError(userFactory.getEmail());
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -81,7 +80,7 @@ public class DBUserRepository implements UserRepository {
         return findUserById(id);
     }
 
-    private User findUserById(int id) throws NoSuchUserExists {
+    private User findUserById(int id) throws UserValidationError {
         try(Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
                     "SELECT * FROM users WHERE id = ?;");
@@ -94,7 +93,7 @@ public class DBUserRepository implements UserRepository {
                 throw new NoSuchElementException("No user with id: " + id);
             }
         } catch (SQLException e) {
-            throw new NoSuchUserExists(e.getMessage());
+            throw new UserValidationError(e.getMessage());
         }
     }
 }

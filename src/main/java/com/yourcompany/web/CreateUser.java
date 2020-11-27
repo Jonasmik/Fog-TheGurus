@@ -2,7 +2,7 @@ package com.yourcompany.web;
 
 import com.yourcompany.api.factories.UserFactory;
 import com.yourcompany.domain.user.User;
-import com.yourcompany.exceptions.NoSuchUserExists;
+import com.yourcompany.exceptions.UserValidationError;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,39 +18,42 @@ public class CreateUser extends ICommand {
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
         userFactory.setPassword(password1);
-        if (userFactory.isValid() || Objects.equals(password1, password2)) {
+        if (userFactory.isValid() && Objects.equals(password1, password2)) {
 
-                User user = null;
-                try {
-                    user = api.getUserFacade().createUser(userFactory);
-                } catch (NoSuchUserExists e) {
-                    request.setAttribute("error", e.getMessage());
-                    return "errorpage";
-                }
-                HttpSession session = request.getSession();
-
-
-                if(user.getRole().equals("lagermedarbejder")){
-                    session.setAttribute("lagermedarbejder", user.getRole());
-                }
-                else if (user.getRole().equals("salgsmedarbejder")){
-                    session.setAttribute("salgsmedarbejder", user.getRole());
-                }
-                else if (user.getRole().equals("afdelingsleder")){
-                    session.setAttribute("afdelingsleder", user.getRole());
-                }
-                else if (user.getRole().equals("kunde")){
-                    session.setAttribute("kunde", user.getRole());
-                }
-
-                request.getServletContext().setAttribute("notloggedin", null );
-                session.setAttribute("user", user);
-
-                return "customerpage";
-            } else {
-                request.setAttribute("error", "De 2 passwords matchede ikke");
+            User user = null;
+            try {
+                user = api.getUserFacade().createUser(userFactory);
+            } catch (UserValidationError e) {
+                request.setAttribute("error", "That user already exists");
                 return "errorpage";
             }
+
+            HttpSession session = request.getSession();
+
+
+            switch (user.getRole()) {
+                case "lagermedarbejder":
+                    session.setAttribute("lagermedarbejder", user.getRole());
+                    break;
+                case "salgsmedarbejder":
+                    session.setAttribute("salesman", user.getRole());
+                    break;
+                case "afdelingsleder":
+                    session.setAttribute("afdelingsleder", user.getRole());
+                    break;
+                default:
+                    session.setAttribute("customer", user.getRole());
+                    break;
+            }
+
+            request.getServletContext().setAttribute("notloggedin", null);
+            session.setAttribute("user", user);
+
+            return "index";
+        } else {
+            request.setAttribute("error", "De 2 passwords matchede ikke");
+            return "errorpage";
+        }
 
     }
 }

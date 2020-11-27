@@ -4,6 +4,12 @@
     <form method="post">
         <div class="row">
             <div class="col">
+                <c:if test="${requestScope.preorderfail != null}">
+                    <div class="alert alert-danger border-danger">
+                        <h1>Fejl</h1>
+                        <h4>${requestScope.preorderfail}</h4>
+                    </div>
+                </c:if>
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item" role="presentation">
@@ -21,9 +27,11 @@
                     <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <!-- Carport med skråt tag START -->
                         <form action="Main" method="post">
+                            <input type="hidden" name="target" value="angledroofpreorder">
                             <div class="form-group" style="padding-top: 10px">
+                                <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                                 <label for="carportWidth">Carport bredde</label>
-                                <select class="form-control" id="carportWidth">
+                                <select class="form-control" id="carportWidth" name="width">
                                     <option>Vælg bredde</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -34,7 +42,7 @@
 
                             <div class="form-group">
                                 <label for="carportLength">Carport Længde</label>
-                                <select class="form-control" id="carportLength">
+                                <select class="form-control" id="carportLength" name="lenght">
                                     <option>Vælg Længde</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -45,7 +53,7 @@
 
                             <div class="form-group">
                                 <label for="carportTag">Carport Tag</label>
-                                <select class="form-control" id="carportTag">
+                                <select class="form-control" id="carportTag" name="roof">
                                     <option selected>Vælg tagtype/farve</option>
                                     <option>Betontagsten - Sort</option>
                                     <option>Eternittag B6 - Grå</option>
@@ -55,7 +63,7 @@
 
                             <div class="form-group">
                                 <label for="tagHældning">Taghældning</label>
-                                <select class="form-control" id="tagHældning">
+                                <select class="form-control" id="tagHældning" name="roofangle">
                                     <option selected>Vælg taghældning</option>
                                     <option>15 grader</option>
                                     <option>20 grader</option>
@@ -65,19 +73,19 @@
 
                             <div class="form-check">
                                 <label>
-                                    <input class="form-check-input" type="checkbox" onchange="showObliqueRoofOptions()"
-                                           name="agreeskrå"> Ønsker redskabsrum
+                                    <input class="form-check-input" style="padding-top: 20px; padding-bottom: 20px;"
+                                           type="checkbox" onchange="showObliqueRoofOptions()"
+                                           name="shed" value="yes"> Ønsker redskabsrum
                                 </label>
                             </div>
 
                             <div id="myFirstExtraRoom" style="display: none">
 
                                 <div class="form-group">
-                                    <p>Hvis du ikke ønsker redskabsrum alligevel så husk, at sætte bredde og længde til
-                                        "Vælg .."</p>
-                                    <h4>Beregn 15 cm tagudhæng på hver side af redskabsrummet.</h4>
+                                    <h4 style="padding-top: 10px">Beregn 15 cm tagudhæng på hver side af
+                                        redskabsrummet.</h4>
                                     <label for="redskabsRumBredde">Redskabsrum bredde</label>
-                                    <select class="form-control" id="redskabsRumBredde">
+                                    <select class="form-control" id="redskabsRumBredde" name="shedwidth">
                                         <option selected>Vælg bredde</option>
                                         <option>210 cm</option>
                                         <option>240 cm</option>
@@ -86,13 +94,54 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="redskabsRumLængde">Redskabsum længde</label>
-                                    <select class="form-control" id="redskabsRumLængde">
+                                    <select class="form-control" id="redskabsRumLængde" name="shedlength">
                                         <option selected>Vælg længde</option>
                                         <option>210 cm</option>
                                         <option>240 cm</option>
                                         <option>270 cm</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h4 style="padding-top: 10px">Kontakt information</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="skråNavn">Navn</label>
+                                    <input type="text" class="form-control" id="skråNavn"
+                                           aria-describedby="nameHelp" name="angledname">
+                                </div>
+                                <div class="col">
+                                    <label for="skråAdresse">Adresse</label>
+                                    <input type="text" class="form-control" id="skråAdresse"
+                                           aria-describedby="emailHelp" name="angledadress">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skråZip">Post nummer</label>
+                                <input type="text" class="form-control" id="skråZip"
+                                       aria-describedby="emailHelp" name="angledzip">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skråBy">By</label>
+                                <input type="text" class="form-control" id="skråBy"
+                                       aria-describedby="emailHelp" name="angledcity">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skråEmail">E-mail</label>
+                                <input type="email" class="form-control" id="skråEmail"
+                                       aria-describedby="emailHelp" name="angledemail">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="skråAdditionals">Evt. bemærkninger</label>
+                                <textarea maxlength="255" class="form-control" id="skråAdditionals" name="angledadditional"
+                                          rows="3"></textarea>
                             </div>
 
                             <hr>
@@ -109,9 +158,11 @@
                     <!-- Carport med flat tag START -->
                     <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                         <form action="Main" method="post">
+                            <input type="hidden" name="target" value="flatroofpreorder">
                             <div class="form-group" style="padding-top: 10px">
+                                <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                                 <label for="flatCarportWidth">Carport bredde</label>
-                                <select class="form-control" id="flatCarportWidth">
+                                <select class="form-control" id="flatCarportWidth" name="width">
                                     <option>Vælg bredde</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -122,7 +173,7 @@
 
                             <div class="form-group">
                                 <label for="flatCarportLength">Carport Længde</label>
-                                <select class="form-control" id="flatCarportLength">
+                                <select class="form-control" id="flatCarportLength" name="length">
                                     <option>Vælg Længde</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -131,21 +182,29 @@
                                 </select>
                             </div>
 
+                            <div class="form-group">
+                                <label for="flatcarportTag">Carport Tag</label>
+                                <select class="form-control" id="flatcarportTag" name="roof">
+                                    <option selected>Vælg tagtype/farve</option>
+                                    <option>Plasttrapezplader</option>
+                                </select>
+                            </div>
+
                             <div class="form-check">
                                 <label>
-                                    <input class="form-check-input" type="checkbox" onchange="showFlatRoofOptions()"
-                                           name="agreeflat"> Ønsker redskabsrum
+                                    <input class="form-check-input" style="padding-top: 20px; padding-bottom: 20px;"
+                                           type="checkbox" onchange="showFlatRoofOptions()"
+                                           name="shed" value="yes"> Ønsker redskabsrum
                                 </label>
                             </div>
 
                             <div id="mySecondExtraRoom" style="display: none">
 
                                 <div class="form-group">
-                                    <p>Hvis du ikke ønsker redskabsrum alligevel så husk, at sætte bredde og længde til
-                                        "Vælg .."</p>
-                                    <h4>Beregn 15 cm tagudhæng på hver side af redskabsrummet.</h4>
+                                    <h4 style="padding-top: 10px">Beregn 15 cm tagudhæng på hver side af
+                                        redskabsrummet.</h4>
                                     <label for="flatRedskabsRumBredde">Redskabsrum bredde</label>
-                                    <select class="form-control" id="flatRedskabsRumBredde" disabled>
+                                    <select class="form-control" id="flatRedskabsRumBredde" name="shedwidth" disabled>
                                         <option selected>Vælg bredde</option>
                                         <option>210 cm</option>
                                         <option>240 cm</option>
@@ -154,13 +213,54 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="flatRedskabsRumLængde">Redskabsum længde</label>
-                                    <select class="form-control" id="flatRedskabsRumLængde">
+                                    <select class="form-control" id="flatRedskabsRumLængde" name="shedlength">
                                         <option selected>Vælg længde</option>
                                         <option>210 cm</option>
                                         <option>240 cm</option>
                                         <option>270 cm</option>
                                     </select>
                                 </div>
+                            </div>
+
+                            <div class="form-group">
+                                <h4 style="padding-top: 10px">Kontakt information</h4>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="col">
+                                    <label for="flatNavn">Navn</label>
+                                    <input type="text" class="form-control" id="flatNavn"
+                                           aria-describedby="nameHelp" name="flatname">
+                                </div>
+                                <div class="col">
+                                    <label for="flatAdresse">Adresse</label>
+                                    <input type="text" class="form-control" id="flatAdresse"
+                                           aria-describedby="emailHelp" name="flatadress">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="flatZip">Post nummer</label>
+                                <input type="text" class="form-control" id="flatZip"
+                                       aria-describedby="emailHelp" name="flatzip">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="flatBy">By</label>
+                                <input type="text" class="form-control" id="flatBy"
+                                       aria-describedby="emailHelp" name="flatcity">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="flatEmail">E-mail</label>
+                                <input type="email" class="form-control" id="flatEmail"
+                                       aria-describedby="emailHelp" name="flatemail">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="flatBemærkning">Evt. bemærkninger</label>
+                                <textarea maxlength="255" class="form-control" id="flatBemærkning" name="flatadditionals"
+                                          rows="3"></textarea>
                             </div>
 
                             <hr>
