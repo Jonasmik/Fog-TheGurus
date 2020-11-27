@@ -1,5 +1,6 @@
 package com.yourcompany.web.commands;
 
+import com.yourcompany.domain.user.User;
 import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,7 @@ public class Redirect extends ICommand {
          */
 
         String destination = request.getParameter("destination");
+        User user = (User) request.getSession().getAttribute("user");
 
         switch (destination){
 
@@ -25,6 +27,13 @@ public class Redirect extends ICommand {
             case "createorder":
                 break;
             case "customerpage":
+                break;
+            case "adminpage":
+
+                if ("salesman".equals(user.getRole())) {
+                    //generate stuff for the salesman
+                }
+
                 break;
             default:
                 request.setAttribute("error", "This site does not exist");

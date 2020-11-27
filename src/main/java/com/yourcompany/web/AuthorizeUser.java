@@ -27,23 +27,24 @@ public class AuthorizeUser extends ICommand {
         }
 
         HttpSession session = request.getSession();
+        session.setAttribute("user", user);
+        String adminpage = "adminpage";
 
         switch (user.getRole()) {
             case "lagermedarbejder":
                 session.setAttribute("lagermedarbejder", user.getRole());
-                break;
-            case "salgsmedarbejder":
+                return adminpage;
+            case "salesman":
                 session.setAttribute("salesman", user.getRole());
-                break;
+                return adminpage;
             case "afdelingsleder":
                 session.setAttribute("afdelingsleder", user.getRole());
-                break;
+                return adminpage;
             default:
                 session.setAttribute("customer", user.getRole());
                 break;
         }
 
-        session.setAttribute("user", user);
 
         return "index";
     }
