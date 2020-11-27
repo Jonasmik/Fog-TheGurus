@@ -32,6 +32,9 @@ public class Redirect extends ICommand {
 
                 if ("salesman".equals(user.getRole())) {
                     //generate stuff for the salesman
+                } else {
+                    request.setAttribute("error", "Du er desvære ikke en adminstrator, men godt forsøgt");
+                    return "errorpage";
                 }
 
                 break;

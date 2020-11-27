@@ -14,7 +14,7 @@
 <jsp:include page="includes/navbar.jsp" flush="true"/>
 
 <main role="main" class="container flex-shrink-0">
-    <jsp:include page="includes/userlogoutmodal.jsp" flush="true"/>
+    <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>
 
     <h1>Profil side</h1>
 

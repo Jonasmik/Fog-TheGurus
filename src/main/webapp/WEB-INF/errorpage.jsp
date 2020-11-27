@@ -14,7 +14,7 @@
 
 <main role="main" class="container flex-shrink-0">
     <c:if test="${sessionScope.user == null}">
-        <jsp:include page="includes/userloginmodal.jsp" flush="true"/>
+        <jsp:include page="includes/modals/userloginmodal.jsp" flush="true"/>
     </c:if>
     <!-- Called if an error happens in the system -->
     <div class="alert alert-danger border-danger">

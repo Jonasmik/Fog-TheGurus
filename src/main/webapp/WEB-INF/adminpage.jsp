@@ -1,4 +1,3 @@
-<%@ page import="com.yourcompany.api.Template" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
@@ -15,13 +14,13 @@
 
 <main role="main" class="container flex-shrink-0">
     <c:if test="${sessionScope.user != null}">
-        <jsp:include page="includes/userlogoutmodal.jsp" flush="true"/>
+        <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>
     </c:if>
 
     <c:choose>
 
         <c:when test="${sessionScope.user.role.equals('salesman')}">
-            <jsp:include page="includes/salesmanpage.jsp" flush="true"/>
+            <jsp:include page="includes/adminpages/salesmanpage.jsp" flush="true"/>
         </c:when>
 
     </c:choose>

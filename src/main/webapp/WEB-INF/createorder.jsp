@@ -15,10 +15,10 @@
 
 <main role="main" class="container flex-shrink-0">
     <c:if test="${sessionScope.user == null}">
-        <jsp:include page="includes/userloginmodal.jsp" flush="true"/>
+        <jsp:include page="includes/modals/userloginmodal.jsp" flush="true"/>
     </c:if>
     <c:if test="${sessionScope.user != null}">
-        <jsp:include page="includes/userlogoutmodal.jsp" flush="true"/>
+        <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>
     </c:if>
 
     <h1 style="padding-left: 18px">Byg din egen Carport</h1>

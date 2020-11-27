@@ -36,6 +36,9 @@ public class AuthorizeUser extends ICommand {
                 return adminpage;
             case "salesman":
                 session.setAttribute("salesman", user.getRole());
+
+                //generate stuff for the salesman
+
                 return adminpage;
             case "afdelingsleder":
                 session.setAttribute("afdelingsleder", user.getRole());
