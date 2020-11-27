@@ -158,10 +158,10 @@
                                                     <h5>Cookie politik</h5>
                                                     <p>
                                                         På vores hjemmeside bruger vi cookies, de bliver brugt for at du
-                                                        som bruger får en bedere oplevelse på hjemmesiden.
+                                                        som bruger får en bedere oplevelse på hjemmesiden.</p>
                                                     <hr>
-                                                    Vi bruger sessions til at <br>
-                                                    1. Vide hvilken bruger der er logget ind.
+                                                    <p>Vi bruger sessions til at: <br><br>
+                                                        1. Vide hvilken bruger der er logget ind.
                                                     </p>
                                                 </div>
                                             </div>
