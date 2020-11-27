@@ -19,10 +19,35 @@
                             <div class="collapse d-lg-flex" id="one" data-parent="#accordion">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a class="my-footerlinks" href="#">Ofte Stillede spørgsmål</a>
+                                        <div class="btn-group dropup">
+                                            <a class="my-footerlinks" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" href="#">Ofte stillede
+                                                spørgsmål</a>
+                                            <div class="btn-group dropup">
+                                                <div class="dropdown-menu text-muted"
+                                                     style="width: 300px; padding: 30px">
+                                                    <h5>Hvordan laver jeg en Carport</h5>
+                                                    <p>
+                                                        Du går ind på bestil siden, derinde kan du vælge hvilken carport
+                                                        du kunne ønske dig.
+                                                        <br> Når du har lavet en forespørgsel, vil du blive kontaktet
+                                                        omkring din carport.
+                                                    </p>
+                                                    <hr>
+                                                    <h5>Må jeg selv bygge min carport</h5>
+                                                    <p>
+                                                        Normalt vil vi selv sende nogen ud, som vil stå for at bygge din
+                                                        carport,
+                                                        <br>men hvis du har lyst til, at bygge din carport selv, må du
+                                                        gerne det.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#">Bliv kunde i Fog</a>
+                                        <a class="my-footerlinks" href="#" data-toggle="modal"
+                                           data-target="#loginModal">Bliv kunde i Fog</a>
                                     </li>
                                 </ul>
                             </div>
@@ -41,7 +66,20 @@
                             <div class="collapse d-lg-flex" id="two" data-parent="#accordion">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a class="my-footerlinks" href="#">Tilbud</a>
+                                        <div class="btn-group dropup">
+                                            <a class="my-footerlinks" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" href="#">Tilbud</a>
+                                            <div class="btn-group dropup">
+                                                <div class="dropdown-menu text-muted"
+                                                     style="width: 300px; padding: 30px">
+                                                    <h5>Tilbud</h5>
+                                                    <p>
+                                                        Vi har ikke nogle aktive tilbud, men du kan altid lave en
+                                                        carport.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li>
                                         <a class="my-footerlinks" href="#">Facebook</a>
@@ -69,16 +107,80 @@
                             <div class="collapse d-lg-flex" id="three" data-parent="#accordion">
                                 <ul class="list-unstyled">
                                     <li>
-                                        <a class="my-footerlinks" href="#">Åbningstider</a>
+                                        <div class="btn-group dropup">
+                                            <a class="my-footerlinks" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" href="#">Åbningstider</a>
+                                            <div class="btn-group dropup">
+                                                <div class="dropdown-menu text-muted"
+                                                     style="width: 300px; padding: 30px">
+                                                    <h5>Hver dage</h5>
+                                                    <p>
+                                                        Mandag: 10:00 - 18:00
+                                                        <br>Tirsdag: 10:00 - 18:00
+                                                        <br>Onsdag: 10:00 - 18:00
+                                                        <br>Torsdag: 10:00 - 18:00
+                                                        <br>Fredag: 10:00 - 16:00</p>
+                                                    <hr>
+                                                    <h5>Week end</h5>
+                                                    <p>
+                                                        Lørdag: 10:00 - 14:00
+                                                        <br>Søndag: 10:00 - 14:00
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#">Om Fog</a>
+                                        <div class="btn-group dropup">
+                                            <a class="my-footerlinks" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" href="#">Om Fog</a>
+                                            <div class="btn-group dropup">
+                                                <div class="dropdown-menu text-muted"
+                                                     style="width: 300px; padding: 30px">
+                                                    <h5>NOT Fog</h5>
+                                                    <p>
+                                                        Vores hjemmeside er lavet til at replikerer Fogs hjemmeside.
+                                                        <br>
+                                                        Dette er ikke på nogen måde Fogs hjemmeside, og du vil ikke
+                                                        kunne bestille rigtige carporte.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#">Cookie-politik</a>
+                                        <div class="btn-group dropup">
+                                            <a class="my-footerlinks" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" href="#">Cookie-politik</a>
+                                            <div class="btn-group dropup">
+                                                <div class="dropdown-menu text-muted"
+                                                     style="width: 300px; padding: 30px">
+                                                    <h5>Cookie politik</h5>
+                                                    <p>
+                                                        På vores hjemmeside bruger vi cookies, de bliver brugt for at du
+                                                        som bruger får en bedere oplevelse på hjemmesiden.
+                                                    <hr>
+                                                    Vi bruger sessions til at <br>
+                                                    1. Vide hvilken bruger der er logget ind.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                     <li>
-                                        <a class="my-footerlinks" href="#">Persondata</a>
+                                        <div class="btn-group dropup">
+                                            <a class="my-footerlinks" data-toggle="dropdown"
+                                               aria-haspopup="true" aria-expanded="false" href="#">Person data</a>
+                                            <div class="btn-group dropup">
+                                                <div class="dropdown-menu text-muted"
+                                                     style="width: 300px; padding: 30px">
+                                                    <h5>Person data</h5>
+                                                    <p>
+                                                        Vi gemmer desværre din data for altid, undskyld.
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </li>
                                 </ul>
                             </div>
