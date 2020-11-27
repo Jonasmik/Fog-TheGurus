@@ -1,4 +1,4 @@
-package com.yourcompany.web.commands;
+package com.yourcompany.web.commands.user;
 
 import com.yourcompany.domain.user.User;
 import com.yourcompany.exceptions.user.UserValidationError;
