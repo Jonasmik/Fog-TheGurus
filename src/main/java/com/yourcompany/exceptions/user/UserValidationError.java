@@ -1,4 +1,4 @@
-package com.yourcompany.exceptions;
+package com.yourcompany.exceptions.user;
 
 /**
  * Used in the database

@@ -1,8 +1,6 @@
 package com.yourcompany.api.factories;
 
-import com.yourcompany.exceptions.CarportValidations;
-
-import javax.validation.ValidationException;
+import com.yourcompany.exceptions.carport.CarportValidations;
 
 public class CarportFactory {
     private int length;

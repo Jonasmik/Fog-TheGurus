@@ -1,7 +1,7 @@
 package com.yourcompany.domain.Carport;
 
 import com.yourcompany.api.factories.CarportFactory;
-import com.yourcompany.exceptions.NoSuchCarportExists;
+import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 
 import java.util.List;
 

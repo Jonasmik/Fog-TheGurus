@@ -25,22 +25,25 @@
 
 <body class="d-flex flex-column h-100 bg-light">
 
-<!-- Include navbar -->
-<jsp:include page="WEB-INF/includes/navbar.jsp" flush="true"/>
+<div class="cookies">
+    <!-- Include navbar -->
+    <jsp:include page="WEB-INF/includes/modals/cookies.jsp" flush="true"/>
+    <jsp:include page="WEB-INF/includes/navs/navbar.jsp" flush="true"/>
 
-<main role="main" class="container flex-shrink-0">
-    <c:if test="${sessionScope.user == null}">
-        <jsp:include page="WEB-INF/includes/modals/userloginmodal.jsp" flush="true"/>
-    </c:if>
-    <c:if test="${sessionScope.user != null}">
-        <jsp:include page="WEB-INF/includes/modals/userlogoutmodal.jsp" flush="true"/>
-    </c:if>
+    <main role="main" class="container flex-shrink-0">
+        <c:if test="${sessionScope.user == null}">
+            <jsp:include page="WEB-INF/includes/modals/userloginmodal.jsp" flush="true"/>
+        </c:if>
+        <c:if test="${sessionScope.user != null}">
+            <jsp:include page="WEB-INF/includes/modals/userlogoutmodal.jsp" flush="true"/>
+        </c:if>
 
-    <h1>Fog Carport </h1>
-</main>
+        <h1>Fog Carport </h1>
+    </main>
 
-<!-- Include footer -->
-<jsp:include page="WEB-INF/includes/footer.jsp" flush="true"/>
+    <!-- Include footer -->
+    <jsp:include page="WEB-INF/includes/footer.jsp" flush="true"/>
+</div>
 
 </body>
 

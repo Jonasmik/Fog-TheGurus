@@ -5,8 +5,7 @@ import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.CarportFacade;
 import com.yourcompany.api.facades.UserFacade;
-import com.yourcompany.web.commands.Redirect;
-import com.yourcompany.web.commands.UnknownCommand;
+import com.yourcompany.web.commands.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

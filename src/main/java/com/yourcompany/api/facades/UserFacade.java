@@ -3,7 +3,7 @@ package com.yourcompany.api.facades;
 import com.yourcompany.api.factories.UserFactory;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.domain.user.UserRepository;
-import com.yourcompany.exceptions.UserValidationError;
+import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.infrastructure.database.DBUserRepository;
 import com.yourcompany.infrastructure.dbsetup.Database;
 

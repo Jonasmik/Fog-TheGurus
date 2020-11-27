@@ -1,8 +1,9 @@
-package com.yourcompany.web;
+package com.yourcompany.web.commands;
 
 import com.yourcompany.api.factories.UserFactory;
 import com.yourcompany.domain.user.User;
-import com.yourcompany.exceptions.UserValidationError;
+import com.yourcompany.exceptions.user.UserValidationError;
+import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

@@ -1,11 +1,9 @@
 package com.yourcompany.infrastructure.database;
 
 import com.yourcompany.api.factories.ShedFactory;
-import com.yourcompany.domain.Carport.Carport;
 import com.yourcompany.domain.Shed.Shed;
 import com.yourcompany.domain.Shed.ShedRepository;
-import com.yourcompany.exceptions.NoSuchCarportExists;
-import com.yourcompany.exceptions.NoSuchShedExists;
+import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.sql.*;

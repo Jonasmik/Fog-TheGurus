@@ -3,7 +3,7 @@ package com.yourcompany.infrastructure.database;
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.domain.Carport.Carport;
 import com.yourcompany.domain.Carport.CarportRepository;
-import com.yourcompany.exceptions.NoSuchCarportExists;
+import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.sql.*;

@@ -11,7 +11,7 @@
 <body class="d-flex flex-column h-100 bg-light">
 
 <!-- Include navbar -->
-<jsp:include page="includes/navbar.jsp" flush="true"/>
+<jsp:include page="includes/navs/navbar.jsp" flush="true"/>
 
 <main role="main" class="container flex-shrink-0">
     <c:if test="${sessionScope.user == null}">
@@ -23,7 +23,7 @@
 
     <h1 style="padding-left: 18px">Byg din egen Carport</h1>
 
-    <jsp:include page="includes/chooseorder.jsp" flush="true"/>
+    <jsp:include page="includes/preordermenu.jsp" flush="true"/>
 
 </main>
 

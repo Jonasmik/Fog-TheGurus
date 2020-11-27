@@ -10,7 +10,7 @@
 <body class="d-flex flex-column h-100 text-center bg-light">
 
 <!-- Include navbar -->
-<jsp:include page="includes/navbar.jsp" flush="true"/>
+<jsp:include page="includes/navs/navbar.jsp" flush="true"/>
 
 <main role="main" class="container flex-shrink-0">
     <c:if test="${sessionScope.user == null}">

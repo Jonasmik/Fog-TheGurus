@@ -1,7 +1,7 @@
 package com.yourcompany.domain.Shed;
 
 import com.yourcompany.api.factories.ShedFactory;
-import com.yourcompany.exceptions.NoSuchShedExists;
+import com.yourcompany.exceptions.shed.NoSuchShedExists;
 
 public interface ShedRepository {
 

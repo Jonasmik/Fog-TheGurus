@@ -1,9 +1,10 @@
-package com.yourcompany.web;
+package com.yourcompany.web.commands;
 
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.domain.Carport.Carport;
-import com.yourcompany.exceptions.CarportValidations;
-import com.yourcompany.exceptions.NoSuchCarportExists;
+import com.yourcompany.exceptions.carport.CarportValidations;
+import com.yourcompany.exceptions.carport.NoSuchCarportExists;
+import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

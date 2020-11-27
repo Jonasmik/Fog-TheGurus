@@ -1,7 +1,6 @@
 package com.yourcompany.api.factories;
 
-import com.yourcompany.exceptions.CarportValidations;
-import com.yourcompany.exceptions.ShedValidations;
+import com.yourcompany.exceptions.shed.ShedValidations;
 
 public class ShedFactory {
     private int length;

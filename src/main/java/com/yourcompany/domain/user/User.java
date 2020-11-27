@@ -1,6 +1,6 @@
 package com.yourcompany.domain.user;
 
-import com.yourcompany.exceptions.UserValidationError;
+import com.yourcompany.exceptions.user.UserValidationError;
 
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.PBEKeySpec;
