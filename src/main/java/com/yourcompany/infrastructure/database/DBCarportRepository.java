@@ -42,7 +42,7 @@ public class DBCarportRepository implements CarportRepository {
                 return loadCarport(rs);
             } else {
                 System.err.println("No version in properties.");
-                throw new NoSuchElementException("No user with id: " + id);
+                throw new NoSuchElementException("No carport with id: " + id);
             }
         } catch (SQLException e) {
             throw new NoSuchCarportExists();

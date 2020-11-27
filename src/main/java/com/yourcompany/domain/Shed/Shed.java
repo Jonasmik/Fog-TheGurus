@@ -1,25 +1,25 @@
-package com.yourcompany.domain.Carport;
+package com.yourcompany.domain.Shed;
 
 public class Shed {
+    private final int id;
     private final int length;
     private final int width;
-    private final int id;
     private final int carportID;
 
 
-    public Shed(int length, int width, int id, int carportID) {
+    public Shed(int id, int length, int width, int carportID) {
+        this.id = id;
         this.length = length;
         this.width = width;
-        this.id = id;
         this.carportID = carportID;
     }
 
     @Override
     public String toString() {
         return "Shed{" +
-                "length=" + length +
+                "id=" + id +
+                ", length=" + length +
                 ", width=" + width +
-                ", id=" + id +
                 ", carportID=" + carportID +
                 '}';
     }
