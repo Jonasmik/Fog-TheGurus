@@ -1,4 +1,4 @@
-package com.yourcompany.domain.Carport;
+package com.yourcompany.domain.carport;
 
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;

@@ -1,4 +1,4 @@
-package com.yourcompany.domain.Carport;
+package com.yourcompany.domain.carport;
 
 public class Carport {
     private final int id;

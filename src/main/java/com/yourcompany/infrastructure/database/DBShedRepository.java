@@ -1,8 +1,8 @@
 package com.yourcompany.infrastructure.database;
 
 import com.yourcompany.api.factories.ShedFactory;
-import com.yourcompany.domain.Shed.Shed;
-import com.yourcompany.domain.Shed.ShedRepository;
+import com.yourcompany.domain.shed.Shed;
+import com.yourcompany.domain.shed.ShedRepository;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 

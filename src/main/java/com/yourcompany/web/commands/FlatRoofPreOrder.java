@@ -1,9 +1,12 @@
 package com.yourcompany.web.commands;
 
 import com.yourcompany.api.factories.CarportFactory;
-import com.yourcompany.domain.Carport.Carport;
+import com.yourcompany.api.factories.ShedFactory;
+import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.exceptions.carport.CarportValidations;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
+import com.yourcompany.exceptions.shed.NoSuchShedExists;
+import com.yourcompany.exceptions.shed.ShedValidations;
 import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
@@ -42,8 +45,29 @@ public class FlatRoofPreOrder extends ICommand {
 
 
         if (shed.equals("yes")){
+            ShedFactory shedFactory = new ShedFactory();
+
             String shedwidth = request.getParameter("shedwidth");
             String shedlength = request.getParameter("shedlength");
+
+
+
+            try {
+                shedFactory.setWidth(shedwidth);
+                shedFactory.setLength(shedlength);
+                shedFactory.setCarportID(carport.getId());
+
+            } catch (ShedValidations shedValidations) {
+                request.setAttribute("error", "Der gik noget galt i at parse information");
+                return "errorpage";
+            }
+
+            try {
+                api.getShedFacade().createShed(shedFactory);
+            } catch (NoSuchShedExists noSuchShedExists) {
+                request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
+                return "createorder";
+            }
 
 
         }

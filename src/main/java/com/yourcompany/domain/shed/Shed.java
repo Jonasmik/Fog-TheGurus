@@ -1,4 +1,4 @@
-package com.yourcompany.domain.Shed;
+package com.yourcompany.domain.shed;
 
 public class Shed {
     private final int id;

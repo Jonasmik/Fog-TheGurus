@@ -1,4 +1,4 @@
-package com.yourcompany.domain.Shed;
+package com.yourcompany.domain.shed;
 
 import com.yourcompany.api.factories.ShedFactory;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
