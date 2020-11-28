@@ -1,12 +1,17 @@
 package com.yourcompany.web.commands;
 
+import com.yourcompany.api.facades.PreOrderFacade;
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.api.factories.CustomerFactory;
+import com.yourcompany.api.factories.PreOrderFactory;
 import com.yourcompany.api.factories.ShedFactory;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.customer.Customer;
+import com.yourcompany.domain.preorder.PreOrder;
+import com.yourcompany.domain.user.User;
 import com.yourcompany.exceptions.carport.CarportValidations;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.shed.ShedValidations;
 import com.yourcompany.exceptions.user.CustomerValidation;
@@ -89,21 +94,32 @@ public class FlatRoofPreOrder extends ICommand {
 
         }
 
+        PreOrderFactory preOrderFactory = new PreOrderFactory();
+        preOrderFactory.setCarportId(carport.getId());
+        preOrderFactory.setCustomerId(customer.getId());
 
+        PreOrder preOrder = null;
 
-        return null;
+        if(preOrderFactory.isValid()) {
+            try {
+                preOrder = api.getPreOrderFacade().createPreOrder(preOrderFactory);
+            } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
+                request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
+                return "createorder";
+            }
+        }
+
+        if(preOrder != null) {
+            request.setAttribute("preorder", preOrder);
+            return "customerpage";
+        } else {
+            request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
+            return "createorder";
+        }
 
     }
 
     private Customer createCustomer(HttpServletRequest request, HttpServletResponse response) throws NoSuchCustomerExists {
-        /*
-        6. Navn = “flatname”
-	7. Adresse = “flatadress”
-	8. Post nummer = “flatzip”
-	9. By = “flatcity”
-	10. E-mail = “flatemail”
-	11. Bemærkning = “flatadditional”
-         */
         CustomerFactory customerFactory = new CustomerFactory();
 
         String name = request.getParameter("flatname");
@@ -112,8 +128,10 @@ public class FlatRoofPreOrder extends ICommand {
         String city = request.getParameter("flatcity");
         String email = request.getParameter("flatemail");
         String additional = request.getParameter("flatadditional");
+        User user = (User) request.getSession().getAttribute("user");
 
         try {
+            customerFactory.setUserid(user.getId());
             customerFactory.setName(name);
             customerFactory.setAdress(adress);
             customerFactory.setZipcode(zip);
@@ -123,7 +141,11 @@ public class FlatRoofPreOrder extends ICommand {
         } catch (CustomerValidation e) {
             e.printStackTrace();
         }
-        Customer customer = api.getCustomerFacade().createCustomer(customerFactory);
+
+        Customer customer = null;
+        if(customerFactory.isValid()) {
+            customer = api.getCustomerFacade().createCustomer(customerFactory);
+        }
         return customer;
     }
 }

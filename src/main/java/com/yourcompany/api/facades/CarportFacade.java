@@ -25,11 +25,12 @@ public class CarportFacade {
         }
         return instance;
     }
+
     public List<Carport> findAll() throws NoSuchCarportExists {
-        return null;
+        return repo.findAll();
     }
     public Carport findById(int id) throws NoSuchCarportExists {
-        return null;
+        return repo.findById(id);
     }
     public Carport createCarport(CarportFactory carportFactory) throws NoSuchCarportExists{
         return repo.createCarport(carportFactory);

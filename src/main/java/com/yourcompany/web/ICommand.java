@@ -3,10 +3,10 @@ package com.yourcompany.web;
 
 import com.yourcompany.api.*;
 
-import com.yourcompany.api.facades.CarportFacade;
-import com.yourcompany.api.facades.CustomerFacade;
-import com.yourcompany.api.facades.ShedFacade;
-import com.yourcompany.api.facades.UserFacade;
+import com.yourcompany.api.facades.*;
+import com.yourcompany.domain.carport.Carport;
+import com.yourcompany.infrastructure.database.DBCarportRepository;
+import com.yourcompany.infrastructure.dbsetup.Database;
 import com.yourcompany.web.commands.*;
 import com.yourcompany.web.commands.user.AuthorizeUser;
 import com.yourcompany.web.commands.user.CreateUser;
@@ -57,7 +57,11 @@ public abstract class ICommand {
     }
 
     private static Fog createFog() {
-        return new Fog(UserFacade.getInstance(), CarportFacade.getInstance(), ShedFacade.getInstance(), CustomerFacade.getInstance());
+        return new Fog(UserFacade.getInstance(),
+                CarportFacade.getInstance(),
+                ShedFacade.getInstance(),
+                CustomerFacade.getInstance(),
+                PreOrderFacade.getInstance());
     }
 
     //used by every command, and called by the invoker.
