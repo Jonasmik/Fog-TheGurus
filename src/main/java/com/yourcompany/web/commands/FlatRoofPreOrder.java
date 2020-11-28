@@ -20,16 +20,29 @@ import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 public class FlatRoofPreOrder extends ICommand {
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
         CarportFactory carportFactory = new CarportFactory();
 
+        //Carport info
         String length = request.getParameter("length");
         String width = request.getParameter("width");
         String roof = request.getParameter("roof");
-        String shed =  request.getParameter("shed");
+        String shed = request.getParameter("shed");
+
+        //Customerinfo
+        String name = request.getParameter("flatname");
+        String adress = request.getParameter("flatadress");
+        String zip = request.getParameter("flatzip");
+        String city = request.getParameter("flatcity");
+        String email = request.getParameter("flatemail");
+        String additional = request.getParameter("flatadditionals");
+
+        User user = (User) request.getSession().getAttribute("user");
+
         final int angle = 0;
 
         try {
@@ -53,82 +66,8 @@ public class FlatRoofPreOrder extends ICommand {
         }
 
         //Create customer
-        Customer customer;
-        try {
-            customer = createCustomer(request, response);
-        } catch (NoSuchCustomerExists noSuchCustomerExists) {
-            request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
-            return "createorder";
-        }
 
-        if(customer == null) {
-            request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
-            return "createorder";
-        }
-
-        boolean wantsShed = shed.equals("yes");
-        if (wantsShed){
-            ShedFactory shedFactory = new ShedFactory();
-
-            String shedwidth = request.getParameter("shedwidth");
-            String shedlength = request.getParameter("shedlength");
-
-
-
-            try {
-                shedFactory.setWidth(shedwidth);
-                shedFactory.setLength(shedlength);
-                shedFactory.setCarportID(carport.getId());
-
-            } catch (ShedValidations shedValidations) {
-                request.setAttribute("error", "Der gik noget galt i at parse information");
-                return "errorpage";
-            }
-
-            try {
-                api.getShedFacade().createShed(shedFactory);
-            } catch (NoSuchShedExists noSuchShedExists) {
-                request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
-                return "createorder";
-            }
-
-        }
-
-        PreOrderFactory preOrderFactory = new PreOrderFactory();
-        preOrderFactory.setCarportId(carport.getId());
-        preOrderFactory.setCustomerId(customer.getId());
-
-        PreOrder preOrder = null;
-
-        if(preOrderFactory.isValid()) {
-            try {
-                preOrder = api.getPreOrderFacade().createPreOrder(preOrderFactory);
-            } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
-                request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
-                return "createorder";
-            }
-        }
-
-        if(preOrder != null) {
-            request.setAttribute("preorder", preOrder);
-            return "customerpage";
-        } else {
-            request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
-            return "createorder";
-        }
-
-    }
-
-    private Customer createCustomer(HttpServletRequest request, HttpServletResponse response) throws NoSuchCustomerExists {
         CustomerFactory customerFactory = new CustomerFactory();
-
-        String name = request.getParameter("flatname");
-        String adress = request.getParameter("flatadress");
-        String zip = request.getParameter("flatzip");
-        String city = request.getParameter("flatcity");
-        String email = request.getParameter("flatemail");
-        String additional = request.getParameter("flatadditional");
-        User user = (User) request.getSession().getAttribute("user");
 
         try {
             customerFactory.setUserid(user.getId());
@@ -143,9 +82,73 @@ public class FlatRoofPreOrder extends ICommand {
         }
 
         Customer customer = null;
-        if(customerFactory.isValid()) {
-            customer = api.getCustomerFacade().createCustomer(customerFactory);
+        if (customerFactory.isValid()) {
+            try {
+                customer = api.getCustomerFacade().createCustomer(customerFactory);
+            } catch (NoSuchCustomerExists noSuchCustomerExists) {
+                request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
+                return "createorder";
+            }
         }
-        return customer;
+
+        if (customer == null) {
+            request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
+            return "createorder";
+        }
+
+
+        if (shed != null) {
+            ShedFactory shedFactory = new ShedFactory();
+
+            String shedwidth = request.getParameter("shedwidth");
+            String shedlength = request.getParameter("shedlength");
+
+
+            try {
+                shedFactory.setWidth(shedwidth);
+                shedFactory.setLength(shedlength);
+                shedFactory.setCarportID(carport.getId());
+            } catch (ShedValidations shedValidations) {
+                request.setAttribute("error", "Der gik noget galt i at parse information");
+                return "errorpage";
+            }
+
+            if (shedFactory.isValid()) {
+                try {
+                    api.getShedFacade().createShed(shedFactory);
+                } catch (NoSuchShedExists noSuchShedExists) {
+                    request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
+                    return "createorder";
+                }
+            } else {
+                request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
+                return "createorder";
+            }
+        }
+
+        PreOrderFactory preOrderFactory = new PreOrderFactory();
+        preOrderFactory.setCarportId(carport.getId());
+        preOrderFactory.setCustomerId(customer.getId());
+
+        PreOrder preOrder = null;
+
+        if (preOrderFactory.isValid()) {
+            try {
+                preOrder = api.getPreOrderFacade().createPreOrder(preOrderFactory);
+            } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
+                request.setAttribute("preorderfail", noSuchPreOrderExists.getMessage());
+                return "createorder";
+            }
+        }
+
+        if (preOrder != null) {
+            request.setAttribute("preordersucces", "Din forespørgelse er blevet oprettet, du vil snart blive kontaktet af en salgsmedarbejder.");
+            return "createorder";
+        } else {
+            request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
+            return "createorder";
+        }
+
     }
+
 }

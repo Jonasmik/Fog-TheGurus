@@ -56,7 +56,7 @@ CREATE TABLE customers (
                            zipcode INT NOT NULL,
                            city VARCHAR(100) NOT NUlL,
                            email VARCHAR(255) NOT NULL,
-                           additional VARCHAR(255) DEFAULT "Har ikke nogen ekstra bemærkning",
+                           additional VARCHAR(255) NOT NULL,
                            FOREIGN KEY (userid) REFERENCES users(id)
 );
 
@@ -73,8 +73,8 @@ CREATE TABLE preorders (
                            customerid INT NOT NULL,
                            salesmanid INT DEFAULT NULL,
                            carportid INT NOT NULL,
-                           FOREIGN KEY (customerid) REFERENCES customers(userid),
-                           FOREIGN KEY (salesmanid) REFERENCES salesmen(userid),
+                           FOREIGN KEY (customerid) REFERENCES customers(id),
+                           FOREIGN KEY (salesmanid) REFERENCES salesmen(id),
                            FOREIGN KEY (carportid) REFERENCES carport(id)
 );
 

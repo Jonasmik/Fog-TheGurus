@@ -8,9 +8,9 @@ public class ShedFactory {
     private int carportID;
 
     public boolean isValid() {
-        if (length <= 0) return false;
-        if (width <= 0) return false;
-        if (carportID <= 0) return false;
+        if (length < 0) return false;
+        if (width < 0) return false;
+        if (carportID < 0) return false;
         return true;
     }
 

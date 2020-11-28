@@ -3,11 +3,15 @@ package com.yourcompany.infrastructure.database;
 import com.yourcompany.api.factories.CustomerFactory;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.customer.CustomerRepository;
+import com.yourcompany.domain.preorder.PreOrder;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class DBCustomerRepository implements CustomerRepository {
@@ -50,6 +54,22 @@ public class DBCustomerRepository implements CustomerRepository {
     }
 
     @Override
+    public List<Customer> findAllByUserId(int userId) throws NoSuchCustomerExists {
+        List<Customer> customers = new ArrayList<>();
+        try (Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement("SELECT * FROM customers WHERE userid = ?;");
+            s.setInt(1, userId);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                customers.add(loadCustomer(rs));
+            }
+        } catch (SQLException e) {
+            throw new NoSuchCustomerExists();
+        }
+        return customers;
+    }
+
+    @Override
     public Customer createCustomer(CustomerFactory customerFactory) throws NoSuchCustomerExists {
         int id;
         try (Connection conn = db.connect()) {
@@ -64,7 +84,11 @@ public class DBCustomerRepository implements CustomerRepository {
             ps.setInt(4, customerFactory.getZipcode());
             ps.setString(5, customerFactory.getCity());
             ps.setString(6, customerFactory.getEmail());
-            ps.setString(7, customerFactory.getAdditional());
+            if(customerFactory.getAdditional() == null){
+                ps.setString(7, "Kunde har ikke nogen ekstra besked");
+            } else {
+                ps.setString(7, customerFactory.getAdditional());
+            }
             try {
                 ps.executeUpdate();
             } catch (SQLIntegrityConstraintViolationException e) {

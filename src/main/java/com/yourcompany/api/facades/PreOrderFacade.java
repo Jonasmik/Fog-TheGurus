@@ -3,10 +3,8 @@ package com.yourcompany.api.facades;
 import com.yourcompany.api.factories.PreOrderFactory;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.preorder.PreOrderRepository;
-import com.yourcompany.domain.shed.ShedRepository;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.infrastructure.database.DBPreOrderRepository;
-import com.yourcompany.infrastructure.database.DBShedRepository;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.util.List;
@@ -39,5 +37,9 @@ public class PreOrderFacade {
 
     public PreOrder createPreOrder(PreOrderFactory preOrderFactory) throws NoSuchPreOrderExists {
         return repo.createPreOrder(preOrderFactory);
+    }
+
+    public PreOrder findByCustomerId(int customerId) throws NoSuchPreOrderExists {
+        return repo.findByCustomerId(customerId);
     }
 }

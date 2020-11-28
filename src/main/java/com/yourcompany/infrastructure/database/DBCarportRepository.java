@@ -60,8 +60,8 @@ public class DBCarportRepository implements CarportRepository {
                             Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, carportFactory.getLength());
             ps.setInt(2, carportFactory.getWidth());
-            ps.setString(2, carportFactory.getRoof());
-            ps.setInt(2, carportFactory.getRoofAngle());
+            ps.setString(3, carportFactory.getRoof());
+            ps.setInt(4, carportFactory.getRoofAngle());
 
             try {
                 ps.executeUpdate();

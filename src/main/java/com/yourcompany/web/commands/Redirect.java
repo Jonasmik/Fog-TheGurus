@@ -1,10 +1,16 @@
 package com.yourcompany.web.commands;
 
+import com.yourcompany.domain.customer.Customer;
+import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.user.User;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
+import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Redirect extends ICommand {
     @Override
@@ -20,28 +26,55 @@ public class Redirect extends ICommand {
         String destination = request.getParameter("destination");
         User user = (User) request.getSession().getAttribute("user");
         String errorpage = "errorpage";
+        String error = "error";
 
-        switch (destination){
+        switch (destination) {
 
             case "index":
                 break;
             case "createorder":
                 break;
             case "customerpage":
+
+                List<Customer> customers = new ArrayList<>();
+
+                try {
+                    customers = api.getCustomerFacade().findAllByUserId(user.getId());
+                } catch (NoSuchCustomerExists noSuchCustomerExists) {
+                    noSuchCustomerExists.printStackTrace();
+                }
+
+                List<PreOrder> preOrders = new ArrayList<>();
+                if (customers != null) {
+                    try {
+                        for (Customer c : customers) {
+                            PreOrder preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
+                            preOrders.add(preOrder);
+                        }
+                    } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
+                        request.setAttribute(error, "Der gik noget galt i generæringen af din bruger");
+                        return errorpage;
+                    }
+                } else {
+                    return "customerpage";
+                }
+
+                request.setAttribute("preorder", preOrders);
+
                 break;
             case "adminpage":
 
-                if(user == null){
-                    request.setAttribute("error", "Du er desvære ikke en adminstrator, men godt forsøgt");
+                if (user == null) {
+                    request.setAttribute(error, "Du er desvære ikke en adminstrator, men godt forsøgt");
                     return errorpage;
-                } else if(user.getRole().equals("salesman")) {
+                } else if (user.getRole().equals("salesman")) {
                     //generate stuff for the salesman
                 }
 
                 break;
             default:
-                request.setAttribute("error", "This site does not exist");
-                destination = "errorpage";
+                request.setAttribute(error, "This site does not exist");
+                destination = errorpage;
                 break;
         }
 

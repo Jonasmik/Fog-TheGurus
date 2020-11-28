@@ -9,6 +9,8 @@ import com.yourcompany.infrastructure.database.DBCustomerRepository;
 import com.yourcompany.infrastructure.database.DBTemplateRepository;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
+import java.util.List;
+
 public class CustomerFacade {
     private static CustomerFacade instance;
     private final CustomerRepository repo;
@@ -28,6 +30,10 @@ public class CustomerFacade {
 
     public Customer findById (int id) throws NoSuchCustomerExists {
         return repo.findById(id);
+    }
+
+    public List<Customer> findAllByUserId(int userId) throws NoSuchCustomerExists {
+        return repo.findAllByUserId(userId);
     }
 
     public Customer createCustomer (CustomerFactory customerFactory) throws NoSuchCustomerExists {

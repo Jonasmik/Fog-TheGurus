@@ -7,6 +7,7 @@ import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -29,7 +30,35 @@ public class DBPreOrderRepository implements PreOrderRepository {
 
     @Override
     public List<PreOrder> findAll() throws NoSuchPreOrderExists {
-        return null;
+        List<PreOrder> preOrders = new ArrayList<>();
+        try (Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement("SELECT * FROM preorders;");
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                preOrders.add(loadPreOrder(rs));
+            }
+        } catch (SQLException e) {
+            throw new NoSuchPreOrderExists(e.getMessage());
+        }
+        return preOrders;
+    }
+
+    @Override
+    public PreOrder findByCustomerId(int customerid) throws NoSuchPreOrderExists {
+        try(Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement(
+                    "SELECT * FROM preorders WHERE customerid = ?;");
+            s.setInt(1, customerid);
+            ResultSet rs = s.executeQuery();
+            if(rs.next()) {
+                return loadPreOrder(rs);
+            } else {
+                System.err.println("No version in properties.");
+                throw new NoSuchElementException("No preorder with customerid: " + customerid);
+            }
+        } catch (SQLException e) {
+            throw new NoSuchPreOrderExists(e.getMessage());
+        }
     }
 
     @Override
@@ -57,10 +86,11 @@ public class DBPreOrderRepository implements PreOrderRepository {
             PreparedStatement ps =
                     conn.prepareStatement(
                             "INSERT INTO preorders (customerid, carportid)" +
-                                    "VALUE (?,?,?,?,?,?,?);",
+                                    "VALUE (?,?);",
                             Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, preOrderFactory.getCustomerId());
             ps.setInt(2, preOrderFactory.getCarportId());
+
             try {
                 ps.executeUpdate();
             } catch (SQLIntegrityConstraintViolationException e) {

@@ -7,7 +7,13 @@
                 <c:if test="${requestScope.preorderfail != null}">
                     <div class="alert alert-danger border-danger">
                         <h1>Fejl</h1>
-                        <h4>${requestScope.preorderfail}</h4>
+                        <p>${requestScope.preorderfail}</p>
+                    </div>
+                </c:if>
+                <c:if test="${requestScope.preordersucces != null}">
+                    <div class="alert alert-danger border-success">
+                        <h1>Forespørgsel</h1>
+                        <p>${requestScope.preordersucces}</p>
                     </div>
                 </c:if>
                 <!-- Nav tabs -->
@@ -206,18 +212,18 @@
                                     <label for="flatRedskabsRumBredde">Redskabsrum bredde</label>
                                     <select class="form-control" id="flatRedskabsRumBredde" name="shedwidth" disabled>
                                         <option selected>Vælg bredde</option>
-                                        <option>210 cm</option>
-                                        <option>240 cm</option>
-                                        <option>270 cm</option>
+                                        <option>210</option>
+                                        <option>240</option>
+                                        <option>270</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="flatRedskabsRumLængde">Redskabsum længde</label>
                                     <select class="form-control" id="flatRedskabsRumLængde" name="shedlength">
                                         <option selected>Vælg længde</option>
-                                        <option>210 cm</option>
-                                        <option>240 cm</option>
-                                        <option>270 cm</option>
+                                        <option>210</option>
+                                        <option>240</option>
+                                        <option>270</option>
                                     </select>
                                 </div>
                             </div>

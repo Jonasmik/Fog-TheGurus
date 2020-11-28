@@ -23,6 +23,7 @@ public class CarportFactory {
     public void setLength(int length) {
         this.length = length;
     }
+
     public void setLength(String number) throws CarportValidations {
         try{
             setLength(Integer.parseInt(number));
@@ -38,6 +39,7 @@ public class CarportFactory {
     public void setWidth(int width) {
         this.width = width;
     }
+
     public void setWidth(String number) throws CarportValidations {
         try{
             setWidth(Integer.parseInt(number));
