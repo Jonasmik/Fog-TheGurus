@@ -20,8 +20,8 @@ public class CarportFacade {
     public static CarportFacade getInstance() {
         if (instance == null) {
             Database db = new Database();
-            CarportRepository CarportRepository = new DBCarportRepository(db);
-            instance = new CarportFacade(CarportRepository);
+            CarportRepository carportRepository = new DBCarportRepository(db);
+            instance = new CarportFacade(carportRepository);
         }
         return instance;
     }
