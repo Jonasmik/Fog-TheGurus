@@ -1,7 +1,10 @@
 package com.yourcompany.api.facades;
 
+import com.yourcompany.api.factories.CustomerFactory;
 import com.yourcompany.domain.TemplateRepository;
+import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.customer.CustomerRepository;
+import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.infrastructure.database.DBCustomerRepository;
 import com.yourcompany.infrastructure.database.DBTemplateRepository;
 import com.yourcompany.infrastructure.dbsetup.Database;
@@ -21,5 +24,13 @@ public class CustomerFacade {
             instance = new CustomerFacade(customerRepository);
         }
         return instance;
+    }
+
+    public Customer findById (int id) throws NoSuchCustomerExists {
+        return repo.findById(id);
+    }
+
+    public Customer createCustomer (CustomerFactory customerFactory) throws NoSuchCustomerExists {
+        return repo.createCustomer(customerFactory);
     }
 }

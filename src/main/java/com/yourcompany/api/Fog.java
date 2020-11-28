@@ -1,6 +1,7 @@
 package com.yourcompany.api;
 
 import com.yourcompany.api.facades.CarportFacade;
+import com.yourcompany.api.facades.CustomerFacade;
 import com.yourcompany.api.facades.ShedFacade;
 import com.yourcompany.api.facades.UserFacade;
 
@@ -9,11 +10,13 @@ public class Fog {
     private final UserFacade userFacade;
     private final CarportFacade carportFacade;
     private final ShedFacade shedFacade;
+    private final CustomerFacade customerFacade;
 
-    public Fog(UserFacade userFacade, CarportFacade carportFacade, ShedFacade shedFacade) {
+    public Fog(UserFacade userFacade, CarportFacade carportFacade, ShedFacade shedFacade, CustomerFacade customerFacade) {
         this.userFacade = userFacade;
         this.carportFacade = carportFacade;
         this.shedFacade = shedFacade;
+        this.customerFacade = customerFacade;
     }
 
     public static String getVERSION() {
@@ -31,4 +34,9 @@ public class Fog {
     public ShedFacade getShedFacade() {
         return shedFacade;
     }
+
+    public CustomerFacade getCustomerFacade() {
+        return customerFacade;
+    }
+
 }

@@ -1,12 +1,16 @@
 package com.yourcompany.web.commands;
 
 import com.yourcompany.api.factories.CarportFactory;
+import com.yourcompany.api.factories.CustomerFactory;
 import com.yourcompany.api.factories.ShedFactory;
 import com.yourcompany.domain.carport.Carport;
+import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.exceptions.carport.CarportValidations;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.shed.ShedValidations;
+import com.yourcompany.exceptions.user.CustomerValidation;
+import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
@@ -43,8 +47,22 @@ public class FlatRoofPreOrder extends ICommand {
             return "createorder";
         }
 
+        //Create customer
+        Customer customer;
+        try {
+            customer = createCustomer(request, response);
+        } catch (NoSuchCustomerExists noSuchCustomerExists) {
+            request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
+            return "createorder";
+        }
 
-        if (shed.equals("yes")){
+        if(customer == null) {
+            request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
+            return "createorder";
+        }
+
+        boolean wantsShed = shed.equals("yes");
+        if (wantsShed){
             ShedFactory shedFactory = new ShedFactory();
 
             String shedwidth = request.getParameter("shedwidth");
@@ -69,11 +87,43 @@ public class FlatRoofPreOrder extends ICommand {
                 return "createorder";
             }
 
-
         }
+
 
 
         return null;
 
+    }
+
+    private Customer createCustomer(HttpServletRequest request, HttpServletResponse response) throws NoSuchCustomerExists {
+        /*
+        6. Navn = “flatname”
+	7. Adresse = “flatadress”
+	8. Post nummer = “flatzip”
+	9. By = “flatcity”
+	10. E-mail = “flatemail”
+	11. Bemærkning = “flatadditional”
+         */
+        CustomerFactory customerFactory = new CustomerFactory();
+
+        String name = request.getParameter("flatname");
+        String adress = request.getParameter("flatadress");
+        String zip = request.getParameter("flatzip");
+        String city = request.getParameter("flatcity");
+        String email = request.getParameter("flatemail");
+        String additional = request.getParameter("flatadditional");
+
+        try {
+            customerFactory.setName(name);
+            customerFactory.setAdress(adress);
+            customerFactory.setZipcode(zip);
+            customerFactory.setCity(city);
+            customerFactory.setEmail(email);
+            customerFactory.setAdditional(additional);
+        } catch (CustomerValidation e) {
+            e.printStackTrace();
+        }
+        Customer customer = api.getCustomerFacade().createCustomer(customerFactory);
+        return customer;
     }
 }

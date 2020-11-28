@@ -4,6 +4,7 @@ package com.yourcompany.web;
 import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.CarportFacade;
+import com.yourcompany.api.facades.CustomerFacade;
 import com.yourcompany.api.facades.ShedFacade;
 import com.yourcompany.api.facades.UserFacade;
 import com.yourcompany.web.commands.*;
@@ -56,7 +57,7 @@ public abstract class ICommand {
     }
 
     private static Fog createFog() {
-        return new Fog(UserFacade.getInstance(), CarportFacade.getInstance(), ShedFacade.getInstance());
+        return new Fog(UserFacade.getInstance(), CarportFacade.getInstance(), ShedFacade.getInstance(), CustomerFacade.getInstance());
     }
 
     //used by every command, and called by the invoker.
