@@ -8,17 +8,17 @@ cookieButton.addEventListener("click", () => {
     cookieContainer.classList.remove("active");
     cookieActive.classList.remove("active");
     //Adds it to the localStorage
-    localStorage.setItem("cookieBannerDisplayed", "true");
+    localStorage.setItem('cookieBannerDisplayed', 'true');
 });
 
 //adds the .active to the cookieContainer after 2 seconds.
 setTimeout(() => {
-    /*
-    if(!localStorage.getItem("cookieBannerDisplayed")) {
+    if(localStorage["cookieBannerDisplayed"]) {
+        cookieContainer.classList.remove("active");
+        cookieActive.classList.remove("active");
+    } else {
         cookieContainer.classList.add("active");
         cookieActive.classList.add("active");
     }
-    */
-    cookieActive.classList.add("active");
-    cookieContainer.classList.add("active");
+
 }, 2000);
