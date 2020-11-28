@@ -91,11 +91,7 @@ public class DBPreOrderRepository implements PreOrderRepository {
             ps.setInt(1, preOrderFactory.getCustomerId());
             ps.setInt(2, preOrderFactory.getCarportId());
 
-            try {
-                ps.executeUpdate();
-            } catch (SQLIntegrityConstraintViolationException e) {
-                throw new NoSuchPreOrderExists(e.getMessage());
-            }
+            ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -104,7 +100,7 @@ public class DBPreOrderRepository implements PreOrderRepository {
                 throw new NoSuchPreOrderExists("Failed to generate id of preorder");
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new NoSuchPreOrderExists(e.getMessage());
         }
         return findPreOrderById(id);
     }

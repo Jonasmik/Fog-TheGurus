@@ -62,11 +62,8 @@ public class DBUserRepository implements UserRepository {
             ps.setBytes(3, salt);
             ps.setBytes(4, secret);
             ps.setString( 5, "customer");
-            try {
-                ps.executeUpdate();
-            } catch (SQLIntegrityConstraintViolationException e) {
-                throw new UserValidationError(e.getMessage());
-            }
+
+            ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -75,7 +72,7 @@ public class DBUserRepository implements UserRepository {
                 throw new UserValidationError(userFactory.getEmail());
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new UserValidationError(e.getMessage());
         }
         return findUserById(id);
     }

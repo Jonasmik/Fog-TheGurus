@@ -89,11 +89,8 @@ public class DBCustomerRepository implements CustomerRepository {
             } else {
                 ps.setString(7, customerFactory.getAdditional());
             }
-            try {
-                ps.executeUpdate();
-            } catch (SQLIntegrityConstraintViolationException e) {
-                throw new NoSuchCustomerExists();
-            }
+
+            ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -102,7 +99,7 @@ public class DBCustomerRepository implements CustomerRepository {
                 throw new NoSuchCustomerExists();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new NoSuchCustomerExists();
         }
         return findById(id);
     }

@@ -4,9 +4,6 @@ package com.yourcompany.web;
 import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.*;
-import com.yourcompany.domain.carport.Carport;
-import com.yourcompany.infrastructure.database.DBCarportRepository;
-import com.yourcompany.infrastructure.dbsetup.Database;
 import com.yourcompany.web.commands.*;
 import com.yourcompany.web.commands.user.AuthorizeUser;
 import com.yourcompany.web.commands.user.CreateUser;
@@ -37,7 +34,6 @@ public abstract class ICommand {
         commands.put("createuser", new CreateUser());
         commands.put("flatroofpreorder", new FlatRoofPreOrder());
         commands.put("logoutuser", new LogoutUser());
-
 
     }
 

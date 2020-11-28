@@ -54,11 +54,8 @@ public class DBShedRepository implements ShedRepository {
             ps.setInt(1, shedFactory.getLength());
             ps.setInt(2, shedFactory.getWidth());
             ps.setInt(3, shedFactory.getCarportID());
-            try {
-                ps.executeUpdate();
-            } catch (SQLIntegrityConstraintViolationException e) {
-                throw new NoSuchShedExists();
-            }
+
+            ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -67,7 +64,7 @@ public class DBShedRepository implements ShedRepository {
                 throw new NoSuchShedExists();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new NoSuchShedExists();
         }
         return findById(id);
     }

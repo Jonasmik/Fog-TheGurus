@@ -62,12 +62,7 @@ public class DBCarportRepository implements CarportRepository {
             ps.setInt(2, carportFactory.getWidth());
             ps.setString(3, carportFactory.getRoof());
             ps.setInt(4, carportFactory.getRoofAngle());
-
-            try {
-                ps.executeUpdate();
-            } catch (SQLIntegrityConstraintViolationException e) {
-                throw new NoSuchCarportExists();
-            }
+            ps.executeUpdate();
 
             ResultSet rs = ps.getGeneratedKeys();
             if (rs.next()) {
@@ -76,7 +71,7 @@ public class DBCarportRepository implements CarportRepository {
                 throw new NoSuchCarportExists();
             }
         } catch (SQLException e) {
-            throw new RuntimeException(e);
+            throw new NoSuchCarportExists();
         }
         return findById(id);
     }

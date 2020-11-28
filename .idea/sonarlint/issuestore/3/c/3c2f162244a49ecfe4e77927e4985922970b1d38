@@ -1,0 +1,14 @@
+
+Z	java:S1068"9Replace this use of System.out or System.err by a logger.(Ò¿éğüÿÿÿÿ8ÕÄÿà.
+Z	java:S106J"9Replace this use of System.out or System.err by a logger.(Ò¿éğüÿÿÿÿ8Æ¢ìøà.
+q
+java:S2095C"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8‹ÿîøà.
+l
+java:S2095#"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ÿ ““8ÇÓæşà.
+g	java:S112k"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ï»ñøà.
+l
+java:S2095W"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8Ï»ñøà.
+q
+java:S20951"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8ÕÄÿà.
+W
+java:S1141^"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8Ï»ñøà.

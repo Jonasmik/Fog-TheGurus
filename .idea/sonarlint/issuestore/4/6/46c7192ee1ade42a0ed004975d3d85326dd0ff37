@@ -1,5 +1,5 @@
 
-Z
-java:S2441":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ÑŠÖÌà.
-T
-java:S3516"9Refactor this method to not always return the same value.(¹¹ù8ÛÄ—óà.
+[
+java:S3516"9Refactor this method to not always return the same value.(‚çÕöúÿÿÿÿ8Ìü‚ôà.
+\
+java:S24416":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8Ìü‚ôà.

@@ -1,0 +1,17 @@
+
+Z	java:S1060"9Replace this use of System.out or System.err by a logger.(Ò¿éğüÿÿÿÿ8ĞƒÌøà.
+t
+java:S1128"RRemove this unused import 'com.yourcompany.exceptions.order.NoSuchPreOrderExists'.(¾¼Ä…üÿÿÿÿ8ğŸ«ÿà.
+l
+java:S2095M"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8óÚøà.
+q
+java:S2095)"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8£¸Òøà.
+g	java:S112i"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8óÚøà.
+b
+java:S1128"ERemove this unused import 'com.yourcompany.domain.preorder.PreOrder'.(„…¼ª8Ïªªÿà.
+q
+java:S2095<"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™†„òüÿÿÿÿ8‚½¨ÿà.
+W
+java:S1141\"5Extract this nested try block into a separate method.(¡»¢üùÿÿÿÿ8óÚøà.
+j
+java:S1128"MRemove this unused import 'com.yourcompany.exceptions.shed.NoSuchShedExists'.(ØË†¡8Ï©éøà.
