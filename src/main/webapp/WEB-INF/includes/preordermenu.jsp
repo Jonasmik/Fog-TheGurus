@@ -178,14 +178,14 @@
 
                                         <input type="hidden" name="hasuser" value="yes" id="angledHasUser">
                                         <input type="email" class="form-control" name="email" id="angledHasUserEmail"
-                                               placeholder="E-mail adresse" required=""
+                                               placeholder="Indtast e-mail adresse" required=""
                                                autofocus="">
                                         <small style="margin-bottom: 5px"
                                                class="form-text text-muted">Vi
                                             vil aldrig dele din e-mail med andre</small>
                                         <input style="margin-bottom: 25px" type="password"
                                                class="form-control" name="password" id="angledHasUserPassword"
-                                               placeholder="Password" required="">
+                                               placeholder="Indtast password" required="">
                                         <a style="color: blue" onclick="showObliqueCreate()">Eller opret en bruger
                                             her</a>
 

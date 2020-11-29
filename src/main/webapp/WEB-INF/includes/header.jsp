@@ -33,7 +33,7 @@
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d558e38d6e.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src='<c:url value="/js/preorderscripts.js"/>'></script>
-
+    
     <script>
         $(document).on('click', '.allow-focus .dropdown-menu', function (e) {
             e.stopPropagation();

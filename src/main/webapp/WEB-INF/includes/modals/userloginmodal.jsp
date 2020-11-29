@@ -6,7 +6,7 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title">User login</h5>
+                            <h5 class="modal-title">User log ind</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -33,7 +33,7 @@
                                         <input type="hidden" name="target" value="authorizeuser">
                                         <label for="loginEmail" class="sr-only">E-mail adresse</label>
                                         <input type="email" id="loginEmail" class="form-control" name="email"
-                                               placeholder="E-mail adresse" required=""
+                                               placeholder="Indtast e-mail adresse" required=""
                                                autofocus="">
                                         <small style="margin-bottom: 5px" id="loginemailHelp"
                                                class="form-text text-muted">Vi
@@ -41,11 +41,11 @@
                                         <label for="loginPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 25px" type="password" id="loginPassword"
                                                class="form-control" name="password"
-                                               placeholder="Password" required="">
+                                               placeholder="Indtast password" required="">
                                         <hr class="w-100">
                                         <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-block w-50 btn-primary">
-                                                Login
+                                                Log ind
                                             </button>
                                         </div>
                                     </form>
