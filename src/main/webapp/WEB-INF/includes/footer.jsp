@@ -241,5 +241,4 @@
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css"/>
 </c:if>
-<script src="${pageContext.request.contextPath}/js/cookies.js"></script>
 <script src="https://kit.fontawesome.com/d558e38d6e.js" crossorigin="anonymous"></script>

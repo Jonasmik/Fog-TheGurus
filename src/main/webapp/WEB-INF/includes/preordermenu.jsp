@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
+
 <div class="container" style="padding: 1rem">
     <form method="post">
         <div class="row">
@@ -168,28 +169,59 @@
                                             aria-haspopup="true" aria-expanded="false">
                                         Send forespørgsel
                                     </button>
-                                    <div class="dropdown-menu text-muted"
+                                    <div class="userContainer dropdown-menu text-muted"
                                          style="width: 300px; padding: 30px">
-                                        <h5>Log ind</h5>
 
-                                        <hr style="padding-top: 10px; padding-bottom: 5px;">
+                                        <div id="myAngledLogin" style="display: none">
+                                            <h5>Log ind</h5>
 
-                                        <input type="hidden" name="hasuser" value="yes">
-                                        <input type="email" class="form-control" name="email"
-                                               placeholder="E-mail adresse" required=""
-                                               autofocus="">
-                                        <small style="margin-bottom: 5px"
-                                               class="form-text text-muted">Vi
-                                            vil aldrig dele din e-mail med andre</small>
-                                        <input style="margin-bottom: 25px" type="password"
-                                               class="form-control" name="password"
-                                               placeholder="Password" required="">
+                                            <hr style="padding-top: 10px; padding-bottom: 5px;">
 
-                                        <hr style="padding-top: 5px; padding-bottom: 5px;">
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary">
-                                                Log ind
-                                            </button>
+                                            <input type="hidden" name="hasuser" value="yes">
+                                            <input type="email" class="form-control" name="email"
+                                                   placeholder="E-mail adresse" required=""
+                                                   autofocus="">
+                                            <small style="margin-bottom: 5px"
+                                                   class="form-text text-muted">Vi
+                                                vil aldrig dele din e-mail med andre</small>
+                                            <input style="margin-bottom: 25px" type="password"
+                                                   class="form-control" name="password"
+                                                   placeholder="Password" required="">
+
+                                            <hr style="padding-top: 5px; padding-bottom: 5px;">
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Log ind
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="myAngledCreate" style="display: block">
+                                            <h5>Opret bruger</h5>
+
+                                            <hr style="padding-top: 10px; padding-bottom: 5px;">
+
+                                            <input type="hidden" name="hasuser" value="yes">
+                                            <input type="email" class="form-control" name="email"
+                                                   placeholder="E-mail adresse" required=""
+                                                   autofocus="">
+                                            <small style="margin-bottom: 5px"
+                                                   class="form-text text-muted">Vi
+                                                vil aldrig dele din e-mail med andre</small>
+                                            <input style="margin-bottom: 25px" type="password"
+                                                   class="form-control" name="password"
+                                                   placeholder="Password" required="">
+                                            <a class="my-footerlinks keep-open" onclick="showObliqueLogin()">Tilbage til
+                                                login</a>
+                                            <hr style="padding-top: 5px; padding-bottom: 5px;">
+
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Opret bruger
+                                                </button>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -330,14 +362,14 @@
 
                                         <hr style="padding-top: 10px; padding-bottom: 5px;">
 
-                                        <input type="hidden" name="hasuser" value="yes">
-                                        <input type="email" class="form-control" name="email"
+                                        <input type="hidden" name="hasuser" value="yes" id="angledHasUser">
+                                        <input type="email" class="form-control" name="email" id="angledHasUserEmail"
                                                placeholder="E-mail adresse" required=""
                                                autofocus="">
                                         <small style="margin-bottom: 5px"
                                                class="form-text text-muted">Vi
                                             vil aldrig dele din e-mail med andre</small>
-                                        <input style="margin-bottom: 25px" type="password"
+                                        <input style="margin-bottom: 25px" type="password" id="angledHasUserPassword"
                                                class="form-control" name="password"
                                                placeholder="Password" required="">
 
@@ -358,6 +390,10 @@
         </div>
 
         <script>
+            $('body').on("click",".dropdown-menu", function(e) {
+                $(this).parent().is(".open") && e.stopPropagation();
+            });
+
             function showObliqueRoofOptions() {
                 const x = document.getElementById("myFirstExtraRoom");
                 const width = document.getElementById("redskabsRumBredde");
@@ -372,6 +408,20 @@
                     width.disabled = true;
                     width.disabled = true;
                 }
+            }
+
+            function showObliqueLogin() {
+                const create = document.getElementById("myAngledCreate");
+                const login = document.getElementById("myAngledLogin");
+                const angledHasUser = document.getElementById("angledHasUser");
+                const angledHasUserEmail = document.getElementById("angledHasUserEmail");
+                const angledHasUserPassword = document.getElementById("angledHasUserPassword");
+
+                create.style.display = "none";
+                login.style.display = "block";
+                angledHasUser.disabled = false;
+                angledHasUserEmail.disabled = false;
+                angledHasUserPassword.disabled = false;
             }
 
             function showFlatRoofOptions() {
