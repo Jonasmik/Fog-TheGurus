@@ -32,6 +32,7 @@
             integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
             crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/d558e38d6e.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src='<c:url value="/js/preorderscripts.js"/>'></script>
 
     <script>
         $(document).on('click', '.allow-focus .dropdown-menu', function (e) {
