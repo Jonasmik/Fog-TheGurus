@@ -24,6 +24,8 @@ public class FlatRoofPreOrder extends ICommand {
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
 
+        //Add user registration up here
+
         //Carport info
         String length = request.getParameter("length");
         String width = request.getParameter("width");
@@ -40,6 +42,7 @@ public class FlatRoofPreOrder extends ICommand {
 
         User user = (User) request.getSession().getAttribute("user");
 
+        //Used as shortcuts for attributes and return values.
         String preorderfail = "preorderfail";
         String creationpage = "createorder";
 
@@ -97,7 +100,7 @@ public class FlatRoofPreOrder extends ICommand {
             return creationpage;
         }
 
-
+        //If customer wants a shed, create shed
         if (shed != null) {
             ShedFactory shedFactory = new ShedFactory();
 
@@ -127,6 +130,8 @@ public class FlatRoofPreOrder extends ICommand {
             }
         }
 
+
+        //Create preorder
         PreOrderFactory preOrderFactory = new PreOrderFactory();
         preOrderFactory.setCarportId(carport.getId());
         preOrderFactory.setCustomerId(customer.getId());

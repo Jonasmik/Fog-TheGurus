@@ -21,6 +21,7 @@ public class UserFacade {
         this.repo = repo;
     }
 
+
     public static UserFacade getInstance() {
         if (instance == null) {
             Database db = new Database();

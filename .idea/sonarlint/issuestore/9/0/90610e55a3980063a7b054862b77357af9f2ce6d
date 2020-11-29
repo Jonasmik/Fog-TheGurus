@@ -1,14 +1,14 @@
 
 h
 java:S1128"MRemove this unused import 'com.yourcompany.exceptions.shed.NoSuchShedExists'.(ØË†¡8Ï©éøà.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(Ò¿éğüÿÿÿÿ8ĞƒÌøà.
 `
 java:S1128"ERemove this unused import 'com.yourcompany.domain.preorder.PreOrder'.(„…¼ª8Ïªªÿà.
-X	java:S106"9Replace this use of System.out or System.err by a logger.(Ò¿éğüÿÿÿÿ8ĞƒÌøà.
-j
-java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8óÚøà.
 o
 java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8£¸Òøà.
 o
 java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(™†„òüÿÿÿÿ8‚½¨ÿà.
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8óÚøà.
 r
 java:S1128"RRemove this unused import 'com.yourcompany.exceptions.order.NoSuchPreOrderExists'.(¾¼Ä…üÿÿÿÿ8ğŸ«ÿà.
