@@ -200,9 +200,9 @@
                             <p class="fog-info"><i class="fas fa-phone-alt"
                                                    style="border: 1px solid white; border-radius: 40px; padding: 7px; margin-right: 10px"></i>
                                 98 71 23 77</p>
-                            <p class="fog-info"><i class="far fa-envelope"
+                            <a href="mailto:notfog@notfog.com" class="fog-info"><i class="far fa-envelope"
                                                    style="border: 1px solid white; border-radius: 40px; padding: 7px; margin-right: 10px"></i>
-                                Send e-mail</p>
+                                Send e-mail</a>
                         </div>
                     </div>
                 </div>
