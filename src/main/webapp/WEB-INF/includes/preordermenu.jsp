@@ -11,7 +11,7 @@
                     </div>
                 </c:if>
                 <c:if test="${requestScope.preordersucces != null}">
-                    <div class="alert alert-danger border-success">
+                    <div class="alert alert-success border-success">
                         <h1>Forespørgsel</h1>
                         <p>${requestScope.preordersucces}</p>
                     </div>
@@ -146,17 +146,54 @@
 
                             <div class="form-group">
                                 <label for="skråAdditionals">Evt. bemærkninger</label>
-                                <textarea maxlength="255" class="form-control" id="skråAdditionals" name="angledadditional"
+                                <textarea maxlength="255" class="form-control" id="skråAdditionals"
+                                          name="angledadditional"
                                           rows="3"></textarea>
                             </div>
 
                             <hr>
-                            <div class="d-none d-lg-block d-xl-block">
-                                <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
-                            </div>
-                            <div class="d-block d-lg-none d-xl-none">
-                                <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
-                            </div>
+
+                            <!-- If user is logged in - SUBMIT. Else Login modal -->
+                            <c:if test="${sessionScope.user != null}">
+                                <div class="d-none d-lg-block d-xl-block">
+                                    <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
+                                </div>
+                                <div class="d-block d-lg-none d-xl-none">
+                                    <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
+                                </div>
+                            </c:if>
+                            <c:if test="${sessionScope.user == null}">
+                                <div class="btn-group dropup">
+                                    <button type="button" class="btn btn-primary" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Send forespørgsel
+                                    </button>
+                                    <div class="dropdown-menu text-muted"
+                                         style="width: 300px; padding: 30px">
+                                        <h5>Log ind</h5>
+
+                                        <hr style="padding-top: 10px; padding-bottom: 5px;">
+
+                                        <input type="hidden" name="hasuser" value="yes">
+                                        <input type="email" class="form-control" name="email"
+                                               placeholder="E-mail adresse" required=""
+                                               autofocus="">
+                                        <small style="margin-bottom: 5px"
+                                               class="form-text text-muted">Vi
+                                            vil aldrig dele din e-mail med andre</small>
+                                        <input style="margin-bottom: 25px" type="password"
+                                               class="form-control" name="password"
+                                               placeholder="Password" required="">
+
+                                        <hr style="padding-top: 5px; padding-bottom: 5px;">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary">
+                                                Log ind
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
                         </form>
                     </div>
                     <!-- Carport med skråt tag END -->
@@ -265,17 +302,54 @@
 
                             <div class="form-group">
                                 <label for="flatBemærkning">Evt. bemærkninger</label>
-                                <textarea maxlength="255" class="form-control" id="flatBemærkning" name="flatadditionals"
+                                <textarea maxlength="255" class="form-control" id="flatBemærkning"
+                                          name="flatadditionals"
                                           rows="3"></textarea>
                             </div>
 
                             <hr>
-                            <div class="d-none d-lg-block d-xl-block">
-                                <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
-                            </div>
-                            <div class="d-block d-lg-none d-xl-none">
-                                <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
-                            </div>
+
+                            <!-- If user is logged in - SUBMIT. Else Login dropdown -->
+                            <c:if test="${sessionScope.user != null}">
+                                <div class="d-none d-lg-block d-xl-block">
+                                    <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
+                                </div>
+                                <div class="d-block d-lg-none d-xl-none">
+                                    <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
+                                </div>
+                            </c:if>
+                            <c:if test="${sessionScope.user == null}">
+                                <div class="btn-group dropup">
+                                    <button type="button" class="btn btn-primary" data-toggle="dropdown"
+                                            aria-haspopup="true" aria-expanded="false">
+                                        Send forespørgsel
+                                    </button>
+                                    <div class="dropdown-menu text-muted"
+                                         style="width: 300px; padding: 30px">
+                                        <h5>Log ind</h5>
+
+                                        <hr style="padding-top: 10px; padding-bottom: 5px;">
+
+                                        <input type="hidden" name="hasuser" value="yes">
+                                        <input type="email" class="form-control" name="email"
+                                               placeholder="E-mail adresse" required=""
+                                               autofocus="">
+                                        <small style="margin-bottom: 5px"
+                                               class="form-text text-muted">Vi
+                                            vil aldrig dele din e-mail med andre</small>
+                                        <input style="margin-bottom: 25px" type="password"
+                                               class="form-control" name="password"
+                                               placeholder="Password" required="">
+
+                                        <hr style="padding-top: 5px; padding-bottom: 5px;">
+                                        <div class="d-flex justify-content-end">
+                                            <button type="submit" class="btn btn-primary">
+                                                Log ind
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:if>
                         </form>
                     </div>
                     <!-- Carport med flat tag END -->

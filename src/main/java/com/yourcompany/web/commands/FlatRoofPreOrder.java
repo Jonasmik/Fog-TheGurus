@@ -1,6 +1,5 @@
 package com.yourcompany.web.commands;
 
-import com.yourcompany.api.facades.PreOrderFacade;
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.api.factories.CustomerFactory;
 import com.yourcompany.api.factories.PreOrderFactory;
@@ -20,12 +19,10 @@ import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Arrays;
 
 public class FlatRoofPreOrder extends ICommand {
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
-        CarportFactory carportFactory = new CarportFactory();
 
         //Carport info
         String length = request.getParameter("length");
@@ -43,8 +40,14 @@ public class FlatRoofPreOrder extends ICommand {
 
         User user = (User) request.getSession().getAttribute("user");
 
+        String preorderfail = "preorderfail";
+        String creationpage = "createorder";
+
+
+        //Create carport
         final int angle = 0;
 
+        CarportFactory carportFactory = new CarportFactory();
         try {
             carportFactory.setLength(length);
             carportFactory.setWidth(width);
@@ -52,21 +55,18 @@ public class FlatRoofPreOrder extends ICommand {
             carportFactory.setRoofAngle(angle);
 
         } catch (CarportValidations carportValidations) {
-            request.setAttribute("error", "Der gik noget galt i at parse information");
-            return "errorpage";
+            request.setAttribute(preorderfail, "Der er noget galt med dine inputs");
         }
 
         Carport carport;
-
         try {
             carport = api.getCarportFacade().createCarport(carportFactory);
         } catch (NoSuchCarportExists noSuchCarportExists) {
-            request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
-            return "createorder";
+            request.setAttribute(preorderfail, "Der gik noget galt med din carport");
+            return creationpage;
         }
 
         //Create customer
-
         CustomerFactory customerFactory = new CustomerFactory();
 
         try {
@@ -78,7 +78,8 @@ public class FlatRoofPreOrder extends ICommand {
             customerFactory.setEmail(email);
             customerFactory.setAdditional(additional);
         } catch (CustomerValidation e) {
-            e.printStackTrace();
+            request.setAttribute(preorderfail, "Der gik noget galt med kunde opretelsen");
+            return creationpage;
         }
 
         Customer customer = null;
@@ -86,14 +87,14 @@ public class FlatRoofPreOrder extends ICommand {
             try {
                 customer = api.getCustomerFacade().createCustomer(customerFactory);
             } catch (NoSuchCustomerExists noSuchCustomerExists) {
-                request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
-                return "createorder";
+                request.setAttribute(preorderfail, "Der gik noget galt med oprettelsen af kunden");
+                return creationpage;
             }
         }
 
         if (customer == null) {
-            request.setAttribute("preorderfail", "Der gik noget galt med oprettelsen af kunden");
-            return "createorder";
+            request.setAttribute(preorderfail, "Der gik noget galt med oprettelsen af kunden");
+            return creationpage;
         }
 
 
@@ -117,12 +118,12 @@ public class FlatRoofPreOrder extends ICommand {
                 try {
                     api.getShedFacade().createShed(shedFactory);
                 } catch (NoSuchShedExists noSuchShedExists) {
-                    request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
-                    return "createorder";
+                    request.setAttribute(preorderfail, "Der gik noget galt i bestillingen.");
+                    return creationpage;
                 }
             } else {
-                request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
-                return "createorder";
+                request.setAttribute(preorderfail, "Der gik noget galt i bestillingen.");
+                return creationpage;
             }
         }
 
@@ -136,19 +137,17 @@ public class FlatRoofPreOrder extends ICommand {
             try {
                 preOrder = api.getPreOrderFacade().createPreOrder(preOrderFactory);
             } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
-                request.setAttribute("preorderfail", noSuchPreOrderExists.getMessage());
-                return "createorder";
+                request.setAttribute(preorderfail, noSuchPreOrderExists.getMessage());
+                return creationpage;
             }
         }
 
         if (preOrder != null) {
             request.setAttribute("preordersucces", "Din forespørgelse er blevet oprettet, du vil snart blive kontaktet af en salgsmedarbejder.");
-            return "createorder";
+            return creationpage;
         } else {
-            request.setAttribute("preorderfail", "Der gik noget galt i bestillingen.");
-            return "createorder";
+            request.setAttribute(preorderfail, "Der gik noget galt i bestillingen.");
+            return creationpage;
         }
-
     }
-
 }

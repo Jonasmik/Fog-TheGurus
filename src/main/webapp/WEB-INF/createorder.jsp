@@ -16,6 +16,7 @@
 <main role="main" class="container flex-shrink-0">
     <c:if test="${sessionScope.user == null}">
         <jsp:include page="includes/modals/userloginmodal.jsp" flush="true"/>
+        <jsp:include page="includes/modals/preorderloginmodal.jsp" flush="true"/>
     </c:if>
     <c:if test="${sessionScope.user != null}">
         <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>

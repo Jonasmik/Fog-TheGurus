@@ -1,17 +1,9 @@
 
-H
-java:S5411‡"*Use the primitive boolean expression here.(²ÿ‡İ8µúÑúà.
-O
-java:S1128"-Remove this unused import 'java.util.Arrays'.(î–˜Éüÿÿÿÿ8Ò§ ıà.
-€
-java:S1192@"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 4 times.(Ò§ƒ–8ûâµùà.
 L
-java:S5411U"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8öÌãúà.
-j
-java:S1192@"MDefine a constant instead of duplicating this literal "preorderfail" 7 times.(Ò§ƒ–8½÷šøà.
+java:S5411V"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8ÎÑÀá.
+€
+java:S1192y"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ùó€ 8ÎÑÀá.
+H
+java:S5411ˆ"*Use the primitive boolean expression here.(²ÿ‡İ8ÎÑÀá.
 t
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(‚çÕöúÿÿÿÿ8öÌãúà.
-i
-java:S1128"GRemove this unused import 'com.yourcompany.api.facades.PreOrderFacade'.(ÈŞ¼ôøÿÿÿÿ8ûâµùà.
-n
-java:S1192A"LDefine a constant instead of duplicating this literal "createorder" 8 times.(ÍŒ˜‚ıÿÿÿÿ8½÷šøà.
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(‚çÕöúÿÿÿÿ8öÌãúà.
