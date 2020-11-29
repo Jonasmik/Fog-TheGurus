@@ -164,7 +164,7 @@
                                 </div>
                             </c:if>
                             <c:if test="${sessionScope.user == null}">
-                                <div class="btn-group dropup">
+                                <div class="btn-group dropup allow-focus">
                                     <button type="button" class="btn btn-primary" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         Send forespørgsel
@@ -172,53 +172,66 @@
                                     <div class="userContainer dropdown-menu text-muted"
                                          style="width: 300px; padding: 30px">
 
-                                        <div id="myAngledLogin" style="display: none">
+                                        <div id="myAngledLogin" style="display: block">
                                             <h5>Log ind</h5>
 
                                             <hr style="padding-top: 10px; padding-bottom: 5px;">
 
-                                            <input type="hidden" name="hasuser" value="yes">
-                                            <input type="email" class="form-control" name="email"
+                                            <input type="hidden" name="hasuser" value="yes" id="angledHasUser">
+                                            <input type="email" class="form-control" name="email" id="angledHasUserEmail"
                                                    placeholder="E-mail adresse" required=""
                                                    autofocus="">
                                             <small style="margin-bottom: 5px"
                                                    class="form-text text-muted">Vi
                                                 vil aldrig dele din e-mail med andre</small>
                                             <input style="margin-bottom: 25px" type="password"
-                                                   class="form-control" name="password"
+                                                   class="form-control" name="password" id="angledHasUserPassword"
                                                    placeholder="Password" required="">
+                                            <a style="color: blue" onclick="showObliqueCreate()">Eller opret en bruger her</a>
 
                                             <hr style="padding-top: 5px; padding-bottom: 5px;">
                                             <div class="d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary">
-                                                    Log ind
+                                                    Log ind og send forespørgsel
                                                 </button>
                                             </div>
 
                                         </div>
 
-                                        <div id="myAngledCreate" style="display: block">
+                                        <div id="myAngledCreate" style="display: none">
                                             <h5>Opret bruger</h5>
 
                                             <hr style="padding-top: 10px; padding-bottom: 5px;">
 
-                                            <input type="hidden" name="hasuser" value="yes">
-                                            <input type="email" class="form-control" name="email"
-                                                   placeholder="E-mail adresse" required=""
-                                                   autofocus="">
-                                            <small style="margin-bottom: 5px"
+                                            <input type="hidden" name="nouser" value="yes" id="angledNoUser" disabled>
+                                            <label for="angledNoUserName" class="sr-only">Navn</label>
+                                            <input style="margin-bottom: 15px" type="text" id="angledNoUserName"
+                                                   class="form-control" name="username"
+                                                   placeholder="Indtast navn" required=""
+                                                   autofocus="" disabled>
+                                            <label for="angledNoUserEmail" class="sr-only">Email adresse</label>
+                                            <input type="email" id="angledNoUserEmail" class="form-control" name="email"
+                                                   placeholder="Indtast e-mail adresse" required=""
+                                                   autofocus="" disabled>
+                                            <small style="margin-bottom: 5px" id="signupemailHelp"
                                                    class="form-text text-muted">Vi
                                                 vil aldrig dele din e-mail med andre</small>
-                                            <input style="margin-bottom: 25px" type="password"
-                                                   class="form-control" name="password"
-                                                   placeholder="Password" required="">
-                                            <a class="my-footerlinks keep-open" onclick="showObliqueLogin()">Tilbage til
+                                            <label for="angledNoUserPassword" class="sr-only">Password</label>
+                                            <input style="margin-bottom: 15px" type="password" id="angledNoUserPassword"
+                                                   class="form-control" name="password1"
+                                                   placeholder="Indtast password" required="" disabled>
+                                            <label for="angledNoUserPassword2" class="sr-only">Password2</label>
+                                            <input style="margin-bottom: 25px" type="password" id="angledNoUserPassword2"
+                                                   class="form-control" name="password2"
+                                                   placeholder="Gentag password" required="" disabled>
+
+                                            <a style="color: blue" onclick="showObliqueLogin()">Tilbage til
                                                 login</a>
                                             <hr style="padding-top: 5px; padding-bottom: 5px;">
 
                                             <div class="d-flex justify-content-end">
                                                 <button type="submit" class="btn btn-primary">
-                                                    Opret bruger
+                                                    Opret bruger og send forespørgsel
                                                 </button>
                                             </div>
 
@@ -351,33 +364,77 @@
                                 </div>
                             </c:if>
                             <c:if test="${sessionScope.user == null}">
-                                <div class="btn-group dropup">
+                                <div class="btn-group dropup allow-focus">
                                     <button type="button" class="btn btn-primary" data-toggle="dropdown"
                                             aria-haspopup="true" aria-expanded="false">
                                         Send forespørgsel
                                     </button>
-                                    <div class="dropdown-menu text-muted"
+                                    <div class="userContainer dropdown-menu text-muted"
                                          style="width: 300px; padding: 30px">
-                                        <h5>Log ind</h5>
 
-                                        <hr style="padding-top: 10px; padding-bottom: 5px;">
+                                        <div id="myFlatLogin" style="display: block">
+                                            <h5>Log ind</h5>
 
-                                        <input type="hidden" name="hasuser" value="yes" id="angledHasUser">
-                                        <input type="email" class="form-control" name="email" id="angledHasUserEmail"
-                                               placeholder="E-mail adresse" required=""
-                                               autofocus="">
-                                        <small style="margin-bottom: 5px"
-                                               class="form-text text-muted">Vi
-                                            vil aldrig dele din e-mail med andre</small>
-                                        <input style="margin-bottom: 25px" type="password" id="angledHasUserPassword"
-                                               class="form-control" name="password"
-                                               placeholder="Password" required="">
+                                            <hr style="padding-top: 10px; padding-bottom: 5px;">
 
-                                        <hr style="padding-top: 5px; padding-bottom: 5px;">
-                                        <div class="d-flex justify-content-end">
-                                            <button type="submit" class="btn btn-primary">
-                                                Log ind
-                                            </button>
+                                            <input type="hidden" name="hasuser" value="yes" id="flatHasUser">
+                                            <input type="email" class="form-control" name="email" id="flatHasUserEmail"
+                                                   placeholder="E-mail adresse" required=""
+                                                   autofocus="">
+                                            <small style="margin-bottom: 5px"
+                                                   class="form-text text-muted">Vi
+                                                vil aldrig dele din e-mail med andre</small>
+                                            <input style="margin-bottom: 25px" type="password"
+                                                   class="form-control" name="password" id="flatHasUserPassword"
+                                                   placeholder="Password" required="">
+                                            <a style="color: blue" onclick="showFlatCreate()">Eller opret en bruger her</a>
+
+                                            <hr style="padding-top: 5px; padding-bottom: 5px;">
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Log ind og send forespørgsel
+                                                </button>
+                                            </div>
+
+                                        </div>
+
+                                        <div id="myFlatCreate" style="display: none">
+                                            <h5>Opret bruger</h5>
+
+                                            <hr style="padding-top: 10px; padding-bottom: 5px;">
+
+                                            <input type="hidden" name="nouser" value="yes" id="flatNoUser" disabled>
+                                            <label for="angledNoUserName" class="sr-only">Navn</label>
+                                            <input style="margin-bottom: 15px" type="text" id="flatNoUserName"
+                                                   class="form-control" name="username"
+                                                   placeholder="Indtast navn" required=""
+                                                   autofocus="" disabled>
+                                            <label for="angledNoUserEmail" class="sr-only">Email adresse</label>
+                                            <input type="email" id="flatNoUserEmail" class="form-control" name="email"
+                                                   placeholder="Indtast e-mail adresse" required=""
+                                                   autofocus="" disabled>
+                                            <small style="margin-bottom: 5px" id="signupemailHelpFlat"
+                                                   class="form-text text-muted">Vi
+                                                vil aldrig dele din e-mail med andre</small>
+                                            <label for="angledNoUserPassword" class="sr-only">Password</label>
+                                            <input style="margin-bottom: 15px" type="password" id="flatNoUserPassword"
+                                                   class="form-control" name="password1"
+                                                   placeholder="Indtast password" required="" disabled>
+                                            <label for="angledNoUserPassword2" class="sr-only">Password2</label>
+                                            <input style="margin-bottom: 25px" type="password" id="flatNoUserPassword2"
+                                                   class="form-control" name="password2"
+                                                   placeholder="Gentag password" required="" disabled>
+
+                                            <a style="color: blue" onclick="showFlatLogin()">Tilbage til
+                                                login</a>
+                                            <hr style="padding-top: 5px; padding-bottom: 5px;">
+
+                                            <div class="d-flex justify-content-end">
+                                                <button type="submit" class="btn btn-primary">
+                                                    Opret bruger og send forespørgsel
+                                                </button>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -390,10 +447,6 @@
         </div>
 
         <script>
-            $('body').on("click",".dropdown-menu", function(e) {
-                $(this).parent().is(".open") && e.stopPropagation();
-            });
-
             function showObliqueRoofOptions() {
                 const x = document.getElementById("myFirstExtraRoom");
                 const width = document.getElementById("redskabsRumBredde");
@@ -408,20 +461,6 @@
                     width.disabled = true;
                     width.disabled = true;
                 }
-            }
-
-            function showObliqueLogin() {
-                const create = document.getElementById("myAngledCreate");
-                const login = document.getElementById("myAngledLogin");
-                const angledHasUser = document.getElementById("angledHasUser");
-                const angledHasUserEmail = document.getElementById("angledHasUserEmail");
-                const angledHasUserPassword = document.getElementById("angledHasUserPassword");
-
-                create.style.display = "none";
-                login.style.display = "block";
-                angledHasUser.disabled = false;
-                angledHasUserEmail.disabled = false;
-                angledHasUserPassword.disabled = false;
             }
 
             function showFlatRoofOptions() {
@@ -439,6 +478,112 @@
                     height.disabled = true;
                 }
             }
+
+            function showObliqueLogin() {
+                const create = document.getElementById("myAngledCreate");
+                const login = document.getElementById("myAngledLogin");
+                const angledHasUser = document.getElementById("angledHasUser");
+                const angledHasUserEmail = document.getElementById("angledHasUserEmail");
+                const angledHasUserPassword = document.getElementById("angledHasUserPassword");
+
+                const angledNoUserName = document.getElementById("angledNoUserName");
+                const angledNoUserEmail = document.getElementById("angledNoUserEmail");
+                const angledNoUserPassword = document.getElementById("angledNoUserPassword");
+                const angledNoUserPassword2 = document.getElementById("angledNoUserPassword2");
+
+                //show the login tab and activate the loginscreen
+                create.style.display = "none";
+                login.style.display = "block";
+                angledHasUser.disabled = false;
+                angledHasUserEmail.disabled = false;
+                angledHasUserPassword.disabled = false;
+
+                //disable the createscreen
+                angledNoUserName.disabled = true;
+                angledNoUserEmail.disabled = true;
+                angledNoUserPassword.disabled = true;
+                angledNoUserPassword2.disabled = true;
+            }
+
+            function showObliqueCreate() {
+                const create = document.getElementById("myAngledCreate");
+                const login = document.getElementById("myAngledLogin");
+                const angledHasUser = document.getElementById("angledHasUser");
+                const angledHasUserEmail = document.getElementById("angledHasUserEmail");
+                const angledHasUserPassword = document.getElementById("angledHasUserPassword");
+
+                const angledNoUserName = document.getElementById("angledNoUserName");
+                const angledNoUserEmail = document.getElementById("angledNoUserEmail");
+                const angledNoUserPassword = document.getElementById("angledNoUserPassword");
+                const angledNoUserPassword2 = document.getElementById("angledNoUserPassword2");
+
+                //show the login tab and activate the loginscreen
+                create.style.display = "block";
+                login.style.display = "none";
+                angledHasUser.disabled = true;
+                angledHasUserEmail.disabled = true;
+                angledHasUserPassword.disabled = true;
+
+                //disable the createscreen
+                angledNoUserName.disabled = false;
+                angledNoUserEmail.disabled = false;
+                angledNoUserPassword.disabled = false;
+                angledNoUserPassword2.disabled = false;
+            }
+
+
+            function showFlatLogin() {
+                const create = document.getElementById("myFlatCreate");
+                const login = document.getElementById("myFlatLogin");
+                const angledHasUser = document.getElementById("flatHasUser");
+                const angledHasUserEmail = document.getElementById("flatHasUserEmail");
+                const angledHasUserPassword = document.getElementById("flatHasUserPassword");
+
+                const angledNoUserName = document.getElementById("flatNoUserName");
+                const angledNoUserEmail = document.getElementById("flatNoUserEmail");
+                const angledNoUserPassword = document.getElementById("flatNoUserPassword");
+                const angledNoUserPassword2 = document.getElementById("flatNoUserPassword2");
+
+                //show the login tab and activate the loginscreen
+                create.style.display = "none";
+                login.style.display = "block";
+                angledHasUser.disabled = false;
+                angledHasUserEmail.disabled = false;
+                angledHasUserPassword.disabled = false;
+
+                //disable the createscreen
+                angledNoUserName.disabled = true;
+                angledNoUserEmail.disabled = true;
+                angledNoUserPassword.disabled = true;
+                angledNoUserPassword2.disabled = true;
+            }
+
+            function showFlatCreate() {
+                const create = document.getElementById("myFlatCreate");
+                const login = document.getElementById("myFlatLogin");
+                const angledHasUser = document.getElementById("flatHasUser");
+                const angledHasUserEmail = document.getElementById("flatHasUserEmail");
+                const angledHasUserPassword = document.getElementById("flatHasUserPassword");
+
+                const angledNoUserName = document.getElementById("flatNoUserName");
+                const angledNoUserEmail = document.getElementById("flatNoUserEmail");
+                const angledNoUserPassword = document.getElementById("flatNoUserPassword");
+                const angledNoUserPassword2 = document.getElementById("flatNoUserPassword2");
+
+                //show the login tab and activate the loginscreen
+                create.style.display = "block";
+                login.style.display = "none";
+                angledHasUser.disabled = true;
+                angledHasUserEmail.disabled = true;
+                angledHasUserPassword.disabled = true;
+
+                //disable the createscreen
+                angledNoUserName.disabled = false;
+                angledNoUserEmail.disabled = false;
+                angledNoUserPassword.disabled = false;
+                angledNoUserPassword2.disabled = false;
+            }
+
         </script>
 
     </form>
