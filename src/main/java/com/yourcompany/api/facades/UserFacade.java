@@ -39,8 +39,7 @@ public class UserFacade {
     }
 
     public User authorizeUser(String email, String password) throws UserValidationError {
-        User user = null;
-        user = repo.authorizeUser(email);
+        User user = repo.authorizeUser(email);
         if (user == null) {
             return null;
         }

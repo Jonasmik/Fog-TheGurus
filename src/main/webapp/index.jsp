@@ -25,7 +25,6 @@
 
 <body class="d-flex flex-column h-100 bg-light">
 
-<jsp:include page="WEB-INF/includes/modals/cookies.jsp" flush="true"/>
 
 <div id="myModal" class="modal fade">
     <div class="modal-dialog">
@@ -92,6 +91,7 @@
     <jsp:include page="WEB-INF/includes/footer.jsp" flush="true"/>
 </div>
 
+<jsp:include page="WEB-INF/includes/modals/cookies.jsp" flush="true"/>
 </body>
 
 </html>

@@ -4,12 +4,12 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>dk.cphbusiness.tobias</groupId>
-    <artifactId>Resterende-Template</artifactId>
+    <groupId>dk.cphbusiness.thegurus</groupId>
+    <artifactId>TheGurus-Fog</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>Resterende-Template</name>
+    <name>TheGurus-Fog</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -59,7 +59,7 @@ http://maven.apache.org/xsd/maven-4.0.0.xsd">
         </dependency>
     </dependencies>
     <build>
-        <finalName>Resterende-Template</finalName>
+        <finalName>TheGurus-Fog</finalName>
         <pluginManagement>
             <plugins>
                 <plugin>
