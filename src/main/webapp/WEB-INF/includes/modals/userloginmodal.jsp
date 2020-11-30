@@ -83,7 +83,7 @@
                                             </div>
                                         </div>
 
-                                        <div class="row">
+                                        <div class="row" style="padding-top: 15px">
                                             <div class="col-md-9">
                                                 <label for="signupCity" class="sr-only">By</label>
                                                 <input type="text" id="signupCity" class="form-control" name="city"

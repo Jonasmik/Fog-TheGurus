@@ -151,7 +151,7 @@
                                         <input style="margin-bottom: 25px" type="password"
                                                class="form-control" name="password" id="angledHasUserPassword"
                                                placeholder="Indtast password" required="">
-                                        <a style="color: blue" onclick="showObliqueCreate()">Eller opret en bruger
+                                        <a type="button" style="color: blue" onclick="showObliqueLogin()">Eller opret en bruger
                                             her</a>
 
                                         <hr style="padding-top: 5px; padding-bottom: 5px;">
@@ -170,14 +170,14 @@
                                         <input type="hidden" name="nouser" value="yes" id="angledNoUser" disabled>
 
                                         <label for="angledNoUserEmail" class="sr-only">Email adresse</label>
-                                        <input type="email" id="angledNoUserEmail" class="form-control form-signin"
+                                        <input type="email" id="angledNoUserEmail" class="form-control"
                                                name="email"
                                                placeholder="Indtast e-mail adresse" required=""
                                                autofocus="" style="margin-bottom: 10px" disabled>
 
                                         <label for="angledNoUserPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 15px" type="password" id="angledNoUserPassword"
-                                               class="form-control form-signin" name="password1"
+                                               class="form-control" name="password1"
                                                placeholder="Indtast password" required="" disabled>
 
                                         <label for="angledNoUserPassword2" class="sr-only">Password2</label>
@@ -346,7 +346,7 @@
                                         <input style="margin-bottom: 25px" type="password"
                                                class="form-control" name="password" id="flatHasUserPassword"
                                                placeholder="Password" required="">
-                                        <a style="color: blue" onclick="showFlatCreate()">Eller opret en bruger her</a>
+                                        <a type="button" style="color: blue" onclick="showFlatLogin()">Eller opret en bruger her</a>
 
                                         <hr style="padding-top: 5px; padding-bottom: 5px;">
                                         <div class="d-flex justify-content-end">
@@ -365,14 +365,14 @@
                                         <input type="hidden" name="nouser" value="yes" id="flatNoUser" disabled>
 
                                         <label for="flatNoUserEmail" class="sr-only">Email adresse</label>
-                                        <input type="email" id="flatNoUserEmail" class="form-control form-signin"
+                                        <input type="email" id="flatNoUserEmail" class="form-control"
                                                name="email"
                                                placeholder="Indtast e-mail adresse" required=""
                                                autofocus="" style="margin-bottom: 10px" disabled>
 
                                         <label for="flatNoUserPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 15px" type="password" id="flatNoUserPassword"
-                                               class="form-control form-signin" name="password1"
+                                               class="form-control" name="password1"
                                                placeholder="Indtast password" required="" disabled>
 
                                         <label for="flatNoUserPassword2" class="sr-only">Password2</label>
@@ -455,54 +455,39 @@
                         const angledNoUserCity = document.getElementById("angledNoUserCity");
 
                         //show the login tab and activate the loginscreen
-                        create.style.display = "none";
-                        login.style.display = "block";
-                        angledHasUser.disabled = false;
-                        angledHasUserEmail.disabled = false;
-                        angledHasUserPassword.disabled = false;
+                        if(create.style.display === "block") {
+                            create.style.display = "none";
+                            login.style.display = "block";
+                            angledHasUser.disabled = false;
+                            angledHasUserEmail.disabled = false;
+                            angledHasUserPassword.disabled = false;
 
-                        //disable the createscreen
-                        angledNoUserName.disabled = true;
-                        angledNoUserEmail.disabled = true;
-                        angledNoUserPassword.disabled = true;
-                        angledNoUserPassword2.disabled = true;
-                        angledNoUserAddress.disabled = true;
-                        angledNoUserZip.disabled = true;
-                        angledNoUserCity.disabled = true;
+                            //disable the createscreen
+                            angledNoUserName.disabled = true;
+                            angledNoUserEmail.disabled = true;
+                            angledNoUserPassword.disabled = true;
+                            angledNoUserPassword2.disabled = true;
+                            angledNoUserAddress.disabled = true;
+                            angledNoUserZip.disabled = true;
+                            angledNoUserCity.disabled = true;
+                        } else {
+                            //show the login tab and activate the loginscreen
+                            create.style.display = "block";
+                            login.style.display = "none";
+                            angledHasUser.disabled = true;
+                            angledHasUserEmail.disabled = true;
+                            angledHasUserPassword.disabled = true;
+
+                            //disable the createscreen
+                            angledNoUserName.disabled = false;
+                            angledNoUserEmail.disabled = false;
+                            angledNoUserPassword.disabled = false;
+                            angledNoUserPassword2.disabled = false;
+                            angledNoUserAddress.disabled = false;
+                            angledNoUserZip.disabled = false;
+                            angledNoUserCity.disabled = false;
+                        }
                     }
-
-                    function showObliqueCreate() {
-                        const create = document.getElementById("myAngledCreate");
-                        const login = document.getElementById("myAngledLogin");
-                        const angledHasUser = document.getElementById("angledHasUser");
-                        const angledHasUserEmail = document.getElementById("angledHasUserEmail");
-                        const angledHasUserPassword = document.getElementById("angledHasUserPassword");
-
-                        const angledNoUserName = document.getElementById("angledNoUserName");
-                        const angledNoUserEmail = document.getElementById("angledNoUserEmail");
-                        const angledNoUserPassword = document.getElementById("angledNoUserPassword");
-                        const angledNoUserPassword2 = document.getElementById("angledNoUserPassword2");
-                        const angledNoUserAddress = document.getElementById("angledNoUserAddress");
-                        const angledNoUserZip = document.getElementById("angledNoUserZip");
-                        const angledNoUserCity = document.getElementById("angledNoUserCity");
-
-                        //show the login tab and activate the loginscreen
-                        create.style.display = "block";
-                        login.style.display = "none";
-                        angledHasUser.disabled = true;
-                        angledHasUserEmail.disabled = true;
-                        angledHasUserPassword.disabled = true;
-
-                        //disable the createscreen
-                        angledNoUserName.disabled = false;
-                        angledNoUserEmail.disabled = false;
-                        angledNoUserPassword.disabled = false;
-                        angledNoUserPassword2.disabled = false;
-                        angledNoUserAddress.disabled = false;
-                        angledNoUserZip.disabled = false;
-                        angledNoUserCity.disabled = false;
-                    }
-
 
                     function showFlatLogin() {
                         const create = document.getElementById("myFlatCreate");
@@ -519,56 +504,40 @@
                         const angledNoUserZip = document.getElementById("flatNoUserZip");
                         const angledNoUserCity = document.getElementById("flatNoUserCity");
 
-                        //show the login tab and activate the loginscreen
-                        create.style.display = "none";
-                        login.style.display = "block";
-                        angledHasUser.disabled = false;
-                        angledHasUserEmail.disabled = false;
-                        angledHasUserPassword.disabled = false;
+                        if(create.style.display === "block") {
+                            //show the login tab and activate the loginscreen
+                            create.style.display = "none";
+                            login.style.display = "block";
+                            angledHasUser.disabled = false;
+                            angledHasUserEmail.disabled = false;
+                            angledHasUserPassword.disabled = false;
 
-                        //disable the createscreen
-                        angledNoUserName.disabled = true;
-                        angledNoUserEmail.disabled = true;
-                        angledNoUserPassword.disabled = true;
-                        angledNoUserPassword2.disabled = true;
-                        angledNoUserAddress.disabled = true;
-                        angledNoUserZip.disabled = true;
-                        angledNoUserCity.disabled = true;
+                            //disable the createscreen
+                            angledNoUserName.disabled = true;
+                            angledNoUserEmail.disabled = true;
+                            angledNoUserPassword.disabled = true;
+                            angledNoUserPassword2.disabled = true;
+                            angledNoUserAddress.disabled = true;
+                            angledNoUserZip.disabled = true;
+                            angledNoUserCity.disabled = true;
+                        } else {
+                            //show the login tab and activate the loginscreen
+                            create.style.display = "block";
+                            login.style.display = "none";
+                            angledHasUser.disabled = true;
+                            angledHasUserEmail.disabled = true;
+                            angledHasUserPassword.disabled = true;
+
+                            //disable the createscreen
+                            angledNoUserAddress.disabled = false;
+                            angledNoUserZip.disabled = false;
+                            angledNoUserCity.disabled = false;
+                            angledNoUserName.disabled = false;
+                            angledNoUserEmail.disabled = false;
+                            angledNoUserPassword.disabled = false;
+                            angledNoUserPassword2.disabled = false;
+                        }
                     }
-
-                    function showFlatCreate() {
-                        const create = document.getElementById("myFlatCreate");
-                        const login = document.getElementById("myFlatLogin");
-                        const angledHasUser = document.getElementById("flatHasUser");
-                        const angledHasUserEmail = document.getElementById("flatHasUserEmail");
-                        const angledHasUserPassword = document.getElementById("flatHasUserPassword");
-
-                        const angledNoUserName = document.getElementById("flatNoUserName");
-                        const angledNoUserEmail = document.getElementById("flatNoUserEmail");
-                        const angledNoUserPassword = document.getElementById("flatNoUserPassword");
-                        const angledNoUserPassword2 = document.getElementById("flatNoUserPassword2");
-                        const angledNoUserAddress = document.getElementById("flatNoUserAddress");
-                        const angledNoUserZip = document.getElementById("flatNoUserZip");
-                        const angledNoUserCity = document.getElementById("flatNoUserCity");
-
-                        //show the login tab and activate the loginscreen
-                        create.style.display = "block";
-                        login.style.display = "none";
-                        angledHasUser.disabled = true;
-                        angledHasUserEmail.disabled = true;
-                        angledHasUserPassword.disabled = true;
-
-                        //disable the createscreen
-                        angledNoUserAddress.disabled = false;
-                        angledNoUserZip.disabled = false;
-                        angledNoUserCity.disabled = false;
-                        angledNoUserName.disabled = false;
-                        angledNoUserEmail.disabled = false;
-                        angledNoUserPassword.disabled = false;
-                        angledNoUserPassword2.disabled = false;
-                    }
-
-
                 </script>
             </div>
         </div>
