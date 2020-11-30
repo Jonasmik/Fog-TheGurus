@@ -13,14 +13,6 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
           crossorigin="anonymous">
 
-    <!-- If login or creation of user went wrong. Load the login modal on pageload -->
-    <c:if test="${requestScope.loginfail != null}">
-        <script>
-            $(document).ready(function () {
-                $("#loginModal").modal('show');
-            });
-        </script>
-    </c:if>
 
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -35,5 +27,14 @@
     <script src="https://kit.fontawesome.com/d558e38d6e.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src='<c:url value="/js/preorderscripts.js"/>'></script>
 
+
+    <!-- If login or creation of user went wrong. Load the login modal on pageload -->
+    <c:if test="${requestScope.loginfail != null}">
+        <script>
+            $(document).ready(function () {
+                $("#loginModal").modal('show');
+            });
+        </script>
+    </c:if>
 
 </head>
