@@ -29,9 +29,10 @@ public class FlatRoofPreOrder extends ICommand {
         String fail = "preorderfail";
         String creationpage = "createorder";
 
-        //Add user registration up here
+
         User user = (User) request.getSession().getAttribute("user");
 
+        //Create or login user if it doesnt exist
         if(user == null) {
             boolean hasNoUser = request.getParameter("hasuser") == null;
 
@@ -42,6 +43,9 @@ public class FlatRoofPreOrder extends ICommand {
                 UserFactory userFactory = new UserFactory();
                 userFactory.setName(request.getParameter("username"));
                 userFactory.setEmail(request.getParameter("email"));
+                userFactory.setAddress(request.getParameter("address"));
+                userFactory.setCity(request.getParameter("city"));
+                userFactory.setZip(request.getParameter("zip"));
                 String password1 = request.getParameter("password1");
                 String password2 = request.getParameter("password2");
                 userFactory.setPassword(password1);
@@ -133,17 +137,7 @@ public class FlatRoofPreOrder extends ICommand {
         String shed = request.getParameter("shed");
 
         //Customerinfo
-        String name = request.getParameter("flatname");
-        String adress = request.getParameter("flatadress");
-        String zip = request.getParameter("flatzip");
-        String city = request.getParameter("flatcity");
-        String email = request.getParameter("flatemail");
         String additional = request.getParameter("flatadditionals");
-
-
-
-
-
 
         //Create carport
         final int angle = 0;
@@ -172,11 +166,11 @@ public class FlatRoofPreOrder extends ICommand {
 
         try {
             customerFactory.setUserid(user.getId());
-            customerFactory.setName(name);
-            customerFactory.setAdress(adress);
-            customerFactory.setZipcode(zip);
-            customerFactory.setCity(city);
-            customerFactory.setEmail(email);
+            customerFactory.setName(user.getName());
+            customerFactory.setAdress(user.getAddress());
+            customerFactory.setZipcode(user.getZip());
+            customerFactory.setCity(user.getCity());
+            customerFactory.setEmail(user.getEmail());
             customerFactory.setAdditional(additional);
         } catch (CustomerValidation e) {
             request.setAttribute(fail, "Der gik noget galt med kunde opretelsen");

@@ -16,6 +16,7 @@ public class User {
     private static final int PASSWORD_ITERATIONS = 65536;
     private static final int PASSWORD_LENGTH = 256; // 32 bytes
     private static final SecretKeyFactory PASSWORD_FACTORY;
+
     static {
         SecretKeyFactory factory = null;
         try {
@@ -32,15 +33,21 @@ public class User {
     private final int id;
     private final String name;
     private final String email;
+    private final String address;
+    private final String zip;
+    private final String city;
     private final LocalDateTime createdAt;
     private final byte[] salt;
     private final byte[] secret;
     private String role;
 
-    public User(int id, String name, String email, LocalDateTime createdAt, byte[] salt, byte[] secret, String role) {
+    public User(int id, String name, String email, String address, String zip, String city, LocalDateTime createdAt, byte[] salt, byte[] secret, String role) {
         this.id = id;
         this.name = name;
         this.email = email;
+        this.address = address;
+        this.zip = zip;
+        this.city = city;
         this.createdAt = createdAt;
         this.salt = salt;
         this.secret = secret;
@@ -71,7 +78,7 @@ public class User {
 
     public static String byteArrayToHex(byte[] a) {
         StringBuilder sb = new StringBuilder(a.length * 2);
-        for(byte b: a)
+        for (byte b : a)
             sb.append(String.format("%02x", b));
         return sb.toString();
     }
@@ -86,6 +93,18 @@ public class User {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public String getZip() {
+        return zip;
+    }
+
+    public String getCity() {
+        return city;
     }
 
     public LocalDateTime getCreatedAt() {

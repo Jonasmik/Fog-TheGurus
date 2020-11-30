@@ -142,3 +142,6 @@ U
 %src/main/webapp/js/preorderscripts.js,c/c/cc40d6a5d228e5ca35d358b47d4b46cf8d7b1d3e
 m
 =src/main/java/com/yourcompany/api/facades/TemplateFacade.java,5/7/576e6882886626b0ecc8f857e5c28d5ba6198880
+:
+
+.gitignore,a/5/a5cc2925ca8258af241be7e5b0381edf30266302

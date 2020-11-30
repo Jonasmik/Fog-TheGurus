@@ -110,41 +110,6 @@
                         </div>
 
                         <div class="form-group">
-                            <h4 style="padding-top: 10px">Kontakt information</h4>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col">
-                                <label for="skråNavn">Navn</label>
-                                <input type="text" class="form-control" id="skråNavn"
-                                       aria-describedby="nameHelp" name="angledname">
-                            </div>
-                            <div class="col">
-                                <label for="skråAdresse">Adresse</label>
-                                <input type="text" class="form-control" id="skråAdresse"
-                                       aria-describedby="emailHelp" name="angledadress">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="skråZip">Post nummer</label>
-                            <input type="text" class="form-control" id="skråZip"
-                                   aria-describedby="emailHelp" name="angledzip">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="skråBy">By</label>
-                            <input type="text" class="form-control" id="skråBy"
-                                   aria-describedby="emailHelp" name="angledcity">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="skråEmail">E-mail</label>
-                            <input type="email" class="form-control" id="skråEmail"
-                                   aria-describedby="emailHelp" name="angledemail">
-                        </div>
-
-                        <div class="form-group">
                             <label for="skråAdditionals">Evt. bemærkninger</label>
                             <textarea maxlength="255" class="form-control" id="skråAdditionals"
                                       name="angledadditional"
@@ -212,7 +177,19 @@
                                         <label for="angledNoUserEmail" class="sr-only">Email adresse</label>
                                         <input type="email" id="angledNoUserEmail" class="form-control" name="email"
                                                placeholder="Indtast e-mail adresse" required=""
-                                               autofocus="" disabled>
+                                               disabled>
+
+                                        <input type="text" id="angledNoUserAddress" class="form-control" name="address"
+                                               placeholder="Indtast adresse" required=""
+                                               disabled>
+
+                                        <input type="text" id="angledNoUserZip" class="form-control" name="zip"
+                                               placeholder="Indtast postnummer" required=""
+                                               disabled>
+                                        <input type="text" id="angledNoUserCity" class="form-control" name="city"
+                                               placeholder="Indtast by" required=""
+                                               disabled>
+
                                         <small style="margin-bottom: 5px" id="signupemailHelp"
                                                class="form-text text-muted">Vi
                                             vil aldrig dele din e-mail med andre</small>
@@ -311,41 +288,6 @@
                         </div>
 
                         <div class="form-group">
-                            <h4 style="padding-top: 10px">Kontakt information</h4>
-                        </div>
-
-                        <div class="form-row">
-                            <div class="col">
-                                <label for="flatNavn">Navn</label>
-                                <input type="text" class="form-control" id="flatNavn"
-                                       aria-describedby="nameHelp" name="flatname">
-                            </div>
-                            <div class="col">
-                                <label for="flatAdresse">Adresse</label>
-                                <input type="text" class="form-control" id="flatAdresse"
-                                       aria-describedby="emailHelp" name="flatadress">
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="flatZip">Post nummer</label>
-                            <input type="text" class="form-control" id="flatZip"
-                                   aria-describedby="emailHelp" name="flatzip">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="flatBy">By</label>
-                            <input type="text" class="form-control" id="flatBy"
-                                   aria-describedby="emailHelp" name="flatcity">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="flatEmail">E-mail</label>
-                            <input type="email" class="form-control" id="flatEmail"
-                                   aria-describedby="emailHelp" name="flatemail">
-                        </div>
-
-                        <div class="form-group">
                             <label for="flatBemærkning">Evt. bemærkninger</label>
                             <textarea maxlength="255" class="form-control" id="flatBemærkning"
                                       name="flatadditionals"
@@ -416,6 +358,18 @@
                                         <small style="margin-bottom: 5px" id="signupemailHelpFlat"
                                                class="form-text text-muted">Vi
                                             vil aldrig dele din e-mail med andre</small>
+
+                                        <input type="text" id="flatNoUserAddress" class="form-control" name="address"
+                                               placeholder="Indtast adresse" required=""
+                                               disabled>
+
+                                        <input type="text" id="flatNoUserZip" class="form-control" name="zip"
+                                               placeholder="Indtast postnummer" required=""
+                                               autofocus="" disabled>
+                                        <input type="text" id="flatNoUserCity" class="form-control" name="city"
+                                               placeholder="Indtast by" required=""
+                                               disabled>
+
                                         <label for="angledNoUserPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 15px" type="password" id="flatNoUserPassword"
                                                class="form-control" name="password1"
@@ -448,6 +402,137 @@
                     $(document).on('click', '.allow-focus .dropdown-menu', function (e) {
                         e.stopPropagation();
                     });
+
+                    function showObliqueLogin() {
+                        const create = document.getElementById("myAngledCreate");
+                        const login = document.getElementById("myAngledLogin");
+                        const angledHasUser = document.getElementById("angledHasUser");
+                        const angledHasUserEmail = document.getElementById("angledHasUserEmail");
+                        const angledHasUserPassword = document.getElementById("angledHasUserPassword");
+
+                        const angledNoUserName = document.getElementById("angledNoUserName");
+                        const angledNoUserEmail = document.getElementById("angledNoUserEmail");
+                        const angledNoUserPassword = document.getElementById("angledNoUserPassword");
+                        const angledNoUserPassword2 = document.getElementById("angledNoUserPassword2");
+                        const angledNoUserAddress = document.getElementById("angledNoUserAddress");
+                        const angledNoUserZip = document.getElementById("angledNoUserZip");
+                        const angledNoUserCity = document.getElementById("angledNoUserCity");
+
+                        //show the login tab and activate the loginscreen
+                        create.style.display = "none";
+                        login.style.display = "block";
+                        angledHasUser.disabled = false;
+                        angledHasUserEmail.disabled = false;
+                        angledHasUserPassword.disabled = false;
+
+                        //disable the createscreen
+                        angledNoUserName.disabled = true;
+                        angledNoUserEmail.disabled = true;
+                        angledNoUserPassword.disabled = true;
+                        angledNoUserPassword2.disabled = true;
+                        angledNoUserAddress.disabled = true;
+                        angledNoUserZip.disabled = true;
+                        angledNoUserCity.disabled = true;
+                    }
+
+                    function showObliqueCreate() {
+                        const create = document.getElementById("myAngledCreate");
+                        const login = document.getElementById("myAngledLogin");
+                        const angledHasUser = document.getElementById("angledHasUser");
+                        const angledHasUserEmail = document.getElementById("angledHasUserEmail");
+                        const angledHasUserPassword = document.getElementById("angledHasUserPassword");
+
+                        const angledNoUserName = document.getElementById("angledNoUserName");
+                        const angledNoUserEmail = document.getElementById("angledNoUserEmail");
+                        const angledNoUserPassword = document.getElementById("angledNoUserPassword");
+                        const angledNoUserPassword2 = document.getElementById("angledNoUserPassword2");
+                        const angledNoUserAddress = document.getElementById("angledNoUserAddress");
+                        const angledNoUserZip = document.getElementById("angledNoUserZip");
+                        const angledNoUserCity = document.getElementById("angledNoUserCity");
+
+                        //show the login tab and activate the loginscreen
+                        create.style.display = "block";
+                        login.style.display = "none";
+                        angledHasUser.disabled = true;
+                        angledHasUserEmail.disabled = true;
+                        angledHasUserPassword.disabled = true;
+
+                        //disable the createscreen
+                        angledNoUserName.disabled = false;
+                        angledNoUserEmail.disabled = false;
+                        angledNoUserPassword.disabled = false;
+                        angledNoUserPassword2.disabled = false;
+                        angledNoUserAddress.disabled = false;
+                        angledNoUserZip.disabled = false;
+                        angledNoUserCity.disabled = false;
+                    }
+
+
+                    function showFlatLogin() {
+                        const create = document.getElementById("myFlatCreate");
+                        const login = document.getElementById("myFlatLogin");
+                        const angledHasUser = document.getElementById("flatHasUser");
+                        const angledHasUserEmail = document.getElementById("flatHasUserEmail");
+                        const angledHasUserPassword = document.getElementById("flatHasUserPassword");
+
+                        const angledNoUserName = document.getElementById("flatNoUserName");
+                        const angledNoUserEmail = document.getElementById("flatNoUserEmail");
+                        const angledNoUserPassword = document.getElementById("flatNoUserPassword");
+                        const angledNoUserPassword2 = document.getElementById("flatNoUserPassword2");
+                        const angledNoUserAddress = document.getElementById("flatNoUserAddress");
+                        const angledNoUserZip = document.getElementById("flatNoUserZip");
+                        const angledNoUserCity = document.getElementById("flatNoUserCity");
+
+                        //show the login tab and activate the loginscreen
+                        create.style.display = "none";
+                        login.style.display = "block";
+                        angledHasUser.disabled = false;
+                        angledHasUserEmail.disabled = false;
+                        angledHasUserPassword.disabled = false;
+
+                        //disable the createscreen
+                        angledNoUserName.disabled = true;
+                        angledNoUserEmail.disabled = true;
+                        angledNoUserPassword.disabled = true;
+                        angledNoUserPassword2.disabled = true;
+                        angledNoUserAddress.disabled = true;
+                        angledNoUserZip.disabled = true;
+                        angledNoUserCity.disabled = true;
+                    }
+
+                    function showFlatCreate() {
+                        const create = document.getElementById("myFlatCreate");
+                        const login = document.getElementById("myFlatLogin");
+                        const angledHasUser = document.getElementById("flatHasUser");
+                        const angledHasUserEmail = document.getElementById("flatHasUserEmail");
+                        const angledHasUserPassword = document.getElementById("flatHasUserPassword");
+
+                        const angledNoUserName = document.getElementById("flatNoUserName");
+                        const angledNoUserEmail = document.getElementById("flatNoUserEmail");
+                        const angledNoUserPassword = document.getElementById("flatNoUserPassword");
+                        const angledNoUserPassword2 = document.getElementById("flatNoUserPassword2");
+                        const angledNoUserAddress = document.getElementById("flatNoUserAddress");
+                        const angledNoUserZip = document.getElementById("flatNoUserZip");
+                        const angledNoUserCity = document.getElementById("flatNoUserCity");
+
+                        //show the login tab and activate the loginscreen
+                        create.style.display = "block";
+                        login.style.display = "none";
+                        angledHasUser.disabled = true;
+                        angledHasUserEmail.disabled = true;
+                        angledHasUserPassword.disabled = true;
+
+                        //disable the createscreen
+                        angledNoUserAddress.disabled = false;
+                        angledNoUserZip.disabled = false;
+                        angledNoUserCity.disabled = false;
+                        angledNoUserName.disabled = false;
+                        angledNoUserEmail.disabled = false;
+                        angledNoUserPassword.disabled = false;
+                        angledNoUserPassword2.disabled = false;
+                    }
+
+
                 </script>
             </div>
         </div>

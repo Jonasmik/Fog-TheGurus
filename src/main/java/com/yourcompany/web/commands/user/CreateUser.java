@@ -16,6 +16,9 @@ public class CreateUser extends ICommand {
         UserFactory userFactory = new UserFactory();
         userFactory.setName(request.getParameter("username"));
         userFactory.setEmail(request.getParameter("email"));
+        userFactory.setAddress(request.getParameter("address"));
+        userFactory.setCity(request.getParameter("city"));
+        userFactory.setZip(request.getParameter("zip"));
         String password1 = request.getParameter("password1");
         String password2 = request.getParameter("password2");
         userFactory.setPassword(password1);

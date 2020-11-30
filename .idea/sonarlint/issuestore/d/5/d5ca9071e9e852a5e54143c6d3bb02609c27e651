@@ -1,9 +1,19 @@
 
-L
-java:S5411Y"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8…­Í§á.
-…
-java:S1192|"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ğıº›øÿÿÿÿ8…­Í§á.
+†
+java:S1192ß"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ğıº›øÿÿÿÿ8¸ê Äá.
+q
+java:S1192E"ODefine a constant instead of duplicating this literal "afdelingsleder" 4 times.(¾†°æıÿÿÿÿ8Ã×Éá.
+k
+java:S1192C"IDefine a constant instead of duplicating this literal "salesman" 3 times.(ïµÏºşÿÿÿÿ8Ã×Éá.
+M
+java:S5411¼"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8¸ê Äá.
 t
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 21 to the 15 allowed.(‚çÕöúÿÿÿÿ8…­Í§á.
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 47 to the 15 allowed.(‚çÕöúÿÿÿÿ8¸ê Äá.
+\
+java:S2441M":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8Ã×Éá.
+s
+java:S1192?"QDefine a constant instead of duplicating this literal "lagermedarbejder" 4 times.(±ªíºùÿÿÿÿ8Ã×Éá.
 H
-java:S5411"*Use the primitive boolean expression here.(²ÿ‡İ8…­Í§á.
+java:S5411ğ"*Use the primitive boolean expression here.(²ÿ‡İ8âı¢Äá.
+\
+java:S2441i":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8“ï‡Éá.

@@ -21,6 +21,9 @@ public class DBUserRepository implements UserRepository {
                 rs.getInt("users.id"),
                 rs.getString("users.name"),
                 rs.getString("users.email"),
+                rs.getString("users.address"),
+                rs.getString("users.zip"),
+                rs.getString("users.city"),
                 rs.getTimestamp("users.createdAt").toLocalDateTime(),
                 rs.getBytes("users.salt"),
                 rs.getBytes("users.secret"),
@@ -54,14 +57,17 @@ public class DBUserRepository implements UserRepository {
         try (Connection conn = db.connect()) {
             PreparedStatement ps =
                     conn.prepareStatement(
-                            "INSERT INTO users (name, email, salt, secret, role) " +
-                                    "VALUE (?,?,?,?,?);",
+                            "INSERT INTO users (name, email, address, zip, city, salt, secret, role) " +
+                                    "VALUE (?,?,?,?,?,?,?,?);",
                             Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, userFactory.getName());
             ps.setString(2, userFactory.getEmail());
-            ps.setBytes(3, salt);
-            ps.setBytes(4, secret);
-            ps.setString( 5, "customer");
+            ps.setString(3, userFactory.getAddress());
+            ps.setString(4, userFactory.getZip());
+            ps.setString(5, userFactory.getCity());
+            ps.setBytes(6, salt);
+            ps.setBytes(7, secret);
+            ps.setString( 8, "customer");
 
             ps.executeUpdate();
 
