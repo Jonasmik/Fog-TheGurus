@@ -50,7 +50,6 @@ public class CreateUser extends ICommand {
                     break;
             }
 
-            request.getServletContext().setAttribute("notloggedin", null);
             session.setAttribute("user", user);
 
             return index;

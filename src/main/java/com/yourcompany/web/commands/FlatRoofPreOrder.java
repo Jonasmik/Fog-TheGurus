@@ -1,9 +1,6 @@
 package com.yourcompany.web.commands;
 
-import com.yourcompany.api.factories.CarportFactory;
-import com.yourcompany.api.factories.CustomerFactory;
-import com.yourcompany.api.factories.PreOrderFactory;
-import com.yourcompany.api.factories.ShedFactory;
+import com.yourcompany.api.factories.*;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.preorder.PreOrder;
@@ -15,16 +12,119 @@ import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.shed.ShedValidations;
 import com.yourcompany.exceptions.user.CustomerValidation;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
+import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.util.Objects;
 
 public class FlatRoofPreOrder extends ICommand {
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
 
+
+        //Used as shortcuts for attributes and return values.
+        String fail = "preorderfail";
+        String creationpage = "createorder";
+
         //Add user registration up here
+        User user = (User) request.getSession().getAttribute("user");
+
+        if(user == null) {
+            boolean hasNoUser = request.getParameter("hasuser") == null;
+
+            if(hasNoUser) {
+
+                //Create user
+
+                UserFactory userFactory = new UserFactory();
+                userFactory.setName(request.getParameter("username"));
+                userFactory.setEmail(request.getParameter("email"));
+                String password1 = request.getParameter("password1");
+                String password2 = request.getParameter("password2");
+                userFactory.setPassword(password1);
+
+                if (userFactory.isValid() && Objects.equals(password1, password2)) {
+
+                    try {
+                        user = api.getUserFacade().createUser(userFactory);
+                    } catch (UserValidationError e) {
+                        request.setAttribute(fail, "Den e-mail er allerede i brug");
+                        return creationpage;
+                    }
+
+                    HttpSession session = request.getSession();
+
+
+                    switch (user.getRole()) {
+                        case "lagermedarbejder":
+                            session.setAttribute("lagermedarbejder", user.getRole());
+                            break;
+                        case "salgsmedarbejder":
+                            session.setAttribute("salesman", user.getRole());
+                            break;
+                        case "afdelingsleder":
+                            session.setAttribute("afdelingsleder", user.getRole());
+                            break;
+                        default:
+                            session.setAttribute("customer", user.getRole());
+                            break;
+                    }
+
+                    session.setAttribute("user", user);
+
+                } else {
+                    request.setAttribute(fail, "De 2 passwords matchede ikke");
+                    return creationpage;
+                }
+
+
+            } else {
+
+                //Authorize user
+
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+
+                try {
+                    user = api.getUserFacade().authorizeUser(email, password);
+                } catch (UserValidationError userValidationError) {
+                    request.setAttribute(fail, "E-mail eller password var ugyldig");
+                    return creationpage;
+                }
+
+                if (user == null) {
+                    request.setAttribute(fail, "E-mail eller password var ugyldig");
+                    return creationpage;
+                }
+
+                HttpSession session = request.getSession();
+                session.setAttribute("user", user);
+
+                switch (user.getRole()) {
+                    case "lagermedarbejder":
+                        session.setAttribute("lagermedarbejder", user.getRole());
+                        break;
+                    case "salesman":
+                        session.setAttribute("salesman", user.getRole());
+
+                        //generate stuff for the salesman
+                        break;
+
+                    case "afdelingsleder":
+                        session.setAttribute("afdelingsleder", user.getRole());
+                        break;
+                    default:
+                        session.setAttribute("customer", user.getRole());
+                        break;
+                }
+
+            }
+
+        }
+
 
         //Carport info
         String length = request.getParameter("length");
@@ -40,11 +140,9 @@ public class FlatRoofPreOrder extends ICommand {
         String email = request.getParameter("flatemail");
         String additional = request.getParameter("flatadditionals");
 
-        User user = (User) request.getSession().getAttribute("user");
 
-        //Used as shortcuts for attributes and return values.
-        String fail = "preorderfail";
-        String creationpage = "createorder";
+
+
 
 
         //Create carport
