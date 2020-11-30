@@ -35,11 +35,8 @@
                                         <input type="email" id="loginEmail" class="form-control" name="email"
                                                placeholder="Indtast e-mail adresse" required=""
                                                autofocus="">
-                                        <small style="margin-bottom: 5px" id="loginemailHelp"
-                                               class="form-text text-muted">Vi
-                                            vil aldrig dele din e-mail med andre</small>
                                         <label for="loginPassword" class="sr-only">Password</label>
-                                        <input style="margin-bottom: 25px" type="password" id="loginPassword"
+                                        <input style="margin-bottom: 10px" type="password" id="loginPassword"
                                                class="form-control" name="password"
                                                placeholder="Indtast password" required="">
                                         <hr class="w-100">
@@ -55,33 +52,10 @@
                                     <br>
                                     <form class="form-signin" action="Main" method="POST">
                                         <input type="hidden" name="target" value="createuser">
-                                        <label for="signupName" class="sr-only">Navn</label>
-                                        <input style="margin-bottom: 15px" type="text" id="signupName"
-                                               class="form-control" name="username"
-                                               placeholder="Indtast navn" required=""
-                                               autofocus="">
                                         <label for="signupEmail" class="sr-only">Email adresse</label>
                                         <input type="email" id="signupEmail" class="form-control" name="email"
                                                placeholder="Indtast e-mail adresse" required=""
                                                autofocus="">
-                                        <small style="margin-bottom: 5px" id="signupemailHelp"
-                                               class="form-text text-muted">Vi
-                                            vil aldrig dele din e-mail med andre</small>
-
-                                        <label for="signupAddress" class="sr-only">Adresse</label>
-                                        <input type="text" id="signupAddress" class="form-control" name="address"
-                                               placeholder="Indtast adresse" required=""
-                                               autofocus="">
-
-                                        <label for="signupZip" class="sr-only">Postnummer</label>
-                                        <input type="text" id="signupZip" class="form-control" name="zip"
-                                               placeholder="Indtast postnummer" required=""
-                                               autofocus="">
-                                        <label for="signupCity" class="sr-only">By</label>
-                                        <input type="text" id="signupCity" class="form-control" name="city"
-                                               placeholder="Indtast by" required=""
-                                               autofocus="">
-
 
                                         <label for="signupPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 15px" type="password" id="signupPassword"
@@ -91,7 +65,41 @@
                                         <input style="margin-bottom: 25px" type="password" id="signupPassword2"
                                                class="form-control" name="password2"
                                                placeholder="Gentag password" required="">
+
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="signupName" class="sr-only">Navn</label>
+                                                <input type="text" id="signupName"
+                                                       class="form-control" name="username"
+                                                       placeholder="Indtast navn" required=""
+                                                       autofocus="">
+                                            </div>
+                                            <div class="col">
+                                                <label for="signupAddress" class="sr-only">Adresse</label>
+                                                <input type="text" id="signupAddress" class="form-control"
+                                                       name="address"
+                                                       placeholder="Indtast adresse" required=""
+                                                       autofocus="">
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-9">
+                                                <label for="signupCity" class="sr-only">By</label>
+                                                <input type="text" id="signupCity" class="form-control" name="city"
+                                                       placeholder="Indtast by" required=""
+                                                       autofocus="">
+                                            </div>
+                                            <div class="col-md-3">
+                                                <label for="signupZip" class="sr-only">Postnummer</label>
+                                                <input type="text" id="signupZip" class="form-control" name="zip"
+                                                       placeholder="Post nr." required=""
+                                                       autofocus="">
+                                            </div>
+                                        </div>
+
                                         <hr class="w-100">
+
                                         <div class="d-flex justify-content-center">
                                             <button type="submit" class="btn btn-block w-50 btn-primary">
                                                 Opret bruger

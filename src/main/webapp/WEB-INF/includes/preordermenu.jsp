@@ -32,7 +32,7 @@
             <div class="tab-content">
                 <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <!-- Carport med skråt tag START -->
-                    <form action="Main" method="post">
+                    <form action="Main" class="form-preorder" method="post">
                         <input type="hidden" name="target" value="angledroofpreorder">
                         <div class="form-group" style="padding-top: 10px">
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
@@ -134,7 +134,7 @@
                                     Send forespørgsel
                                 </button>
                                 <div class="userContainer dropdown-menu text-muted"
-                                     style="width: 300px; padding: 30px">
+                                     style="width: 450px; padding: 30px">
 
                                     <div id="myAngledLogin" style="display: block">
                                         <h5>Log ind</h5>
@@ -165,45 +165,63 @@
 
                                     <div id="myAngledCreate" style="display: none">
                                         <h5>Opret bruger</h5>
-
                                         <hr style="padding-top: 10px; padding-bottom: 5px;">
 
                                         <input type="hidden" name="nouser" value="yes" id="angledNoUser" disabled>
-                                        <label for="angledNoUserName" class="sr-only">Navn</label>
-                                        <input style="margin-bottom: 15px" type="text" id="angledNoUserName"
-                                               class="form-control" name="username"
-                                               placeholder="Indtast navn" required=""
-                                               autofocus="" disabled>
+
                                         <label for="angledNoUserEmail" class="sr-only">Email adresse</label>
-                                        <input type="email" id="angledNoUserEmail" class="form-control" name="email"
+                                        <input type="email" id="angledNoUserEmail" class="form-control form-signin"
+                                               name="email"
                                                placeholder="Indtast e-mail adresse" required=""
-                                               disabled>
+                                               autofocus="" style="margin-bottom: 10px" disabled>
 
-                                        <input type="text" id="angledNoUserAddress" class="form-control" name="address"
-                                               placeholder="Indtast adresse" required=""
-                                               disabled>
-
-                                        <input type="text" id="angledNoUserZip" class="form-control" name="zip"
-                                               placeholder="Indtast postnummer" required=""
-                                               disabled>
-                                        <input type="text" id="angledNoUserCity" class="form-control" name="city"
-                                               placeholder="Indtast by" required=""
-                                               disabled>
-
-                                        <small style="margin-bottom: 5px" id="signupemailHelp"
-                                               class="form-text text-muted">Vi
-                                            vil aldrig dele din e-mail med andre</small>
                                         <label for="angledNoUserPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 15px" type="password" id="angledNoUserPassword"
-                                               class="form-control" name="password1"
+                                               class="form-control form-signin" name="password1"
                                                placeholder="Indtast password" required="" disabled>
+
                                         <label for="angledNoUserPassword2" class="sr-only">Password2</label>
                                         <input style="margin-bottom: 25px" type="password" id="angledNoUserPassword2"
                                                class="form-control" name="password2"
                                                placeholder="Gentag password" required="" disabled>
 
-                                        <a style="color: blue" onclick="showObliqueLogin()">Tilbage til
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="angledNoUserAddress" class="sr-only">Adresse</label>
+                                                <input type="text" id="angledNoUserAddress" class="form-control"
+                                                       name="address"
+                                                       placeholder="Indtast adresse" required=""
+                                                       disabled>
+                                            </div>
+                                            <div class="col">
+                                                <label for="angledNoUserName" class="sr-only">Navn</label>
+                                                <input style="margin-bottom: 15px" type="text" id="angledNoUserName"
+                                                       class="form-control" name="username"
+                                                       placeholder="Indtast navn" required=""
+                                                       autofocus="" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label for="angledNoUserCity" class="sr-only">By</label>
+                                                <input type="text" id="angledNoUserCity" class="form-control" name="city"
+                                                       placeholder="Indtast by" required=""
+                                                       disabled>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="angledNoUserZip" class="sr-only">Post nr.</label>
+                                                <input type="text" id="angledNoUserZip" class="form-control" name="zip"
+                                                       placeholder="Post nr." required=""
+                                                       autofocus="" disabled>
+                                            </div>
+
+                                        </div>
+
+                                        <a type="button" style="color: blue; padding-top: 15px" onclick="showObliqueLogin()">Tilbage
+                                            til
                                             login</a>
+
                                         <hr style="padding-top: 5px; padding-bottom: 5px;">
 
                                         <div class="d-flex justify-content-end">
@@ -211,7 +229,6 @@
                                                 Opret bruger og send forespørgsel
                                             </button>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +239,7 @@
 
                 <!-- Carport med flat tag START -->
                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                    <form action="Main" method="post">
+                    <form action="Main" class="form-preorder" method="post">
                         <input type="hidden" name="target" value="flatroofpreorder">
                         <div class="form-group" style="padding-top: 10px">
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
@@ -312,7 +329,7 @@
                                     Send forespørgsel
                                 </button>
                                 <div class="userContainer dropdown-menu text-muted"
-                                     style="width: 300px; padding: 30px">
+                                     style="width: 450px; padding: 30px">
 
                                     <div id="myFlatLogin" style="display: block">
                                         <h5>Log ind</h5>
@@ -346,41 +363,60 @@
                                         <hr style="padding-top: 10px; padding-bottom: 5px;">
 
                                         <input type="hidden" name="nouser" value="yes" id="flatNoUser" disabled>
-                                        <label for="angledNoUserName" class="sr-only">Navn</label>
-                                        <input style="margin-bottom: 15px" type="text" id="flatNoUserName"
-                                               class="form-control" name="username"
-                                               placeholder="Indtast navn" required=""
-                                               autofocus="" disabled>
-                                        <label for="angledNoUserEmail" class="sr-only">Email adresse</label>
-                                        <input type="email" id="flatNoUserEmail" class="form-control" name="email"
+
+                                        <label for="flatNoUserEmail" class="sr-only">Email adresse</label>
+                                        <input type="email" id="flatNoUserEmail" class="form-control form-signin"
+                                               name="email"
                                                placeholder="Indtast e-mail adresse" required=""
-                                               autofocus="" disabled>
-                                        <small style="margin-bottom: 5px" id="signupemailHelpFlat"
-                                               class="form-text text-muted">Vi
-                                            vil aldrig dele din e-mail med andre</small>
+                                               autofocus="" style="margin-bottom: 10px" disabled>
 
-                                        <input type="text" id="flatNoUserAddress" class="form-control" name="address"
-                                               placeholder="Indtast adresse" required=""
-                                               disabled>
-
-                                        <input type="text" id="flatNoUserZip" class="form-control" name="zip"
-                                               placeholder="Indtast postnummer" required=""
-                                               autofocus="" disabled>
-                                        <input type="text" id="flatNoUserCity" class="form-control" name="city"
-                                               placeholder="Indtast by" required=""
-                                               disabled>
-
-                                        <label for="angledNoUserPassword" class="sr-only">Password</label>
+                                        <label for="flatNoUserPassword" class="sr-only">Password</label>
                                         <input style="margin-bottom: 15px" type="password" id="flatNoUserPassword"
-                                               class="form-control" name="password1"
+                                               class="form-control form-signin" name="password1"
                                                placeholder="Indtast password" required="" disabled>
-                                        <label for="angledNoUserPassword2" class="sr-only">Password2</label>
+
+                                        <label for="flatNoUserPassword2" class="sr-only">Password2</label>
                                         <input style="margin-bottom: 25px" type="password" id="flatNoUserPassword2"
                                                class="form-control" name="password2"
                                                placeholder="Gentag password" required="" disabled>
 
-                                        <a style="color: blue" onclick="showFlatLogin()">Tilbage til
+                                        <div class="row">
+                                            <div class="col">
+                                                <label for="flatNoUserAddress" class="sr-only">Adresse</label>
+                                                <input type="text" id="flatNoUserAddress" class="form-control"
+                                                       name="address"
+                                                       placeholder="Indtast adresse" required=""
+                                                       disabled>
+                                            </div>
+                                            <div class="col">
+                                                <label for="flatNoUserName" class="sr-only">Navn</label>
+                                                <input style="margin-bottom: 15px" type="text" id="flatNoUserName"
+                                                       class="form-control" name="username"
+                                                       placeholder="Indtast navn" required=""
+                                                       autofocus="" disabled>
+                                            </div>
+                                        </div>
+
+                                        <div class="row">
+                                            <div class="col-md-8">
+                                                <label for="flatNoUserCity" class="sr-only">By</label>
+                                                <input type="text" id="flatNoUserCity" class="form-control" name="city"
+                                                       placeholder="Indtast by" required=""
+                                                       disabled>
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label for="flatNoUserZip" class="sr-only">Post nr.</label>
+                                                <input type="text" id="flatNoUserZip" class="form-control" name="zip"
+                                                       placeholder="Post nr." required=""
+                                                       autofocus="" disabled>
+                                            </div>
+
+                                        </div>
+
+                                        <a type="button" style="color: blue; padding-top: 15px" onclick="showFlatLogin()">Tilbage
+                                            til
                                             login</a>
+
                                         <hr style="padding-top: 5px; padding-bottom: 5px;">
 
                                         <div class="d-flex justify-content-end">
