@@ -33,7 +33,8 @@
                 <div class="tab-pane active" id="home" role="tabpanel" aria-labelledby="home-tab">
                     <!-- Carport med skråt tag START -->
                     <form action="Main" class="form-preorder" method="post">
-                        <input type="hidden" name="target" value="angledroofpreorder">
+                        <input type="hidden" name="target" value="preorder">
+                        <input type="hidden" name="angledroof" value="yes">
                         <div class="form-group" style="padding-top: 10px">
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                             <label for="carportWidth">Carport bredde</label>
@@ -48,7 +49,7 @@
 
                         <div class="form-group">
                             <label for="carportLength">Carport Længde</label>
-                            <select class="form-control" id="carportLength" name="lenght">
+                            <select class="form-control" id="carportLength" name="length">
                                 <option>Vælg Længde</option>
                                 <option>2</option>
                                 <option>3</option>
@@ -71,9 +72,9 @@
                             <label for="tagHældning">Taghældning</label>
                             <select class="form-control" id="tagHældning" name="roofangle">
                                 <option selected>Vælg taghældning</option>
-                                <option>15 grader</option>
-                                <option>20 grader</option>
-                                <option>25 grader</option>
+                                <option>15</option>
+                                <option>20</option>
+                                <option>25</option>
                             </select>
                         </div>
 
@@ -93,18 +94,18 @@
                                 <label for="redskabsRumBredde">Redskabsrum bredde</label>
                                 <select class="form-control" id="redskabsRumBredde" name="shedwidth">
                                     <option selected>Vælg bredde</option>
-                                    <option>210 cm</option>
-                                    <option>240 cm</option>
-                                    <option>270 cm</option>
+                                    <option>210</option>
+                                    <option>240</option>
+                                    <option>270</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="redskabsRumLængde">Redskabsum længde</label>
                                 <select class="form-control" id="redskabsRumLængde" name="shedlength">
                                     <option selected>Vælg længde</option>
-                                    <option>210 cm</option>
-                                    <option>240 cm</option>
-                                    <option>270 cm</option>
+                                    <option>210</option>
+                                    <option>240</option>
+                                    <option>270</option>
                                 </select>
                             </div>
                         </div>
@@ -112,7 +113,7 @@
                         <div class="form-group">
                             <label for="skråAdditionals">Evt. bemærkninger</label>
                             <textarea maxlength="255" class="form-control" id="skråAdditionals"
-                                      name="angledadditional"
+                                      name="additionals"
                                       rows="3"></textarea>
                         </div>
 
@@ -240,7 +241,8 @@
                 <!-- Carport med flat tag START -->
                 <div class="tab-pane" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <form action="Main" class="form-preorder" method="post">
-                        <input type="hidden" name="target" value="flatroofpreorder">
+                        <input type="hidden" name="target" value="preorder">
+                        <input type="hidden" name="flatroof" value="yes">
                         <div class="form-group" style="padding-top: 10px">
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                             <label for="flatCarportWidth">Carport bredde</label>
@@ -307,7 +309,7 @@
                         <div class="form-group">
                             <label for="flatBemærkning">Evt. bemærkninger</label>
                             <textarea maxlength="255" class="form-control" id="flatBemærkning"
-                                      name="flatadditionals"
+                                      name="additionals"
                                       rows="3"></textarea>
                         </div>
 

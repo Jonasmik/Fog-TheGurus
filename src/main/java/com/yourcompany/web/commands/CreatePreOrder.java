@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
-public class FlatRoofPreOrder extends ICommand {
+public class CreatePreOrder extends ICommand {
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -137,10 +137,16 @@ public class FlatRoofPreOrder extends ICommand {
         String shed = request.getParameter("shed");
 
         //Customerinfo
-        String additional = request.getParameter("flatadditionals");
+        String additional = request.getParameter("additionals");
 
         //Create carport
-        final int angle = 0;
+        String angle;
+        boolean wantsAngledRoof = request.getParameter("angledroof") != null;
+        if(wantsAngledRoof) {
+            angle = request.getParameter("roofangle");
+        } else {
+            angle = "0";
+        }
 
         CarportFactory carportFactory = new CarportFactory();
         try {
