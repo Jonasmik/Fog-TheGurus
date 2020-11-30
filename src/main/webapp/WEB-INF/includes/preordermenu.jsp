@@ -442,6 +442,13 @@
                     </form>
                 </div>
                 <!-- Carport med flat tag END -->
+
+                <!-- Putting the .allow-focus on a dropdown menu will make it not close on click -->
+                <script>
+                    $(document).on('click', '.allow-focus .dropdown-menu', function (e) {
+                        e.stopPropagation();
+                    });
+                </script>
             </div>
         </div>
     </div>

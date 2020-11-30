@@ -35,10 +35,5 @@
     <script src="https://kit.fontawesome.com/d558e38d6e.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src='<c:url value="/js/preorderscripts.js"/>'></script>
 
-    <!-- Putting the .allow-focus on a dropdown menu will make it not close on click -->
-    <script>
-        $(document).on('click', '.allow-focus .dropdown-menu', function (e) {
-            e.stopPropagation();
-        });
-    </script>
+
 </head>
