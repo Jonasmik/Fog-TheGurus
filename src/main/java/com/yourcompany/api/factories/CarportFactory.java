@@ -3,16 +3,25 @@ package com.yourcompany.api.factories;
 import com.yourcompany.exceptions.carport.CarportValidations;
 
 public class CarportFactory {
+
     private int length;
     private int width;
     private String roof;
     private int roofAngle;
 
     public boolean isValid() {
-        if (length <= 0) return false;
-        if (width <= 0) return false;
-        if (roof == null || roof.isBlank()) return false;
-        if (roofAngle <= 0) return false;
+        if (length <= 0) {
+            return false;
+        }
+        if (width <= 0) {
+            return false;
+        }
+        if (roof == null || roof.isBlank()) {
+            return false;
+        }
+        if (roofAngle <= 0) {
+            return false;
+        }
         return true;
     }
 
@@ -25,9 +34,9 @@ public class CarportFactory {
     }
 
     public void setLength(String number) throws CarportValidations {
-        try{
+        try {
             setLength(Integer.parseInt(number));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new CarportValidations(e.getMessage());
         }
     }
@@ -41,9 +50,9 @@ public class CarportFactory {
     }
 
     public void setWidth(String number) throws CarportValidations {
-        try{
+        try {
             setWidth(Integer.parseInt(number));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new CarportValidations(e.getMessage());
         }
     }
@@ -65,9 +74,9 @@ public class CarportFactory {
     }
 
     public void setRoofAngle(String number) throws CarportValidations {
-        try{
+        try {
             setRoofAngle(Integer.parseInt(number));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new CarportValidations(e.getMessage());
         }
     }

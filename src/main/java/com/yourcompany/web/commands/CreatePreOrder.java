@@ -33,10 +33,10 @@ public class CreatePreOrder extends ICommand {
         User user = (User) request.getSession().getAttribute("user");
 
         //Create or login user if it doesnt exist
-        if(user == null) {
+        if (user == null) {
             boolean hasNoUser = request.getParameter("hasuser") == null;
 
-            if(hasNoUser) {
+            if (hasNoUser) {
 
                 //Create user
 
@@ -142,7 +142,7 @@ public class CreatePreOrder extends ICommand {
         //Create carport
         String angle;
         boolean wantsAngledRoof = request.getParameter("angledroof") != null;
-        if(wantsAngledRoof) {
+        if (wantsAngledRoof) {
             angle = request.getParameter("roofangle");
         } else {
             angle = "0";
@@ -160,10 +160,15 @@ public class CreatePreOrder extends ICommand {
         }
 
         Carport carport;
-        try {
-            carport = api.getCarportFacade().createCarport(carportFactory);
-        } catch (NoSuchCarportExists noSuchCarportExists) {
-            request.setAttribute(fail, "Der gik noget galt med din carport");
+        if(carportFactory.isValid()) {
+            try {
+                carport = api.getCarportFacade().createCarport(carportFactory);
+            } catch (NoSuchCarportExists noSuchCarportExists) {
+                request.setAttribute(fail, "Der gik noget galt med din carport");
+                return creationpage;
+            }
+        } else {
+            request.setAttribute(fail, "Du glemte at vælge noget i carporten");
             return creationpage;
         }
 

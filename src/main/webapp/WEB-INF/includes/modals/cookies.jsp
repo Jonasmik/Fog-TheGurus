@@ -45,10 +45,12 @@ Css only works if its in this file???
         <div class="row">
             <div class="col">
                 <p>
-                    På Fogs hjemmeside bruger vi cookies, ved at trykke på at "accepter" står du inde for,
+                    På Fogs hjemmeside bruger vi cookies, ved at trykke på at "accepter" står du
+                    inde for,
                     at have læst vores cookie politik og accepteret den.</p>
                 <div class="btn-group dropup">
-                    <a class="my-footerlinks" data-toggle="dropdown" style="font-size: 22px; border-bottom: solid #50a8fd 1px"
+                    <a class="my-footerlinks" data-toggle="dropdown"
+                       style="font-size: 22px; border-bottom: solid #50a8fd 1px"
                        aria-haspopup="true" aria-expanded="false" href="#">Se politik</a>
                     <div class="dropdown-menu text-muted"
                          style="width: 300px; padding: 30px">
@@ -88,7 +90,7 @@ Css only works if its in this file???
 
     //adds the .active to the cookieContainer after 2 seconds.
     setTimeout(() => {
-        if(!localStorage["cookieBannerDisplayed"]) {
+        if (!localStorage["cookieBannerDisplayed"]) {
             cookieContainer.classList.add("active");
             cookieActive.classList.add("active");
         }
