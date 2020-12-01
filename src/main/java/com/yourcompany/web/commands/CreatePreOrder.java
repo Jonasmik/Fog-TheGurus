@@ -30,7 +30,8 @@ public class CreatePreOrder extends ICommand {
         String creationpage = "createorder";
 
 
-        User user = (User) request.getSession().getAttribute("user");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
         //Create or login user if it doesnt exist
         if (user == null) {
@@ -58,8 +59,6 @@ public class CreatePreOrder extends ICommand {
                         request.setAttribute(fail, "Den e-mail er allerede i brug");
                         return creationpage;
                     }
-
-                    HttpSession session = request.getSession();
 
 
                     switch (user.getRole()) {
@@ -104,7 +103,6 @@ public class CreatePreOrder extends ICommand {
                     return creationpage;
                 }
 
-                HttpSession session = request.getSession();
                 session.setAttribute("user", user);
 
                 switch (user.getRole()) {
