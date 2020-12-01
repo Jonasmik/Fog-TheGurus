@@ -10,8 +10,8 @@ import static org.slf4j.LoggerFactory.getLogger;
 
 public class UnknownCommand extends ICommand {
 
-    private static final Logger log = getLogger(UnknownCommand.class);
 
+    private static final Logger log = getLogger(UnknownCommand.class);
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
 

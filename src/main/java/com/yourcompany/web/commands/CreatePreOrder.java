@@ -14,13 +14,19 @@ import com.yourcompany.exceptions.user.CustomerValidation;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.web.ICommand;
+import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.util.Objects;
 
+import static org.slf4j.LoggerFactory.getLogger;
+
 public class CreatePreOrder extends ICommand {
+
+    private static final Logger log = getLogger(CreatePreOrder.class);
+
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -154,11 +160,13 @@ public class CreatePreOrder extends ICommand {
             carportFactory.setRoofAngle(angle);
 
         } catch (CarportValidations carportValidations) {
+            log.info(String.format("Der blev lagt nogle forkerte inputs ind i en carport, Længde: %s, Bredde: %s, Tag: %s", length, width, roof));
             request.setAttribute(fail, "Der er noget galt med dine inputs");
+            return creationpage;
         }
 
         Carport carport;
-        if(carportFactory.isValid()) {
+        if (carportFactory.isValid()) {
             try {
                 carport = api.getCarportFacade().createCarport(carportFactory);
             } catch (NoSuchCarportExists noSuchCarportExists) {
@@ -169,6 +177,8 @@ public class CreatePreOrder extends ICommand {
             request.setAttribute(fail, "Du glemte at vælge noget i carporten");
             return creationpage;
         }
+
+        log.info(String.format("Carport %d blev oprettet", carport.getId()));
 
         //Create customer
         CustomerFactory customerFactory = new CustomerFactory();
@@ -250,6 +260,7 @@ public class CreatePreOrder extends ICommand {
 
         if (preOrder != null) {
             request.setAttribute("preordersucces", "Din forespørgelse er blevet oprettet, du vil snart blive kontaktet af en salgsmedarbejder.");
+            log.info(String.format("Forespørgsel: %d, blev oprettet korrekt i systemet", preOrder.getId()));
         } else {
             request.setAttribute(fail, "Der gik noget galt i bestillingen.");
         }
