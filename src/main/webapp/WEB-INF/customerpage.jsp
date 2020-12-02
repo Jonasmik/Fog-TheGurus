@@ -30,38 +30,35 @@
         </div>
         <div class="col-md-8">
 
-                <!-- Forespørgelser START -->
-                <h3 style="padding-top: 20px">Forespørgelser</h3>
-                <c:if test="${requestScope.preorder == null}">
-                    <p>Du har ikke nogle forespørgelser</p>
-                </c:if>
+            <!-- Forespørgelser START -->
+            <h3 style="padding-top: 20px">Forespørgelser</h3>
+            <c:if test="${requestScope.preorder == null}">
+                <p>Du har ikke nogle forespørgelser</p>
+            </c:if>
 
-                <c:forEach var="preorder" items="${requestScope.preorder}">
-                    <p>${preorder}</p>
-                </c:forEach>
-                <!-- Forespørgelser END -->
+            <!-- Forespørgelser END -->
 
-                <!-- Tilbud START -->
-                <h3>Aktive tilbud</h3>
-                <c:if test="${requestScope.offer == null}">
-                    <p>Du har ikke nogle aktive tilbud</p>
-                </c:if>
+            <!-- Tilbud START -->
+            <h3>Aktive tilbud</h3>
+            <c:if test="${requestScope.offer == null}">
+                <p>Du har ikke nogle aktive tilbud</p>
+            </c:if>
 
-                <c:if test="${requestScope.offer != null}">
-                    <p>${requestScope.offer}</p>
-                </c:if>
-                <!-- Tilbud END -->
+            <c:if test="${requestScope.offer != null}">
+                <p>${requestScope.offer}</p>
+            </c:if>
+            <!-- Tilbud END -->
 
-                <!-- Ordre START -->
-                <h3>Afgivet ordre</h3>
-                <c:if test="${requestScope.order == null}">
-                    <p>Du har ikke nogle aftivet ordre</p>
-                </c:if>
+            <!-- Ordre START -->
+            <h3>Afgivet ordre</h3>
+            <c:if test="${requestScope.order == null}">
+                <p>Du har ikke nogle aftivet ordre</p>
+            </c:if>
 
-                <c:if test="${requestScope.order != null}">
-                    <p>Du har en afgivet ordre</p>
-                </c:if>
-                <!-- Ordre END -->
+            <c:if test="${requestScope.order != null}">
+                <p>Du har en afgivet ordre</p>
+            </c:if>
+            <!-- Ordre END -->
         </div>
     </div>
 

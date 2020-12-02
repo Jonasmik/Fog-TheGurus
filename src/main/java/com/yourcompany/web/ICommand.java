@@ -5,6 +5,7 @@ import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.*;
 import com.yourcompany.web.commands.*;
+import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
 import com.yourcompany.web.commands.user.AuthorizeUser;
 import com.yourcompany.web.commands.user.CreateUser;
 import com.yourcompany.web.commands.user.LogoutUser;
@@ -34,6 +35,7 @@ public abstract class ICommand {
         commands.put("createuser", new CreateUser());
         commands.put("preorder", new CreatePreOrder());
         commands.put("logoutuser", new LogoutUser());
+        commands.put("takepreorder", new SalesmanTakePreOrder());
 
     }
 
