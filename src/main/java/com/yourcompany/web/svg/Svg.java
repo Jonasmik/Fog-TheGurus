@@ -61,7 +61,7 @@ public class Svg extends Tag {
     }
 
 
-    public static Tag CarportTopView(int width, int length) {
+    public static Tag carportTopView(int width, int length) {
         int widthmm = width*10;
         int lengthmm = length*10;
         Svg carportTopView = new Svg(lengthmm, widthmm, "0 0 9000 9000");
@@ -124,7 +124,7 @@ public class Svg extends Tag {
 
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("output.svg")) {
-            writer.write(chessboard().toString());
+            writer.write(carportTopView(270, 240).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
