@@ -20,7 +20,11 @@
                 <c:when test="${requestScope.preorders != null}">
                     <p>Der findes en forespørgelse</p>
                 </c:when>
+
+            </c:choose>
                 <!-- Forespørgelser END -->
+
+            <c:choose>
 
                 <!-- Tilbud START -->
                 <h3>Aktive tilbud</h3>
@@ -32,6 +36,10 @@
                     <p>Der findes et tilbud</p>
                 </c:when>
                 <!-- Tilbud END -->
+
+            </c:choose>
+
+            <c:choose>
 
                 <!-- Ordre START -->
                 <h3>Afgivet ordre</h3>
@@ -45,6 +53,7 @@
                 <!-- Ordre END -->
 
             </c:choose>
+
 
         </div>
     </div>

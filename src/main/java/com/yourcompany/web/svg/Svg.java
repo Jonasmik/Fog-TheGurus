@@ -38,13 +38,12 @@ public class Svg extends Tag {
     public static Tag chessfield(int r, int c) {
         Tag rect = new Rect(0.05 + r, c + 0.05, 0.9, 0.9);
         if ((r % 2 + c) % 2 == 0) {
-            rect = rect.withStyle("fill: black;");
+            rect = rect.withStyle("fill: ;");
         } else {
             rect = rect.withStyle("fill: white;");
         }
         return rect;
     }
-
 
     /**
      * Called by a command svg.chessboard().toString()
