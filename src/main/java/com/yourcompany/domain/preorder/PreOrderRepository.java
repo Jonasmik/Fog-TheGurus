@@ -11,4 +11,5 @@ public interface PreOrderRepository {
     PreOrder findByCustomerId(int customerid) throws NoSuchPreOrderExists;
     PreOrder findPreOrderById(int id) throws NoSuchPreOrderExists;
     PreOrder createPreOrder(PreOrderFactory preOrderFactory) throws NoSuchPreOrderExists;
+    void takePreOrder(int salesmanId, int preOrderId) throws NoSuchPreOrderExists;
 }

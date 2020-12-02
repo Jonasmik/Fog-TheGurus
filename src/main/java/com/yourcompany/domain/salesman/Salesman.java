@@ -9,4 +9,20 @@ public class Salesman {
         this.id = id;
         this.userId = userId;
     }
+
+    @Override
+    public String toString() {
+        return "Salesman{" +
+                "id=" + id +
+                ", userId=" + userId +
+                '}';
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
 }

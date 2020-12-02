@@ -104,4 +104,19 @@ public class DBPreOrderRepository implements PreOrderRepository {
         }
         return findPreOrderById(id);
     }
+
+    @Override
+    public void takePreOrder(int salesmanId, int preOrderId) throws NoSuchPreOrderExists {
+        try (Connection conn = db.connect()) {
+            PreparedStatement ps =
+                    conn.prepareStatement(
+                            "UPDATE preorders SET salesmanid = ? WHERE id = ?;");
+            ps.setInt(1, salesmanId);
+            ps.setInt(2, preOrderId);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            throw new NoSuchPreOrderExists(e.getMessage());
+        }
+    }
 }

@@ -62,7 +62,8 @@ public abstract class ICommand {
                 CarportFacade.getInstance(),
                 ShedFacade.getInstance(),
                 CustomerFacade.getInstance(),
-                PreOrderFacade.getInstance());
+                PreOrderFacade.getInstance(),
+                SalesmanFacade.getInstance());
     }
 
     //used by every command, and called by the invoker.

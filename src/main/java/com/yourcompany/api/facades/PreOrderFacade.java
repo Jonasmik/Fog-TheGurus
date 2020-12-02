@@ -42,4 +42,8 @@ public class PreOrderFacade {
     public PreOrder findByCustomerId(int customerId) throws NoSuchPreOrderExists {
         return repo.findByCustomerId(customerId);
     }
+
+    public void takePreOrder(int id, int newPreOrderId) throws NoSuchPreOrderExists {
+        repo.takePreOrder(id, newPreOrderId);
+    }
 }
