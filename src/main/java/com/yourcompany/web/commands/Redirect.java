@@ -9,6 +9,7 @@ import com.yourcompany.web.ICommand;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +25,8 @@ public class Redirect extends ICommand {
          */
 
         String destination = request.getParameter("destination");
-        User user = (User) request.getSession().getAttribute("user");
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
         String errorpage = "errorpage";
         String error = "error";
 
@@ -68,7 +70,31 @@ public class Redirect extends ICommand {
                     request.setAttribute(error, "Du er desvære ikke en adminstrator, men godt forsøgt");
                     return errorpage;
                 } else if (user.getRole().equals("salesman")) {
-                    //generate stuff for the salesman
+
+                    List<PreOrder> unusedPreOrders = new ArrayList<>();
+                    try {
+                        unusedPreOrders = api.getPreOrderFacade().findAllUnused();
+                    } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
+                        noSuchPreOrderExists.printStackTrace();
+                    }
+
+                    if (unusedPreOrders != null) {
+                        List<Customer> unusedCustomers = new ArrayList<>();
+                        for (PreOrder p : unusedPreOrders) {
+                            try {
+                                Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
+                                unusedCustomers.add(customer);
+                            } catch (NoSuchCustomerExists noSuchCustomerExists) {
+                                request.setAttribute(error, "Noget gik galt med generæringen af forespøgelserne");
+                                return errorpage;
+                            }
+                        }
+                        request.setAttribute("unusedcustomers", unusedCustomers);
+                        request.setAttribute("unusedpreorders", unusedPreOrders);
+                    }
+
+                } else {
+                    return errorpage;
                 }
 
                 break;

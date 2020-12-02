@@ -1,19 +1,23 @@
 
-t
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 52 to the 15 allowed.(‚çÕöúÿÿÿÿ8æœÙÙá.
-k
-java:S1192F"IDefine a constant instead of duplicating this literal "salesman" 3 times.(ïµÏºşÿÿÿÿ8æœÙÙá.
-\
-java:S2441l":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8æœÙÙá.
-†
-java:S1192ã"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ğıº›øÿÿÿÿ8æœÙÙá.
-M
-java:S5411À"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8æœÙÙá.
-s
-java:S1192B"QDefine a constant instead of duplicating this literal "lagermedarbejder" 4 times.(±ªíºùÿÿÿÿ8æœÙÙá.
-H
-java:S5411ô"*Use the primitive boolean expression here.(²ÿ‡İ8æœÙÙá.
-\
-java:S2441P":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8æœÙÙá.
+Z
+java:S2441":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ğá.
+Z
+java:S2441":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ğá.
+D
+java:S2629"$Invoke method(s) only conditionally.(ˆØß’ûÿÿÿÿ8ËÌ²ğá.
+J
+java:S5411"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8«Š„ğá.
+E
+java:S5411"*Use the primitive boolean expression here.(²ÿ‡İ8«Š„ğá.
+ƒ
+java:S1192"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ğıº›øÿÿÿÿ8«Š„ğá.
+r
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 52 to the 15 allowed.(‚çÕöúÿÿÿÿ8«Š„ğá.
+i
+java:S1192"IDefine a constant instead of duplicating this literal "salesman" 3 times.(ïµÏºşÿÿÿÿ8«Š„ğá.
+D
+java:S2629"$Invoke method(s) only conditionally.(ÑĞóÓúÿÿÿÿ8¤äÀğá.
+o
+java:S1192"ODefine a constant instead of duplicating this literal "afdelingsleder" 4 times.(¾†°æıÿÿÿÿ8«Š„ğá.
 q
-java:S1192H"ODefine a constant instead of duplicating this literal "afdelingsleder" 4 times.(¾†°æıÿÿÿÿ8æœÙÙá.
+java:S1192"QDefine a constant instead of duplicating this literal "lagermedarbejder" 4 times.(±ªíºùÿÿÿÿ8«Š„ğá.

@@ -37,7 +37,7 @@
                                 side</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link my-navlinks" href="Main?target=redirect&destination=createorder">Se kunde
+                            <a class="nav-link my-navlinks" href="#" onclick="showUserMenu()">Se kunde
                                 valgmuligheder</a>
                         </li>
                     </c:when>
@@ -89,6 +89,6 @@
     </nav>
 </div>
 <!-- admins userpage. CHANGE TO salesman -->
-<c:if test="${sessionScope.user.role.equals('customer')}">
+<c:if test="${sessionScope.user.role.equals('salesman')}">
     <jsp:include page="adminshowcustomeroptions.jsp" flush="true"/>
 </c:if>

@@ -5,7 +5,7 @@
 <jsp:include page="includes/header.jsp" flush="true"/>
 
 <!-- Insert title -->
-<title>Fog: Bestilling</title>
+<title>Fog: Adminside</title>
 
 <body class="d-flex flex-column h-100 bg-light">
 
@@ -13,9 +13,7 @@
 <jsp:include page="includes/navs/navbar.jsp" flush="true"/>
 
 <main role="main" class="container flex-shrink-0">
-    <c:if test="${sessionScope.user != null}">
-        <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>
-    </c:if>
+    <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>
 
     <c:choose>
 

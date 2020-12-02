@@ -29,10 +29,10 @@ public class DBPreOrderRepository implements PreOrderRepository {
     }
 
     @Override
-    public List<PreOrder> findAll() throws NoSuchPreOrderExists {
+    public List<PreOrder> findAllUnused() throws NoSuchPreOrderExists {
         List<PreOrder> preOrders = new ArrayList<>();
         try (Connection conn = db.connect()) {
-            PreparedStatement s = conn.prepareStatement("SELECT * FROM preorders;");
+            PreparedStatement s = conn.prepareStatement("SELECT * FROM preorders WHERE salesmanid IS NULL");
             ResultSet rs = s.executeQuery();
             while (rs.next()) {
                 preOrders.add(loadPreOrder(rs));
@@ -45,12 +45,12 @@ public class DBPreOrderRepository implements PreOrderRepository {
 
     @Override
     public PreOrder findByCustomerId(int customerid) throws NoSuchPreOrderExists {
-        try(Connection conn = db.connect()) {
+        try (Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
                     "SELECT * FROM preorders WHERE customerid = ?;");
             s.setInt(1, customerid);
             ResultSet rs = s.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 return loadPreOrder(rs);
             } else {
                 System.err.println("No version in properties.");
@@ -63,12 +63,12 @@ public class DBPreOrderRepository implements PreOrderRepository {
 
     @Override
     public PreOrder findPreOrderById(int id) throws NoSuchPreOrderExists {
-        try(Connection conn = db.connect()) {
+        try (Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
                     "SELECT * FROM preorders WHERE id = ?;");
             s.setInt(1, id);
             ResultSet rs = s.executeQuery();
-            if(rs.next()) {
+            if (rs.next()) {
                 return loadPreOrder(rs);
             } else {
                 System.err.println("No version in properties.");

@@ -27,8 +27,8 @@ public class PreOrderFacade {
         return instance;
     }
 
-    public List<PreOrder> findAll() throws NoSuchPreOrderExists {
-        return repo.findAll();
+    public List<PreOrder> findAllUnused() throws NoSuchPreOrderExists {
+        return repo.findAllUnused();
     }
 
     public PreOrder findPreOrderById(int id) throws NoSuchPreOrderExists {
