@@ -10,6 +10,7 @@ import com.yourcompany.web.ICommand;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,34 +71,10 @@ public class Redirect extends ICommand {
                     request.setAttribute(error, "Du er desvære ikke en adminstrator, men godt forsøgt");
                     return errorpage;
                 } else if (user.getRole().equals("salesman")) {
-
-                    List<PreOrder> unusedPreOrders = new ArrayList<>();
-                    try {
-                        unusedPreOrders = api.getPreOrderFacade().findAllUnused();
-                    } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
-                        noSuchPreOrderExists.printStackTrace();
-                    }
-
-                    if (unusedPreOrders != null) {
-                        List<Customer> unusedCustomers = new ArrayList<>();
-                        for (PreOrder p : unusedPreOrders) {
-                            try {
-                                Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
-                                unusedCustomers.add(customer);
-                            } catch (NoSuchCustomerExists noSuchCustomerExists) {
-                                request.setAttribute(error, "Noget gik galt med generæringen af forespøgelserne");
-                                return errorpage;
-                            }
-                        }
-                        request.setAttribute("unusedcustomers", unusedCustomers);
-                        request.setAttribute("unusedpreorders", unusedPreOrders);
-                    }
-
+                    return "redirect:listsalesmanpage";
                 } else {
                     return errorpage;
                 }
-
-                break;
             default:
                 request.setAttribute(error, "This site does not exist");
                 destination = errorpage;

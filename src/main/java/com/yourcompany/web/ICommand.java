@@ -4,7 +4,9 @@ package com.yourcompany.web;
 import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.*;
+import com.yourcompany.domain.user.User;
 import com.yourcompany.web.commands.*;
+import com.yourcompany.web.commands.salesman.ListSalesmanPage;
 import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
 import com.yourcompany.web.commands.user.AuthorizeUser;
 import com.yourcompany.web.commands.user.CreateUser;
@@ -12,6 +14,7 @@ import com.yourcompany.web.commands.user.LogoutUser;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 
 public abstract class ICommand {
@@ -36,7 +39,7 @@ public abstract class ICommand {
         commands.put("preorder", new CreatePreOrder());
         commands.put("logoutuser", new LogoutUser());
         commands.put("takepreorder", new SalesmanTakePreOrder());
-
+        commands.put("listsalesmanpage", new ListSalesmanPage());
     }
 
     static ICommand from(HttpServletRequest request) {
@@ -64,5 +67,15 @@ public abstract class ICommand {
 
     //used by every command, and called by the invoker.
     protected abstract String execute(HttpServletRequest request, HttpServletResponse response);
+
+    protected User getUser(HttpSession httpSession) {
+        return (User) httpSession.getAttribute("user");
+    }
+
+    protected boolean isUserRole(HttpSession httpSession, String role) {
+        User user = getUser(httpSession);
+        return user != null && user.getRole().equals(role);
+    }
+
 
 }

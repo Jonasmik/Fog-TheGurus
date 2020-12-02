@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListPreOrders extends SalesmanCommand {
+public class ListSalesmanPage extends SalesmanCommand {
 
 
     @Override

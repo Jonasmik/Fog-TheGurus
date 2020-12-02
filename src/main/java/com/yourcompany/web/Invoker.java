@@ -22,7 +22,10 @@ public class Invoker extends HttpServlet {
 
             ICommand action = ICommand.from(request);
             String view = action.execute(request, response);
-            if (view.equals("index")) {
+
+            if(view.startsWith("redirect:")) {
+                response.sendRedirect("Main?target=" + view.substring(9));
+            } else if (view.equals("index")) {
                 request.getRequestDispatcher(view + ".jsp").forward(request, response);
             } else {
                 request.getRequestDispatcher("/WEB-INF/" + view + ".jsp").forward(request, response);

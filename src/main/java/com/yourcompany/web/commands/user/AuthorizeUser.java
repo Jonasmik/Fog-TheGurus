@@ -41,30 +41,7 @@ public class AuthorizeUser extends ICommand {
                 session.setAttribute("lagermedarbejder", user.getRole());
                 return adminpage;
             case "salesman":
-
-                List<PreOrder> unusedPreOrders = new ArrayList<>();
-                try {
-                    unusedPreOrders = api.getPreOrderFacade().findAllUnused();
-                } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
-                    noSuchPreOrderExists.printStackTrace();
-                }
-
-                if (unusedPreOrders != null) {
-                    List<Customer> unusedCustomers = new ArrayList<>();
-                    for (PreOrder p : unusedPreOrders) {
-                        try {
-                            Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
-                            unusedCustomers.add(customer);
-                        } catch (NoSuchCustomerExists noSuchCustomerExists) {
-                            request.setAttribute("error", "Noget gik galt med generæringen af forespøgelserne");
-                            return "errorpage";
-                        }
-                    }
-                    request.setAttribute("unusedcustomers", unusedCustomers);
-                    request.setAttribute("unusedpreorders", unusedPreOrders);
-                }
-
-                return adminpage;
+                return "redirect:listsalesmanpage";
             case "afdelingsleder":
                 session.setAttribute("afdelingsleder", user.getRole());
                 return adminpage;
