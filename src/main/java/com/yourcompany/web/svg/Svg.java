@@ -62,24 +62,24 @@ public class Svg extends Tag {
 
     private static void createRims(Svg carportTopView, int xspacing, int yspacing, int lengthmm, int widthmm) {
         // rem
-        Tag topRim = new Rect(xspacing, yspacing+350, lengthmm, 45);
-        Tag bottomRim = new Rect(xspacing, yspacing+widthmm-350-45, lengthmm, 45);
+        Tag topRim = new Rect(xspacing, yspacing + 350, lengthmm, 45);
+        Tag bottomRim = new Rect(xspacing, yspacing + widthmm - 350 - 45, lengthmm, 45);
         carportTopView.add(topRim.withStyle("fill: white; stroke: black; stroke-width: 10;"));
         carportTopView.add(bottomRim.withStyle("fill: white; stroke: black; stroke-width: 10;"));
     }
 
     private static void createRafters(Svg carportTopView, int lengthmm, int xspacing, int yspacing, int widthmm) {
         // Spær
-        double calculateAmountOfRafters = lengthmm/(550+45);
-        double calculateExtraRaftersSpace = ((lengthmm%(550+45)))/calculateAmountOfRafters;
+        double calculateAmountOfRafters = lengthmm / (550 + 45);
+        double calculateExtraRaftersSpace = ((lengthmm % (550 + 45))) / calculateAmountOfRafters;
 
         System.out.println(calculateExtraRaftersSpace);
         System.out.println(calculateAmountOfRafters);
         double x = 0;
-        while (x <= lengthmm){
-            Tag rafter = new Rect( xspacing-22.5+x, yspacing, 45, widthmm);
+        while (x <= lengthmm) {
+            Tag rafter = new Rect(xspacing - 22.5 + x, yspacing, 45, widthmm);
             carportTopView.add(rafter.withStyle("fill: white; stroke: black; stroke-width: 10;"));
-            x=x+550+calculateExtraRaftersSpace;
+            x = x + 550 + calculateExtraRaftersSpace;
         }
     }
 
@@ -89,24 +89,24 @@ public class Svg extends Tag {
 
         // Den minimale længde før at vi er nød til at have 3 stolper per side i carporten
         // Udhæng før første stolpe + max afstanden mellem 2 stolper + udhæng bag til
-        double minLengthThirdPost = 1100+(550*5.5)+275;
-        double upToFirstPillar = xspacing+1100-(pillarWidth/2);
-        double calculateMiddlePillar = ((xspacing+lengthmm-275-(pillarWidth/2))-(upToFirstPillar))/2+upToFirstPillar;
+        double minLengthThirdPost = 1100 + (550 * 5.5) + 275;
+        double upToFirstPillar = xspacing + 1100 - (pillarWidth / 2);
+        double calculateMiddlePillar = ((xspacing + lengthmm - 275 - (pillarWidth / 2)) - (upToFirstPillar)) / 2 + upToFirstPillar;
 
         // Stolper 1100 = udhæng foran, 48.5 = halvdelen af stolpe, 275 = centeret af mellemrummet mellem spær
-        Tag topLeftPost = new Rect(upToFirstPillar, yspacing+350, pillarWidth, pillarWidth);
-        Tag topRightPost = new Rect(xspacing+lengthmm-275-(pillarWidth/2), yspacing+350, pillarWidth, pillarWidth);
+        Tag topLeftPost = new Rect(upToFirstPillar, yspacing + 350, pillarWidth, pillarWidth);
+        Tag topRightPost = new Rect(xspacing + lengthmm - 275 - (pillarWidth / 2), yspacing + 350, pillarWidth, pillarWidth);
         carportTopView.add(topLeftPost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
         carportTopView.add(topRightPost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
 
-        Tag bottomLeftPost = new Rect(upToFirstPillar, yspacing+widthmm-350-pillarWidth, pillarWidth, pillarWidth);
-        Tag bottomRightPost = new Rect(xspacing+lengthmm-275-(pillarWidth/2), yspacing+widthmm-350-pillarWidth, pillarWidth, pillarWidth);
+        Tag bottomLeftPost = new Rect(upToFirstPillar, yspacing + widthmm - 350 - pillarWidth, pillarWidth, pillarWidth);
+        Tag bottomRightPost = new Rect(xspacing + lengthmm - 275 - (pillarWidth / 2), yspacing + widthmm - 350 - pillarWidth, pillarWidth, pillarWidth);
         carportTopView.add(bottomLeftPost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
         carportTopView.add(bottomRightPost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
 
-        if (lengthmm >= minLengthThirdPost){
-            Tag topMiddlePost = new Rect(calculateMiddlePillar, yspacing+350, pillarWidth, pillarWidth);
-            Tag bottomMiddlePost = new Rect(calculateMiddlePillar, yspacing+widthmm-350-pillarWidth, pillarWidth, pillarWidth);
+        if (lengthmm >= minLengthThirdPost) {
+            Tag topMiddlePost = new Rect(calculateMiddlePillar, yspacing + 350, pillarWidth, pillarWidth);
+            Tag bottomMiddlePost = new Rect(calculateMiddlePillar, yspacing + widthmm - 350 - pillarWidth, pillarWidth, pillarWidth);
             carportTopView.add(topMiddlePost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
             carportTopView.add(bottomMiddlePost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
         }
@@ -114,14 +114,13 @@ public class Svg extends Tag {
     }
 
     public static Tag carportTopView(int width, int length) {
-        int widthmm = width*10;
-        int lengthmm = length*10;
+        int widthmm = width * 10;
+        int lengthmm = length * 10;
         Svg carportTopView = new Svg(lengthmm, widthmm, "0 0 9000 9000");
 
 
         int xspacing = 500;
         int yspacing = 500;
-
 
 
         // Generate roof
@@ -137,6 +136,15 @@ public class Svg extends Tag {
         //Generate Posts
         createPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
 
+        Tag markerTest = new Marker("beginArrow", 12, 12, 0, 6, "auto", new Path("M0,6 L12,0 L12,12 L0,6"));
+        carportTopView.add(markerTest);
+
+        Tag markerTest2 = new Marker("endArrow", 12, 12, 12, 6, "auto", new Path("M0,0 L12,6 L0,12 L0,0"));
+        carportTopView.add(markerTest2);
+
+        Tag lineTest = new Line(130, 10, 12, 35);
+        carportTopView.add(lineTest.withStyle("stroke: black; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
+
         /* Stern MÅSKE IKKE NØDVENDIG?
         Tag frontUnderStern = new Rect(xspacing,yspacing,25,widthmm);
         Tag backUnderStern = new Rect(xspacing,yspacing+lengthmm-25,25,widthmm);
@@ -149,7 +157,6 @@ public class Svg extends Tag {
 
         return carportTopView;
     }
-
 
 
     public static void main(String[] args) {

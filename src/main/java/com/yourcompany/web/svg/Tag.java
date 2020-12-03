@@ -55,7 +55,9 @@ public abstract class Tag {
         }
         builder.append(" ");
         builder.append(renderAttributes());
-        builder.append(">");
+        if(name != "marker"){
+            builder.append(">");
+        }
         renderSubTags(builder);
         builder.append(String.format("</%s>", name));
 
