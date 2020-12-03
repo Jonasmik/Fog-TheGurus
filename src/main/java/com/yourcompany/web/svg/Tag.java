@@ -55,7 +55,7 @@ public abstract class Tag {
         }
         builder.append(" ");
         builder.append(renderAttributes());
-        if(name != "marker"){
+        if(!name.equals("marker")){
             builder.append(">");
         }
         renderSubTags(builder);
