@@ -142,8 +142,12 @@ public class Svg extends Tag {
         Tag markerTest2 = new Marker("endArrow", 12, 12, 12, 6, "auto", new Path("M0,0 L12,6 L0,12 L0,0"));
         carportTopView.add(markerTest2);
 
-        Tag lineTest = new Line(130, 10, 12, 35);
-        carportTopView.add(lineTest.withStyle("stroke: black; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
+        Tag bottomLengthMeasure = new Line(xspacing, yspacing+widthmm+400, xspacing+lengthmm, yspacing+widthmm+400);
+        Tag lineTest2 = new Line(xspacing, yspacing+widthmm+300, xspacing, yspacing+widthmm+500);
+        Tag lineTest3 = new Line(xspacing+lengthmm, yspacing+widthmm+300, xspacing+lengthmm, yspacing+widthmm+500);
+        carportTopView.add(bottomLengthMeasure.withStyle("stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
+        carportTopView.add(lineTest2.withStyle("stroke: black; stroke-width: 15;"));
+        carportTopView.add(lineTest3.withStyle("stroke: black; stroke-width: 15;"));
 
         /* Stern MÅSKE IKKE NØDVENDIG?
         Tag frontUnderStern = new Rect(xspacing,yspacing,25,widthmm);
