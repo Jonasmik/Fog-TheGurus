@@ -19,7 +19,7 @@ public class CarportFactory {
         if (roof == null || roof.isBlank()) {
             return false;
         }
-        if (roofAngle <= 0) {
+        if (roofAngle < 0) {
             return false;
         }
         return true;
