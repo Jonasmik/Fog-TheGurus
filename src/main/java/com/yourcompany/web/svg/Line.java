@@ -3,16 +3,16 @@ package com.yourcompany.web.svg;
 import java.util.Locale;
 
 public class Line extends Tag {
-    private final double x1;
-    private final double y1;
-    private final double x2;
-    private final double y2;
+    private final int x1;
+    private final int y1;
+    private final int x2;
+    private final int y2;
 
 
     /**
      * Set by each class constructor such as super("svg") or super("rect")
      */
-    protected Line(double x1, double y1, double x2, double y2) {
+    protected Line(int x1, int y1, int x2, int y2) {
         super("line");
         this.x1 = x1;
         this.y1 = y1;
@@ -22,7 +22,7 @@ public class Line extends Tag {
 
     @Override
     protected String renderAttributes() {
-        return String.format(Locale.US, "x1=\"%f\" y1=\"%f\" x2=\"%f\" y2=\"%f\"",
+        return String.format(Locale.US, "x1=\"%d\" y1=\"%d\" x2=\"%d\" y2=\"%d\"",
                 x1, y1, x2, y2);
     }
 }

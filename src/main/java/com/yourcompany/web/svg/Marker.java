@@ -4,17 +4,17 @@ import java.util.Locale;
 
 public class Marker extends Tag {
     private final String id;
-    private final double markerWidth;
-    private final double markerHeight;
-    private final double refX;
-    private final double refY;
+    private final int markerWidth;
+    private final int markerHeight;
+    private final int refX;
+    private final int refY;
     private final String orient;
     private final Path path;
 
     /**
      * Set by each class constructor such as super("svg") or super("rect")
      */
-    protected Marker(String id, double markerWidth, double markerHeight, double refX, double refY, String orient, Path path) {
+    protected Marker(String id, int markerWidth, int markerHeight, int refX, int refY, String orient, Path path) {
         super("marker");
         this.id = id;
         this.markerWidth = markerWidth;
@@ -27,7 +27,7 @@ public class Marker extends Tag {
 
     @Override
     protected String renderAttributes() {
-        return String.format(Locale.US, "id=\"%s\" markerWidth=\"%f\" markerHeight=\"%f\" refX=\"%f\" refY=\"%f\" orient=\"%s\">" + path,
+        return String.format(Locale.US, "id=\"%s\" markerWidth=\"%d\" markerHeight=\"%d\" refX=\"%d\" refY=\"%d\" orient=\"%s\">" + path,
                 id, markerWidth, markerHeight, refX, refY, orient);
     }
 }
