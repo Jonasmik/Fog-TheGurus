@@ -116,7 +116,9 @@ public class Svg extends Tag {
     public static Tag carportTopView(int width, int length) {
         int widthmm = width * 10;
         int lengthmm = length * 10;
-        Svg carportTopView = new Svg(lengthmm, widthmm, "0 0 9000 9000");
+        int sizeLength = widthmm + 600;
+        int sizeWidth = widthmm + 600;
+        Svg carportTopView = new Svg(lengthmm, widthmm, "0 0 " + sizeWidth + " " + sizeLength);
 
 
         int xspacing = 500;

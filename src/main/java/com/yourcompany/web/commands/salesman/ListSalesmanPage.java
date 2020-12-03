@@ -44,7 +44,7 @@ public class ListSalesmanPage extends SalesmanCommand {
             request.setAttribute("unusedcarportsinpreorder", unusedCarportsInPreOrder);
         }
 
-        request.setAttribute("carport", Svg.carportTopView(270, 240).toString());
+        request.setAttribute("carport", Svg.carportTopView(800, 550).toString());
 
         return "adminpage";
     }
