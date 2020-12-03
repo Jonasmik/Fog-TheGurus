@@ -72,24 +72,13 @@ public class Svg extends Tag {
         // Tag
 
         Tag roof = new Rect(xspacing, yspacing, lengthmm, widthmm);
-        carportTopView.add(roof);
+        carportTopView.add(roof.withStyle("fill: white; stroke: black; stroke-width: 10;"));
 
         // rem
         Tag topRim = new Rect(xspacing, yspacing+350, lengthmm, 45);
         Tag bottomRim = new Rect(xspacing, yspacing+widthmm-350-45, lengthmm, 45);
-        carportTopView.add(topRim);
-        carportTopView.add(bottomRim);
-
-        // Stolper
-        Tag topLeftPost = new Rect(xspacing+1100-48.5, yspacing+350, 97, 97);
-        Tag topRightPost = new Rect(xspacing+lengthmm-275-48.5, yspacing+350, 97, 97);
-        carportTopView.add(topLeftPost);
-        carportTopView.add(topRightPost);
-
-        Tag bottomLeftPost = new Rect(xspacing+1100-48.5, yspacing+width-350-97, 97, 97);
-        Tag bottomRightPost = new Rect(xspacing+lengthmm-275-48.5, yspacing+width-350-97, 97, 97);
-        carportTopView.add(bottomLeftPost);
-        carportTopView.add(bottomRightPost);
+        carportTopView.add(topRim.withStyle("fill: white; stroke: black; stroke-width: 15;"));
+        carportTopView.add(bottomRim.withStyle("fill: white; stroke: black; stroke-width: 15;"));
 
         // Den minimale længde før at vi er nød til at have 3 stolper per side i carporten
         // Udhæng før første stolpe + max afstanden mellem 2 stolper + udhæng bag til
@@ -98,17 +87,29 @@ public class Svg extends Tag {
         if (lengthmm >= minLengthThirdPost){
             Tag topMiddlePost = new Rect((xspacing+lengthmm-275-48.5)-(xspacing+1100-48.5), yspacing+350, 97, 97);
             Tag bottomMiddlePost = new Rect(xspacing+1100-48.5, yspacing+width-350-97, 97, 97);
-            carportTopView.add(topMiddlePost);
-            carportTopView.add(bottomMiddlePost);
+            carportTopView.add(topMiddlePost.withStyle("fill: white; stroke: black; stroke-width: 15;"));
+            carportTopView.add(bottomMiddlePost.withStyle("fill: white; stroke: black; stroke-width: 15;"));
         }
 
         // Spær
         int x = 0;
         while (x < lengthmm){
             Tag rafter = new Rect( xspacing-22.5+x, yspacing, 45, widthmm);
-            carportTopView.add(rafter);
+            carportTopView.add(rafter.withStyle("fill: white; stroke: black; stroke-width: 15;"));
             x=x+550;
         }
+
+        // Stolper 1100 = udhæng foran, 48.5 = halvdelen af stolpe, 275 = halvdelen af remmen
+        Tag topLeftPost = new Rect(xspacing+1100-48.5, yspacing+350, 97, 97);
+        Tag topRightPost = new Rect(xspacing+lengthmm-275-48.5, yspacing+350, 97, 97);
+        carportTopView.add(topLeftPost.withStyle("fill: white; stroke: black; stroke-width: 15;"));
+        carportTopView.add(topRightPost.withStyle("fill: white; stroke: black; stroke-width: 15;"));
+
+        Tag bottomLeftPost = new Rect(xspacing+1100-48.5, yspacing+widthmm-350-97, 97, 97);
+        Tag bottomRightPost = new Rect(xspacing+lengthmm-275-48.5, yspacing+widthmm-350-97, 97, 97);
+        carportTopView.add(bottomLeftPost.withStyle("fill: white; stroke: black; stroke-width: 15;"));
+        carportTopView.add(bottomRightPost.withStyle("fill: white; stroke: black; stroke-width: 15;"));
+
         // Stern MÅSKE IKKE NØDVENDIG?
         Tag frontUnderStern = new Rect(xspacing,yspacing,25,widthmm);
         Tag backUnderStern = new Rect(xspacing,yspacing+lengthmm-25,25,widthmm);
@@ -124,7 +125,7 @@ public class Svg extends Tag {
 
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("output.svg")) {
-            writer.write(carportTopView(270, 240).toString());
+            writer.write(carportTopView(500, 400).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
