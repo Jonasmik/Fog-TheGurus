@@ -64,6 +64,7 @@
         <div class="row">
             <div class="col">
                 <h1>Velkommen til Fog Carport handel</h1>
+                <p style="font-style: oblique">Dette er ikke en hjemmeside ejet af Fog. Det er lavet som et skole projekt på Cphbusiness</p>
                 <p>Her i carport handlen, vil du have mulighed for at bygge din helt egen carport.
                     <br>
                     Ud fra dine egne mål vil du få en carport udleveret, af vores bedste folk.</p>
