@@ -27,6 +27,7 @@
                      aria-labelledby="v-pills-home-tab">
                     <h3 style="padding-top: 20px">Din profil</h3>
 
+                    <!-- Active salesman preorders START -->
                     <h4 style="padding-top: 20px">Dine forespørgelser</h4>
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -41,8 +42,13 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            <!-- doublecountactive = used to jump to the next letter in alphabetactivepreorder
+                                 countactivepreorder = used to know where in every list we are
+                             -->
                             <c:set var="doublecountactive" value="0" scope="page"/>
-                            <c:set var="alphabetactivepreorder" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"/>
+                            <c:set var="alphabetactivepreorder"
+                                   value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
                             <c:set var="countactivepreorder" value="0" scope="page"/>
                             <c:forEach var="activecustomer" items="${requestScope.activepreordercustomers}">
                                 <form action="Main" method="POST">
@@ -64,7 +70,9 @@
                                             </button>
                                         </td>
                                     </tr>
-                                    <div class="modal fade" id="${alphabetactivepreorder.charAt(doublecountactive)}activepreorders" tabindex="-1"
+                                    <div class="modal fade"
+                                         id="${alphabetactivepreorder.charAt(doublecountactive)}activepreorders"
+                                         tabindex="-1"
                                          aria-labelledby="${alphabetactivepreorder.charAt(doublecountactive)}ModalLabel"
                                          aria-hidden="true">
                                         <div class="modal-dialog">
@@ -106,9 +114,11 @@
                             </tbody>
                         </table>
                     </div>
+                    <!-- Active salesman preorders END -->
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                    <!-- Forespørgelser START -->
+
+                    <!-- Inaktive preorder START -->
                     <h3 style="padding-top: 20px">Forespørgelser</h3>
                     <div class="table-responsive">
                         <table class="table table-bordered">
@@ -123,8 +133,13 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            <!-- doublecount = used to jump to the next letter in alphabet
+                                 count  = used to know where in every list we are
+                             -->
                             <c:set var="doublecount" value="0" scope="page"/>
-                            <c:set var="alphabet" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"/>
+                            <c:set var="alphabet"
+                                   value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
                             <c:set var="count" value="0" scope="page"/>
                             <c:forEach var="customer" items="${requestScope.unusedcustomers}">
                                 <form action="Main" method="POST">
@@ -188,7 +203,7 @@
                             </tbody>
                         </table>
                     </div>
-                    <!-- Forespørgelser END -->
+                    <!-- Inactive preorders END -->
                 </div>
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                     <h3 style="padding-top: 20px;">Materialer</h3>
