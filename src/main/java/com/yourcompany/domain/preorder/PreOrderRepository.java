@@ -8,6 +8,7 @@ import java.util.List;
 public interface PreOrderRepository {
 
     List<PreOrder> findAllUnused() throws NoSuchPreOrderExists;
+    PreOrder findBySalesmanId(int salesmanId) throws NoSuchPreOrderExists;
     PreOrder findByCustomerId(int customerid) throws NoSuchPreOrderExists;
     PreOrder findPreOrderById(int id) throws NoSuchPreOrderExists;
     PreOrder createPreOrder(PreOrderFactory preOrderFactory) throws NoSuchPreOrderExists;

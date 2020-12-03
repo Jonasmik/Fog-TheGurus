@@ -1,12 +1,16 @@
 package com.yourcompany.infrastructure.database;
 
 import com.yourcompany.api.factories.SalesmanFactory;
+import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
 import com.yourcompany.domain.salesman.SalesmanRepository;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class DBSalesmanRepository implements SalesmanRepository {
@@ -71,5 +75,21 @@ public class DBSalesmanRepository implements SalesmanRepository {
         } catch (SQLException e) {
             throw new NoSuchSalesmanExists();
         }
+    }
+
+    @Override
+    public List<Salesman> findAllByUserId(int userId) throws NoSuchSalesmanExists {
+        List<Salesman> salesmen = new ArrayList<>();
+        try (Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement("SELECT * FROM salesmen WHERE userid = ?");
+            s.setInt(1, userId);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                salesmen.add(loadSalesman(rs));
+            }
+        } catch (SQLException e) {
+            throw new NoSuchSalesmanExists();
+        }
+        return salesmen;
     }
 }

@@ -9,6 +9,8 @@ import com.yourcompany.infrastructure.database.DBCarportRepository;
 import com.yourcompany.infrastructure.database.DBSalesmanRepository;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
+import java.util.List;
+
 public class SalesmanFacade {
 
     private static SalesmanFacade instance;
@@ -33,5 +35,9 @@ public class SalesmanFacade {
 
     public Salesman findByUserId(int userId) throws NoSuchSalesmanExists {
         return repo.findByUserId(userId);
+    }
+
+    public List<Salesman> findAllByUserId(int userId) throws NoSuchSalesmanExists {
+        return repo.findAllByUserId(userId);
     }
 }

@@ -26,7 +26,86 @@
                 <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel"
                      aria-labelledby="v-pills-home-tab">
                     <h3 style="padding-top: 20px">Din profil</h3>
-                    <p>Dette er starten på din profil</p>
+
+                    <h4 style="padding-top: 20px">Dine forespørgelser</h4>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Kunde navn</th>
+                                <th scope="col">Kunde e-mail</th>
+                                <th scope="col">Kunde information</th>
+                                <th scope="col">Bemærkning</th>
+                                <th scope="col">Vare</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:set var="doublecountactive" value="0" scope="page"/>
+                            <c:set var="alphabetactivepreorder" value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z"/>
+                            <c:set var="countactivepreorder" value="0" scope="page"/>
+                            <c:forEach var="activecustomer" items="${requestScope.activepreordercustomers}">
+                                <form action="Main" method="POST">
+                                    <input type="hidden" name="target" value="takepreorder">
+                                    <input type="hidden" name="preorderid"
+                                           value="${requestScope.activepreorder.get(countactivepreorder).id}">
+                                    <tr>
+                                        <th scope="row">${requestScope.activepreorder.get(countactivepreorder).id}</th>
+                                        <td>${activecustomer.name}</td>
+                                        <td>${activecustomer.email}</td>
+                                        <td>By: ${activecustomer.city}, Post nr: ${activecustomer.zipcode},
+                                            Addresse: ${activecustomer.adress}</td>
+                                        <td>${activecustomer.additional}</td>
+                                        <td>
+                                            <button type="button" class="btn btn-outline-info"
+                                                    data-toggle="modal"
+                                                    data-target="#${alphabetactivepreorder.charAt(doublecountactive)}activepreorders">
+                                                Carport
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <div class="modal fade" id="${alphabetactivepreorder.charAt(doublecountactive)}activepreorders" tabindex="-1"
+                                         aria-labelledby="${alphabetactivepreorder.charAt(doublecountactive)}ModalLabel"
+                                         aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="activepreorders">Carport
+                                                        nr. ${requestScope.activepreordercarports.get(countactivepreorder).id}</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p>
+                                                        Bredde: ${requestScope.activepreordercarports.get(countactivepreorder).width}</p>
+                                                    <p>
+                                                        Længde: ${requestScope.activepreordercarports.get(countactivepreorder).length}</p>
+                                                    <p>
+                                                        Tagtype/farve: ${requestScope.activepreordercarports.get(countactivepreorder).roof}</p>
+                                                    <p>Tag
+                                                        vinkel: ${requestScope.activepreordercarports.get(countactivepreorder).roofAngle}
+                                                        grader</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="submit" class="btn btn-outline-primary">
+                                                        Aktiver ordre
+                                                    </button>
+                                                    <button type="button" class="btn btn-outline-secondary"
+                                                            data-dismiss="modal">Luk
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <c:set var="doublecountactive" value="${doublecountactive + 2}" scope="page"/>
+                                </form>
+                                <c:set var="countactivepreorder" value="${countactivepreorder + 1}" scope="page"/>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                     <!-- Forespørgelser START -->
