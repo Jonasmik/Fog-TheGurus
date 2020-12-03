@@ -1,5 +1,17 @@
 
-Z
-java:S2441":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ÕğÑÌá.
-f
-java:S1192"FDefine a constant instead of duplicating this literal "index" 3 times.(¦œû×ÿÿÿÿÿ8ÕğÑÌá.
+\
+java:S2441$":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8ÕğÑÌá.
+h
+java:S1192"FDefine a constant instead of duplicating this literal "index" 3 times.(¦œû×ÿÿÿÿÿ8ÕğÑÌá.
+M
+java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8¯™§¯â.
+b
+java:S1128"ERemove this unused import 'com.yourcompany.domain.preorder.PreOrder'.(„…¼ª8¯™§¯â.
+b
+java:S1128"ERemove this unused import 'com.yourcompany.domain.customer.Customer'.(Ó‘Òı8¯™§¯â.
+t
+java:S1128"RRemove this unused import 'com.yourcompany.exceptions.order.NoSuchPreOrderExists'.(¾¼Ä…üÿÿÿÿ8¯™§¯â.
+n
+java:S1128"QRemove this unused import 'com.yourcompany.exceptions.user.NoSuchCustomerExists'.(¯¼û¦8¯™§¯â.
+M
+java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8¯™§¯â.

@@ -60,36 +60,15 @@ public class Svg extends Tag {
         return checkboard;
     }
 
-
-    public static Tag carportTopView(int width, int length) {
-        int widthmm = width*10;
-        int lengthmm = length*10;
-        Svg carportTopView = new Svg(lengthmm, widthmm, "0 0 9000 9000");
-
-        int pillarWidth = 97;
-        int xspacing = 500;
-        int yspacing = 500;
-        double upToFirstPillar = xspacing+1100-(pillarWidth/2);
-        double calculateMiddlePillar = ((xspacing+lengthmm-275-(pillarWidth/2))-(upToFirstPillar))/2+upToFirstPillar;
-
-
-        // Tag
-
-        Tag roof = new Rect(xspacing, yspacing, lengthmm, widthmm);
-        carportTopView.add(roof.withStyle("fill: white; stroke: black; stroke-width: 10;"));
-
+    private static void createRims(Svg carportTopView, int xspacing, int yspacing, int lengthmm, int widthmm) {
         // rem
         Tag topRim = new Rect(xspacing, yspacing+350, lengthmm, 45);
         Tag bottomRim = new Rect(xspacing, yspacing+widthmm-350-45, lengthmm, 45);
         carportTopView.add(topRim.withStyle("fill: white; stroke: black; stroke-width: 10;"));
         carportTopView.add(bottomRim.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+    }
 
-        // Den minimale længde før at vi er nød til at have 3 stolper per side i carporten
-        // Udhæng før første stolpe + max afstanden mellem 2 stolper + udhæng bag til
-        double minLengthThirdPost = 1100+(550*5.5)+275;
-
-
-
+    private static void createRafters(Svg carportTopView, int lengthmm, int xspacing, int yspacing, int widthmm) {
         // Spær
         double calculateAmountOfRafters = lengthmm/(550+45);
         double calculateExtraRaftersSpace = ((lengthmm%(550+45)))/calculateAmountOfRafters;
@@ -102,6 +81,17 @@ public class Svg extends Tag {
             carportTopView.add(rafter.withStyle("fill: white; stroke: black; stroke-width: 10;"));
             x=x+550+calculateExtraRaftersSpace;
         }
+    }
+
+    private static void createPosts(Svg carportTopView, int yspacing, int xspacing, int widthmm, int lengthmm) {
+
+        int pillarWidth = 97;
+
+        // Den minimale længde før at vi er nød til at have 3 stolper per side i carporten
+        // Udhæng før første stolpe + max afstanden mellem 2 stolper + udhæng bag til
+        double minLengthThirdPost = 1100+(550*5.5)+275;
+        double upToFirstPillar = xspacing+1100-(pillarWidth/2);
+        double calculateMiddlePillar = ((xspacing+lengthmm-275-(pillarWidth/2))-(upToFirstPillar))/2+upToFirstPillar;
 
         // Stolper 1100 = udhæng foran, 48.5 = halvdelen af stolpe, 275 = centeret af mellemrummet mellem spær
         Tag topLeftPost = new Rect(upToFirstPillar, yspacing+350, pillarWidth, pillarWidth);
@@ -121,6 +111,32 @@ public class Svg extends Tag {
             carportTopView.add(bottomMiddlePost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
         }
 
+    }
+
+    public static Tag carportTopView(int width, int length) {
+        int widthmm = width*10;
+        int lengthmm = length*10;
+        Svg carportTopView = new Svg(lengthmm, widthmm, "0 0 9000 9000");
+
+
+        int xspacing = 500;
+        int yspacing = 500;
+
+
+
+        // Generate roof
+        Tag roof = new Rect(xspacing, yspacing, lengthmm, widthmm);
+        carportTopView.add(roof.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+
+        //Generate rims
+        createRims(carportTopView, xspacing, yspacing, lengthmm, widthmm);
+
+        //Generate rafters
+        createRafters(carportTopView, lengthmm, xspacing, yspacing, widthmm);
+
+        //Generate Posts
+        createPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
+
         /* Stern MÅSKE IKKE NØDVENDIG?
         Tag frontUnderStern = new Rect(xspacing,yspacing,25,widthmm);
         Tag backUnderStern = new Rect(xspacing,yspacing+lengthmm-25,25,widthmm);
@@ -133,6 +149,8 @@ public class Svg extends Tag {
 
         return carportTopView;
     }
+
+
 
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("output.svg")) {

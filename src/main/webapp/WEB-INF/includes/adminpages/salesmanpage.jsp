@@ -23,7 +23,7 @@
                         <th scope="col">Kunde e-mail</th>
                         <th scope="col">Kunde information</th>
                         <th scope="col">Evt. bemærkning</th>
-                        <th scope="col">Tildel</th>
+                        <th scope="col">Vare</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -69,7 +69,7 @@
                                             <p>Tag vinkel: ${requestScope.unusedcarportsinpreorder.get(count).roofAngle} grader</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="submit" class="btn btn-outline-success">Tag som kunde</button>
+                                            <button type="submit" class="btn btn-outline-primary">Tag som kunde</button>
                                             <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Luk
                                             </button>
                                         </div>

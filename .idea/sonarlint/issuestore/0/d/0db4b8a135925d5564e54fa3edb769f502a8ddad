@@ -1,0 +1,45 @@
+
+b
+java:S2184"BCast one of the operands of this addition operation to a "double".(õÓ«¸úÿÿÿÿ8ÛÍà¬â.
+e
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(²ªĞÇüÿÿÿÿ8ÛÍà¬â.
+]
+java:S2184"BCast one of the operands of this addition operation to a "double".(Ñ“–‚8ÛÍà¬â.
+b
+java:S2184"BCast one of the operands of this addition operation to a "double".(³¸ÜÀşÿÿÿÿ8ÛÍà¬â.
+`
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(¼Ã¢ç8ÛÍà¬â.
+e
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(’æ…€üÿÿÿÿ8ÛÍà¬â.
+b
+java:S2184"BCast one of the operands of this addition operation to a "double".(ñş¾àşÿÿÿÿ8ÛÍà¬â.
+e
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(Íó§ÿÿÿÿÿ8ÛÍà¬â.
+`
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(ÇÉŞö8ÛÍà¬â.
+b
+java:S2184"BCast one of the operands of this addition operation to a "double".(ÊìĞúÿÿÿÿ8ÛÍà¬â.
+e
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(ÊìĞúÿÿÿÿ8ÛÍà¬â.
+b
+java:S2184"BCast one of the operands of this addition operation to a "double".(½»üûùÿÿÿÿ8ÛÍà¬â.
+e
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(½»üûùÿÿÿÿ8ÛÍà¬â.
+e
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(½»üûùÿÿÿÿ8ÛÍà¬â.
+d
+java:S1854"DRemove this useless assignment to local variable "bottomUnderStern".(½»üûùÿÿÿÿ8ÛÍà¬â.
+a
+java:S1854"ARemove this useless assignment to local variable "topUnderStern".(ÊìĞúÿÿÿÿ8ÛÍà¬â.
+]
+java:S1854"BRemove this useless assignment to local variable "backUnderStern".(ÇÉŞö8ÛÍà¬â.
+]
+java:S1854"CRemove this useless assignment to local variable "frontUnderStern".(­Âú[8ÛÍà¬â.
+N
+java:S1481"4Remove this unused "frontUnderStern" local variable.(­Âú[8ÛÍà¬â.
+N
+java:S1481"3Remove this unused "backUnderStern" local variable.(ÇÉŞö8ÛÍà¬â.
+R
+java:S1481"2Remove this unused "topUnderStern" local variable.(ÊìĞúÿÿÿÿ8ÛÍà¬â.
+U
+java:S1481"5Remove this unused "bottomUnderStern" local variable.(½»üûùÿÿÿÿ8ÛÍà¬â.
