@@ -10,6 +10,7 @@ import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.exceptions.user.UserValidationError;
+import com.yourcompany.web.svg.Svg;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -25,6 +26,22 @@ public class ListCustomerPage extends CustomerCommand {
 
         List<Customer> customers = new ArrayList<>();
 
+        String carportWidth = request.getParameter("carportwidth");
+
+        if(carportWidth != null) {
+            String carportLength = request.getParameter("carportlength");
+            int newCarportWidth = 0;
+            int newCarportLength = 0;
+
+            try {
+                newCarportWidth = Integer.parseInt(carportWidth);
+                newCarportLength = Integer.parseInt(carportLength);
+            } catch (NumberFormatException e) {
+                request.setAttribute("error", "Din carport information blev ikke korrekt sat ind");
+                return "errorpage";
+            }
+            request.getSession().setAttribute("carportpreview", Svg.carportTopView(newCarportWidth, newCarportLength));
+        }
         try {
             customers = api.getCustomerFacade().findAllByUserId(user.getId());
         } catch (NoSuchCustomerExists noSuchCustomerExists) {
@@ -43,6 +60,7 @@ public class ListCustomerPage extends CustomerCommand {
                 for (Customer c : customers) {
                     PreOrder preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
 
+                    //if the preorder does not have a salesman assigned to them
                     if(preOrder.getSalesmanId() == 0) {
                         untakenPreOrders.add(preOrder);
                         Carport untakencarport = api.getCarportFacade().findById(preOrder.getCarportId());
@@ -50,6 +68,7 @@ public class ListCustomerPage extends CustomerCommand {
                         Customer customer = api.getCustomerFacade().findById(c.getId());
                         untakenCustomers.add(customer);
                     } else {
+                        //If the preorder does have a salesman assigned to them
                         takenPreOrders.add(preOrder);
                         Carport carport = api.getCarportFacade().findById(preOrder.getCarportId());
                         takenPreOrderCarports.add(carport);

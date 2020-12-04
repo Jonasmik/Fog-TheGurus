@@ -45,7 +45,7 @@ public class CreatePreOrder extends ICommand {
         String shed = request.getParameter("shed");
         String preview = request.getParameter("secarport");
 
-        if(preview.equals("yes")) {
+        if(preview != null) {
             int newLength = 0;
             int newWidth = 0;
             try {

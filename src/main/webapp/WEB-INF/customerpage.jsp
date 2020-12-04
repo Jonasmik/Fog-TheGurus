@@ -18,6 +18,7 @@
 
     <h1>Profil side</h1>
 
+
     <div class="row">
         <div class="col-md-4"
              style="background-color: rgba(173,216,230, 0.2); border-radius: 30px; padding: 15px; height: 380px">
@@ -30,6 +31,13 @@
             <button type="button" class="btn btn-secondary">Rediger password</button>
         </div>
         <div class="col-md-8">
+
+            <c:if test="${sessionScope.carportpreview != null}">
+                <div class="alert alert-info border-secondary">
+                    <h1>Din carport</h1>
+                        ${sessionScope.carportpreview}
+                </div>
+            </c:if>
 
             <!-- Forespørgelser START -->
             <h3 style="padding-top: 20px">Forespørgelser</h3>
@@ -46,7 +54,7 @@
                         <tr>
                             <th scope="col">Id</th>
                             <th scope="col">Evt. besked</th>
-                            <th scope="col">Vare</th>
+                            <th scope="col" style="text-align: center">Vare</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -60,9 +68,11 @@
                         <c:set var="untakenpreordercount" value="0" scope="page"/>
                         <c:forEach var="untakenpreorder" items="${requestScope.untakenpreorders}">
                             <form action="Main" method="POST">
-                                <input type="hidden" name="target" value="showpreordercarport">
-                                <input type="hidden" name="preorderid"
-                                       value="${untakenpreorder.id}">
+                                <input type="hidden" name="target" value="listcustomerpage">
+                                <input type="hidden" name="carportlength"
+                                       value="${requestScope.untakencarports.get(untakenpreordercount).length}">
+                                <input type="hidden" name="carportwidth"
+                                       value="${requestScope.untakencarports.get(untakenpreordercount).width}">
                                 <tr>
                                     <th scope="row">${untakenpreorder.id}</th>
                                     <td>${requestScope.untakencustomers.get(untakenpreordercount).additional}</td>
@@ -82,7 +92,8 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="untakenpreorders">Forespørgelse nr. ${untakenpreorder.id}</h5>
+                                                <h5 class="modal-title" id="untakenpreorders">Forespørgelse
+                                                    nr. ${untakenpreorder.id}</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
@@ -130,7 +141,7 @@
                             <th scope="col">Id</th>
                             <th scope="col">Evt. besked</th>
                             <th scope="col">Salgsmedarbejder</th>
-                            <th scope="col">Vare</th>
+                            <th scope="col" style="text-align: center">Vare</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -144,9 +155,11 @@
                         <c:set var="countactivepreorder" value="0" scope="page"/>
                         <c:forEach var="takenpreorder" items="${requestScope.preorder}">
                             <form action="Main" method="POST">
-                                <input type="hidden" name="target" value="showpreordercarport">
-                                <input type="hidden" name="preorderid"
-                                       value="${takenpreorder.id}">
+                                <input type="hidden" name="target" value="listcustomerpage">
+                                <input type="hidden" name="carportlength"
+                                       value="${requestScope.preordercarports.get(countactivepreorder).length}">
+                                <input type="hidden" name="carportwidth"
+                                       value="${requestScope.preordercarports.get(countactivepreorder).width}">
                                 <tr>
                                     <th scope="row">${takenpreorder.id}</th>
                                     <td>${requestScope.takencustomers.get(countactivepreorder).additional}</td>
@@ -168,7 +181,8 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="activepreorders">Forespørgelse nr. ${takenpreorder.id}</h5>
+                                                <h5 class="modal-title" id="activepreorders">Forespørgelse
+                                                    nr. ${takenpreorder.id}</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
