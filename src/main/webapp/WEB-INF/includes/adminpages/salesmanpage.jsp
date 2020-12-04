@@ -34,9 +34,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Kunde navn</th>
-                                <th scope="col">Kunde e-mail</th>
-                                <th scope="col">Kunde information</th>
+                                <th scope="col">Navn</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Addresse</th>
                                 <th scope="col">Vare</th>
                             </tr>
                             </thead>
@@ -126,9 +126,9 @@
                             <thead>
                             <tr>
                                 <th scope="col">Id</th>
-                                <th scope="col">Kunde navn</th>
-                                <th scope="col">Kunde e-mail</th>
-                                <th scope="col">Kunde information</th>
+                                <th scope="col">Navn</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Addresse</th>
                                 <th scope="col">Vare</th>
                             </tr>
                             </thead>
