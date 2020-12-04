@@ -1,10 +1,15 @@
 package com.yourcompany.web.commands.customer;
 
+import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.preorder.PreOrder;
+import com.yourcompany.domain.salesman.Salesman;
 import com.yourcompany.domain.user.User;
+import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
+import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
+import com.yourcompany.exceptions.user.UserValidationError;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,14 +31,35 @@ public class ListCustomerPage extends CustomerCommand {
             noSuchCustomerExists.printStackTrace();
         }
 
-        List<PreOrder> preOrders = new ArrayList<>();
+        List<PreOrder> takenPreOrders = new ArrayList<>();
+        List<PreOrder> untakenPreOrders = new ArrayList<>();
+        List<Customer> untakenCustomers = new ArrayList<>();
+        List<Customer> takenCustomers = new ArrayList<>();
+        List<Carport> takenPreOrderCarports = new ArrayList<>();
+        List<Carport> untakenPreOrderCarports = new ArrayList<>();
+        List<Salesman> salesmen = new ArrayList<>();
         if (customers != null) {
             try {
                 for (Customer c : customers) {
                     PreOrder preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
-                    preOrders.add(preOrder);
+
+                    if(preOrder.getSalesmanId() == 0) {
+                        untakenPreOrders.add(preOrder);
+                        Carport untakencarport = api.getCarportFacade().findById(preOrder.getCarportId());
+                        untakenPreOrderCarports.add(untakencarport);
+                        Customer customer = api.getCustomerFacade().findById(c.getId());
+                        untakenCustomers.add(customer);
+                    } else {
+                        takenPreOrders.add(preOrder);
+                        Carport carport = api.getCarportFacade().findById(preOrder.getCarportId());
+                        takenPreOrderCarports.add(carport);
+                        Customer takenCustomer = api.getCustomerFacade().findById(c.getId());
+                        takenCustomers.add(takenCustomer);
+                        Salesman salesman = api.getSalesmanFacade().findById(preOrder.getSalesmanId());
+                        salesmen.add(salesman);
+                    }
                 }
-            } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
+            } catch (NoSuchPreOrderExists | NoSuchCarportExists | NoSuchSalesmanExists | NoSuchCustomerExists noSuchPreOrderExists) {
                 request.setAttribute(fail, "Der gik noget galt i generæringen af din bruger");
                 return error;
             }
@@ -41,7 +67,31 @@ public class ListCustomerPage extends CustomerCommand {
             return "customerpage";
         }
 
-        request.setAttribute("preorder", preOrders);
+        List<User> preOrderSalesmanUsers = new ArrayList<>();
+        for(Salesman s : salesmen) {
+            try {
+                User salesmanUser = api.getUserFacade().findUserById(s.getUserId());
+                preOrderSalesmanUsers.add(salesmanUser);
+            } catch (UserValidationError userValidationError) {
+                request.setAttribute(fail, "Kunne ikke generærer salgsmedarbejder");
+                return error;
+            }
+        }
+
+        //Untaken preorder
+        request.setAttribute("untakencustomers", untakenCustomers);
+        request.setAttribute("untakencarports", untakenPreOrderCarports);
+        request.setAttribute("untakenpreorders", untakenPreOrders);
+
+        //taken customers
+        request.setAttribute("takencustomers", takenCustomers);
+        request.setAttribute("preordersalesmen", preOrderSalesmanUsers);
+        request.setAttribute("preordercarports", takenPreOrderCarports);
+        request.setAttribute("preorder", takenPreOrders);
+
+        //All customers
+        request.setAttribute("preordercustomers", customers);
+
         return "customerpage";
     }
 }

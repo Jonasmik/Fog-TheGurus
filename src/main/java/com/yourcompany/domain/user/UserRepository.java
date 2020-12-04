@@ -6,4 +6,5 @@ import com.yourcompany.exceptions.user.UserValidationError;
 public interface UserRepository {
     User authorizeUser(String email) throws UserValidationError;
     User createUser(UserFactory userFactory, byte[] salt, byte[] secret) throws UserValidationError;
+    User findUserById(int id) throws UserValidationError;
 }

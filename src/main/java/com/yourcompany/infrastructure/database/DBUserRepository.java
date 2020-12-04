@@ -83,7 +83,8 @@ public class DBUserRepository implements UserRepository {
         return findUserById(id);
     }
 
-    private User findUserById(int id) throws UserValidationError {
+    @Override
+    public User findUserById(int id) throws UserValidationError {
         try(Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
                     "SELECT * FROM users WHERE id = ?;");

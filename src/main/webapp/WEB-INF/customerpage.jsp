@@ -36,6 +36,87 @@
                 <p>Du har ikke nogle forespørgelser</p>
             </c:if>
 
+            <c:if test="${requestScope.untakenpreorders != null}">
+                <h3 style="padding-top: 20px">Venter på salgsmedarbejder</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Evt. besked</th>
+                            <th scope="col">Vare</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!-- doublecount = used to jump to the next letter in alphabet
+                             count  = used to know where in every list we are
+                         -->
+                        <c:set var="untakenpreordercount" value="0" scope="page"/>
+                        <c:forEach var="untakenpreorder" items="${requestScope.untakenpreorders}">
+                            <form action="Main" method="POST">
+                                <input type="hidden" name="target" value="showpreordercarport">
+                                <input type="hidden" name="preorderid"
+                                       value="${untakenpreorder.id}">
+                                <tr>
+                                    <th scope="row">${untakenpreorder.id}</th>
+                                    <td>${requestScope.untakencustomers.get(untakenpreordercount).additional}</td>
+                                    <td style="width: 20%;">
+                                        <button type="submit" class="btn btn-block btn-outline-info">
+                                            Se carport
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
+                            <c:set var="count" value="${untakenpreordercount + 1}" scope="page"/>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
+
+            <c:if test="${requestScope.preorder != null}">
+                <c:set var="count" value="0" scope="page"/>
+                <h3 style="padding-top: 20px">Aktive forespørgelser</h3>
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Evt. besked</th>
+                            <th scope="col">Salgsmedarbejder</th>
+                            <th scope="col">Vare</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                        <!-- doublecount = used to jump to the next letter in alphabet
+                             count  = used to know where in every list we are
+                         -->
+                        <c:set var="count" value="0" scope="page"/>
+                        <c:forEach var="takenpreorder" items="${requestScope.preorder}">
+                            <form action="Main" method="POST">
+                                <input type="hidden" name="target" value="showpreordercarport">
+                                <input type="hidden" name="preorderid"
+                                       value="${takenpreorder.id}">
+                                <tr>
+                                    <th scope="row">${takenpreorder.id}</th>
+                                    <td>${requestScope.takencustomers.get(count).additional}</td>
+                                    <td>Navn :${requestScope.preordersalesmen.get(count).name} Kontakt
+                                        e-mail: ${requestScope.preordersalesmen.get(count).email}</td>
+                                    <td>
+                                        <button type="submit" class="btn btn-outline-info">
+                                            Se carport
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
+                            <c:set var="count" value="${count + 1}" scope="page"/>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
+            </c:if>
             <!-- Forespørgelser END -->
 
             <!-- Tilbud START -->

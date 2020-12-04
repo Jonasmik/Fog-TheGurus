@@ -55,5 +55,9 @@ public class UserFacade {
         return null;
     }
 
+    public User findUserById(int id) throws UserValidationError {
+        return repo.findUserById(id);
+    }
+
 }
 

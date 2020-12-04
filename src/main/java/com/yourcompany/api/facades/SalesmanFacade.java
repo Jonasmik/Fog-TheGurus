@@ -40,4 +40,8 @@ public class SalesmanFacade {
     public List<Salesman> findAllByUserId(int userId) throws NoSuchSalesmanExists {
         return repo.findAllByUserId(userId);
     }
+
+    public Salesman findById(int id) throws NoSuchSalesmanExists {
+        return repo.findById(id);
+    }
 }
