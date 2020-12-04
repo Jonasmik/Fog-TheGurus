@@ -38,33 +38,7 @@ public class Redirect extends ICommand {
             case "createorder":
                 break;
             case "customerpage":
-
-                List<Customer> customers = new ArrayList<>();
-
-                try {
-                    customers = api.getCustomerFacade().findAllByUserId(user.getId());
-                } catch (NoSuchCustomerExists noSuchCustomerExists) {
-                    noSuchCustomerExists.printStackTrace();
-                }
-
-                List<PreOrder> preOrders = new ArrayList<>();
-                if (customers != null) {
-                    try {
-                        for (Customer c : customers) {
-                            PreOrder preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
-                            preOrders.add(preOrder);
-                        }
-                    } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
-                        request.setAttribute(error, "Der gik noget galt i generæringen af din bruger");
-                        return errorpage;
-                    }
-                } else {
-                    return "customerpage";
-                }
-
-                request.setAttribute("preorder", preOrders);
-
-                break;
+                return "redirect:listcustomerpage";
             case "adminpage":
 
                 if (user == null) {

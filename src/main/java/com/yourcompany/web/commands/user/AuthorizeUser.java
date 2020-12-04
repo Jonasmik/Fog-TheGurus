@@ -46,11 +46,7 @@ public class AuthorizeUser extends ICommand {
                 session.setAttribute("afdelingsleder", user.getRole());
                 return adminpage;
             default:
-                session.setAttribute("customer", user.getRole());
-                break;
+                return "redirect:listcustomerpage";
         }
-
-
-        return "index";
     }
 }

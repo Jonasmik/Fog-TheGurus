@@ -6,6 +6,7 @@ import com.yourcompany.api.*;
 import com.yourcompany.api.facades.*;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.web.commands.*;
+import com.yourcompany.web.commands.customer.ListCustomerPage;
 import com.yourcompany.web.commands.salesman.ListSalesmanPage;
 import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
 import com.yourcompany.web.commands.user.AuthorizeUser;
@@ -40,6 +41,7 @@ public abstract class ICommand {
         commands.put("logoutuser", new LogoutUser());
         commands.put("takepreorder", new SalesmanTakePreOrder());
         commands.put("listsalesmanpage", new ListSalesmanPage());
+        commands.put("listcustomerpage", new ListCustomerPage());
     }
 
     static ICommand from(HttpServletRequest request) {
