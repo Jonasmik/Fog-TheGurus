@@ -9,12 +9,11 @@ public class Marker extends Tag {
     private final int refX;
     private final int refY;
     private final String orient;
-    private final Path path;
 
     /**
      * Set by each class constructor such as super("svg") or super("rect")
      */
-    protected Marker(String id, int markerWidth, int markerHeight, int refX, int refY, String orient, Path path) {
+    protected Marker(String id, int markerWidth, int markerHeight, int refX, int refY, String orient) {
         super("marker");
         this.id = id;
         this.markerWidth = markerWidth;
@@ -22,12 +21,16 @@ public class Marker extends Tag {
         this.refX = refX;
         this.refY = refY;
         this.orient = orient;
-        this.path = path;
     }
 
     @Override
     protected String renderAttributes() {
-        return String.format(Locale.US, "id=\"%s\" markerWidth=\"%d\" markerHeight=\"%d\" refX=\"%d\" refY=\"%d\" orient=\"%s\">" + path,
+        return String.format(Locale.US, "id=\"%s\" markerWidth=\"%d\" markerHeight=\"%d\" refX=\"%d\" refY=\"%d\" orient=\"%s\"",
                 id, markerWidth, markerHeight, refX, refY, orient);
     }
+
+    // @Override
+    // protected String renderContent() {
+    //     return path.toString();
+    // }
 }

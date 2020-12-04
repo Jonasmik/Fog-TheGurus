@@ -1,23 +1,23 @@
 
-Z
-java:S2441":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ðá.
-Z
-java:S2441":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ðá.
-D
-java:S2629"$Invoke method(s) only conditionally.(ˆØß’ûÿÿÿÿ8ËÌ²ðá.
-J
-java:S5411"*Use the primitive boolean expression here.(‹Ÿà†ýÿÿÿÿ8«Š„ðá.
-E
-java:S5411"*Use the primitive boolean expression here.(²ÿ‡Ý8«Š„ðá.
-ƒ
-java:S1192"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ðýº›øÿÿÿÿ8«Š„ðá.
-r
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 52 to the 15 allowed.(‚çÕöúÿÿÿÿ8«Š„ðá.
-i
-java:S1192"IDefine a constant instead of duplicating this literal "salesman" 3 times.(ïµÏºþÿÿÿÿ8«Š„ðá.
-D
-java:S2629"$Invoke method(s) only conditionally.(ÑÐóÓúÿÿÿÿ8¤äÀðá.
-o
-java:S1192"ODefine a constant instead of duplicating this literal "afdelingsleder" 4 times.(¾†°æýÿÿÿÿ8«Š„ðá.
+\
+java:S2441U":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ðá.
+H
+java:S5411ü"*Use the primitive boolean expression here.(²ÿ‡Ý8«Š„ðá.
+\
+java:S2441p":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ðá.
+t
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 52 to the 15 allowed.(‚çÕöúÿÿÿÿ8«Š„ðá.
+M
+java:S5411È"*Use the primitive boolean expression here.(‹Ÿà†ýÿÿÿÿ8«Š„ðá.
+G
+java:S2629‡"$Invoke method(s) only conditionally.(ÑÐóÓúÿÿÿÿ8¤äÀðá.
+s
+java:S1192G"QDefine a constant instead of duplicating this literal "lagermedarbejder" 4 times.(±ªíºùÿÿÿÿ8«Š„ðá.
 q
-java:S1192"QDefine a constant instead of duplicating this literal "lagermedarbejder" 4 times.(±ªíºùÿÿÿÿ8«Š„ðá.
+java:S1192M"ODefine a constant instead of duplicating this literal "afdelingsleder" 4 times.(¾†°æýÿÿÿÿ8«Š„ðá.
+k
+java:S1192K"IDefine a constant instead of duplicating this literal "salesman" 3 times.(ïµÏºþÿÿÿÿ8«Š„ðá.
+G
+java:S2629µ"$Invoke method(s) only conditionally.(ˆØß’ûÿÿÿÿ8ËÌ²ðá.
+†
+java:S1192ë"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ðýº›øÿÿÿÿ8«Š„ðá.

@@ -25,7 +25,8 @@ public class Svg extends Tag {
     public String renderAttributes() {
         return String.format(
                 "xmlns=\"http://www.w3.org/2000/svg\""
-                        + " height=\"%d\" width=\"%d\" viewBox=\"%s\"",
+                        + " height=\"%d\" width=\"%d\" viewBox=\"%s\""
+                        + " preserveAspectRatio=\"xMidYMid meet\"",
                 height,
                 width,
                 viewBox
@@ -116,12 +117,12 @@ public class Svg extends Tag {
     public static Tag carportTopView(int width, int length) {
         int widthmm = width * 10;
         int lengthmm = length * 10;
-        int sizeLength = widthmm + 600;
-        int sizeWidth = widthmm + 600;
-        Svg carportTopView = new Svg(lengthmm, widthmm, "0 0 " + sizeWidth + " " + sizeLength);
+        int sizeLength = lengthmm + 1200;
+        int sizeWidth = widthmm + 1200;
+        Svg carportTopView = new Svg(500, 500, "0 0 " + sizeLength + " " + sizeWidth);
 
 
-        int xspacing = 500;
+        int xspacing = 1000;
         int yspacing = 500;
 
 
@@ -138,18 +139,45 @@ public class Svg extends Tag {
         //Generate Posts
         createPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
 
-        Tag markerTest = new Marker("beginArrow", 12, 12, 0, 6, "auto", new Path("M0,6 L12,0 L12,12 L0,6"));
+        Tag markerTest = new Marker("beginArrow", 12, 12, 0, 6, "auto");
+        markerTest.add(new Path("M0,6 L12,0 L12,12 L0,6"));
         carportTopView.add(markerTest);
 
-        Tag markerTest2 = new Marker("endArrow", 12, 12, 12, 6, "auto", new Path("M0,0 L12,6 L0,12 L0,0"));
+        Tag markerTest2 = new Marker("endArrow", 12, 12, 12, 6, "auto");
+        markerTest2.add(new Path("M0,0 L12,6 L0,12 L0,0"));
         carportTopView.add(markerTest2);
 
+        //Bottom arrow
         Tag bottomLengthMeasure = new Line(xspacing, yspacing+widthmm+400, xspacing+lengthmm, yspacing+widthmm+400);
-        Tag lineTest2 = new Line(xspacing, yspacing+widthmm+300, xspacing, yspacing+widthmm+500);
-        Tag lineTest3 = new Line(xspacing+lengthmm, yspacing+widthmm+300, xspacing+lengthmm, yspacing+widthmm+500);
+        Tag lineStopLeftBottom = new Line(xspacing, yspacing+widthmm+100, xspacing, yspacing+widthmm+500);
+        Tag lineStopRightBottom = new Line(xspacing+lengthmm, yspacing+widthmm+100, xspacing+lengthmm, yspacing+widthmm+500);
+        Tag bottomLengthText = new Text(xspacing+(lengthmm/2),yspacing+widthmm+300, "black", 200, "rotate(0 0,0)",+length + " cm");
         carportTopView.add(bottomLengthMeasure.withStyle("stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
-        carportTopView.add(lineTest2.withStyle("stroke: black; stroke-width: 15;"));
-        carportTopView.add(lineTest3.withStyle("stroke: black; stroke-width: 15;"));
+        carportTopView.add(lineStopLeftBottom.withStyle("stroke: black; stroke-width: 15;"));
+        carportTopView.add(lineStopRightBottom.withStyle("stroke: black; stroke-width: 15;"));
+        carportTopView.add(bottomLengthText.withStyle("stroke-width: 15"));
+
+        //Left outer arrow
+        int halfWidth = yspacing+(widthmm/2);
+        Tag leftOuterLengthMeasure = new Line(200, yspacing, 200, yspacing+widthmm);
+        Tag lineStopTopOuterLeft = new Line(100, yspacing, 900, yspacing);
+        Tag lineStopBottomOuterLeft = new Line(100, yspacing+widthmm, 900, yspacing+widthmm);
+        Tag leftLengthOuterText = new Text(450,yspacing+(widthmm/2), "black", 200, "rotate(-90 450, " + halfWidth + ")",+width + " cm");
+        carportTopView.add(leftOuterLengthMeasure.withStyle("stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
+        carportTopView.add(lineStopTopOuterLeft.withStyle("stroke: black; stroke-width: 15"));
+        carportTopView.add(lineStopBottomOuterLeft.withStyle("stroke: black; stroke-width: 15"));
+        carportTopView.add(leftLengthOuterText.withStyle("stroke-width: 15"));
+
+        //Left Inner arrow
+        Tag leftInnerLengthMeasure = new Line(600, yspacing+350, 600, yspacing+widthmm-350);
+        Tag lineStopTopInnerLeft = new Line(500, yspacing+350, 900, yspacing+350);
+        Tag lineStopBottomInnerLeft = new Line(500, yspacing+widthmm-350, 900, yspacing+widthmm-350);
+        Tag leftLengthInnerText = new Text(850,yspacing+(widthmm/2), "black", 200, "rotate(-90 850, " + halfWidth + ")",+width-70.0 + " cm");
+        carportTopView.add(leftInnerLengthMeasure.withStyle("stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
+        carportTopView.add(lineStopTopInnerLeft.withStyle("stroke: black; stroke-width: 15"));
+        carportTopView.add(lineStopBottomInnerLeft.withStyle("stroke: black; stroke-width: 15"));
+        carportTopView.add(leftLengthInnerText.withStyle("stroke-width: 15"));
+
 
         /* Stern MÅSKE IKKE NØDVENDIG?
         Tag frontUnderStern = new Rect(xspacing,yspacing,25,widthmm);
@@ -167,7 +195,7 @@ public class Svg extends Tag {
 
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("output.svg")) {
-            writer.write(carportTopView(800, 550).toString());
+            writer.write(carportTopView(750, 780).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

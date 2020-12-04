@@ -55,12 +55,22 @@ public abstract class Tag {
         }
         builder.append(" ");
         builder.append(renderAttributes());
-        if(!name.equals("marker")){
-            builder.append(">");
+        builder.append(">");
+        // if(!name.equals("marker") && !name.equals("text")){
+        //     builder.append(">");
+        // }
+        String content = renderContent();
+        if (content != null){
+            builder.append(content);
+        } else {
+            renderSubTags(builder);
         }
-        renderSubTags(builder);
         builder.append(String.format("</%s>", name));
 
+    }
+
+    protected String renderContent() {
+        return null;
     }
 
     protected abstract String renderAttributes();

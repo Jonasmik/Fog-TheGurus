@@ -152,3 +152,16 @@ x
 Hsrc/main/java/com/yourcompany/web/commands/salesman/SalesmanCommand.java,7/6/76cce07ffbb1b6aceae76665ae1bd8190fc20742
 }
 Msrc/main/java/com/yourcompany/web/commands/salesman/SalesmanTakePreOrder.java,4/b/4bcb65b01d0db49389bb0b16a1a42da0824130a2
+_
+/src/main/java/com/yourcompany/web/svg/Path.java,f/6/f64b6d06385bafded383cd98d3cb4a2161963262
+a
+1src/main/java/com/yourcompany/web/svg/Marker.java,1/8/1885e911931af9bfc9dec63af49fa3b22d8433f3
+_
+/src/main/java/com/yourcompany/web/svg/Line.java,7/a/7a7ed742c240ee4474c5eb80f706978cd02944ae
+:
+
+output.svg,2/4/24cd89eecf8d23ee57aef4b21fa00c387da7f9f7
+u
+Esrc/main/java/com/yourcompany/domain/salesman/SalesmanRepository.java,6/e/6e26a7df182c119ebace427ce78a0f0f6e67af0e
+
+Osrc/main/java/com/yourcompany/infrastructure/database/DBSalesmanRepository.java,3/1/31a3a5674dfabe8519830e9de03ed539bcf8231d
