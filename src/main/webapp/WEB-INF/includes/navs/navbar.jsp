@@ -25,10 +25,6 @@
                             <a class="nav-link my-navlinks"
                                href="Main?target=redirect&destination=createorder">Bestil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link my-navlinks" href="#" onclick="showUserMenu()">Se kunde
-                                valgmuligheder</a>
-                        </li>
                     </c:when>
 
                     <c:when test="${sessionScope.user.role.equals('salesman')}">

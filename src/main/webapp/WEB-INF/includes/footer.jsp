@@ -170,6 +170,7 @@
                                                     <hr>
                                                     <p>Vi bruger sessions til at: <br><br>
                                                         1. Vide hvilken bruger der er logget ind.
+                                                        2. Gemme dine valgte carport længder.
                                                     </p>
                                                 </div>
                                             </div>
