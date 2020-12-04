@@ -23,8 +23,6 @@
 
     </c:choose>
 
-    ${requestScope.carport}
-
 </main>
 
 <!-- Include footer -->

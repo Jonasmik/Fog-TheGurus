@@ -37,7 +37,6 @@
                                 <th scope="col">Kunde navn</th>
                                 <th scope="col">Kunde e-mail</th>
                                 <th scope="col">Kunde information</th>
-                                <th scope="col">Bemærkning</th>
                                 <th scope="col">Vare</th>
                             </tr>
                             </thead>
@@ -61,7 +60,6 @@
                                         <td>${activecustomer.email}</td>
                                         <td>By: ${activecustomer.city}, Post nr: ${activecustomer.zipcode},
                                             Addresse: ${activecustomer.adress}</td>
-                                        <td>${activecustomer.additional}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-info"
                                                     data-toggle="modal"
@@ -95,6 +93,9 @@
                                                     <p>Tag
                                                         vinkel: ${requestScope.activepreordercarports.get(countactivepreorder).roofAngle}
                                                         grader</p>
+                                                    <c:if test="${!activecustomer.additional.equals('')}">
+                                                        <p>Evt. bemærkning: ${activecustomer.additional}</p>
+                                                    </c:if>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-outline-primary">
@@ -128,7 +129,6 @@
                                 <th scope="col">Kunde navn</th>
                                 <th scope="col">Kunde e-mail</th>
                                 <th scope="col">Kunde information</th>
-                                <th scope="col">Bemærkning</th>
                                 <th scope="col">Vare</th>
                             </tr>
                             </thead>
@@ -152,7 +152,6 @@
                                         <td>${customer.email}</td>
                                         <td>By: ${customer.city}, Post nr: ${customer.zipcode},
                                             Addresse: ${customer.adress}</td>
-                                        <td>${customer.additional}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-info"
                                                     data-toggle="modal"
@@ -184,6 +183,9 @@
                                                     <p>Tag
                                                         vinkel: ${requestScope.unusedcarportsinpreorder.get(count).roofAngle}
                                                         grader</p>
+                                                    <c:if test="${!customer.additional.equals('')}">
+                                                        <p>Evt. bemærkning: ${customer.additional}</p>
+                                                    </c:if>
                                                 </div>
                                                 <div class="modal-footer">
                                                     <button type="submit" class="btn btn-outline-primary">Tag som
