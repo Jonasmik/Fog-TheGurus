@@ -4,6 +4,8 @@
 <div class="container" style="padding: 1rem">
     <div class="row">
         <div class="col">
+
+            <!-- Popups on request -->
             <c:if test="${requestScope.preorderfail != null}">
                 <div class="alert alert-danger border-danger">
                     <h1>Fejl</h1>
@@ -48,7 +50,9 @@
                                 <c:if test="${sessionScope.carportwidth != null}">
                                     <option selected>${sessionScope.carportwidth}</option>
                                 </c:if>
-                                <option>Vælg bredde</option>
+                                <c:if test="${sessionScope.carportwidth == null}">
+                                    <option>Vælg bredde</option>
+                                </c:if>
                                 <option>240</option>
                                 <option>750</option>
                                 <option>4</option>
@@ -62,7 +66,9 @@
                                 <c:if test="${sessionScope.carportlength != null}">
                                     <option selected>${sessionScope.carportlength}</option>
                                 </c:if>
-                                <option>Vælg Længde</option>
+                                <c:if test="${sessionScope.carportlength == null}">
+                                    <option>Vælg Længde</option>
+                                </c:if>
                                 <option>240</option>
                                 <option>780</option>
                                 <option>4</option>
@@ -73,10 +79,12 @@
                         <div class="form-group">
                             <label for="carportTag">Carport Tag</label>
                             <select class="form-control" id="carportTag" name="roof">
-                                <c:if test="${sessionScope.carportroof != null}">
+                                <c:if test="${sessionScope.carportroof != null && !sessionScope.carportroof.equals('Plasttrapezplader')}">
                                     <option selected>${sessionScope.carportroof}</option>
                                 </c:if>
-                                <option>Vælg tagtype/farve</option>
+                                <c:if test="${sessionScope.carportroof == null}">
+                                    <option>Vælg tagtype/farve</option>
+                                </c:if>
                                 <option>Betontagsten - Sort</option>
                                 <option>Eternittag B6 - Grå</option>
                                 <option>Eternittag B7 - Rødbrun</option>
@@ -89,7 +97,9 @@
                                 <c:if test="${sessionScope.carportangle != null}">
                                     <option selected>${sessionScope.carportangle}</option>
                                 </c:if>
-                                <option>Vælg taghældning</option>
+                                <c:if test="${sessionScope.carportangle == null}">
+                                    <option>Vælg taghældning</option>
+                                </c:if>
                                 <option>15</option>
                                 <option>20</option>
                                 <option>25</option>
@@ -114,7 +124,9 @@
                                     <c:if test="${sessionScope.shedwidth != null}">
                                         <option selected>${sessionScope.shedwidth}</option>
                                     </c:if>
-                                    <option>Vælg bredde</option>
+                                    <c:if test="${sessionScope.shedwidth == null}">
+                                        <option>Vælg bredde</option>
+                                    </c:if>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
@@ -126,7 +138,9 @@
                                     <c:if test="${sessionScope.shedlength != null}">
                                         <option selected>${sessionScope.shedlength}</option>
                                     </c:if>
-                                    <option>Vælg længde</option>
+                                    <c:if test="${sessionScope.shedlength == null}">
+                                        <option>Vælg længde</option>
+                                    </c:if>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
@@ -286,7 +300,9 @@
                                 <c:if test="${sessionScope.carportwidth != null}">
                                     <option selected>${sessionScope.carportwidth}</option>
                                 </c:if>
-                                <option>Vælg bredde</option>
+                                <c:if test="${sessionScope.carportwidth == null}">
+                                    <option>Vælg Længde</option>
+                                </c:if>
                                 <option>240</option>
                                 <option>750</option>
                                 <option>4</option>
@@ -300,7 +316,9 @@
                                 <c:if test="${sessionScope.carportlength != null}">
                                     <option selected>${sessionScope.carportlength}</option>
                                 </c:if>
-                                <option>Vælg Længde</option>
+                                <c:if test="${sessionScope.carportlength == null}">
+                                    <option>Vælg Længde</option>
+                                </c:if>
                                 <option>240</option>
                                 <option>780</option>
                                 <option>4</option>
@@ -311,10 +329,12 @@
                         <div class="form-group">
                             <label for="flatcarportTag">Carport Tag</label>
                             <select class="form-control" id="flatcarportTag" name="roof">
-                                <c:if test="${sessionScope.carportwidth != null}">
+                                <c:if test="${sessionScope.carportroof != null && !sessionScope.carportroof.contains('-')}">
                                     <option selected>${sessionScope.carportroof}</option>
                                 </c:if>
-                                <option>Vælg tagtype/farve</option>
+                                <c:if test="${sessionScope.carportroof == null}">
+                                    <option>Vælg tagtype/farve</option>
+                                </c:if>
                                 <option>Plasttrapezplader</option>
                             </select>
                         </div>
@@ -337,7 +357,9 @@
                                     <c:if test="${sessionScope.shedwidth != null}">
                                         <option selected>${sessionScope.shedwidth}</option>
                                     </c:if>
-                                    <option>Vælg bredde</option>
+                                    <c:if test="${sessionScope.shedwidth == null}">
+                                        <option>Vælg bredde</option>
+                                    </c:if>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
@@ -349,7 +371,9 @@
                                     <c:if test="${sessionScope.shedlength != null}">
                                         <option selected>${sessionScope.shedlength}</option>
                                     </c:if>
-                                    <option>Vælg længde</option>
+                                    <c:if test="${sessionScope.shedlength == null}">
+                                        <option>Vælg længde</option>
+                                    </c:if>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
