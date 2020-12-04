@@ -19,7 +19,8 @@
     <h1>Profil side</h1>
 
     <div class="row">
-        <div class="col-md-4" style="background-color: rgba(173,216,230, 0.2); border-radius: 30px; padding: 15px">
+        <div class="col-md-4"
+             style="background-color: rgba(173,216,230, 0.2); border-radius: 30px; padding: 15px; height: 380px">
             <h3>Information</h3>
             <p>Navn: ${sessionScope.user.name}</p>
             <p>Email: ${sessionScope.user.email}</p>
@@ -36,6 +37,7 @@
                 <p>Du har ikke nogle forespørgelser</p>
             </c:if>
 
+            <!-- Untaken preorders START -->
             <c:if test="${requestScope.untakenpreorders != null}">
                 <h3 style="padding-top: 20px">Venter på salgsmedarbejder</h3>
                 <div class="table-responsive">
@@ -52,6 +54,9 @@
                         <!-- doublecount = used to jump to the next letter in alphabet
                              count  = used to know where in every list we are
                          -->
+                        <c:set var="doublecountuntaken" value="0" scope="page"/>
+                        <c:set var="alphabetuntakenpreorder"
+                               value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
                         <c:set var="untakenpreordercount" value="0" scope="page"/>
                         <c:forEach var="untakenpreorder" items="${requestScope.untakenpreorders}">
                             <form action="Main" method="POST">
@@ -62,21 +67,61 @@
                                     <th scope="row">${untakenpreorder.id}</th>
                                     <td>${requestScope.untakencustomers.get(untakenpreordercount).additional}</td>
                                     <td style="width: 20%;">
-                                        <button type="submit" class="btn btn-block btn-outline-info">
+                                        <button type="button" class="btn btn-block btn-outline-info"
+                                                data-toggle="modal"
+                                                data-target="#${alphabetuntakenpreorder.charAt(doublecountuntaken)}untakenpreorders">
                                             Se carport
                                         </button>
                                     </td>
                                 </tr>
+                                <div class="modal fade"
+                                     id="${alphabetuntakenpreorder.charAt(doublecountuntaken)}untakenpreorders"
+                                     tabindex="-1"
+                                     aria-labelledby="${alphabetuntakenpreorder.charAt(doublecountuntaken)}ModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="untakenpreorders">Forespørgelse nr. ${untakenpreorder.id}</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    Bredde: ${requestScope.untakencarports.get(untakenpreordercount).width}</p>
+                                                <p>
+                                                    Længde: ${requestScope.untakencarports.get(untakenpreordercount).length}</p>
+                                                <p>
+                                                    Tagtype/farve: ${requestScope.untakencarports.get(untakenpreordercount).roof}</p>
+                                                <p>Tag
+                                                    vinkel: ${requestScope.untakencarports.get(untakenpreordercount).roofAngle}
+                                                    grader</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    Se tegning
+                                                </button>
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                        data-dismiss="modal">Luk
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <c:set var="doublecountuntaken" value="${doublecountuntaken + 2}" scope="page"/>
                             </form>
-                            <c:set var="count" value="${untakenpreordercount + 1}" scope="page"/>
+                            <c:set var="untakenpreordercount" value="${untakenpreordercount + 1}" scope="page"/>
                         </c:forEach>
                         </tbody>
                     </table>
                 </div>
             </c:if>
+            <!-- Untaken preorders END -->
 
+            <!-- Taken preorders START -->
             <c:if test="${requestScope.preorder != null}">
-                <c:set var="count" value="0" scope="page"/>
                 <h3 style="padding-top: 20px">Aktive forespørgelser</h3>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -93,7 +138,10 @@
                         <!-- doublecount = used to jump to the next letter in alphabet
                              count  = used to know where in every list we are
                          -->
-                        <c:set var="count" value="0" scope="page"/>
+                        <c:set var="doublecountactive" value="0" scope="page"/>
+                        <c:set var="alphabetactivepreorder"
+                               value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
+                        <c:set var="countactivepreorder" value="0" scope="page"/>
                         <c:forEach var="takenpreorder" items="${requestScope.preorder}">
                             <form action="Main" method="POST">
                                 <input type="hidden" name="target" value="showpreordercarport">
@@ -101,22 +149,62 @@
                                        value="${takenpreorder.id}">
                                 <tr>
                                     <th scope="row">${takenpreorder.id}</th>
-                                    <td>${requestScope.takencustomers.get(count).additional}</td>
-                                    <td>Navn :${requestScope.preordersalesmen.get(count).name} Kontakt
-                                        e-mail: ${requestScope.preordersalesmen.get(count).email}</td>
-                                    <td>
-                                        <button type="submit" class="btn btn-outline-info">
+                                    <td>${requestScope.takencustomers.get(countactivepreorder).additional}</td>
+                                    <td>Navn :${requestScope.preordersalesmen.get(countactivepreorder).name}, Kontakt
+                                        e-mail: ${requestScope.preordersalesmen.get(countactivepreorder).email}</td>
+                                    <td style="width: 20%">
+                                        <button type="button" class="btn btn-block btn-outline-info"
+                                                data-toggle="modal"
+                                                data-target="#${alphabetactivepreorder.charAt(doublecountactive)}activepreorders">
                                             Se carport
                                         </button>
                                     </td>
                                 </tr>
+                                <div class="modal fade"
+                                     id="${alphabetactivepreorder.charAt(doublecountactive)}activepreorders"
+                                     tabindex="-1"
+                                     aria-labelledby="${alphabetactivepreorder.charAt(doublecountactive)}ModalLabel"
+                                     aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="activepreorders">Forespørgelse nr. ${takenpreorder.id}</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>
+                                                    Bredde: ${requestScope.preordercarports.get(countactivepreorder).width}</p>
+                                                <p>
+                                                    Længde: ${requestScope.preordercarports.get(countactivepreorder).length}</p>
+                                                <p>
+                                                    Tagtype/farve: ${requestScope.preordercarports.get(countactivepreorder).roof}</p>
+                                                <p>Tag
+                                                    vinkel: ${requestScope.preordercarports.get(countactivepreorder).roofAngle}
+                                                    grader</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    Se tegning
+                                                </button>
+                                                <button type="button" class="btn btn-outline-secondary"
+                                                        data-dismiss="modal">Luk
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </form>
-                            <c:set var="count" value="${count + 1}" scope="page"/>
+                            <c:set var="countactivepreorder" value="${countactivepreorder + 1}" scope="page"/>
+                            <c:set var="doublecountactive" value="${doublecountactive + 2}" scope="page"/>
                         </c:forEach>
                         </tbody>
                     </table>
                 </div>
             </c:if>
+            <!-- Taken preorders END -->
             <!-- Forespørgelser END -->
 
             <!-- Tilbud START -->
