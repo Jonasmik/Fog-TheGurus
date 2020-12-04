@@ -14,6 +14,7 @@ import com.yourcompany.exceptions.user.CustomerValidation;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.web.ICommand;
+import com.yourcompany.web.svg.Svg;
 import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -30,14 +31,52 @@ public class CreatePreOrder extends ICommand {
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
 
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
 
         //Used as shortcuts for attributes and return values.
         String fail = "preorderfail";
         String creationpage = "createorder";
 
+        //Carport info
+        String length = request.getParameter("length");
+        String width = request.getParameter("width");
+        String roof = request.getParameter("roof");
+        String shed = request.getParameter("shed");
+        String preview = request.getParameter("secarport");
 
-        HttpSession session = request.getSession();
-        User user = (User) session.getAttribute("user");
+        if(preview.equals("yes")) {
+            int newLength = 0;
+            int newWidth = 0;
+            try {
+                newLength = Integer.parseInt(length);
+                newWidth = Integer.parseInt(width);
+            } catch (NumberFormatException e) {
+                request.setAttribute(fail, "Du har ikke tilføjet nok til at generærer din carport");
+                return creationpage;
+            }
+
+            session.setAttribute("carportwidth", width);
+            session.setAttribute("carportlength", length);
+            session.setAttribute("carportroof", roof);
+            String angle;
+            boolean wantsAngledRoof = request.getParameter("angledroof") != null;
+            if (wantsAngledRoof) {
+                angle = request.getParameter("roofangle");
+                session.setAttribute("carportangle", angle);
+            }
+            if(shed != null) {
+                String shedwidth = request.getParameter("shedwidth");
+                String shedlength = request.getParameter("shedlength");
+                session.setAttribute("shedwidth", shedwidth);
+                session.setAttribute("shedlength", shedlength);
+            }
+            request.setAttribute("carportpreview", Svg.carportTopView(newWidth, newLength));
+            return creationpage;
+        }
+
+
+
 
         //Create or login user if it doesnt exist
         if (user == null) {
@@ -134,11 +173,6 @@ public class CreatePreOrder extends ICommand {
         }
 
 
-        //Carport info
-        String length = request.getParameter("length");
-        String width = request.getParameter("width");
-        String roof = request.getParameter("roof");
-        String shed = request.getParameter("shed");
 
         //Customerinfo
         String additional = request.getParameter("additionals");

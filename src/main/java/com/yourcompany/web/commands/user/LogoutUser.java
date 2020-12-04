@@ -15,7 +15,6 @@ public class LogoutUser extends ICommand {
 
         session.invalidate();
 
-        request.setAttribute("thisistest", Svg.chessboard());
         return "index";
     }
 }

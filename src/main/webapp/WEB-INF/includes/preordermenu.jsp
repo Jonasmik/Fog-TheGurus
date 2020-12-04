@@ -16,6 +16,12 @@
                     <p>${requestScope.preordersucces}</p>
                 </div>
             </c:if>
+            <c:if test="${requestScope.carportpreview != null}">
+                <div class="alert alert-info border-secondary">
+                    <h1>Carport forsmag</h1>
+                        ${requestScope.carportpreview}
+                </div>
+            </c:if>
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" id="myTab" role="tablist">
                 <li class="nav-item" role="presentation">
@@ -39,9 +45,12 @@
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                             <label for="carportWidth">Carport bredde</label>
                             <select class="form-control" id="carportWidth" name="width">
+                                <c:if test="${sessionScope.carportwidth != null}">
+                                    <option selected>${sessionScope.carportwidth}</option>
+                                </c:if>
                                 <option>Vælg bredde</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option>240</option>
+                                <option>750</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select>
@@ -50,9 +59,12 @@
                         <div class="form-group">
                             <label for="carportLength">Carport Længde</label>
                             <select class="form-control" id="carportLength" name="length">
+                                <c:if test="${sessionScope.carportlength != null}">
+                                    <option selected>${sessionScope.carportlength}</option>
+                                </c:if>
                                 <option>Vælg Længde</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option>240</option>
+                                <option>780</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select>
@@ -61,7 +73,10 @@
                         <div class="form-group">
                             <label for="carportTag">Carport Tag</label>
                             <select class="form-control" id="carportTag" name="roof">
-                                <option selected>Vælg tagtype/farve</option>
+                                <c:if test="${sessionScope.carportroof != null}">
+                                    <option selected>${sessionScope.carportroof}</option>
+                                </c:if>
+                                <option>Vælg tagtype/farve</option>
                                 <option>Betontagsten - Sort</option>
                                 <option>Eternittag B6 - Grå</option>
                                 <option>Eternittag B7 - Rødbrun</option>
@@ -71,7 +86,10 @@
                         <div class="form-group">
                             <label for="tagHældning">Taghældning</label>
                             <select class="form-control" id="tagHældning" name="roofangle">
-                                <option selected>Vælg taghældning</option>
+                                <c:if test="${sessionScope.carportangle != null}">
+                                    <option selected>${sessionScope.carportangle}</option>
+                                </c:if>
+                                <option>Vælg taghældning</option>
                                 <option>15</option>
                                 <option>20</option>
                                 <option>25</option>
@@ -93,7 +111,10 @@
                                     redskabsrummet.</h4>
                                 <label for="redskabsRumBredde">Redskabsrum bredde</label>
                                 <select class="form-control" id="redskabsRumBredde" name="shedwidth">
-                                    <option selected>Vælg bredde</option>
+                                    <c:if test="${sessionScope.shedwidth != null}">
+                                        <option selected>${sessionScope.shedwidth}</option>
+                                    </c:if>
+                                    <option>Vælg bredde</option>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
@@ -102,7 +123,10 @@
                             <div class="form-group">
                                 <label for="redskabsRumLængde">Redskabsum længde</label>
                                 <select class="form-control" id="redskabsRumLængde" name="shedlength">
-                                    <option selected>Vælg længde</option>
+                                    <c:if test="${sessionScope.shedlength != null}">
+                                        <option selected>${sessionScope.shedlength}</option>
+                                    </c:if>
+                                    <option>Vælg længde</option>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
@@ -123,9 +147,15 @@
                         <c:if test="${sessionScope.user != null}">
                             <div class="d-none d-lg-block d-xl-block">
                                 <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
+                                <button type="submit" name="secarport" value="yes"
+                                        class="btn btn-outline-secondary w-25">Se carport
+                                </button>
                             </div>
                             <div class="d-block d-lg-none d-xl-none">
                                 <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
+                                <button type="submit" name="secarport" value="yes"
+                                        class="btn btn-outline-secondary w-50">Se carport
+                                </button>
                             </div>
                         </c:if>
                         <c:if test="${sessionScope.user == null}">
@@ -144,15 +174,16 @@
 
                                         <input type="hidden" name="hasuser" value="yes" id="angledHasUser">
                                         <input type="email" class="form-control" name="email" id="angledHasUserEmail"
-                                               placeholder="Indtast e-mail adresse" required=""
+                                               placeholder="Indtast e-mail adresse"
                                                autofocus="">
                                         <small style="margin-bottom: 5px"
                                                class="form-text text-muted">Vi
                                             vil aldrig dele din e-mail med andre</small>
                                         <input style="margin-bottom: 25px" type="password"
                                                class="form-control" name="password" id="angledHasUserPassword"
-                                               placeholder="Indtast password" required="">
-                                        <a type="button" style="color: blue" onclick="showObliqueLogin()">Eller opret en bruger
+                                               placeholder="Indtast password">
+                                        <a type="button" style="color: blue" onclick="showObliqueLogin()">Eller opret en
+                                            bruger
                                             her</a>
 
                                         <hr style="padding-top: 5px; padding-bottom: 5px;">
@@ -206,7 +237,8 @@
                                         <div class="row">
                                             <div class="col-md-8">
                                                 <label for="angledNoUserCity" class="sr-only">By</label>
-                                                <input type="text" id="angledNoUserCity" class="form-control" name="city"
+                                                <input type="text" id="angledNoUserCity" class="form-control"
+                                                       name="city"
                                                        placeholder="Indtast by" required=""
                                                        disabled>
                                             </div>
@@ -219,7 +251,8 @@
 
                                         </div>
 
-                                        <a type="button" style="color: blue; padding-top: 15px" onclick="showObliqueLogin()">Tilbage
+                                        <a type="button" style="color: blue; padding-top: 15px"
+                                           onclick="showObliqueLogin()">Tilbage
                                             til
                                             login</a>
 
@@ -233,6 +266,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" name="secarport" value="yes" class="btn btn-outline-secondary">Se
+                                carport
+                            </button>
                         </c:if>
                     </form>
                 </div>
@@ -247,9 +283,12 @@
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                             <label for="flatCarportWidth">Carport bredde</label>
                             <select class="form-control" id="flatCarportWidth" name="width">
+                                <c:if test="${sessionScope.carportwidth != null}">
+                                    <option selected>${sessionScope.carportwidth}</option>
+                                </c:if>
                                 <option>Vælg bredde</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option>240</option>
+                                <option>750</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select>
@@ -258,9 +297,12 @@
                         <div class="form-group">
                             <label for="flatCarportLength">Carport Længde</label>
                             <select class="form-control" id="flatCarportLength" name="length">
+                                <c:if test="${sessionScope.carportlength != null}">
+                                    <option selected>${sessionScope.carportlength}</option>
+                                </c:if>
                                 <option>Vælg Længde</option>
-                                <option>2</option>
-                                <option>3</option>
+                                <option>240</option>
+                                <option>780</option>
                                 <option>4</option>
                                 <option>5</option>
                             </select>
@@ -269,7 +311,10 @@
                         <div class="form-group">
                             <label for="flatcarportTag">Carport Tag</label>
                             <select class="form-control" id="flatcarportTag" name="roof">
-                                <option selected>Vælg tagtype/farve</option>
+                                <c:if test="${sessionScope.carportwidth != null}">
+                                    <option selected>${sessionScope.carportroof}</option>
+                                </c:if>
+                                <option>Vælg tagtype/farve</option>
                                 <option>Plasttrapezplader</option>
                             </select>
                         </div>
@@ -289,7 +334,10 @@
                                     redskabsrummet.</h4>
                                 <label for="flatRedskabsRumBredde">Redskabsrum bredde</label>
                                 <select class="form-control" id="flatRedskabsRumBredde" name="shedwidth" disabled>
-                                    <option selected>Vælg bredde</option>
+                                    <c:if test="${sessionScope.shedwidth != null}">
+                                        <option selected>${sessionScope.shedwidth}</option>
+                                    </c:if>
+                                    <option>Vælg bredde</option>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
@@ -298,7 +346,10 @@
                             <div class="form-group">
                                 <label for="flatRedskabsRumLængde">Redskabsum længde</label>
                                 <select class="form-control" id="flatRedskabsRumLængde" name="shedlength">
-                                    <option selected>Vælg længde</option>
+                                    <c:if test="${sessionScope.shedlength != null}">
+                                        <option selected>${sessionScope.shedlength}</option>
+                                    </c:if>
+                                    <option>Vælg længde</option>
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
@@ -319,9 +370,15 @@
                         <c:if test="${sessionScope.user != null}">
                             <div class="d-none d-lg-block d-xl-block">
                                 <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
+                                <button type="submit" name="secarport" value="yes"
+                                        class="btn btn-outline-secondary w-25">Se carport
+                                </button>
                             </div>
                             <div class="d-block d-lg-none d-xl-none">
                                 <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
+                                <button type="submit" name="secarport" value="yes"
+                                        class="btn btn-outline-secondary w-50">Se carport
+                                </button>
                             </div>
                         </c:if>
                         <c:if test="${sessionScope.user == null}">
@@ -340,15 +397,16 @@
 
                                         <input type="hidden" name="hasuser" value="yes" id="flatHasUser">
                                         <input type="email" class="form-control" name="email" id="flatHasUserEmail"
-                                               placeholder="E-mail adresse" required=""
+                                               placeholder="E-mail adresse"
                                                autofocus="">
                                         <small style="margin-bottom: 5px"
                                                class="form-text text-muted">Vi
                                             vil aldrig dele din e-mail med andre</small>
                                         <input style="margin-bottom: 25px" type="password"
                                                class="form-control" name="password" id="flatHasUserPassword"
-                                               placeholder="Password" required="">
-                                        <a type="button" style="color: blue" onclick="showFlatLogin()">Eller opret en bruger her</a>
+                                               placeholder="Password">
+                                        <a type="button" style="color: blue" onclick="showFlatLogin()">Eller opret en
+                                            bruger her</a>
 
                                         <hr style="padding-top: 5px; padding-bottom: 5px;">
                                         <div class="d-flex justify-content-end">
@@ -415,7 +473,8 @@
 
                                         </div>
 
-                                        <a type="button" style="color: blue; padding-top: 15px" onclick="showFlatLogin()">Tilbage
+                                        <a type="button" style="color: blue; padding-top: 15px"
+                                           onclick="showFlatLogin()">Tilbage
                                             til
                                             login</a>
 
@@ -430,6 +489,9 @@
                                     </div>
                                 </div>
                             </div>
+                            <button type="submit" name="secarport" value="yes" class="btn btn-outline-secondary">Se
+                                carport
+                            </button>
                         </c:if>
                     </form>
                 </div>
@@ -457,7 +519,7 @@
                         const angledNoUserCity = document.getElementById("angledNoUserCity");
 
                         //show the login tab and activate the loginscreen
-                        if(create.style.display === "block") {
+                        if (create.style.display === "block") {
                             create.style.display = "none";
                             login.style.display = "block";
                             angledHasUser.disabled = false;
@@ -506,7 +568,7 @@
                         const angledNoUserZip = document.getElementById("flatNoUserZip");
                         const angledNoUserCity = document.getElementById("flatNoUserCity");
 
-                        if(create.style.display === "block") {
+                        if (create.style.display === "block") {
                             //show the login tab and activate the loginscreen
                             create.style.display = "none";
                             login.style.display = "block";

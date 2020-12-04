@@ -33,33 +33,6 @@ public class Svg extends Tag {
         );
     }
 
-    /**
-     * Called in the loop of chessboard() just to make it easier to read.
-     */
-    public static Tag chessfield(int r, int c) {
-        Tag rect = new Rect(0.05 + r, c + 0.05, 0.9, 0.9);
-        if ((r % 2 + c) % 2 == 0) {
-            rect = rect.withStyle("fill: ;");
-        } else {
-            rect = rect.withStyle("fill: white;");
-        }
-        return rect;
-    }
-
-    /**
-     * Called by a command svg.chessboard().toString()
-     * Adds stuff to the List<Tag> sublist
-     */
-    public static Tag chessboard() {
-        Svg checkboard = new Svg(1000, 1000, "1 1 8 8");
-
-        for (int r = 1; r <= 8; r++) {
-            for (int c = 1; c <= 8; c++) {
-                checkboard.add(chessfield(r, c));
-            }
-        }
-        return checkboard;
-    }
 
     private static void createRims(Svg carportTopView, int xspacing, int yspacing, int lengthmm, int widthmm) {
         // rem
@@ -114,31 +87,7 @@ public class Svg extends Tag {
 
     }
 
-    public static Tag carportTopView(int width, int length) {
-        int widthmm = width * 10;
-        int lengthmm = length * 10;
-        int sizeLength = lengthmm + 1200;
-        int sizeWidth = widthmm + 1200;
-        Svg carportTopView = new Svg(500, 500, "0 0 " + sizeLength + " " + sizeWidth);
-
-
-        int xspacing = 1000;
-        int yspacing = 500;
-
-
-        // Generate roof
-        Tag roof = new Rect(xspacing, yspacing, lengthmm, widthmm);
-        carportTopView.add(roof.withStyle("fill: white; stroke: black; stroke-width: 10;"));
-
-        //Generate rims
-        createRims(carportTopView, xspacing, yspacing, lengthmm, widthmm);
-
-        //Generate rafters
-        createRafters(carportTopView, lengthmm, xspacing, yspacing, widthmm);
-
-        //Generate Posts
-        createPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
-
+    private static void createArrowLines(Svg carportTopView, int xspacing, int yspacing, int widthmm, int lengthmm, int length, int width) {
         Tag markerTest = new Marker("beginArrow", 12, 12, 0, 6, "auto");
         markerTest.add(new Path("M0,6 L12,0 L12,12 L0,6"));
         carportTopView.add(markerTest);
@@ -177,6 +126,37 @@ public class Svg extends Tag {
         carportTopView.add(lineStopTopInnerLeft.withStyle("stroke: black; stroke-width: 15"));
         carportTopView.add(lineStopBottomInnerLeft.withStyle("stroke: black; stroke-width: 15"));
         carportTopView.add(leftLengthInnerText.withStyle("stroke-width: 15"));
+    }
+
+
+    public static Tag carportTopView(int width, int length) {
+        int widthmm = width * 10;
+        int lengthmm = length * 10;
+        int sizeLength = lengthmm + 1200;
+        int sizeWidth = widthmm + 1200;
+        Svg carportTopView = new Svg(500, 500, "0 0 " + sizeLength + " " + sizeWidth);
+
+
+        int xspacing = 1000;
+        int yspacing = 500;
+
+
+        // Generate roof
+        Tag roof = new Rect(xspacing, yspacing, lengthmm, widthmm);
+        carportTopView.add(roof.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+
+        //Generate rims
+        createRims(carportTopView, xspacing, yspacing, lengthmm, widthmm);
+
+        //Generate rafters
+        createRafters(carportTopView, lengthmm, xspacing, yspacing, widthmm);
+
+        //Generate Posts
+        createPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
+
+        //Generate Arrow lines
+        createArrowLines(carportTopView, xspacing, yspacing, widthmm, lengthmm, length, width);
+
 
 
         /* Stern MÅSKE IKKE NØDVENDIG?
@@ -193,9 +173,10 @@ public class Svg extends Tag {
     }
 
 
+
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("output.svg")) {
-            writer.write(carportTopView(750, 780).toString());
+            writer.write(carportTopView(500, 600).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
