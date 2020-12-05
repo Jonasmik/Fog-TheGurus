@@ -3,15 +3,25 @@ package com.yourcompany.api.intergration;
 import com.yourcompany.api.Fog;
 import com.yourcompany.api.facades.*;
 import com.yourcompany.api.factories.CarportFactory;
+import com.yourcompany.api.factories.CustomerFactory;
+import com.yourcompany.api.factories.PreOrderFactory;
 import com.yourcompany.api.factories.UserFactory;
+import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.carport.CarportRepository;
+import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.customer.CustomerRepository;
+import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.preorder.PreOrderRepository;
 import com.yourcompany.domain.salesman.SalesmanRepository;
 import com.yourcompany.domain.shed.ShedRepository;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.domain.user.UserRepository;
+import com.yourcompany.exceptions.carport.CarportValidations;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
+import com.yourcompany.exceptions.order.PreOrderValidationError;
+import com.yourcompany.exceptions.user.CustomerValidation;
+import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.infrastructure.database.*;
 import com.yourcompany.infrastructure.dbsetup.Database;
@@ -85,8 +95,8 @@ public class MainTest {
     }
 
     @Nested
-    @DisplayName("User story one")
-    class UserStoryOne {
+    @DisplayName("Database user repository")
+    class DatabaseUserRepository {
 
         @Test
         @DisplayName("Authorize user: Should create and login user")
@@ -115,6 +125,80 @@ public class MainTest {
 
             //Test
             assertTrue(loggedIn);
+        }
+    }
+
+    @Nested
+    @DisplayName("Database carport repository")
+    class DatabaseCarportRepository {
+
+        @Test
+        @DisplayName("Create carport: Should create a valid carport")
+        void createCarport_ShouldCreateAValidCarport() throws CarportValidations, NoSuchCarportExists {
+
+            CarportFactory carportFactory = new CarportFactory();
+            carportFactory.setRoofAngle("25");
+            carportFactory.setRoof("Green roof");
+            carportFactory.setLength("780");
+            carportFactory.setWidth("750");
+
+            Carport carport = api.getCarportFacade().createCarport(carportFactory);
+
+            assertNotNull(carport);
+        }
+    }
+
+    @Nested
+    @DisplayName("Database preorder repository")
+    class DatabasePreOrderRepository {
+
+        @Test
+        @DisplayName("Create preorder: Should create a valid preorder")
+        void createPreOrder_ShouldCreateAValidPreOrder() throws CustomerValidation, NoSuchCustomerExists,
+                UserValidationError, CarportValidations, NoSuchCarportExists, NoSuchPreOrderExists {
+
+            UserFactory userFactory = new UserFactory();
+
+            userFactory.setEmail("tobias.zimmer@hotmail.com");
+            userFactory.setPassword("1234");
+            userFactory.setName("Tobias");
+            userFactory.setCity("Lyngby");
+            userFactory.setZip("2800");
+            userFactory.setAddress("Borgevej");
+
+            User user = api.getUserFacade().createUser(userFactory);
+
+            assertNotNull(user);
+
+            CustomerFactory customerFactory = new CustomerFactory();
+            customerFactory.setUserid("1");
+            customerFactory.setEmail("tobias.zimmer@hotmail.com");
+            customerFactory.setCity("Lyngby");
+            customerFactory.setZipcode("2800");
+            customerFactory.setAdress("Borgevej");
+            customerFactory.setName("Tobias");
+
+            Customer customer = api.getCustomerFacade().createCustomer(customerFactory);
+
+            assertNotNull(customer);
+
+            CarportFactory carportFactory = new CarportFactory();
+            carportFactory.setRoofAngle("25");
+            carportFactory.setRoof("Green roof");
+            carportFactory.setLength("780");
+            carportFactory.setWidth("750");
+
+            Carport carport = api.getCarportFacade().createCarport(carportFactory);
+
+            assertNotNull(carport);
+
+            PreOrderFactory preOrderFactory = new PreOrderFactory();
+            preOrderFactory.setCustomerId(customer.getId());
+            preOrderFactory.setCarportId(carport.getId());
+
+            PreOrder preOrder = api.getPreOrderFacade().createPreOrder(preOrderFactory);
+
+            assertNotNull(preOrder);
         }
     }
 }
