@@ -1,34 +1,42 @@
 
-d
-java:S2184I"BCast one of the operands of this division operation to a "double".(İ®¼–ÿÿÿÿÿ8»’ Äâ.
-a
-java:S2184g"ECast one of the operands of this subtraction operation to a "double".(‚û‰8ó€³Äâ.
-d
-java:S2184a"BCast one of the operands of this addition operation to a "double".(ùÏ£ÿÿÿÿÿ8ó€³Äâ.
-g
-java:S2184B"ECast one of the operands of this subtraction operation to a "double".(²ªĞÇüÿÿÿÿ8åÖ“Äâ.
-g
-java:S2184]"ECast one of the operands of this subtraction operation to a "double".(³Ì³µüÿÿÿÿ8ó€³Äâ.
 >
-java:S1110J"!Remove these useless parentheses.(´õë’8»’ Äâ.
-g
-java:S2184b"ECast one of the operands of this subtraction operation to a "double".(ªÙÙ¨úÿÿÿÿ8ó€³Äâ.
-b
-java:S2184f"ECast one of the operands of this subtraction operation to a "double".(§Œúó8ó€³Äâ.
-g
-java:S2184m"ECast one of the operands of this subtraction operation to a "double".(Ñ–ßğûÿÿÿÿ8ó€³Äâ.
-b
-java:S2184^"@Cast one of the operands of this integer division to a "double".(–‡‚›ÿÿÿÿÿ8ó€³Äâ.
-a
-java:S2184g"ECast one of the operands of this subtraction operation to a "double".(‚û‰8ó€³Äâ.
-Œ
-java:S1192C"oDefine a constant instead of duplicating this literal "fill: white; stroke: black; stroke-width: 10;" 10 times.(¦²±“8ÄÉÄâ.
+java:S11100"!Remove these useless parentheses.(´õë’8»’ Äâ.
 _
-java:S2184l"BCast one of the operands of this addition operation to a "double".(ï÷Íû8ó€³Äâ.
-U	java:S106L"9Replace this use of System.out or System.err by a logger.(Õ¿®ü8»’ Äâ.
+java:S2184R"BCast one of the operands of this addition operation to a "double".(ï÷Íû8ó€³Äâ.
 d
-java:S2184A"BCast one of the operands of this addition operation to a "double".(õÓ«¸úÿÿÿÿ8åÖ“Äâ.
-X	java:S125›"<This block of commented-out lines of code should be removed.(­Âú[8‘“ÓÅâ.
+java:S2184'"BCast one of the operands of this addition operation to a "double".(õÓ«¸úÿÿÿÿ8åÖ“Äâ.
+Œ
+java:S1192)"oDefine a constant instead of duplicating this literal "fill: white; stroke: black; stroke-width: 10;" 10 times.(¦²±“8ÄÉÄâ.
+g
+java:S2184C"ECast one of the operands of this subtraction operation to a "double".(³Ì³µüÿÿÿÿ8ó€³Äâ.
+b
+java:S2184D"@Cast one of the operands of this integer division to a "double".(–‡‚›ÿÿÿÿÿ8ó€³Äâ.
 d
-java:S2184b"BCast one of the operands of this addition operation to a "double".(ªÙÙ¨úÿÿÿÿ8ó€³Äâ.
-Z	java:S106M"9Replace this use of System.out or System.err by a logger.(ìÑ”æüÿÿÿÿ8»’ Äâ.
+java:S2184H"BCast one of the operands of this addition operation to a "double".(ªÙÙ¨úÿÿÿÿ8ó€³Äâ.
+¿
+java:S1192h"œDefine a constant instead of duplicating this literal "stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)" 3 times.(ÃõÏøÿÿÿÿ8¥¡çìâ.
+a
+java:S2184M"ECast one of the operands of this subtraction operation to a "double".(‚û‰8ó€³Äâ.
+n
+java:S1192k"QDefine a constant instead of duplicating this literal "stroke-width: 15" 3 times.(ÙÕ¦³8¥¡çìâ.
+b
+java:S2184L"ECast one of the operands of this subtraction operation to a "double".(§Œúó8ó€³Äâ.
+a
+java:S2184M"ECast one of the operands of this subtraction operation to a "double".(‚û‰8ó€³Äâ.
+Z	java:S1063"9Replace this use of System.out or System.err by a logger.(ìÑ”æüÿÿÿÿ8»’ Äâ.
+c
+java:S1192g"FDefine a constant instead of duplicating this literal "black" 3 times.(ÛÎ‡Ò8¥¡çìâ.
+g
+java:S2184("ECast one of the operands of this subtraction operation to a "double".(²ªĞÇüÿÿÿÿ8åÖ“Äâ.
+d
+java:S2184/"BCast one of the operands of this division operation to a "double".(İ®¼–ÿÿÿÿÿ8»’ Äâ.
+g
+java:S2184H"ECast one of the operands of this subtraction operation to a "double".(ªÙÙ¨úÿÿÿÿ8ó€³Äâ.
+g
+java:S2184S"ECast one of the operands of this subtraction operation to a "double".(Ñ–ßğûÿÿÿÿ8ó€³Äâ.
+d
+java:S2184G"BCast one of the operands of this addition operation to a "double".(ùÏ£ÿÿÿÿÿ8ó€³Äâ.
+‚
+java:S1192t"`Define a constant instead of duplicating this literal "stroke: black; stroke-width: 15" 4 times.(ÉÉƒ…üÿÿÿÿ8¥¡çìâ.
+X	java:S125£"<This block of commented-out lines of code should be removed.(­Âú[8‘“ÓÅâ.
+U	java:S1062"9Replace this use of System.out or System.err by a logger.(Õ¿®ü8»’ Äâ.

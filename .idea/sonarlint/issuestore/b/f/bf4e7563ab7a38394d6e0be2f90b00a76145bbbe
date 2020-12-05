@@ -1,23 +1,27 @@
 
-\
-java:S2441U":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ğá.
-H
-java:S5411ü"*Use the primitive boolean expression here.(²ÿ‡İ8«Š„ğá.
-\
-java:S2441p":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8«Š„ğá.
-t
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 52 to the 15 allowed.(‚çÕöúÿÿÿÿ8«Š„ğá.
-M
-java:S5411È"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8«Š„ğá.
-G
-java:S2629‡"$Invoke method(s) only conditionally.(ÑĞóÓúÿÿÿÿ8¤äÀğá.
-s
-java:S1192G"QDefine a constant instead of duplicating this literal "lagermedarbejder" 4 times.(±ªíºùÿÿÿÿ8«Š„ğá.
-q
-java:S1192M"ODefine a constant instead of duplicating this literal "afdelingsleder" 4 times.(¾†°æıÿÿÿÿ8«Š„ğá.
-k
-java:S1192K"IDefine a constant instead of duplicating this literal "salesman" 3 times.(ïµÏºşÿÿÿÿ8«Š„ğá.
-G
-java:S2629µ"$Invoke method(s) only conditionally.(ˆØß’ûÿÿÿÿ8ËÌ²ğá.
 †
-java:S1192ë"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ğıº›øÿÿÿÿ8«Š„ğá.
+java:S1192"cDefine a constant instead of duplicating this literal "Der gik noget galt i bestillingen." 3 times.(Ğıº›øÿÿÿÿ8‡Æ£ïâ.
+s
+java:S1192n"QDefine a constant instead of duplicating this literal "lagermedarbejder" 4 times.(±ªíºùÿÿÿÿ8‡Æ£ïâ.
+]
+java:S2441—":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8‡Æ£ïâ.
+G
+java:S2629©"$Invoke method(s) only conditionally.(ÑĞóÓúÿÿÿÿ8‡Æ£ïâ.
+k
+java:S1192r"IDefine a constant instead of duplicating this literal "salesman" 3 times.(ïµÏºşÿÿÿÿ8‡Æ£ïâ.
+M
+java:S5411ê"*Use the primitive boolean expression here.(‹Ÿà†ıÿÿÿÿ8‡Æ£ïâ.
+H
+java:S5411"*Use the primitive boolean expression here.(²ÿ‡İ8‡Æ£ïâ.
+G
+java:S2629×"$Invoke method(s) only conditionally.(ˆØß’ûÿÿÿÿ8‡Æ£ïâ.
+q
+java:S1192t"ODefine a constant instead of duplicating this literal "afdelingsleder" 4 times.(¾†°æıÿÿÿÿ8‡Æ£ïâ.
+\
+java:S2441|":Make "User" serializable or don't store it in the session.(£™Õàûÿÿÿÿ8‡Æ£ïâ.
+f
+java:S1192E"JDefine a constant instead of duplicating this literal "shedwidth" 3 times.(İ„ú8Æ‰­ïâ.
+h
+java:S1192F"KDefine a constant instead of duplicating this literal "shedlength" 3 times.(®ƒŒ˜8Æ‰­ïâ.
+t
+java:S3776 "RRefactor this method to reduce its Cognitive Complexity from 59 to the 15 allowed.(‚çÕöúÿÿÿÿ8Á¥Ûîâ.

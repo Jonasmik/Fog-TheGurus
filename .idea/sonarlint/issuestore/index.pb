@@ -165,3 +165,9 @@ u
 Esrc/main/java/com/yourcompany/domain/salesman/SalesmanRepository.java,6/e/6e26a7df182c119ebace427ce78a0f0f6e67af0e
 
 Osrc/main/java/com/yourcompany/infrastructure/database/DBSalesmanRepository.java,3/1/31a3a5674dfabe8519830e9de03ed539bcf8231d
+_
+/src/main/java/com/yourcompany/web/svg/Text.java,5/6/562569881a36c1da4b2ecca2ded8f31213f3d2e3
+x
+Hsrc/main/java/com/yourcompany/web/commands/customer/CustomerCommand.java,9/e/9ed5be32177dafb962383e62f9030ce04fdc4943
+y
+Isrc/main/java/com/yourcompany/web/commands/customer/ListCustomerPage.java,5/5/556f8dbb006cb7bc60ae3367469e8d920e5d60ae
