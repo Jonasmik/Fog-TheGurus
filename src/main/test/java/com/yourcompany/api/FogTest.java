@@ -2,6 +2,7 @@ package com.yourcompany.api;
 
 import com.yourcompany.api.facades.*;
 import com.yourcompany.api.factories.CarportFactory;
+import com.yourcompany.api.repositories.ListCarportRepository;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import org.junit.jupiter.api.BeforeEach;
@@ -56,6 +57,7 @@ class FogTest {
         }
 
         @Test
+        @DisplayName("List of carports should be equal to found list")
         void ListOfCarports_ShouldBeEqualToFoundList() throws NoSuchCarportExists {
             List<Carport> createdCarports = new ArrayList<>();
 

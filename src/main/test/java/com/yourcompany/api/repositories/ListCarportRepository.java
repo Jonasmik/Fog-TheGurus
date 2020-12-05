@@ -1,4 +1,4 @@
-package com.yourcompany.api.facades;
+package com.yourcompany.api.repositories;
 
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.domain.carport.Carport;

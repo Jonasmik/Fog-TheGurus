@@ -16,7 +16,7 @@ public class Database {
     private final String USER;
 
     // Database version
-    private static final int version = 0;
+    private static final int version = -1;
 
     public Database(String url, String user) {
         this.URL = url == null ? "jdbc:mysql://localhost:3306/fogdb?serverTimezone=CET" : url;

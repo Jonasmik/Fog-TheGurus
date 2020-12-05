@@ -1,3 +1,4 @@
+USE fogdb;
 DROP TABLE IF EXISTS properties;
 CREATE TABLE properties
 (
