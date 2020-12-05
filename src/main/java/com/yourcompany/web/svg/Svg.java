@@ -128,7 +128,8 @@ public class Svg extends Tag {
         carportTopView.add(leftLengthInnerText.withStyle("stroke-width: 15"));
     }
 
-
+    //int shedwidth, int shedlength
+    //if shed == null - shedwidth and shedlength == 0
     public static Tag carportTopView(int width, int length) {
         int widthmm = width * 10;
         int lengthmm = length * 10;
@@ -157,6 +158,7 @@ public class Svg extends Tag {
         //Generate Arrow lines
         createArrowLines(carportTopView, xspacing, yspacing, widthmm, lengthmm, length, width);
 
+        //Generate shed if shed > 0
 
 
         /* Stern MÅSKE IKKE NØDVENDIG?

@@ -245,6 +245,7 @@ public class CreatePreOrder extends ICommand {
             return creationpage;
         }
 
+
         //If customer wants a shed, create shed
         if (shed != null) {
             ShedFactory shedFactory = new ShedFactory();
@@ -273,6 +274,8 @@ public class CreatePreOrder extends ICommand {
                 request.setAttribute(fail, "Der gik noget galt i bestillingen.");
                 return creationpage;
             }
+            //drawnshedwidth == shedFactory.getWidth()
+            //drawnshedlength == shedFactory.getLength()
         }
 
 
