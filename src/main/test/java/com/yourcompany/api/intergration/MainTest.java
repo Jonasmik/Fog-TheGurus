@@ -27,10 +27,7 @@ import com.yourcompany.infrastructure.database.*;
 import com.yourcompany.infrastructure.dbsetup.Database;
 import com.yourcompany.infrastructure.dbsetup.Migrate;
 import org.apache.ibatis.jdbc.ScriptRunner;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import java.io.*;
 import java.sql.Connection;
@@ -39,6 +36,7 @@ import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Tag("integration-test")
 public class MainTest {
 
     Fog api;
