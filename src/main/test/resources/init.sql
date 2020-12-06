@@ -2,7 +2,6 @@ drop database if exists fogdbtest;
 create database fogdbtest;
 use fogdbtest;
 
-DROP TABLE IF EXISTS properties;
 CREATE TABLE properties (
                             name VARCHAR(255) PRIMARY KEY,
                             value VARCHAR(255) NOT NULL
@@ -12,7 +11,6 @@ INSERT INTO properties (name, value) VALUES ("version", "0");
 
 
 
-DROP TABLE IF EXISTS users;
 CREATE TABLE users (
                        id INT PRIMARY KEY AUTO_INCREMENT,
                        name VARCHAR(25) NOT NULL,
@@ -26,7 +24,6 @@ CREATE TABLE users (
                        role VARCHAR(25) NOT NULL
 );
 
-DROP TABLE IF EXISTS carport;
 CREATE TABLE carport (
                          id INT PRIMARY KEY AUTO_INCREMENT,
                          length INT NOT NULL,
@@ -35,7 +32,6 @@ CREATE TABLE carport (
                          roofangle INT DEFAULT 0
 );
 
-DROP TABLE IF EXISTS shed;
 CREATE TABLE shed (
                       id INT PRIMARY KEY AUTO_INCREMENT,
                       width INT NOT NULL,
@@ -44,7 +40,6 @@ CREATE TABLE shed (
                       FOREIGN KEY (carportid) REFERENCES carport(id)
 );
 
-DROP TABLE IF EXISTS customers;
 CREATE TABLE customers (
                            id INT PRIMARY KEY AUTO_INCREMENT,
                            userid INT NOT NULL,
@@ -57,14 +52,12 @@ CREATE TABLE customers (
                            FOREIGN KEY (userid) REFERENCES users(id)
 );
 
-DROP TABLE IF EXISTS salesmen;
 CREATE TABLE salesmen (
                           id INT PRIMARY KEY AUTO_INCREMENT,
                           userid INT NOT NULL,
                           FOREIGN KEY (userid) REFERENCES users(id)
 );
 
-DROP TABLE IF EXISTS preorders;
 CREATE TABLE preorders (
                            id INT PRIMARY KEY AUTO_INCREMENT,
                            customerid INT NOT NULL,
@@ -75,7 +68,6 @@ CREATE TABLE preorders (
                            FOREIGN KEY (carportid) REFERENCES carport(id)
 );
 
-DROP TABLE IF EXISTS offers;
 CREATE TABLE offers (
                         id INT PRIMARY KEY AUTO_INCREMENT,
                         preorderid INT NOT NULL,
@@ -84,7 +76,6 @@ CREATE TABLE offers (
 );
 
 
-DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
                         id INT PRIMARY KEY AUTO_INCREMENT,
                         customerid INT NOT NULL,

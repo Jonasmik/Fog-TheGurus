@@ -2,16 +2,14 @@ package com.yourcompany.api.intergration;
 
 import com.yourcompany.api.Fog;
 import com.yourcompany.api.facades.*;
-import com.yourcompany.api.factories.CarportFactory;
-import com.yourcompany.api.factories.CustomerFactory;
-import com.yourcompany.api.factories.PreOrderFactory;
-import com.yourcompany.api.factories.UserFactory;
+import com.yourcompany.api.factories.*;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.carport.CarportRepository;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.customer.CustomerRepository;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.preorder.PreOrderRepository;
+import com.yourcompany.domain.salesman.Salesman;
 import com.yourcompany.domain.salesman.SalesmanRepository;
 import com.yourcompany.domain.shed.ShedRepository;
 import com.yourcompany.domain.user.User;
@@ -22,6 +20,7 @@ import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.order.PreOrderValidationError;
 import com.yourcompany.exceptions.user.CustomerValidation;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
+import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.infrastructure.database.*;
 import com.yourcompany.infrastructure.dbsetup.Database;
@@ -181,4 +180,79 @@ public class MainTest {
             assertEquals(customer.getId(), preOrder.getCustomerId());
         }
     }
+
+    /*
+    US-5:
+    Som sælger vil jeg gerne kunne “assigne” mig selv på en forespørgsel hvis den ikke allerede er taget, sådan at jeg nemt kan holde kontakt med kunden.
+     */
+    @Nested
+    @DisplayName("User story five")
+    class UserStoryFive {
+
+        UserFactory userFactory;
+        CustomerFactory customerFactory;
+        CarportFactory carportFactory;
+
+        @BeforeEach
+        void setup() throws CustomerValidation, CarportValidations {
+            userFactory = new UserFactory();
+
+            userFactory.setEmail("tobias.zimmer@hotmail.com");
+            userFactory.setPassword("1234");
+            userFactory.setName("Tobias");
+            userFactory.setCity("Lyngby");
+            userFactory.setZip("2800");
+            userFactory.setAddress("Borgevej");
+
+            customerFactory = new CustomerFactory();
+            customerFactory.setUserid("1");
+            customerFactory.setEmail("tobias.zimmer@hotmail.com");
+            customerFactory.setCity("Lyngby");
+            customerFactory.setZipcode("2800");
+            customerFactory.setAdress("Borgevej");
+            customerFactory.setName("Tobias");
+
+            carportFactory = new CarportFactory();
+            carportFactory.setRoofAngle("25");
+            carportFactory.setRoof("Green roof");
+            carportFactory.setLength("780");
+            carportFactory.setWidth("750");
+        }
+
+        @Test
+        @DisplayName("Preorder assign: Should assign a valid salesman to preorder")
+        void preOrderAssign_ShouldAssignAValidSalesmanToPreOrder() throws UserValidationError, NoSuchSalesmanExists, NoSuchCarportExists, NoSuchCustomerExists, NoSuchPreOrderExists {
+
+            //setup step one: create user
+            User user = api.getUserFacade().createUser(userFactory);
+
+            //setup step two: Create salesman
+            SalesmanFactory salesmanFactory = new SalesmanFactory();
+            salesmanFactory.setUserId(user.getId());
+
+            Salesman salesman = api.getSalesmanFacade().createSalesman(salesmanFactory);
+
+            //setup step three: create carportj
+            Carport carport = api.getCarportFacade().createCarport(carportFactory);
+
+            //setup step four: create customer
+            Customer customer = api.getCustomerFacade().createCustomer(customerFactory);
+
+            //setup step five: Create preorder
+            PreOrderFactory preOrderFactory = new PreOrderFactory();
+            preOrderFactory.setCarportId(carport.getId());
+            preOrderFactory.setCustomerId(customer.getId());
+            PreOrder preOrder = api.getPreOrderFacade().createPreOrder(preOrderFactory);
+
+            //action: insert salesman into preorder
+            api.getPreOrderFacade().takePreOrder(salesman.getId(), preOrder.getId());
+
+            PreOrder takenPreOrder = api.getPreOrderFacade().findPreOrderById(preOrder.getId());
+
+            //Test: if preorder is taken, salesman id is now equal to the taken preorder id
+            assertEquals(salesman.getId(), takenPreOrder.getSalesmanId());
+
+        }
+    }
+
 }
