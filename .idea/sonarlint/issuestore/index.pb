@@ -171,3 +171,17 @@ x
 Hsrc/main/java/com/yourcompany/web/commands/customer/CustomerCommand.java,9/e/9ed5be32177dafb962383e62f9030ce04fdc4943
 y
 Isrc/main/java/com/yourcompany/web/commands/customer/ListCustomerPage.java,5/5/556f8dbb006cb7bc60ae3367469e8d920e5d60ae
+x
+Hsrc/main/test/java/com/yourcompany/api/factories/CarportFactoryTest.java,f/3/f30332da34054d11331005ec5af71ba25b60f4d5
+~
+Nsrc/main/test/java/com/yourcompany/api/repositories/ListCarportRepository.java,e/3/e3010237d33f19afa62c8f6bd570b951f561de01
+q
+Asrc/main/java/com/yourcompany/infrastructure/dbsetup/Migrate.java,5/7/5751def3d4a7810ce292464d7bd19d2b7f5d02ce
+c
+3src/main/test/java/com/yourcompany/api/FogTest.java,2/4/2430e2855eeb9ae8f80013565ba48ebd17f47dbd
+q
+Asrc/main/test/java/com/yourcompany/api/intergration/MainTest.java,7/2/72bf6bdf30a360aec54bf48fafa6ef3d10f91f21
+a
+1.idea/runConfigurations/All_Integration_Tests.xml,c/e/ce191d3a822350647d654b59c6240c4487051af1
+Z
+*.idea/runConfigurations/All_Unit_Tests.xml,7/1/712e230da224a1cb69403962fd9906784a400645

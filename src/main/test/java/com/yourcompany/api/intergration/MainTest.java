@@ -41,7 +41,6 @@ public class MainTest {
 
     Fog api;
 
-
     static void resetTestDatabase() {
         //reset test database
         String URL = "jdbc:mysql://localhost:3306/?serverTimezone=CET";
@@ -93,12 +92,12 @@ public class MainTest {
     }
 
     @Nested
-    @DisplayName("Database user repository")
-    class DatabaseUserRepository {
+    @DisplayName("User story one")
+    class UserStoryOne {
 
         @Test
-        @DisplayName("Authorize user: Should create and login user")
-        void authorizeUser_ShouldCreateAndLoginUser() throws UserValidationError {
+        @DisplayName("User repository: Should create and login user")
+        void userRepository_ShouldCreateAndLoginUser() throws UserValidationError {
             //A user should be able to log in
             // Setup step 1: Create user
 
@@ -116,46 +115,23 @@ public class MainTest {
             //action
             // login user
             User loggedInUser = api.getUserFacade().authorizeUser(userFactory.getEmail(), userFactory.getPassword());
-            boolean loggedIn = false;
-            if (loggedInUser != null) {
-                loggedIn = true;
-            }
 
             //Test
-            assertTrue(loggedIn);
+            assertEquals(userFactory.getEmail(), loggedInUser.getEmail());
         }
     }
 
     @Nested
-    @DisplayName("Database carport repository")
-    class DatabaseCarportRepository {
+    @DisplayName("User story two")
+    class UserStoryTwo {
 
-        @Test
-        @DisplayName("Create carport: Should create a valid carport")
-        void createCarport_ShouldCreateAValidCarport() throws CarportValidations, NoSuchCarportExists {
+        UserFactory userFactory;
+        CustomerFactory customerFactory;
+        CarportFactory carportFactory;
 
-            CarportFactory carportFactory = new CarportFactory();
-            carportFactory.setRoofAngle("25");
-            carportFactory.setRoof("Green roof");
-            carportFactory.setLength("780");
-            carportFactory.setWidth("750");
-
-            Carport carport = api.getCarportFacade().createCarport(carportFactory);
-
-            assertNotNull(carport);
-        }
-    }
-
-    @Nested
-    @DisplayName("Database preorder repository")
-    class DatabasePreOrderRepository {
-
-        @Test
-        @DisplayName("Create preorder: Should create a valid preorder")
-        void createPreOrder_ShouldCreateAValidPreOrder() throws CustomerValidation, NoSuchCustomerExists,
-                UserValidationError, CarportValidations, NoSuchCarportExists, NoSuchPreOrderExists {
-
-            UserFactory userFactory = new UserFactory();
+        @BeforeEach
+        void setup() throws CustomerValidation, CarportValidations {
+            userFactory = new UserFactory();
 
             userFactory.setEmail("tobias.zimmer@hotmail.com");
             userFactory.setPassword("1234");
@@ -164,11 +140,7 @@ public class MainTest {
             userFactory.setZip("2800");
             userFactory.setAddress("Borgevej");
 
-            User user = api.getUserFacade().createUser(userFactory);
-
-            assertNotNull(user);
-
-            CustomerFactory customerFactory = new CustomerFactory();
+            customerFactory = new CustomerFactory();
             customerFactory.setUserid("1");
             customerFactory.setEmail("tobias.zimmer@hotmail.com");
             customerFactory.setCity("Lyngby");
@@ -176,19 +148,28 @@ public class MainTest {
             customerFactory.setAdress("Borgevej");
             customerFactory.setName("Tobias");
 
-            Customer customer = api.getCustomerFacade().createCustomer(customerFactory);
-
-            assertNotNull(customer);
-
-            CarportFactory carportFactory = new CarportFactory();
+            carportFactory = new CarportFactory();
             carportFactory.setRoofAngle("25");
             carportFactory.setRoof("Green roof");
             carportFactory.setLength("780");
             carportFactory.setWidth("750");
 
-            Carport carport = api.getCarportFacade().createCarport(carportFactory);
+        }
 
-            assertNotNull(carport);
+        @Test
+        @DisplayName("Preorder: Should create a valid preorder")
+        void preOrder_ShouldCreateAValidPreOrder() throws NoSuchCustomerExists,
+                UserValidationError, NoSuchCarportExists, NoSuchPreOrderExists {
+
+
+            User user = api.getUserFacade().createUser(userFactory);
+
+
+            Customer customer = api.getCustomerFacade().createCustomer(customerFactory);
+
+            assertEquals(user.getEmail(), customer.getEmail());
+
+            Carport carport = api.getCarportFacade().createCarport(carportFactory);
 
             PreOrderFactory preOrderFactory = new PreOrderFactory();
             preOrderFactory.setCustomerId(customer.getId());
@@ -196,7 +177,8 @@ public class MainTest {
 
             PreOrder preOrder = api.getPreOrderFacade().createPreOrder(preOrderFactory);
 
-            assertNotNull(preOrder);
+            assertEquals(carport.getId(), preOrder.getCarportId());
+            assertEquals(customer.getId(), preOrder.getCustomerId());
         }
     }
 }
