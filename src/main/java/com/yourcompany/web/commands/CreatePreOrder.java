@@ -87,7 +87,7 @@ public class CreatePreOrder extends ICommand {
                     return creationpage;
                 }
             }
-            request.setAttribute("carportpreview", CarportTopView.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
+            session.setAttribute("carportpreview", CarportTopView.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
             return creationpage;
         }
 

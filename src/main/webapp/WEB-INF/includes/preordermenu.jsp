@@ -18,10 +18,10 @@
                     <p>${requestScope.preordersucces}</p>
                 </div>
             </c:if>
-            <c:if test="${requestScope.carportpreview != null}">
+            <c:if test="${sessionScope.carportpreview != null}">
                 <div class="alert alert-info border-secondary">
                     <h1>Carport forsmag</h1>
-                        ${requestScope.carportpreview}
+                        ${sessionScope.carportpreview}
                 </div>
             </c:if>
             <!-- Nav tabs -->
@@ -160,19 +160,22 @@
                         <!-- If user is logged in - SUBMIT. Else Login modal -->
                         <c:if test="${sessionScope.user != null}">
                             <div class="d-none d-lg-block d-xl-block">
-                                <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
                                 <button type="submit" name="secarport" value="yes"
                                         class="btn btn-outline-secondary w-25">Se carport
                                 </button>
+                                <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
                             </div>
                             <div class="d-block d-lg-none d-xl-none">
-                                <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
                                 <button type="submit" name="secarport" value="yes"
                                         class="btn btn-outline-secondary w-50">Se carport
                                 </button>
+                                <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
                             </div>
                         </c:if>
                         <c:if test="${sessionScope.user == null}">
+                            <button type="submit" name="secarport" value="yes" class="btn btn-outline-secondary">Se
+                                carport
+                            </button>
                             <div class="btn-group dropup allow-focus">
                                 <button type="button" class="btn btn-primary" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
@@ -280,9 +283,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" name="secarport" value="yes" class="btn btn-outline-secondary">Se
-                                carport
-                            </button>
                         </c:if>
                     </form>
                 </div>
@@ -393,19 +393,22 @@
                         <!-- If user is logged in - SUBMIT. Else Login dropdown -->
                         <c:if test="${sessionScope.user != null}">
                             <div class="d-none d-lg-block d-xl-block">
-                                <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
                                 <button type="submit" name="secarport" value="yes"
                                         class="btn btn-outline-secondary w-25">Se carport
                                 </button>
+                                <button type="submit" class="btn btn-primary w-25">Send forespørgsel</button>
                             </div>
                             <div class="d-block d-lg-none d-xl-none">
-                                <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
                                 <button type="submit" name="secarport" value="yes"
                                         class="btn btn-outline-secondary w-50">Se carport
                                 </button>
+                                <button type="submit" class="btn btn-primary w-50">Send forespørgsel</button>
                             </div>
                         </c:if>
                         <c:if test="${sessionScope.user == null}">
+                            <button type="submit" name="secarport" value="yes" class="btn btn-outline-secondary">Se
+                                carport
+                            </button>
                             <div class="btn-group dropup allow-focus">
                                 <button type="button" class="btn btn-primary" data-toggle="dropdown"
                                         aria-haspopup="true" aria-expanded="false">
@@ -513,9 +516,6 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" name="secarport" value="yes" class="btn btn-outline-secondary">Se
-                                carport
-                            </button>
                         </c:if>
                     </form>
                 </div>

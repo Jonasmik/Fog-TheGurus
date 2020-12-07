@@ -111,11 +111,11 @@
                                                     grader</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    Se tegning
-                                                </button>
                                                 <button type="button" class="btn btn-outline-secondary"
                                                         data-dismiss="modal">Luk
+                                                </button>
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    Se tegning
                                                 </button>
                                             </div>
                                         </div>
@@ -200,11 +200,11 @@
                                                     grader</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="submit" class="btn btn-outline-primary">
-                                                    Se tegning
-                                                </button>
                                                 <button type="button" class="btn btn-outline-secondary"
                                                         data-dismiss="modal">Luk
+                                                </button>
+                                                <button type="submit" class="btn btn-outline-primary">
+                                                    Se tegning
                                                 </button>
                                             </div>
                                         </div>

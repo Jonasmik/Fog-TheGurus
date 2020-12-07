@@ -155,12 +155,11 @@ public class CarportTopView {
         // Spær afstand
         int calculateAmountOfRafters = lengthmm / (550 + 45);
         int calculateExtraRaftersSpace = ((lengthmm % (550 + 45))) / calculateAmountOfRafters;
-        int intCalculateAmountOfRafters = Integer.parseInt(String.valueOf(calculateAmountOfRafters));
-        int intCalculateExtraRafterSpace = Integer.parseInt(String.valueOf(calculateAmountOfRafters));
         //double calculateHypotenusen = Math.sqrt(Math.pow((widthmm-700),2) + Math.pow((widthmm-700),2));
 
         // 700 = spacing to rim top and bottom, 550*2 = spacing at both ends.
-        if (widthmm-700 <= lengthmm-(550*2)) {
+        boolean canCreatePerfectSquare = widthmm-700 <= lengthmm-(550*2);
+        if (canCreatePerfectSquare) {
             Tag topLeftX = new Line(xspacing + 550, yspacing + 350,xspacing + 550 + widthmm - 700 , yspacing+widthmm-350);
             Tag topRightX = new Line(xspacing + 550 + widthmm - 700,yspacing + 350,xspacing + 550, yspacing+widthmm-350);
             carportTopView.add(topLeftX.withStyle("stroke-dasharray: 70 70; stroke-width: 20; stroke: black;"));
@@ -170,8 +169,6 @@ public class CarportTopView {
             Tag topRightX = new Line(xspacing + (calculateAmountOfRafters*(550+calculateExtraRaftersSpace)),yspacing + 350,xspacing + 550, yspacing+widthmm-350);
             carportTopView.add(topLeftX.withStyle("stroke-dasharray: 70 70; stroke-width: 20; stroke: black;"));
             carportTopView.add(topRightX.withStyle("stroke-dasharray: 70 70; stroke-width: 20; stroke: black;"));
-            System.out.println(calculateAmountOfRafters);
-            System.out.println(calculateExtraRaftersSpace);
         }
 
 
