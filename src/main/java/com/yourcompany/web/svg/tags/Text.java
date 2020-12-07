@@ -1,4 +1,6 @@
-package com.yourcompany.web.svg;
+package com.yourcompany.web.svg.tags;
+
+import com.yourcompany.web.svg.Tag;
 
 import java.util.Locale;
 
@@ -13,7 +15,7 @@ public class Text extends Tag {
      * Set by each class constructor such as super("svg") or super("rect")
      */
 
-    protected Text(int x, int y, String fill, int fontSize, String transform, String text) {
+    public Text(int x, int y, String fill, int fontSize, String transform, String text) {
         super("text");
         this.x = x;
         this.y = y;

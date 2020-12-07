@@ -10,7 +10,8 @@ import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.exceptions.user.UserValidationError;
-import com.yourcompany.web.svg.Svg;
+import com.yourcompany.web.svg.svgcalculations.CarportTopView;
+import com.yourcompany.web.svg.tags.Svg;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -40,7 +41,7 @@ public class ListCustomerPage extends CustomerCommand {
                 request.setAttribute("error", "Din carport information blev ikke korrekt sat ind");
                 return "errorpage";
             }
-            request.getSession().setAttribute("carportpreview", Svg.carportTopView(newCarportWidth, newCarportLength, 0, 0));
+            request.getSession().setAttribute("carportpreview", CarportTopView.carportTopView(newCarportWidth, newCarportLength, 0, 0));
         }
         try {
             customers = api.getCustomerFacade().findAllByUserId(user.getId());

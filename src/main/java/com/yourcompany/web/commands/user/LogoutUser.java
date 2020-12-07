@@ -1,7 +1,6 @@
 package com.yourcompany.web.commands.user;
 
 import com.yourcompany.web.ICommand;
-import com.yourcompany.web.svg.Svg;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

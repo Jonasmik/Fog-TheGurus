@@ -1,4 +1,6 @@
-package com.yourcompany.web.svg;
+package com.yourcompany.web.svg.tags;
+
+import com.yourcompany.web.svg.Tag;
 
 import java.util.Locale;
 
@@ -13,7 +15,7 @@ public class Marker extends Tag {
     /**
      * Set by each class constructor such as super("svg") or super("rect")
      */
-    protected Marker(String id, int markerWidth, int markerHeight, int refX, int refY, String orient) {
+    public Marker(String id, int markerWidth, int markerHeight, int refX, int refY, String orient) {
         super("marker");
         this.id = id;
         this.markerWidth = markerWidth;

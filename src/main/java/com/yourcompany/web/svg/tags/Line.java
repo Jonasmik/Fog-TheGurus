@@ -1,4 +1,6 @@
-package com.yourcompany.web.svg;
+package com.yourcompany.web.svg.tags;
+
+import com.yourcompany.web.svg.Tag;
 
 import java.util.Locale;
 
@@ -12,7 +14,7 @@ public class Line extends Tag {
     /**
      * Set by each class constructor such as super("svg") or super("rect")
      */
-    protected Line(int x1, int y1, int x2, int y2) {
+    public Line(int x1, int y1, int x2, int y2) {
         super("line");
         this.x1 = x1;
         this.y1 = y1;

@@ -9,7 +9,8 @@ import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
-import com.yourcompany.web.svg.Svg;
+import com.yourcompany.web.svg.svgcalculations.CarportTopView;
+import com.yourcompany.web.svg.tags.Svg;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -95,7 +96,7 @@ public class ListSalesmanPage extends SalesmanCommand {
         }
         //Salesmans active PreOrders END
 
-        request.setAttribute("carport", Svg.carportTopView(800, 550, 0, 0).toString());
+        request.setAttribute("carport", CarportTopView.carportTopView(800, 550, 0, 0).toString());
 
         return "adminpage";
     }

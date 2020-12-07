@@ -14,7 +14,8 @@ import com.yourcompany.exceptions.user.CustomerValidation;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.web.ICommand;
-import com.yourcompany.web.svg.Svg;
+import com.yourcompany.web.svg.svgcalculations.CarportTopView;
+import com.yourcompany.web.svg.tags.Svg;
 import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -86,7 +87,7 @@ public class CreatePreOrder extends ICommand {
                     return creationpage;
                 }
             }
-            request.setAttribute("carportpreview", Svg.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
+            request.setAttribute("carportpreview", CarportTopView.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
             return creationpage;
         }
 

@@ -1,38 +1,13 @@
-package com.yourcompany.web.svg;
+package com.yourcompany.web.svg.svgcalculations;
+
+import com.yourcompany.web.svg.Tag;
+import com.yourcompany.web.svg.tags.Text;
+import com.yourcompany.web.svg.tags.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class Svg extends Tag {
-    private final int width;
-    private final int height;
-    private final String viewBox;
-
-    /**
-     * the super is used as "name" in Tag, so in this case it will be <svg
-     */
-    public Svg(int width, int height, String viewBox) {
-        super("svg");
-        this.width = width;
-        this.height = height;
-        this.viewBox = viewBox;
-    }
-
-    /**
-     * Implemente because of the Svg class extending Tag. It is used as the start of an svg doc.
-     */
-    @Override
-    public String renderAttributes() {
-        return String.format(
-                "xmlns=\"http://www.w3.org/2000/svg\""
-                        + " height=\"%d\" width=\"%d\" viewBox=\"%s\""
-                        + " preserveAspectRatio=\"xMidYMid meet\"",
-                height,
-                width,
-                viewBox
-        );
-    }
-
+public class CarportTopView {
 
     private static void createRims(Svg carportTopView, int xspacing, int yspacing, int lengthmm, int widthmm) {
         // rem
@@ -273,3 +248,4 @@ public class Svg extends Tag {
         }
     }
 }
+
