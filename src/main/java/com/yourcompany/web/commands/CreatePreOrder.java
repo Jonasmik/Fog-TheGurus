@@ -47,6 +47,7 @@ public class CreatePreOrder extends ICommand {
 
         boolean wantsPreview = preview != null;
         if(wantsPreview) {
+
             int newLength = 0;
             int newWidth = 0;
             try {
@@ -56,6 +57,7 @@ public class CreatePreOrder extends ICommand {
                 request.setAttribute(fail, "Du har ikke tilføjet nok til at generærer din carport");
                 return creationpage;
             }
+
 
             session.setAttribute("carportwidth", width);
             session.setAttribute("carportlength", length);
@@ -77,6 +79,12 @@ public class CreatePreOrder extends ICommand {
 
                 drawnShedWidth = Integer.parseInt(shedwidth);
                 drawnShedLength = Integer.parseInt(shedlength);
+
+                boolean isValidShed = checkShedLength(newLength, newWidth, drawnShedLength, drawnShedWidth);
+                if(!isValidShed) {
+                    request.setAttribute(fail, "Dit skur er for stort");
+                    return creationpage;
+                }
             }
             request.setAttribute("carportpreview", Svg.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
             return creationpage;
@@ -308,5 +316,17 @@ public class CreatePreOrder extends ICommand {
             request.setAttribute(fail, "Der gik noget galt i bestillingen.");
         }
         return creationpage;
+    }
+
+    private boolean checkShedLength(int length, int width, int shedLength, int shedWidth) {
+
+        boolean isValidLength = shedLength <= length/2;
+        boolean isValidWidth = shedWidth <= width - 70;
+        if (isValidLength) {
+            if(isValidWidth) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -129,6 +129,50 @@ public class Svg extends Tag {
     }
 
     private static void createShed(Svg carportTopView, int xspacing, int yspacing, int lengthmm, int widthmm, int shedwidth, int shedlength) {
+        int shedWidthMM = shedwidth * 10;
+        int shedLengthMM = shedlength * 10;
+        int pillarWidth = 97;
+
+        Tag topShedShedding = new Rect(xspacing + lengthmm - 275 - shedLengthMM + (pillarWidth/2), yspacing + 350, shedLengthMM, 45);
+        Tag bottomShedShedding = new Rect(xspacing + lengthmm - 275 - shedLengthMM + (pillarWidth/2), yspacing + shedWidthMM + 350 -45, shedLengthMM, 45);
+        Tag leftShedShedding = new Rect(xspacing + lengthmm - 275 - shedLengthMM + (pillarWidth/2), yspacing + 350, 45, shedWidthMM);
+        Tag rightShedShedding = new Rect(xspacing + lengthmm - 275, yspacing + 350, 45, shedWidthMM);
+        carportTopView.add(topShedShedding.withStyle("fill: white; stroke: black; stroke-width: 20;"));
+        carportTopView.add(bottomShedShedding.withStyle("fill: white; stroke: black; stroke-width: 20;"));
+        carportTopView.add(leftShedShedding.withStyle("fill: white; stroke: black; stroke-width: 20;"));
+        carportTopView.add(rightShedShedding.withStyle("fill: white; stroke: black; stroke-width: 20;"));
+
+        createShedPosts(carportTopView, xspacing, yspacing, lengthmm, widthmm, shedLengthMM, shedWidthMM, pillarWidth);
+    }
+
+    private static void createShedPosts(Svg carportTopView, int xspacing, int yspacing, int lengthmm, int widthmm, int shedLengthMM, int shedWidthMM, int pillarWidth) {
+
+        double upToFirstShedPillar = xspacing + lengthmm - 275 - shedLengthMM + (pillarWidth/2);
+
+        Tag leftTopPillar = new Rect(upToFirstShedPillar, yspacing + 350, pillarWidth, pillarWidth);
+        Tag leftBottomPillar = new Rect(upToFirstShedPillar, yspacing + shedWidthMM + 350 - 90, pillarWidth, pillarWidth);
+        carportTopView.add(leftBottomPillar.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+        carportTopView.add(leftTopPillar.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+
+        double minLengthThirdPost = 1100 + (550 * 5.5) + 275;
+        double calculateMiddlePillar = (yspacing + 350) + (shedWidthMM/2);
+
+        boolean doesNotNeedBottomRightPost = shedWidthMM != widthmm-70;
+        if(doesNotNeedBottomRightPost) {
+            Tag rightBottomPillar = new Rect(xspacing + lengthmm - 275 - (pillarWidth/2), yspacing + shedWidthMM + 350 - 90, pillarWidth, pillarWidth);
+            carportTopView.add(rightBottomPillar.withStyle("fill: white; stroke: black; stroke-width: 10"));
+        }
+
+        boolean needsAThirdPost = shedWidthMM >= minLengthThirdPost;
+        if (needsAThirdPost) {
+            Tag leftMiddlePost = new Rect(upToFirstShedPillar, calculateMiddlePillar, pillarWidth, pillarWidth);
+            Tag rightMiddlePost = new Rect(upToFirstShedPillar + shedLengthMM - pillarWidth, calculateMiddlePillar, pillarWidth, pillarWidth);
+            carportTopView.add(leftMiddlePost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+            carportTopView.add(rightMiddlePost.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+        }
+
+        //Line arround the shed
+//        Tag lineAround = new Rect()
 
     }
 
@@ -150,24 +194,24 @@ public class Svg extends Tag {
         Tag roof = new Rect(xspacing, yspacing, lengthmm, widthmm);
         carportTopView.add(roof.withStyle("fill: white; stroke: black; stroke-width: 10;"));
 
+        //Generate shed if shed > 0
+        if (shedlength > 0) {
+            createShed(carportTopView, xspacing, yspacing, lengthmm, widthmm, shedwidth, shedlength);
+        }
+
         //Generate rims
         createRims(carportTopView, xspacing, yspacing, lengthmm, widthmm);
 
         //Generate rafters
         createRafters(carportTopView, lengthmm, xspacing, yspacing, widthmm);
 
-        //Generate Posts
-        createStandardPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
 
         //Generate Arrow lines
         createArrowLines(carportTopView, xspacing, yspacing, widthmm, lengthmm, length, width);
 
-        //Generate shed if shed > 0
-        if (shedlength > 0) {
-            createShed(carportTopView, xspacing, yspacing, lengthmm, widthmm, shedwidth, shedlength);
-            //createShedPosts()
-        }
 
+        //Generate Posts
+        createStandardPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
 
         /* Stern MÅSKE IKKE NØDVENDIG?
         Tag frontUnderStern = new Rect(xspacing,yspacing,25,widthmm);
@@ -186,7 +230,7 @@ public class Svg extends Tag {
 
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("output.svg")) {
-            writer.write(carportTopView(500, 600, 0, 0).toString());
+            writer.write(carportTopView(750, 780, 680, 270).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }
