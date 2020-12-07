@@ -45,7 +45,8 @@ public class CreatePreOrder extends ICommand {
         String shed = request.getParameter("shed");
         String preview = request.getParameter("secarport");
 
-        if(preview != null) {
+        boolean wantsPreview = preview != null;
+        if(wantsPreview) {
             int newLength = 0;
             int newWidth = 0;
             try {
@@ -65,13 +66,19 @@ public class CreatePreOrder extends ICommand {
                 angle = request.getParameter("roofangle");
                 session.setAttribute("carportangle", angle);
             }
+
+            int drawnShedWidth = 0;
+            int drawnShedLength = 0;
             if(shed != null) {
                 String shedwidth = request.getParameter("shedwidth");
                 String shedlength = request.getParameter("shedlength");
                 session.setAttribute("shedwidth", shedwidth);
                 session.setAttribute("shedlength", shedlength);
+
+                drawnShedWidth = Integer.parseInt(shedwidth);
+                drawnShedLength = Integer.parseInt(shedlength);
             }
-            request.setAttribute("carportpreview", Svg.carportTopView(newWidth, newLength));
+            request.setAttribute("carportpreview", Svg.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
             return creationpage;
         }
 
@@ -247,7 +254,8 @@ public class CreatePreOrder extends ICommand {
 
 
         //If customer wants a shed, create shed
-        if (shed != null) {
+        boolean wantsShed = shed != null;
+        if (wantsShed) {
             ShedFactory shedFactory = new ShedFactory();
 
             String shedwidth = request.getParameter("shedwidth");
@@ -274,8 +282,6 @@ public class CreatePreOrder extends ICommand {
                 request.setAttribute(fail, "Der gik noget galt i bestillingen.");
                 return creationpage;
             }
-            //drawnshedwidth == shedFactory.getWidth()
-            //drawnshedlength == shedFactory.getLength()
         }
 
 

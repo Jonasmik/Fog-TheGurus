@@ -1,8 +1,8 @@
 
-H
-java:S1168"+Return an empty collection instead of null.(¥Ήο8¤ζγ.
-q
-java:S2095%"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Μγλƒωÿÿÿÿ8¤ζγ.
-Z	java:S106,"9Replace this use of System.out or System.err by a logger.(ÒΏιπόÿÿÿÿ8¤ζγ.
-l
-java:S20959"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Υ¬ψΌ8¤ζγ.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Μγλƒωÿÿÿÿ8¤ζγ.
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Υ¬ψΌ8¤ζγ.
+F
+java:S1168"+Return an empty collection instead of null.(¥Ήο8¤ζγ.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(ÒΏιπόÿÿÿÿ8¤ζγ.

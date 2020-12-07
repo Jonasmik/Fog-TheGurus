@@ -40,7 +40,7 @@ public class ListCustomerPage extends CustomerCommand {
                 request.setAttribute("error", "Din carport information blev ikke korrekt sat ind");
                 return "errorpage";
             }
-            request.getSession().setAttribute("carportpreview", Svg.carportTopView(newCarportWidth, newCarportLength));
+            request.getSession().setAttribute("carportpreview", Svg.carportTopView(newCarportWidth, newCarportLength, 0, 0));
         }
         try {
             customers = api.getCustomerFacade().findAllByUserId(user.getId());

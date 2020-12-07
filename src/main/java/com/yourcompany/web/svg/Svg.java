@@ -57,7 +57,7 @@ public class Svg extends Tag {
         }
     }
 
-    private static void createPosts(Svg carportTopView, int yspacing, int xspacing, int widthmm, int lengthmm) {
+    private static void createStandardPosts(Svg carportTopView, int yspacing, int xspacing, int widthmm, int lengthmm) {
 
         int pillarWidth = 97;
 
@@ -128,9 +128,13 @@ public class Svg extends Tag {
         carportTopView.add(leftLengthInnerText.withStyle("stroke-width: 15"));
     }
 
+    private static void createShed(Svg carportTopView, int xspacing, int yspacing, int lengthmm, int widthmm, int shedwidth, int shedlength) {
+
+    }
+
     //int shedwidth, int shedlength
     //if shed == null - shedwidth and shedlength == 0
-    public static Tag carportTopView(int width, int length) {
+    public static Tag carportTopView(int width, int length, int shedwidth, int shedlength) {
         int widthmm = width * 10;
         int lengthmm = length * 10;
         int sizeLength = lengthmm + 1200;
@@ -153,12 +157,16 @@ public class Svg extends Tag {
         createRafters(carportTopView, lengthmm, xspacing, yspacing, widthmm);
 
         //Generate Posts
-        createPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
+        createStandardPosts(carportTopView, yspacing, xspacing, widthmm, lengthmm);
 
         //Generate Arrow lines
         createArrowLines(carportTopView, xspacing, yspacing, widthmm, lengthmm, length, width);
 
         //Generate shed if shed > 0
+        if (shedlength > 0) {
+            createShed(carportTopView, xspacing, yspacing, lengthmm, widthmm, shedwidth, shedlength);
+            //createShedPosts()
+        }
 
 
         /* Stern MÅSKE IKKE NØDVENDIG?
@@ -178,7 +186,7 @@ public class Svg extends Tag {
 
     public static void main(String[] args) {
         try (FileWriter writer = new FileWriter("output.svg")) {
-            writer.write(carportTopView(500, 600).toString());
+            writer.write(carportTopView(500, 600, 0, 0).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

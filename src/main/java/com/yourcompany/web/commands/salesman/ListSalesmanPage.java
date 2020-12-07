@@ -95,7 +95,7 @@ public class ListSalesmanPage extends SalesmanCommand {
         }
         //Salesmans active PreOrders END
 
-        request.setAttribute("carport", Svg.carportTopView(800, 550).toString());
+        request.setAttribute("carport", Svg.carportTopView(800, 550, 0, 0).toString());
 
         return "adminpage";
     }

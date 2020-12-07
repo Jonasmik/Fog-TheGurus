@@ -1,18 +1,18 @@
 
-q
-java:S2095U"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8…ºš†á.
-q
-java:S2095C"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8…ºš†á.
-Z	java:S106\"9Replace this use of System.out or System.err by a logger.(Ò¿éðüÿÿÿÿ8…ºš†á.
-l
-java:S2095#"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ü™Óª8ÊÃœËâ.
-Z	java:S106J"9Replace this use of System.out or System.err by a logger.(Ò¿éðüÿÿÿÿ8…ºš†á.
-m
-java:S2095‚"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8ÊÃœËâ.
-|
-java:S11928"ZDefine a constant instead of duplicating this literal "No version in properties." 3 times.(Ò¿éðüÿÿÿÿ8Ò„®Ëâ.
-q
-java:S20951"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8Ò„®Ëâ.
-l
-java:S2095i"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8…ºš†á.
-Z	java:S1068"9Replace this use of System.out or System.err by a logger.(Ò¿éðüÿÿÿÿ8Ò„®Ëâ.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8Â˜ËÆã.
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8Â˜ËÆã.
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ü™Óª8Â˜ËÆã.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8Â˜ËÆã.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(Ò¿éðüÿÿÿÿ8Â˜ËÆã.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(Ò¿éðüÿÿÿÿ8Â˜ËÆã.
+z
+java:S1192"ZDefine a constant instead of duplicating this literal "No version in properties." 3 times.(Ò¿éðüÿÿÿÿ8Â˜ËÆã.
+X	java:S106"9Replace this use of System.out or System.err by a logger.(Ò¿éðüÿÿÿÿ8Â˜ËÆã.
+j
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Õ¬ø¼8Â˜ËÆã.
+o
+java:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(Ìãëƒùÿÿÿÿ8Â˜ËÆã.

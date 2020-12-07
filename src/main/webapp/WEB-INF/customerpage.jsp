@@ -163,7 +163,7 @@
                                 <tr>
                                     <th scope="row">${takenpreorder.id}</th>
                                     <td>${requestScope.takencustomers.get(countactivepreorder).additional}</td>
-                                    <td>Navn :${requestScope.preordersalesmen.get(countactivepreorder).name}, Kontakt
+                                    <td>Navn: ${requestScope.preordersalesmen.get(countactivepreorder).name}, Kontakt
                                         e-mail: ${requestScope.preordersalesmen.get(countactivepreorder).email}</td>
                                     <td style="width: 20%">
                                         <button type="button" class="btn btn-block btn-outline-info"
