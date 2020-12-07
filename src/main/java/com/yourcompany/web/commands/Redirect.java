@@ -41,14 +41,23 @@ public class Redirect extends ICommand {
                 return "redirect:listcustomerpage";
             case "adminpage":
 
-                if (user == null) {
-                    request.setAttribute(error, "Du er desvære ikke en adminstrator, men godt forsøgt");
-                    return errorpage;
-                } else if (user.getRole().equals("salesman")) {
-                    return "redirect:listsalesmanpage";
-                } else {
+                if(user == null) {
+                    request.setAttribute(error, "Du er ikke en adminstrator");
                     return errorpage;
                 }
+
+                switch (user.getRole()) {
+                    case "salesman":
+                        return "redirect:listsalesmanpage";
+                    case "depman":
+                        return "redirect:listdepman";
+                    case "employee":
+                        return "redirect:listemployee";
+                    default:
+                        request.setAttribute(error, "Du er ikke en adminstrator");
+                        return errorpage;
+                }
+
             default:
                 request.setAttribute(error, "This site does not exist");
                 destination = errorpage;

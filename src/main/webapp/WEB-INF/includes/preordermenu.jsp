@@ -363,6 +363,8 @@
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
+                                    <option>660</option>
+                                    <option>750</option>
                                 </select>
                             </div>
                             <div class="form-group">
@@ -377,6 +379,8 @@
                                     <option>210</option>
                                     <option>240</option>
                                     <option>270</option>
+                                    <option>660</option>
+                                    <option>750</option>
                                 </select>
                             </div>
                         </div>
