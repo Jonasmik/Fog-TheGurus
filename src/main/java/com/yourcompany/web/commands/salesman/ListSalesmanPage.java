@@ -19,7 +19,6 @@ import java.util.List;
 
 public class ListSalesmanPage extends SalesmanCommand {
 
-
     @Override
     protected String withSalesmanExecute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -58,13 +57,13 @@ public class ListSalesmanPage extends SalesmanCommand {
         //Salesmans active PreOrders START
         List<Salesman> salesmanList;
         try {
-             salesmanList = api.getSalesmanFacade().findAllByUserId(user.getId());
+            salesmanList = api.getSalesmanFacade().findAllByUserId(user.getId());
         } catch (NoSuchSalesmanExists noSuchSalesmanExists) {
             request.setAttribute(fail, "Der gik noget galt med at finde din salesman konto");
             return error;
         }
 
-        if(salesmanList != null) {
+        if (salesmanList != null) {
             List<PreOrder> activePreOrders = new ArrayList<>();
             for (Salesman s : salesmanList) {
                 try {

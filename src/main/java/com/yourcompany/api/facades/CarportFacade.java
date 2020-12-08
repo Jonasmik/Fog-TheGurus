@@ -10,30 +10,33 @@ import com.yourcompany.infrastructure.dbsetup.Database;
 import java.util.List;
 
 public class CarportFacade {
-    private static CarportFacade instance;
-    private final CarportRepository repo;
 
-    public CarportFacade(CarportRepository repo) {
-        this.repo = repo;
-    }
+   private static CarportFacade instance;
+   private final CarportRepository repo;
 
-    public static CarportFacade getInstance() {
-        if (instance == null) {
-            Database db = new Database();
-            CarportRepository carportRepository = new DBCarportRepository(db);
-            instance = new CarportFacade(carportRepository);
-        }
-        return instance;
-    }
+   public CarportFacade(CarportRepository repo) {
+      this.repo = repo;
+   }
 
-    public List<Carport> findAll() throws NoSuchCarportExists {
-        return repo.findAll();
-    }
-    public Carport findById(int id) throws NoSuchCarportExists {
-        return repo.findById(id);
-    }
-    public Carport createCarport(CarportFactory carportFactory) throws NoSuchCarportExists{
-        return repo.createCarport(carportFactory);
-    }
+   public static CarportFacade getInstance() {
+      if (instance == null) {
+         Database db = new Database();
+         CarportRepository carportRepository = new DBCarportRepository(db);
+         instance = new CarportFacade(carportRepository);
+      }
+      return instance;
+   }
+
+   public List<Carport> findAll() throws NoSuchCarportExists {
+      return repo.findAll();
+   }
+
+   public Carport findById(int id) throws NoSuchCarportExists {
+      return repo.findById(id);
+   }
+
+   public Carport createCarport(CarportFactory carportFactory) throws NoSuchCarportExists {
+      return repo.createCarport(carportFactory);
+   }
 
 }

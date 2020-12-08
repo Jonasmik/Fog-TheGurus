@@ -32,6 +32,8 @@
         </div>
         <div class="col-md-8">
 
+            ${requestScope.testbom.toString()}
+
             <c:if test="${sessionScope.carportpreview != null}">
                 <div class="alert alert-info border-secondary">
                     <h1>Din carport</h1>

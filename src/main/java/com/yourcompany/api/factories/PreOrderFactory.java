@@ -18,8 +18,12 @@ public class PreOrderFactory {
     }
 
     public Boolean isValid() {
-        if (this.customerId < 0) return false;
-        if (this.carportId < 0) return false;
+        if (this.customerId < 0) {
+            return false;
+        }
+        if (this.carportId < 0) {
+            return false;
+        }
         return true;
     }
 

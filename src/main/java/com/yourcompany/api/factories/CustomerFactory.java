@@ -13,12 +13,24 @@ public class CustomerFactory {
     private String additional;
 
     public Boolean isValid() {
-        if(this.userid < 0) return false;
-        if(this.name == null || this.name.isBlank()) return false;
-        if(this.adress == null || this.adress.isBlank()) return false;
-        if(this.zipcode < 0) return false;
-        if(this.city == null || this.city.isBlank()) return false;
-        if(this.email == null || this.email.isBlank()) return false;
+        if (this.userid < 0) {
+            return false;
+        }
+        if (this.name == null || this.name.isBlank()) {
+            return false;
+        }
+        if (this.adress == null || this.adress.isBlank()) {
+            return false;
+        }
+        if (this.zipcode < 0) {
+            return false;
+        }
+        if (this.city == null || this.city.isBlank()) {
+            return false;
+        }
+        if (this.email == null || this.email.isBlank()) {
+            return false;
+        }
 
         return true;
     }

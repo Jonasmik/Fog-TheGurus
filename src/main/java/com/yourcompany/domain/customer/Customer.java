@@ -1,6 +1,7 @@
 package com.yourcompany.domain.customer;
 
 public class Customer {
+
     private final int id;
     private final int userid;
     private final String name;
@@ -10,7 +11,8 @@ public class Customer {
     private final String email;
     private final String additional;
 
-    public Customer(int id, int userid, String name, String adress, int zipcode, String city, String email, String additional) {
+    public Customer(int id, int userid, String name, String adress, int zipcode, String city,
+            String email, String additional) {
         this.id = id;
         this.userid = userid;
         this.name = name;

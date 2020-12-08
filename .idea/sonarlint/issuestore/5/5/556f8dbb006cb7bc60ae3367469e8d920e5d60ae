@@ -1,5 +1,7 @@
 
-T
-java:S2441"9Make "Tag" serializable or don't store it in the session.(°¿ˆû8óÙ°ûâ.
 m
-java:S3776"RRefactor this method to reduce its Cognitive Complexity from 17 to the 15 allowed.(Ş¹8óÙ°ûâ.
+java:S3776"RRefactor this method to reduce its Cognitive Complexity from 18 to the 15 allowed.(Ş¹8óÙ°ûâ.
+Y
+java:S2441"9Make "Tag" serializable or don't store it in the session.(—¾ªøÿÿÿÿ8ıƒÏ“ä.
+X
+java:S1128"=Remove this unused import 'com.yourcompany.web.svg.tags.Svg'.(†úò¸8ıƒÏ“ä.

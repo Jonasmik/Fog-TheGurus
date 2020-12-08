@@ -7,7 +7,7 @@ public class SalesmanFactory {
     private int userId;
 
     public Boolean isValid() {
-        if(this.userId < 0) {
+        if (this.userId < 0) {
             return false;
         }
         return true;

@@ -3,6 +3,7 @@ package com.yourcompany.web.svg.tags;
 import com.yourcompany.web.svg.Tag;
 
 public class Svg extends Tag {
+
     private final int width;
     private final int height;
     private final String viewBox;

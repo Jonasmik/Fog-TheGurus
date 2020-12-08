@@ -25,6 +25,7 @@ public class PreOrderFacade {
             instance = new PreOrderFacade(preOrderRepository);
         }
         return instance;
+
     }
 
     public List<PreOrder> findAllUnused() throws NoSuchPreOrderExists {

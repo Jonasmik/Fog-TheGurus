@@ -1,0 +1,88 @@
+
+[
+java:S2184-"ECast one of the operands of this subtraction operation to a "double".(š­Ç°
+7
+java:S1110"!Remove these useless parentheses.(´õë’
+\
+java:S2184¸"ECast one of the operands of this subtraction operation to a "double".(ŽÆõë
+[
+java:S2184<"ECast one of the operands of this subtraction operation to a "double".(½ÜÌ
+]
+java:S2184"BCast one of the operands of this division operation to a "double".(Ý®¼–ÿÿÿÿÿ
+`
+java:S21849"ECast one of the operands of this subtraction operation to a "double".(ÄÜƒÿÿÿÿÿ
+^
+java:S2184‘"BCast one of the operands of this addition operation to a "double".(ˆ–Ó¡ûÿÿÿÿ
+Y
+java:S2184”"BCast one of the operands of this addition operation to a "double".(í‰áô
+\
+java:S2184Œ"ECast one of the operands of this subtraction operation to a "double".(¸Ð¥“
+W	java:S107§"<Method has 8 parameters, which is greater than 7 authorized.(çÖÚÈþÿÿÿÿ
+]
+java:S2184"BCast one of the operands of this addition operation to a "double".(õÓ«¸úÿÿÿÿ
+a
+java:S2184•"ECast one of the operands of this subtraction operation to a "double".(Åã¼“ûÿÿÿÿ
+Q	java:S125"<This block of commented-out lines of code should be removed.(­Âú[
+g
+java:S1192f"QDefine a constant instead of duplicating this literal "stroke-width: 15" 3 times.(ÙÕ¦³
+a
+java:S2184¹"ECast one of the operands of this subtraction operation to a "double".(¦ÎÂïøÿÿÿÿ
+V
+java:S2184/"@Cast one of the operands of this integer division to a "double".(È¡ì°
+^
+java:S2184—"BCast one of the operands of this addition operation to a "double".(×Ï×®ÿÿÿÿÿ
+Y
+java:S2184’"BCast one of the operands of this addition operation to a "double".(¹Ýûç
+^
+java:S2184"BCast one of the operands of this addition operation to a "double".(Á·Ñúÿÿÿÿ
+\
+java:S2184­"ECast one of the operands of this subtraction operation to a "double".(ˆ‚¥«
+^
+java:S2184"BCast one of the operands of this addition operation to a "double".(Á·Ñúÿÿÿÿ
+a
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(Á·Ñúÿÿÿÿ
+N	java:S106"9Replace this use of System.out or System.err by a logger.(Õ¿®ü
+a
+java:S1192a"FDefine a constant instead of duplicating this literal "black" 3 times.(ÏºÕßùÿÿÿÿ
+³
+java:S1192c"œDefine a constant instead of duplicating this literal "stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)" 3 times.(¨ÛÒâ
+{
+java:S1192q"`Define a constant instead of duplicating this literal "stroke: black; stroke-width: 15" 4 times.(ÉÉƒ…üÿÿÿÿ
+`
+java:S21844"ECast one of the operands of this subtraction operation to a "double".(–êº“ýÿÿÿÿ
+7
+java:S1110Ï"!Remove these useless parentheses.(µÐ
+]
+java:S21843"BCast one of the operands of this addition operation to a "double".(Žöø³úÿÿÿÿ
+[
+java:S2184E"ECast one of the operands of this subtraction operation to a "double".(½ÜÌ
+X
+java:S2184™"BCast one of the operands of this addition operation to a "double".(äõþ
+^
+java:S2184—"BCast one of the operands of this addition operation to a "double".(×Ï×®ÿÿÿÿÿ
+–
+java:S1192Ú"zDefine a constant instead of duplicating this literal "stroke-dasharray: 70 70; stroke-width: 20; stroke: black;" 4 times.(Ö°›±ÿÿÿÿÿ
+`
+java:S2184;"ECast one of the operands of this subtraction operation to a "double".(šýõÐþÿÿÿÿ
+…
+java:S1192"oDefine a constant instead of duplicating this literal "fill: white; stroke: black; stroke-width: 10;" 14 times.(¦²±“
+…
+java:S1192œ"nDefine a constant instead of duplicating this literal "fill: white; stroke: black; stroke-width: 20;" 4 times.(ÄŠ——
+]
+java:S21844"BCast one of the operands of this addition operation to a "double".(–êº“ýÿÿÿÿ
+E
+java:S1172„".Remove this unused method parameter "widthmm".(ºµî—
+`
+java:S2184"ECast one of the operands of this subtraction operation to a "double".(²ªÐÇüÿÿÿÿ
+R	java:S125Ð"<This block of commented-out lines of code should be removed.(›¸²‡
+S	java:S106"9Replace this use of System.out or System.err by a logger.(ìÑ”æüÿÿÿÿ
+X
+java:S2184C"BCast one of the operands of this addition operation to a "double".(ï‡ÚÈ
+^
+java:S2184ª"BCast one of the operands of this addition operation to a "double".(ÄÝ‚üûÿÿÿÿ
+[
+java:S2184™"ECast one of the operands of this subtraction operation to a "double".(äõþ
+^
+java:S2184¬"BCast one of the operands of this addition operation to a "double".(œˆýÿùÿÿÿÿ
+^
+java:S2184´"BCast one of the operands of this addition operation to a "double".(„¢¼–þÿÿÿÿ

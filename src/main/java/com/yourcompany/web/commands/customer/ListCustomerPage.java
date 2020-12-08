@@ -1,15 +1,20 @@
 package com.yourcompany.web.commands.customer;
 
+import com.yourcompany.domain.bom.Bom;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.customer.Customer;
+import com.yourcompany.domain.material.MaterialRepository;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
+import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.domain.user.User;
+import com.yourcompany.exceptions.bom.UnsatisfiableCarport;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.exceptions.user.UserValidationError;
+import com.yourcompany.infrastructure.listbased.ListMaterialRepository;
 import com.yourcompany.web.svg.svgcalculations.CarportTopView;
 import com.yourcompany.web.svg.tags.Svg;
 
@@ -109,8 +114,21 @@ public class ListCustomerPage extends CustomerCommand {
         request.setAttribute("preordercarports", takenPreOrderCarports);
         request.setAttribute("preorder", takenPreOrders);
 
+        Bom bom = null;
+        MaterialRepository repo = new ListMaterialRepository();
+        Carport newCarport = new Carport(0, 420, 420, "carport", 0);
+        try {
+            //new Shed(0, 240, 240, newCarport.getId()
+            bom = Bom.createList(repo, newCarport, null);
+        } catch (UnsatisfiableCarport unsatisfiableCarport) {
+            unsatisfiableCarport.printStackTrace();
+        }
+
+        request.setAttribute("testbom", bom);
+
         //All customers
         request.setAttribute("preordercustomers", customers);
+
 
         return "customerpage";
     }

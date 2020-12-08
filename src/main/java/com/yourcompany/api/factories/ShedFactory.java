@@ -3,18 +3,23 @@ package com.yourcompany.api.factories;
 import com.yourcompany.exceptions.shed.ShedValidations;
 
 public class ShedFactory {
+
     private int length;
     private int width;
     private int carportID;
 
     public boolean isValid() {
-        if (length < 0) return false;
-        if (width < 0) return false;
-        if (carportID < 0) return false;
+        if (length < 0) {
+            return false;
+        }
+        if (width < 0) {
+            return false;
+        }
+        if (carportID < 0) {
+            return false;
+        }
         return true;
     }
-
-
 
 
     public int getLength() {
@@ -26,9 +31,9 @@ public class ShedFactory {
     }
 
     public void setLength(String number) throws ShedValidations {
-        try{
+        try {
             setLength(Integer.parseInt(number));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new ShedValidations(e.getMessage());
         }
     }
@@ -42,9 +47,9 @@ public class ShedFactory {
     }
 
     public void setWidth(String number) throws ShedValidations {
-        try{
+        try {
             setWidth(Integer.parseInt(number));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new ShedValidations(e.getMessage());
         }
     }
@@ -54,15 +59,14 @@ public class ShedFactory {
     }
 
 
-
     public void setCarportID(int carportID) {
         this.carportID = carportID;
     }
 
     public void setCarportID(String number) throws ShedValidations {
-        try{
+        try {
             setCarportID(Integer.parseInt(number));
-        } catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             throw new ShedValidations(e.getMessage());
         }
     }

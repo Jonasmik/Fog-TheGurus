@@ -1,6 +1,7 @@
 package com.yourcompany.domain.carport;
 
 public class Carport {
+
     private final int id;
     private final int length;
     private final int width;

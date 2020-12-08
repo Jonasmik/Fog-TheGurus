@@ -5,6 +5,7 @@ import com.yourcompany.web.svg.Tag;
 import java.util.Locale;
 
 public class Rect extends Tag {
+
     private final double x;
     private final double y;
     private final double width;
@@ -21,6 +22,6 @@ public class Rect extends Tag {
     @Override
     public String renderAttributes() {
         return String.format(Locale.US, "x=\"%f\" y=\"%f\" width=\"%f\" height=\"%f\"",
-                x, y, width, height);
+            x, y, width, height);
     }
 }
