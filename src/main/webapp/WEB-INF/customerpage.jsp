@@ -32,7 +32,31 @@
         </div>
         <div class="col-md-8">
 
-            ${requestScope.testbom.toString()}
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col">Beskrivelse</th>
+                        <th scope="col">Længde</th>
+                        <th scope="col">Antal</th>
+                        <th scope="col" style="text-align: center">Enhed</th>
+                        <th scope="col">Beskrivelse</th>
+                        <th scope="col"><pre>${requestScope.testbom.toString()}</pre></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach var="bom" items="${requestScope.testbom.bomItemList}">
+                        <tr>
+                            <th scope="row">${bom.material}</th>
+                            <td>${bom.length}</td>
+                            <td>${bom.amount}</td>
+                            <td>${bom.unit}</td>
+                            <td>${bom.description}</td>
+                        </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+            </div>
 
             <c:if test="${sessionScope.carportpreview != null}">
                 <div class="alert alert-info border-secondary">
@@ -68,7 +92,8 @@
                         <c:set var="alphabetuntakenpreorder"
                                value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
                         <c:set var="untakenpreordercount" value="0" scope="page"/>
-                        <c:forEach var="untakenpreorder" items="${requestScope.untakenpreorders}">
+                        <c:forEach var="untakenpreorder"
+                                   items="${requestScope.untakenpreorders}">
                             <form action="Main" method="POST">
                                 <input type="hidden" name="target" value="listcustomerpage">
                                 <input type="hidden" name="carportlength"
@@ -79,7 +104,8 @@
                                     <th scope="row">${untakenpreorder.id}</th>
                                     <td>${requestScope.untakencustomers.get(untakenpreordercount).additional}</td>
                                     <td style="width: 20%;">
-                                        <button type="button" class="btn btn-block btn-outline-info"
+                                        <button type="button"
+                                                class="btn btn-block btn-outline-info"
                                                 data-toggle="modal"
                                                 data-target="#${alphabetuntakenpreorder.charAt(doublecountuntaken)}untakenpreorders">
                                             Se carport
@@ -94,9 +120,11 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="untakenpreorders">Forespørgelse
+                                                <h5 class="modal-title" id="untakenpreorders">
+                                                    Forespørgelse
                                                     nr. ${untakenpreorder.id}</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -113,19 +141,23 @@
                                                     grader</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-secondary"
+                                                <button type="button"
+                                                        class="btn btn-outline-secondary"
                                                         data-dismiss="modal">Luk
                                                 </button>
-                                                <button type="submit" class="btn btn-outline-primary">
+                                                <button type="submit"
+                                                        class="btn btn-outline-primary">
                                                     Se tegning
                                                 </button>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <c:set var="doublecountuntaken" value="${doublecountuntaken + 2}" scope="page"/>
+                                <c:set var="doublecountuntaken"
+                                       value="${doublecountuntaken + 2}" scope="page"/>
                             </form>
-                            <c:set var="untakenpreordercount" value="${untakenpreordercount + 1}" scope="page"/>
+                            <c:set var="untakenpreordercount"
+                                   value="${untakenpreordercount + 1}" scope="page"/>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -165,10 +197,13 @@
                                 <tr>
                                     <th scope="row">${takenpreorder.id}</th>
                                     <td>${requestScope.takencustomers.get(countactivepreorder).additional}</td>
-                                    <td>Navn: ${requestScope.preordersalesmen.get(countactivepreorder).name}, Kontakt
+                                    <td>
+                                        Navn: ${requestScope.preordersalesmen.get(countactivepreorder).name},
+                                        Kontakt
                                         e-mail: ${requestScope.preordersalesmen.get(countactivepreorder).email}</td>
                                     <td style="width: 20%">
-                                        <button type="button" class="btn btn-block btn-outline-info"
+                                        <button type="button"
+                                                class="btn btn-block btn-outline-info"
                                                 data-toggle="modal"
                                                 data-target="#${alphabetactivepreorder.charAt(doublecountactive)}activepreorders">
                                             Se carport
@@ -183,9 +218,11 @@
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="activepreorders">Forespørgelse
+                                                <h5 class="modal-title" id="activepreorders">
+                                                    Forespørgelse
                                                     nr. ${takenpreorder.id}</h5>
-                                                <button type="button" class="close" data-dismiss="modal"
+                                                <button type="button" class="close"
+                                                        data-dismiss="modal"
                                                         aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
@@ -202,10 +239,12 @@
                                                     grader</p>
                                             </div>
                                             <div class="modal-footer">
-                                                <button type="button" class="btn btn-outline-secondary"
+                                                <button type="button"
+                                                        class="btn btn-outline-secondary"
                                                         data-dismiss="modal">Luk
                                                 </button>
-                                                <button type="submit" class="btn btn-outline-primary">
+                                                <button type="submit"
+                                                        class="btn btn-outline-primary">
                                                     Se tegning
                                                 </button>
                                             </div>
@@ -213,8 +252,10 @@
                                     </div>
                                 </div>
                             </form>
-                            <c:set var="countactivepreorder" value="${countactivepreorder + 1}" scope="page"/>
-                            <c:set var="doublecountactive" value="${doublecountactive + 2}" scope="page"/>
+                            <c:set var="countactivepreorder" value="${countactivepreorder + 1}"
+                                   scope="page"/>
+                            <c:set var="doublecountactive" value="${doublecountactive + 2}"
+                                   scope="page"/>
                         </c:forEach>
                         </tbody>
                     </table>

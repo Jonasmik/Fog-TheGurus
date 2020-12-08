@@ -92,6 +92,7 @@ public class ListSalesmanPage extends SalesmanCommand {
             request.setAttribute("activepreordercarports", activeCarports);
             request.setAttribute("activepreorder", activePreOrders);
             request.setAttribute("salesmen", salesmanList);
+
         }
         //Salesmans active PreOrders END
 

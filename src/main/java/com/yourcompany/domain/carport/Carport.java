@@ -8,7 +8,6 @@ public class Carport {
     private final String roof;
     private final int roofAngle;
 
-
     public Carport(int id, int length, int width, String roof, int roofAngle) {
         this.id = id;
         this.length = length;
@@ -19,13 +18,8 @@ public class Carport {
 
     @Override
     public String toString() {
-        return "Carport{" +
-                "id=" + id +
-                ", length=" + length +
-                ", width=" + width +
-                ", roof='" + roof + '\'' +
-                ", roofAngle=" + roofAngle +
-                '}';
+        return "Carport{" + "id=" + id + ", length=" + length + ", width=" + width + ", roof='" + roof + '\''
+                + ", roofAngle=" + roofAngle + '}';
     }
 
     public int getId() {
@@ -48,4 +42,3 @@ public class Carport {
         return roofAngle;
     }
 }
-

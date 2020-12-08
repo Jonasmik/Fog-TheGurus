@@ -7,6 +7,8 @@ import java.util.List;
 
 public interface CarportRepository {
     List<Carport> findAll() throws NoSuchCarportExists;
+
     Carport findById(int id) throws NoSuchCarportExists;
+
     Carport createCarport(CarportFactory carportFactory) throws NoSuchCarportExists;
 }

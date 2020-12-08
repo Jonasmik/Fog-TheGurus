@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListCustomerPage extends CustomerCommand {
+
     @Override
     protected String withCustomerExecute(HttpServletRequest request, HttpServletResponse response) {
         User user = getUser(request.getSession());
@@ -34,7 +35,7 @@ public class ListCustomerPage extends CustomerCommand {
 
         String carportWidth = request.getParameter("carportwidth");
 
-        if(carportWidth != null) {
+        if (carportWidth != null) {
             String carportLength = request.getParameter("carportlength");
             int newCarportWidth = 0;
             int newCarportLength = 0;
@@ -46,7 +47,8 @@ public class ListCustomerPage extends CustomerCommand {
                 request.setAttribute("error", "Din carport information blev ikke korrekt sat ind");
                 return "errorpage";
             }
-            request.getSession().setAttribute("carportpreview", CarportTopView.carportTopView(newCarportWidth, newCarportLength, 0, 0));
+            request.getSession()
+                .setAttribute("carportpreview", CarportTopView.carportTopView(newCarportWidth, newCarportLength, 0, 0));
         }
         try {
             customers = api.getCustomerFacade().findAllByUserId(user.getId());
@@ -67,7 +69,7 @@ public class ListCustomerPage extends CustomerCommand {
                     PreOrder preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
 
                     //if the preorder does not have a salesman assigned to them
-                    if(preOrder.getSalesmanId() == 0) {
+                    if (preOrder.getSalesmanId() == 0) {
                         untakenPreOrders.add(preOrder);
                         Carport untakencarport = api.getCarportFacade().findById(preOrder.getCarportId());
                         untakenPreOrderCarports.add(untakencarport);
@@ -93,7 +95,7 @@ public class ListCustomerPage extends CustomerCommand {
         }
 
         List<User> preOrderSalesmanUsers = new ArrayList<>();
-        for(Salesman s : salesmen) {
+        for (Salesman s : salesmen) {
             try {
                 User salesmanUser = api.getUserFacade().findUserById(s.getUserId());
                 preOrderSalesmanUsers.add(salesmanUser);
@@ -118,8 +120,7 @@ public class ListCustomerPage extends CustomerCommand {
         MaterialRepository repo = new ListMaterialRepository();
         Carport newCarport = new Carport(0, 420, 420, "carport", 0);
         try {
-            //new Shed(0, 240, 240, newCarport.getId()
-            bom = Bom.createList(repo, newCarport, null);
+            bom = Bom.createList(repo, newCarport, new Shed(0, 240, 240, newCarport.getId()));
         } catch (UnsatisfiableCarport unsatisfiableCarport) {
             unsatisfiableCarport.printStackTrace();
         }
@@ -128,7 +129,6 @@ public class ListCustomerPage extends CustomerCommand {
 
         //All customers
         request.setAttribute("preordercustomers", customers);
-
 
         return "customerpage";
     }
