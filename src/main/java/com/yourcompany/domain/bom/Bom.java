@@ -108,21 +108,22 @@ public class Bom {
         int plastmogWidth = 100;
         int plastmogLength = carport.getLength();
         int plastmogCalculation = (carport.getWidth() / plastmogWidth) + 0;
-        if (plastmogLength > 600) {
+        if (plastmogLength >= 600) {
 
             if (carport.getLength() % plastmogLength != 0) {
                 plastmogCalculation = (carport.getWidth() / plastmogWidth) + 1;
             }
 
-            l.add(new BomItem(repo.findLumber(0, 19, 100, LumberType.TRYKIMP_BRÆDT), 240, plastmogCalculation,  "Stk",
-                "til beklædning af skur1 på 2"));
-            l.add(new BomItem(repo.findLumber(0, 19, 100, LumberType.TRYKIMP_BRÆDT), 600, plastmogCalculation,  "Stk",
-                "til beklædning af skur1 på 2"));
+            l.add(new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), 240, plastmogCalculation, "Stk",
+                "tagplader monteres på spær"));
+            l.add(new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), 600, plastmogCalculation, "Stk",
+                "tagplader monteres på spær"));
 
 
         } else {
-            l.add(new BomItem(repo.findLumber(0, 19, 100, LumberType.TRYKIMP_BRÆDT), carport.getLength(), plastmogCalculation,  "Stk",
-                "til beklædning af skur1 på 2"));
+            l.add(new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), carport.getLength(), plastmogCalculation,
+                "Stk",
+                "tagplader monteres på spær"));
 
         }
         return new Bom(l);

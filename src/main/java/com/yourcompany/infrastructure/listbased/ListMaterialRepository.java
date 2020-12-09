@@ -15,7 +15,7 @@ public class ListMaterialRepository implements MaterialRepository {
 
     @Override
     public Material findLumber(int id, int width, int height, LumberType lumberType) throws NoSuchMaterialExist {
-        Material material = new Material(id, width, height, "Material of type; " + lumberType);
+        Material material = new Material(id, width, height, "" + lumberType);
         return material;
     }
 }
