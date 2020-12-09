@@ -1,15 +1,0 @@
-
-R
-java:S1128"0Remove this unused import 'java.io.IOException'.(ªº»Úýÿÿÿÿ8©ß†¿â.
-b
-java:S1128"ERemove this unused import 'com.yourcompany.domain.preorder.PreOrder'.(„…¼ª8Ú—€ôâ.
-M
-java:S1128"+Remove this unused import 'java.util.List'.(Õë±Äøÿÿÿÿ8Ú—€ôâ.
-b
-java:S1128"ERemove this unused import 'com.yourcompany.domain.customer.Customer'.(Ó‘Òý8Ú—€ôâ.
-t
-java:S1128"RRemove this unused import 'com.yourcompany.exceptions.order.NoSuchPreOrderExists'.(¾¼Ä…üÿÿÿÿ8Ú—€ôâ.
-n
-java:S1128"QRemove this unused import 'com.yourcompany.exceptions.user.NoSuchCustomerExists'.(¯¼û¦8Ú—€ôâ.
-M
-java:S1128"0Remove this unused import 'java.util.ArrayList'.(÷‰îƒ8Ú—€ôâ.

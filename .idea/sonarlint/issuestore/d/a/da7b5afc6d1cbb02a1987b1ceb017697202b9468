@@ -1,9 +1,0 @@
-
-d	java:S116"ORename this field "USER" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(î¿©…
-S	java:S1068"9Replace this use of System.out or System.err by a logger.(ïù¯¯ûÿÿÿÿ
-c	java:S116"NRename this field "URL" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(•ÅÁ¶
-S	java:S1064"9Replace this use of System.out or System.err by a logger.(Ò¿éðüÿÿÿÿ
-b
-java:S2095."GUse try-with-resources or close this "Statement" in a "finally" clause.(¬ÿÂìøÿÿÿÿ
-`	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ
-o	java:S115"ZRename this constant name to match the regular expression '^[A-Z][A-Z0-9]*(_[A-Z0-9]+)*$'.(ŠÜ‰Ü

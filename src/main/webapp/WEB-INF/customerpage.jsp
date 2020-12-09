@@ -1,4 +1,3 @@
-<%@ page import="com.yourcompany.api.Template" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8" %>
 
@@ -47,7 +46,7 @@
                     <tbody>
                     <c:forEach var="bom" items="${requestScope.testbom.bomItemList}">
                         <tr>
-                            <th scope="row">${bom.material}</th>
+                            <th scope="row">${bom.material.description} ${bom.material.width} ${bom.material.height}</th>
                             <td>${bom.length}</td>
                             <td>${bom.amount}</td>
                             <td>${bom.unit}</td>
