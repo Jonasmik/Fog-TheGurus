@@ -297,7 +297,7 @@ public class CarportTopView {
     public static void main(String[] args) {
 
         try (FileWriter writer = new FileWriter("output.svg")) {
-            writer.write(carportTopView(620, 580, 380, 270).toString());
+            writer.write(carportTopView(750, 780, 680, 780).toString());
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -32,8 +32,7 @@
         <div class="col-md-8">
 
             <div class="table-responsive">
-                <pre>${requestScope.testbom.toString()}</pre>
-                <table class="table table-bordered">
+                <table class="table table-sm table-bordered">
                     <thead>
                     <tr>
                         <th scope="col" style="text-align: center">Beskrivelse</th>
@@ -43,9 +42,18 @@
                         <th scope="col" style="text-align: center">Beskrivelse</th>
                     </tr>
                     </thead>
+                    <thead>
+                    <tr>
+                        <th scope="col" style="text-align: center;">Træ & Tagplader</th>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    </thead>
                     <tbody>
                     <c:forEach var="bom" items="${requestScope.testbom.bomItemList}">
-                        <tr>
+                        <tr style="font-size: 14px">
                             <td>${bom.material.width}x${bom.material.height}mm. ${bom.material.description}</td>
                             <td style="text-align: center">${bom.length}</td>
                             <td style="text-align: center">${bom.amount}</td>
