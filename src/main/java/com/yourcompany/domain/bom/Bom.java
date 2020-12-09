@@ -7,6 +7,7 @@ import com.yourcompany.domain.material.MaterialRepository.LumberType;
 import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
 import com.yourcompany.exceptions.bom.UnsatisfiableCarport;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,46 +28,73 @@ public class Bom {
         return "Bom{" + "bomItemList=" + bomItemList + '}';
     }
 
-    public static Bom createList(MaterialRepository repo, Carport carport, Shed shed) throws UnsatisfiableCarport {
+    public static Bom createList(MaterialRepository repo, Carport carport, Shed shed) throws UnsatisfiableCarport, NoSuchMaterialExist {
         List<BomItem> l = new ArrayList<>();
 
         // understernbrædder til for & bag ende
         // 25x200 mm. trykimp. BrædtV
+        int rimCarport = carport.getLength();
+        boolean skurDel = false;
 
         if (shed != null) {
-            try {
-                l.add(new BomItem(repo.findLumber(0, 38, 73, LumberType.LÆGTE_UBH), 420, 1, "Stk",
-                    "Til z på bagside af dør"));
-            } catch (NoSuchMaterialExist e) {
-                throw new UnsatisfiableCarport(e);
+            int rimShed = shed.getLength() * 2;
+
+
+
+            if (shed.getWidth() >= carport.getWidth() - 70) {
+                rimShed = calculateWood(rimShed*2);
+
+
+                l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), rimShed+30, 2, "Stk",
+                        "Remme i sider, sadles ned i stolper (skur del, deles)"));
+
+            } else {
+                rimCarport = calculateWood((rimCarport - (rimShed / 2))*2);
+                rimShed = calculateWood(rimShed);
+                l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), rimShed+30, 1, "Stk",
+                        "Remme i sider, sadles ned i stolper, skur del"));
+                l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), carport.getLength()+30, 1, "Stk",
+                        "Remme i sider, sadles ned i stolper"));
+                l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), rimCarport+30, 1, "Stk",
+                        "Remme i sider, sadles ned i stolper"));
+
             }
+            skurDel = true;
+            l.add(new BomItem(repo.findLumber(0, 38, 73, LumberType.LÆGTE_UBH), 420, 1, "Stk",
+                    "Til z på bagside af dør"));
+
         }
 
-        int carportLengthCalculation = (carport.getLength() / 2);
+        int carportLengthCalculation = calculateWood(carport.getLength());
+        int carportWidthCalculation = calculateWood(carport.getWidth());
 
-        if (carportLengthCalculation % 30 != 0) {
-            carportLengthCalculation = carportLengthCalculation + 15;
-        }
-        int carportWidthCalculation = (carport.getWidth() / 2);
 
-        if (carportWidthCalculation % 30 != 0) {
-            carportWidthCalculation = carportWidthCalculation + 15;
-        }
-
-        try {
-            l.add(new BomItem(repo.findLumber(0, 25, 200, LumberType.TRYKIMP_BRÆDT), carportWidthCalculation + 30, 4,
+        l.add(new BomItem(repo.findLumber(0, 25, 200, LumberType.TRYKIMP_BRÆDT), carportWidthCalculation + 30, 4,
                 "Stk", "understernbrædder til for & bag ende"));
-            l.add(new BomItem(repo.findLumber(0, 25, 200, LumberType.TRYKIMP_BRÆDT), carportLengthCalculation + 30, 4,
+        l.add(new BomItem(repo.findLumber(0, 25, 200, LumberType.TRYKIMP_BRÆDT), carportLengthCalculation + 30, 4,
                 "Stk", "understernbrædder til siderne"));
-
-        } catch (NoSuchMaterialExist e) {
-            throw new UnsatisfiableCarport(e);
+        l.add(new BomItem(repo.findLumber(0, 25, 125, LumberType.TRYKIMP_BRÆDT), carportLengthCalculation + 30, 2,
+                "Stk", "oversternbrædder til forenden"));
+        l.add(new BomItem(repo.findLumber(0, 25, 125, LumberType.TRYKIMP_BRÆDT), carportLengthCalculation + 30, 4,
+                "Stk", "oversternbrædder til siderne"));
+        if (!skurDel) {
+            l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), carport.getLength() + 30, 2,
+                    "Stk", "Remme i sider, sadles ned i stolper"));
         }
 
         return new Bom(l);
     }
 
-    public static class BomItem {
+    private static int calculateWood(int number) {
+        int carportCalculation = (number / 2);
+
+        if (carportCalculation % 30 != 0) {
+            carportCalculation = carportCalculation + 15;
+        }
+        return carportCalculation;
+    }
+
+    private static class BomItem {
 
         private final Material material;
         private final int length;
@@ -85,7 +113,7 @@ public class Bom {
         @Override
         public String toString() {
             return "BomItem{" + "material=" + material + ", length=" + length + ", amount=" + amount + ", unit='" + unit
-                + '\'' + ", description='" + description + '\'' + '}';
+                    + '\'' + ", description='" + description + '\'' + '}';
         }
 
         public Material getMaterial() {

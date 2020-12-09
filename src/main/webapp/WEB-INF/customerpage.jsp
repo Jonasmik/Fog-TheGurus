@@ -32,6 +32,7 @@
         <div class="col-md-8">
 
             <div class="table-responsive">
+                <pre>${requestScope.testbom.toString()}</pre>
                 <table class="table table-bordered">
                     <thead>
                     <tr>
@@ -40,7 +41,7 @@
                         <th scope="col">Antal</th>
                         <th scope="col" style="text-align: center">Enhed</th>
                         <th scope="col">Beskrivelse</th>
-                        <th scope="col"><pre>${requestScope.testbom.toString()}</pre></th>
+                        <th scope="col"></th>
                     </tr>
                     </thead>
                     <tbody>
