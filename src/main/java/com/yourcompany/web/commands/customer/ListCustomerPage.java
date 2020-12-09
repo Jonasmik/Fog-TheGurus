@@ -8,6 +8,7 @@ import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
 import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.domain.user.User;
+import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
 import com.yourcompany.exceptions.bom.UnsatisfiableCarport;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
@@ -121,7 +122,7 @@ public class ListCustomerPage extends CustomerCommand {
         Carport newCarport = new Carport(0, 420, 420, "carport", 0);
         try {
             bom = Bom.createList(repo, newCarport, new Shed(0, 240, 240, newCarport.getId()));
-        } catch (UnsatisfiableCarport unsatisfiableCarport) {
+        } catch (UnsatisfiableCarport | NoSuchMaterialExist unsatisfiableCarport) {
             unsatisfiableCarport.printStackTrace();
         }
 

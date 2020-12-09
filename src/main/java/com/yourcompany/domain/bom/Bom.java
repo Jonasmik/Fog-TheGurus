@@ -94,7 +94,7 @@ public class Bom {
         return carportCalculation;
     }
 
-    private static class BomItem {
+    public static class BomItem {
 
         private final Material material;
         private final int length;

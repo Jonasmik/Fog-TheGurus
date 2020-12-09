@@ -36,21 +36,20 @@
                 <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col">Beskrivelse</th>
-                        <th scope="col">Længde</th>
-                        <th scope="col">Antal</th>
+                        <th scope="col" style="text-align: center">Beskrivelse</th>
+                        <th scope="col" style="text-align: center">Længde</th>
+                        <th scope="col" style="text-align: center">Antal</th>
                         <th scope="col" style="text-align: center">Enhed</th>
-                        <th scope="col">Beskrivelse</th>
-                        <th scope="col"></th>
+                        <th scope="col" style="text-align: center">Beskrivelse</th>
                     </tr>
                     </thead>
                     <tbody>
                     <c:forEach var="bom" items="${requestScope.testbom.bomItemList}">
                         <tr>
-                            <th scope="row">${bom.material.description} ${bom.material.width} ${bom.material.height}</th>
-                            <td>${bom.length}</td>
-                            <td>${bom.amount}</td>
-                            <td>${bom.unit}</td>
+                            <td>${bom.material.width}x${bom.material.height}mm. ${bom.material.description}</td>
+                            <td style="text-align: center">${bom.length}</td>
+                            <td style="text-align: center">${bom.amount}</td>
+                            <td style="text-align: center">${bom.unit}</td>
                             <td>${bom.description}</td>
                         </tr>
                     </c:forEach>
