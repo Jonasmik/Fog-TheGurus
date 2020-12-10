@@ -12,10 +12,12 @@ import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
 import com.yourcompany.exceptions.bom.UnsatisfiableCarport;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
+import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.infrastructure.listbased.ListMaterialRepository;
+import com.yourcompany.web.dtos.PreOrderDTO;
 import com.yourcompany.web.svg.svgcalculations.CarportTopView;
 import com.yourcompany.web.svg.tags.Svg;
 
@@ -31,8 +33,6 @@ public class ListCustomerPage extends CustomerCommand {
         User user = getUser(request.getSession());
         String fail = "error";
         String error = "errorpage";
-
-        List<Customer> customers = new ArrayList<>();
 
         String carportWidth = request.getParameter("carportwidth");
 
@@ -51,43 +51,38 @@ public class ListCustomerPage extends CustomerCommand {
             request.getSession()
                 .setAttribute("carportpreview", CarportTopView.carportTopView(newCarportWidth, newCarportLength, 0, 0));
         }
+
+        List<Customer> customers = new ArrayList<>();
         try {
             customers = api.getCustomerFacade().findAllByUserId(user.getId());
         } catch (NoSuchCustomerExists noSuchCustomerExists) {
             noSuchCustomerExists.printStackTrace();
         }
 
-        List<PreOrder> takenPreOrders = new ArrayList<>();
-        List<PreOrder> untakenPreOrders = new ArrayList<>();
-        List<Customer> untakenCustomers = new ArrayList<>();
-        List<Customer> takenCustomers = new ArrayList<>();
-        List<Carport> takenPreOrderCarports = new ArrayList<>();
-        List<Carport> untakenPreOrderCarports = new ArrayList<>();
+        List<PreOrderDTO> takenPreOrders = new ArrayList<>();
+        List<PreOrderDTO> untakenPreOrders = new ArrayList<>();
         List<Salesman> salesmen = new ArrayList<>();
+        PreOrder preOrder = null;
         if (customers != null) {
             try {
                 for (Customer c : customers) {
-                    PreOrder preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
+                    preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
 
                     //if the preorder does not have a salesman assigned to them
                     if (preOrder.getSalesmanId() == 0) {
-                        untakenPreOrders.add(preOrder);
                         Carport untakencarport = api.getCarportFacade().findById(preOrder.getCarportId());
-                        untakenPreOrderCarports.add(untakencarport);
-                        Customer customer = api.getCustomerFacade().findById(c.getId());
-                        untakenCustomers.add(customer);
+                        Shed untakenShed = api.getShedFacade().findByCarportId(untakencarport.getId());
+                        untakenPreOrders.add(new PreOrderDTO(preOrder, c, untakencarport, untakenShed));
                     } else {
                         //If the preorder does have a salesman assigned to them
-                        takenPreOrders.add(preOrder);
                         Carport carport = api.getCarportFacade().findById(preOrder.getCarportId());
-                        takenPreOrderCarports.add(carport);
-                        Customer takenCustomer = api.getCustomerFacade().findById(c.getId());
-                        takenCustomers.add(takenCustomer);
+                        Shed takenShed = api.getShedFacade().findByCarportId(carport.getId());
+                        takenPreOrders.add(new PreOrderDTO(preOrder, c, carport, takenShed));
                         Salesman salesman = api.getSalesmanFacade().findById(preOrder.getSalesmanId());
                         salesmen.add(salesman);
                     }
                 }
-            } catch (NoSuchPreOrderExists | NoSuchCarportExists | NoSuchSalesmanExists | NoSuchCustomerExists noSuchPreOrderExists) {
+            } catch (NoSuchPreOrderExists | NoSuchCarportExists | NoSuchSalesmanExists | NoSuchShedExists noSuchPreOrderExists) {
                 request.setAttribute(fail, "Der gik noget galt i generæringen af din bruger");
                 return error;
             }
@@ -106,30 +101,14 @@ public class ListCustomerPage extends CustomerCommand {
             }
         }
 
+        request.setAttribute("haspreorder", preOrder);
+
         //Untaken preorder
-        request.setAttribute("untakencustomers", untakenCustomers);
-        request.setAttribute("untakencarports", untakenPreOrderCarports);
         request.setAttribute("untakenpreorders", untakenPreOrders);
 
         //taken customers
-        request.setAttribute("takencustomers", takenCustomers);
         request.setAttribute("preordersalesmen", preOrderSalesmanUsers);
-        request.setAttribute("preordercarports", takenPreOrderCarports);
-        request.setAttribute("preorder", takenPreOrders);
-
-        Bom bom = null;
-        MaterialRepository repo = new ListMaterialRepository();
-        Carport newCarport = new Carport(0, 630, 420, "carport", 0);
-        try {
-            bom = Bom.createList(repo, newCarport, new Shed(0, 210, 390, newCarport.getId()));
-        } catch (NoSuchMaterialExist unsatisfiableCarport) {
-            unsatisfiableCarport.printStackTrace();
-        }
-
-        request.setAttribute("testbom", bom);
-
-        //All customers
-        request.setAttribute("preordercustomers", customers);
+        request.setAttribute("takenpreorder", takenPreOrders);
 
         return "customerpage";
     }

@@ -5,7 +5,7 @@
 <jsp:include page="includes/header.jsp" flush="true"/>
 
 <!-- Insert title -->
-<title>Template: Error</title>
+<title>Fog: Error</title>
 
 <body class="d-flex flex-column h-100 text-center bg-light">
 

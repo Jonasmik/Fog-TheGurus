@@ -5,7 +5,7 @@
 <jsp:include page="includes/header.jsp" flush="true"/>
 
 <!-- Insert title -->
-<title>Fog: Bestilling</title>
+<title>Fog: Profil</title>
 
 <body class="d-flex flex-column h-100 bg-light">
 
@@ -31,41 +31,6 @@
         </div>
         <div class="col-md-8">
 
-            <div class="table-responsive">
-                <table class="table table-sm table-bordered" id="myTable">
-                    <thead>
-                    <tr>
-                        <th scope="col" style="text-align: center">Beskrivelse</th>
-                        <th scope="col" style="text-align: center">Længde</th>
-                        <th scope="col" style="text-align: center">Antal</th>
-                        <th scope="col" style="text-align: center">Enhed</th>
-                        <th scope="col" style="text-align: center">Beskrivelse</th>
-                    </tr>
-                    </thead>
-
-                    <thead>
-                    <tr>
-                        <th scope="col" style="text-align: center;">Træ & Tagplader</th>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <c:forEach var="bom" items="${requestScope.testbom.bomItemList}">
-                        <tr style="font-size: 14px">
-                            <td>${bom.material.width}x${bom.material.height}mm. ${bom.material.description}</td>
-                            <td style="text-align: center">${bom.length}</td>
-                            <td style="text-align: center">${bom.amount}</td>
-                            <td style="text-align: center">${bom.unit}</td>
-                            <td>${bom.description}</td>
-                        </tr>
-                    </c:forEach>
-                    </tbody>
-                </table>
-            </div>
-
             <c:if test="${sessionScope.carportpreview != null}">
                 <div class="alert alert-info border-secondary">
                     <h1>Din carport</h1>
@@ -75,12 +40,12 @@
 
             <!-- Forespørgelser START -->
             <h3 style="padding-top: 20px">Forespørgelser</h3>
-            <c:if test="${requestScope.preorder == null}">
+            <c:if test="${requestScope.haspreorder == null}">
                 <p>Du har ikke nogle forespørgelser</p>
             </c:if>
 
             <!-- Untaken preorders START -->
-            <c:if test="${requestScope.untakenpreorders != null}">
+            <c:if test="${not empty requestScope.untakenpreorders}">
                 <h3 style="padding-top: 20px">Venter på salgsmedarbejder</h3>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -99,18 +64,17 @@
                         <c:set var="doublecountuntaken" value="0" scope="page"/>
                         <c:set var="alphabetuntakenpreorder"
                                value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
-                        <c:set var="untakenpreordercount" value="0" scope="page"/>
                         <c:forEach var="untakenpreorder"
                                    items="${requestScope.untakenpreorders}">
                             <form action="Main" method="POST">
                                 <input type="hidden" name="target" value="listcustomerpage">
                                 <input type="hidden" name="carportlength"
-                                       value="${requestScope.untakencarports.get(untakenpreordercount).length}">
+                                       value="${untakenpreorder.carport.length}">
                                 <input type="hidden" name="carportwidth"
-                                       value="${requestScope.untakencarports.get(untakenpreordercount).width}">
+                                       value="${untakenpreorder.carport.width}">
                                 <tr>
-                                    <th scope="row">${untakenpreorder.id}</th>
-                                    <td>${requestScope.untakencustomers.get(untakenpreordercount).additional}</td>
+                                    <th scope="row">${untakenpreorder.preOrder.id}</th>
+                                    <td>${untakenpreorder.customer.additional}</td>
                                     <td style="width: 20%;">
                                         <button type="button"
                                                 class="btn btn-block btn-outline-info"
@@ -130,7 +94,7 @@
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="untakenpreorders">
                                                     Forespørgelse
-                                                    nr. ${untakenpreorder.id}</h5>
+                                                    nr. ${untakenpreorder.preOrder.id}</h5>
                                                 <button type="button" class="close"
                                                         data-dismiss="modal"
                                                         aria-label="Close">
@@ -138,15 +102,21 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <h5>Carport</h5>
                                                 <p>
-                                                    Bredde: ${requestScope.untakencarports.get(untakenpreordercount).width}</p>
+                                                    Bredde: ${untakenpreorder.carport.width}</p>
                                                 <p>
-                                                    Længde: ${requestScope.untakencarports.get(untakenpreordercount).length}</p>
+                                                    Længde: ${untakenpreorder.carport.length}</p>
                                                 <p>
-                                                    Tagtype/farve: ${requestScope.untakencarports.get(untakenpreordercount).roof}</p>
+                                                    Tagtype/farve: ${untakenpreorder.carport.roof}</p>
                                                 <p>Tag
-                                                    vinkel: ${requestScope.untakencarports.get(untakenpreordercount).roofAngle}
+                                                    vinkel: ${untakenpreorder.carport.roofAngle}
                                                     grader</p>
+                                                <c:if test="${untakenpreorder.shed.length > 0}">
+                                                    <h5>Skur</h5>
+                                                    <p>Bredde: ${untakenpreorder.shed.width}</p>
+                                                    <p>Længde: ${untakenpreorder.shed.length}</p>
+                                                </c:if>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button"
@@ -164,8 +134,6 @@
                                 <c:set var="doublecountuntaken"
                                        value="${doublecountuntaken + 2}" scope="page"/>
                             </form>
-                            <c:set var="untakenpreordercount"
-                                   value="${untakenpreordercount + 1}" scope="page"/>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -174,7 +142,7 @@
             <!-- Untaken preorders END -->
 
             <!-- Taken preorders START -->
-            <c:if test="${requestScope.preorder != null}">
+            <c:if test="${not empty requestScope.takenpreorder}">
                 <h3 style="padding-top: 20px">Aktive forespørgelser</h3>
                 <div class="table-responsive">
                     <table class="table table-bordered">
@@ -195,16 +163,16 @@
                         <c:set var="alphabetactivepreorder"
                                value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
                         <c:set var="countactivepreorder" value="0" scope="page"/>
-                        <c:forEach var="takenpreorder" items="${requestScope.preorder}">
+                        <c:forEach var="takenpreorder" items="${requestScope.takenpreorder}">
                             <form action="Main" method="POST">
                                 <input type="hidden" name="target" value="listcustomerpage">
                                 <input type="hidden" name="carportlength"
-                                       value="${requestScope.preordercarports.get(countactivepreorder).length}">
+                                       value="${takenpreorder.carport.length}">
                                 <input type="hidden" name="carportwidth"
-                                       value="${requestScope.preordercarports.get(countactivepreorder).width}">
+                                       value="${takenpreorder.carport.width}">
                                 <tr>
-                                    <th scope="row">${takenpreorder.id}</th>
-                                    <td>${requestScope.takencustomers.get(countactivepreorder).additional}</td>
+                                    <th scope="row">${takenpreorder.preOrder.id}</th>
+                                    <td>${takenpreorder.customer.additional}</td>
                                     <td>
                                         Navn: ${requestScope.preordersalesmen.get(countactivepreorder).name},
                                         Kontakt
@@ -228,7 +196,7 @@
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="activepreorders">
                                                     Forespørgelse
-                                                    nr. ${takenpreorder.id}</h5>
+                                                    nr. ${takenpreorder.preOrder.id}</h5>
                                                 <button type="button" class="close"
                                                         data-dismiss="modal"
                                                         aria-label="Close">
@@ -236,15 +204,21 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                                <h5>Carport</h5>
                                                 <p>
-                                                    Bredde: ${requestScope.preordercarports.get(countactivepreorder).width}</p>
+                                                    Bredde: ${takenpreorder.carport.width}</p>
                                                 <p>
-                                                    Længde: ${requestScope.preordercarports.get(countactivepreorder).length}</p>
+                                                    Længde: ${takenpreorder.carport.length}</p>
                                                 <p>
-                                                    Tagtype/farve: ${requestScope.preordercarports.get(countactivepreorder).roof}</p>
+                                                    Tagtype/farve: ${takenpreorder.carport.roof}</p>
                                                 <p>Tag
-                                                    vinkel: ${requestScope.preordercarports.get(countactivepreorder).roofAngle}
+                                                    vinkel: ${takenpreorder.carport.roofAngle}
                                                     grader</p>
+                                                <c:if test="${takenpreorder.shed.length > 0}">
+                                                    <h5>Skur</h5>
+                                                    <p>Bredde: ${takenpreorder.shed.width}</p>
+                                                    <p>Længde: ${takenpreorder.shed.length}</p>
+                                                </c:if>
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button"
