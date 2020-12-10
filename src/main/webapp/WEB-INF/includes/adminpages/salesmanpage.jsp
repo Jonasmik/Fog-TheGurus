@@ -57,12 +57,8 @@
                                        items="${requestScope.activepreordercustomers}">
                                 <form action="Main" method="POST">
                                     <input type="hidden" name="target" value="showbompage">
-                                    <input type="hidden" name="carportwidth" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.width}">
-                                    <input type="hidden" name="carportlength" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.length}">
-                                    <input type="hidden" name="carportroof" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.roof}">
-                                    <input type="hidden" name="carportroofangle" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.roofAngle}">
-                                    <input type="hidden" name="shedwidth" value="${requestScope.activepreordercarports.get(countactivepreorder).shed.width}">
-                                    <input type="hidden" name="shedlength" value="${requestScope.activepreordercarports.get(countactivepreorder).shed.length}">
+                                    <input type="hidden" name="carportid" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.id}">
+                                    <input type="hidden" name="shedid" value="${requestScope.activepreordercarports.get(countactivepreorder).shed.id}">
                                     <tr>
                                         <th scope="row">${requestScope.activepreorder.get(countactivepreorder).id}</th>
                                         <td>${activecustomer.name}</td>

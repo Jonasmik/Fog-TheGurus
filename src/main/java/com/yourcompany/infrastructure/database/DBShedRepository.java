@@ -79,7 +79,7 @@ public class DBShedRepository implements ShedRepository {
             if(rs.next()) {
                 return loadShed(rs);
             } else {
-                return new Shed(0, 0, 0, id);
+                return new Shed(-1, 0, 0, id);
             }
         } catch (SQLException e) {
             throw new NoSuchShedExists();

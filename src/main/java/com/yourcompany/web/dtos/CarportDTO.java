@@ -1,5 +1,6 @@
-package com.yourcompany.domain.carport;
+package com.yourcompany.web.dtos;
 
+import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.shed.Shed;
 
 public class CarportDTO {

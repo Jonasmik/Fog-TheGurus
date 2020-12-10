@@ -29,7 +29,7 @@ public class Bom {
     }
 
     public static Bom createList(MaterialRepository repo, Carport carport, Shed shed)
-        throws UnsatisfiableCarport, NoSuchMaterialExist {
+        throws NoSuchMaterialExist {
         List<BomItem> l = new ArrayList<>();
 
         // understernbrædder til for & bag ende
@@ -50,7 +50,7 @@ public class Bom {
 
 
 
-        if (shed != null) {
+        if (shed.getLength() > 0) {
             skurDel = true;
         }
 
@@ -77,7 +77,7 @@ public class Bom {
 
         if (skurDel) {
             int rimShed = shed.getLength() * 2;
-             stolpeAntal = stolpeAntal + 3;
+             stolpeAntal = stolpeAntal + 4;
 
 
 

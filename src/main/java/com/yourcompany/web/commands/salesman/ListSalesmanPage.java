@@ -1,7 +1,7 @@
 package com.yourcompany.web.commands.salesman;
 
 import com.yourcompany.domain.carport.Carport;
-import com.yourcompany.domain.carport.CarportDTO;
+import com.yourcompany.web.dtos.CarportDTO;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
@@ -13,7 +13,6 @@ import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.web.svg.svgcalculations.CarportTopView;
-import com.yourcompany.web.svg.tags.Svg;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

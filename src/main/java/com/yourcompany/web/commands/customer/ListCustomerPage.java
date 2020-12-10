@@ -122,7 +122,7 @@ public class ListCustomerPage extends CustomerCommand {
         Carport newCarport = new Carport(0, 630, 420, "carport", 0);
         try {
             bom = Bom.createList(repo, newCarport, new Shed(0, 210, 390, newCarport.getId()));
-        } catch (UnsatisfiableCarport | NoSuchMaterialExist unsatisfiableCarport) {
+        } catch (NoSuchMaterialExist unsatisfiableCarport) {
             unsatisfiableCarport.printStackTrace();
         }
 
