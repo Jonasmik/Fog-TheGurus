@@ -121,7 +121,7 @@ public class ListCustomerPage extends CustomerCommand {
         MaterialRepository repo = new ListMaterialRepository();
         Carport newCarport = new Carport(0, 630, 420, "carport", 0);
         try {
-            bom = Bom.createList(repo, newCarport, new Shed(0, 210, 530, newCarport.getId()));
+            bom = Bom.createList(repo, newCarport, new Shed(0, 210, 390, newCarport.getId()));
         } catch (UnsatisfiableCarport | NoSuchMaterialExist unsatisfiableCarport) {
             unsatisfiableCarport.printStackTrace();
         }
