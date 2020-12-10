@@ -7,28 +7,28 @@
 <!-- Insert title -->
 <title>Fog: Instruktioner</title>
 
-<body class="d-flex flex-column h-100 text-center bg-light">
+<body class="d-flex flex-column h-100 bg-light">
 
 <!-- Include navbar -->
 <jsp:include page="includes/navs/navbar.jsp" flush="true"/>
 
-<main role="main" class="container flex-shrink-0">
+<main role="main" class="container flex-shrink-0 text-center">
     <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>
 
-    <div class="container border-secondary" style="width: 800px;">
+    <div class="container border-secondary" style="width: 100%;">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 col-sm-12">
                 <h1>Carport</h1>
-                <div class="w-100 alert alert-info border-secondary">
+                <div class="alert alert-info border-secondary">
                     <div style="text-align: center">
-                        ${sessionScope.carportpicture}
+                        ${requestScope.carportpicture}
                     </div>
                 </div>
             </div>
         </div>
 
         <div class="row" style="padding-top: 25px;">
-            <div class="col">
+            <div class="col-md-12 col-sm-12">
                 <h1>Stykliste</h1>
                 <p style="font-size: 20px;">Husk at kontrollerer materiale listen inden du går i
                     gang.</p>
@@ -55,7 +55,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="bom" items="${sessionScope.carportbom.bomItemList}">
+                        <c:forEach var="bom" items="${requestScope.carportbom.bomItemList}">
                             <tr style="font-size: 14px">
                                 <td style="text-align: start;">${bom.material.width}x${bom.material.height}mm. ${bom.material.description}</td>
                                 <td style="text-align: center">${bom.length}</td>

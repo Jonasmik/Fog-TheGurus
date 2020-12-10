@@ -1,7 +1,7 @@
 package com.yourcompany.web.commands.salesman;
 
 import com.yourcompany.domain.carport.Carport;
-import com.yourcompany.web.dtos.CarportDTO;
+import com.yourcompany.web.dtos.PreOrderDTO;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
@@ -12,7 +12,6 @@ import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
-import com.yourcompany.web.svg.svgcalculations.CarportTopView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,23 +36,19 @@ public class ListSalesmanPage extends SalesmanCommand {
         }
 
         if (unusedPreOrders != null) {
-            List<Customer> unusedCustomers = new ArrayList<>();
-            List<CarportDTO> unusedCarportsInPreOrder = new ArrayList<>();
+            List<PreOrderDTO> unusedPreOrderDTO = new ArrayList<>();
             for (PreOrder p : unusedPreOrders) {
                 try {
                     Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
-                    unusedCustomers.add(customer);
                     Carport carport = api.getCarportFacade().findById(p.getCarportId());
                     Shed shed = api.getShedFacade().findByCarportId(carport.getId());
-                    unusedCarportsInPreOrder.add(new CarportDTO(carport, shed));
+                    unusedPreOrderDTO.add(new PreOrderDTO(p, customer, carport, shed));
                 } catch (NoSuchCustomerExists | NoSuchCarportExists | NoSuchShedExists noSuchCustomerExists) {
                     request.setAttribute(fail, "Noget gik galt med generæringen af forespøgelserne");
                     return error;
                 }
             }
-            request.setAttribute("unusedcustomers", unusedCustomers);
-            request.setAttribute("unusedpreorders", unusedPreOrders);
-            request.setAttribute("unusedcarportsinpreorder", unusedCarportsInPreOrder);
+            request.setAttribute("unusedpreorders", unusedPreOrderDTO);
         }
         //UnusedPreOrders END
 
@@ -77,31 +72,22 @@ public class ListSalesmanPage extends SalesmanCommand {
                     return error;
                 }
             }
-            List<CarportDTO> activeCarports = new ArrayList<>();
-            List<Customer> activeCustomers = new ArrayList<>();
+            List<PreOrderDTO> activePreOrderDTO = new ArrayList<>();
             for (PreOrder p : activePreOrders) {
                 try {
                     Carport carport = api.getCarportFacade().findById(p.getCarportId());
                     Shed shed = api.getShedFacade().findByCarportId(carport.getId());
-                    activeCarports.add(new CarportDTO(carport, shed));
                     Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
-                    activeCustomers.add(customer);
+                    activePreOrderDTO.add(new PreOrderDTO(p, customer, carport, shed));
                 } catch (NoSuchCarportExists | NoSuchCustomerExists | NoSuchShedExists noSuchCarportExists) {
                     request.setAttribute(fail, "Kunne ikke finde carportene fra dine forespørgelser");
                     return error;
                 }
             }
 
-            request.setAttribute("activepreordercustomers", activeCustomers);
-            request.setAttribute("activepreordercarports", activeCarports);
-            request.setAttribute("activepreorder", activePreOrders);
-            request.setAttribute("salesmen", salesmanList);
-
+            request.setAttribute("activepreorder", activePreOrderDTO);
         }
         //Salesmans active PreOrders END
-
-        request.setAttribute("carport", CarportTopView.carportTopView(800, 550, 0, 0).toString());
-
         return "adminpage";
     }
 

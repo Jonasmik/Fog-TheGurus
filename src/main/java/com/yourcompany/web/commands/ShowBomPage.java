@@ -20,14 +20,10 @@ public class ShowBomPage extends ICommand {
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
         String carportId = request.getParameter("carportid");
-        String shedId = request.getParameter("shedid");
         int newCarportId = 0;
-        int newShedId = 0;
-        HttpSession session = request.getSession();
 
         try {
             newCarportId = Integer.parseInt(carportId);
-            newShedId = Integer.parseInt(shedId);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -44,9 +40,9 @@ public class ShowBomPage extends ICommand {
         }
 
         MaterialRepository repo = new ListMaterialRepository();
-        session.setAttribute("carportpicture", CarportTopView.carportTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
+        request.setAttribute("carportpicture", CarportTopView.carportTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
         try {
-            session.setAttribute("carportbom", Bom.createList(repo, carport, shed));
+            request.setAttribute("carportbom", Bom.createList(repo, carport, shed));
         } catch (NoSuchMaterialExist unsatisfiableCarport) {
             request.setAttribute("error", "Din stykliste blev ikke lavet");
             return "errorpage";
