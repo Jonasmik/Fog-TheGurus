@@ -42,6 +42,7 @@ public abstract class ICommand {
         commands.put("takepreorder", new SalesmanTakePreOrder());
         commands.put("listsalesmanpage", new ListSalesmanPage());
         commands.put("listcustomerpage", new ListCustomerPage());
+        commands.put("showbompage", new ShowBomPage());
     }
 
     static ICommand from(HttpServletRequest request) {

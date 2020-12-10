@@ -1,12 +1,15 @@
 package com.yourcompany.web.commands.salesman;
 
 import com.yourcompany.domain.carport.Carport;
+import com.yourcompany.domain.carport.CarportDTO;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
+import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
+import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.web.svg.svgcalculations.CarportTopView;
@@ -36,14 +39,15 @@ public class ListSalesmanPage extends SalesmanCommand {
 
         if (unusedPreOrders != null) {
             List<Customer> unusedCustomers = new ArrayList<>();
-            List<Carport> unusedCarportsInPreOrder = new ArrayList<>();
+            List<CarportDTO> unusedCarportsInPreOrder = new ArrayList<>();
             for (PreOrder p : unusedPreOrders) {
                 try {
                     Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
                     unusedCustomers.add(customer);
                     Carport carport = api.getCarportFacade().findById(p.getCarportId());
-                    unusedCarportsInPreOrder.add(carport);
-                } catch (NoSuchCustomerExists | NoSuchCarportExists noSuchCustomerExists) {
+                    Shed shed = api.getShedFacade().findByCarportId(carport.getId());
+                    unusedCarportsInPreOrder.add(new CarportDTO(carport, shed));
+                } catch (NoSuchCustomerExists | NoSuchCarportExists | NoSuchShedExists noSuchCustomerExists) {
                     request.setAttribute(fail, "Noget gik galt med generæringen af forespøgelserne");
                     return error;
                 }
@@ -74,15 +78,16 @@ public class ListSalesmanPage extends SalesmanCommand {
                     return error;
                 }
             }
-            List<Carport> activeCarports = new ArrayList<>();
+            List<CarportDTO> activeCarports = new ArrayList<>();
             List<Customer> activeCustomers = new ArrayList<>();
             for (PreOrder p : activePreOrders) {
                 try {
                     Carport carport = api.getCarportFacade().findById(p.getCarportId());
-                    activeCarports.add(carport);
+                    Shed shed = api.getShedFacade().findByCarportId(carport.getId());
+                    activeCarports.add(new CarportDTO(carport, shed));
                     Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
                     activeCustomers.add(customer);
-                } catch (NoSuchCarportExists | NoSuchCustomerExists noSuchCarportExists) {
+                } catch (NoSuchCarportExists | NoSuchCustomerExists | NoSuchShedExists noSuchCarportExists) {
                     request.setAttribute(fail, "Kunne ikke finde carportene fra dine forespørgelser");
                     return error;
                 }

@@ -32,7 +32,7 @@
         <div class="col-md-8">
 
             <div class="table-responsive">
-                <table class="table table-sm table-bordered">
+                <table class="table table-sm table-bordered" id="myTable">
                     <thead>
                     <tr>
                         <th scope="col" style="text-align: center">Beskrivelse</th>
@@ -42,6 +42,7 @@
                         <th scope="col" style="text-align: center">Beskrivelse</th>
                     </tr>
                     </thead>
+
                     <thead>
                     <tr>
                         <th scope="col" style="text-align: center;">Træ & Tagplader</th>

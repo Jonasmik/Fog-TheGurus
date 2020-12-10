@@ -21,10 +21,10 @@ public class DBPreOrderRepository implements PreOrderRepository {
 
     private PreOrder loadPreOrder(ResultSet rs) throws SQLException {
         return new PreOrder(
-                rs.getInt("preorders.id"),
-                rs.getInt("preorders.customerid"),
-                rs.getInt("preorders.salesmanid"),
-                rs.getInt("preorders.carportid")
+            rs.getInt("preorders.id"),
+            rs.getInt("preorders.customerid"),
+            rs.getInt("preorders.salesmanid"),
+            rs.getInt("preorders.carportid")
         );
     }
 
@@ -47,7 +47,7 @@ public class DBPreOrderRepository implements PreOrderRepository {
     public PreOrder findBySalesmanId(int salesmanId) throws NoSuchPreOrderExists {
         try (Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
-                    "SELECT * FROM preorders WHERE salesmanid = ?;");
+                "SELECT * FROM preorders WHERE salesmanid = ?;");
             s.setInt(1, salesmanId);
             ResultSet rs = s.executeQuery();
             if (rs.next()) {
@@ -65,7 +65,7 @@ public class DBPreOrderRepository implements PreOrderRepository {
     public PreOrder findByCustomerId(int customerid) throws NoSuchPreOrderExists {
         try (Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
-                    "SELECT * FROM preorders WHERE customerid = ?;");
+                "SELECT * FROM preorders WHERE customerid = ?;");
             s.setInt(1, customerid);
             ResultSet rs = s.executeQuery();
             if (rs.next()) {
@@ -83,7 +83,7 @@ public class DBPreOrderRepository implements PreOrderRepository {
     public PreOrder findPreOrderById(int id) throws NoSuchPreOrderExists {
         try (Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
-                    "SELECT * FROM preorders WHERE id = ?;");
+                "SELECT * FROM preorders WHERE id = ?;");
             s.setInt(1, id);
             ResultSet rs = s.executeQuery();
             if (rs.next()) {
@@ -102,10 +102,10 @@ public class DBPreOrderRepository implements PreOrderRepository {
         int id;
         try (Connection conn = db.connect()) {
             PreparedStatement ps =
-                    conn.prepareStatement(
-                            "INSERT INTO preorders (customerid, carportid)" +
-                                    "VALUE (?,?);",
-                            Statement.RETURN_GENERATED_KEYS);
+                conn.prepareStatement(
+                    "INSERT INTO preorders (customerid, carportid)" +
+                        "VALUE (?,?);",
+                    Statement.RETURN_GENERATED_KEYS);
             ps.setInt(1, preOrderFactory.getCustomerId());
             ps.setInt(2, preOrderFactory.getCarportId());
 
@@ -127,8 +127,8 @@ public class DBPreOrderRepository implements PreOrderRepository {
     public void takePreOrder(int salesmanId, int preOrderId) throws NoSuchPreOrderExists {
         try (Connection conn = db.connect()) {
             PreparedStatement ps =
-                    conn.prepareStatement(
-                            "UPDATE preorders SET salesmanid = ? WHERE id = ?;");
+                conn.prepareStatement(
+                    "UPDATE preorders SET salesmanid = ? WHERE id = ?;");
             ps.setInt(1, salesmanId);
             ps.setInt(2, preOrderId);
             ps.executeUpdate();

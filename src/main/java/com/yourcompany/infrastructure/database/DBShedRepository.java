@@ -69,4 +69,21 @@ public class DBShedRepository implements ShedRepository {
         return findById(id);
     }
 
+    @Override
+    public Shed findByCarportId(int id) throws NoSuchShedExists {
+        try(Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement(
+                "SELECT * FROM shed WHERE carportid = ?;");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            if(rs.next()) {
+                return loadShed(rs);
+            } else {
+                return new Shed(0, 0, 0, id);
+            }
+        } catch (SQLException e) {
+            throw new NoSuchShedExists();
+        }
+    }
+
 }

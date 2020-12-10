@@ -33,5 +33,8 @@ public class ShedFacade {
         return repo.createShed(shedFactory);
     }
 
+    public Shed findByCarportId(int id) throws NoSuchShedExists {
+        return repo.findByCarportId(id);
+    }
 
 }

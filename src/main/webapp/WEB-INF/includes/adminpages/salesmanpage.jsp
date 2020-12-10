@@ -56,9 +56,13 @@
                             <c:forEach var="activecustomer"
                                        items="${requestScope.activepreordercustomers}">
                                 <form action="Main" method="POST">
-                                    <input type="hidden" name="target" value="takepreorder">
-                                    <input type="hidden" name="preorderid"
-                                           value="${requestScope.activepreorder.get(countactivepreorder).id}">
+                                    <input type="hidden" name="target" value="showbompage">
+                                    <input type="hidden" name="carportwidth" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.width}">
+                                    <input type="hidden" name="carportlength" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.length}">
+                                    <input type="hidden" name="carportroof" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.roof}">
+                                    <input type="hidden" name="carportroofangle" value="${requestScope.activepreordercarports.get(countactivepreorder).carport.roofAngle}">
+                                    <input type="hidden" name="shedwidth" value="${requestScope.activepreordercarports.get(countactivepreorder).shed.width}">
+                                    <input type="hidden" name="shedlength" value="${requestScope.activepreordercarports.get(countactivepreorder).shed.length}">
                                     <tr>
                                         <th scope="row">${requestScope.activepreorder.get(countactivepreorder).id}</th>
                                         <td>${activecustomer.name}</td>
@@ -84,7 +88,7 @@
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="activepreorders">
                                                         Carport
-                                                        nr. ${requestScope.activepreordercarports.get(countactivepreorder).id}</h5>
+                                                        nr. ${requestScope.activepreordercarports.get(countactivepreorder).carport.id}</h5>
                                                     <button type="button" class="close"
                                                             data-dismiss="modal"
                                                             aria-label="Close">
@@ -92,18 +96,24 @@
                                                     </button>
                                                 </div>
                                                 <div class="modal-body">
+                                                    <h5>Carport</h5>
                                                     <p>
-                                                        Bredde: ${requestScope.activepreordercarports.get(countactivepreorder).width}</p>
+                                                        Bredde: ${requestScope.activepreordercarports.get(countactivepreorder).carport.width}</p>
                                                     <p>
-                                                        Længde: ${requestScope.activepreordercarports.get(countactivepreorder).length}</p>
+                                                        Længde: ${requestScope.activepreordercarports.get(countactivepreorder).carport.length}</p>
                                                     <p>
-                                                        Tagtype/farve: ${requestScope.activepreordercarports.get(countactivepreorder).roof}</p>
+                                                        Tagtype/farve: ${requestScope.activepreordercarports.get(countactivepreorder).carport.roof}</p>
                                                     <p>Tag
-                                                        vinkel: ${requestScope.activepreordercarports.get(countactivepreorder).roofAngle}
+                                                        vinkel: ${requestScope.activepreordercarports.get(countactivepreorder).carport.roofAngle}
                                                         grader</p>
                                                     <c:if test="${!activecustomer.additional.equals('')}">
                                                         <p>Evt.
                                                             bemærkning: ${activecustomer.additional}</p>
+                                                    </c:if>
+                                                    <c:if test="${requestScope.activepreordercarports.get(countactivepreorder).shed.length > 0}">
+                                                        <h5>Skur</h5>
+                                                        <p>Bredde: ${requestScope.activepreordercarports.get(countactivepreorder).shed.width}</p>
+                                                        <p>Længde: ${requestScope.activepreordercarports.get(countactivepreorder).shed.length}</p>
                                                     </c:if>
                                                 </div>
                                                 <div class="modal-footer">
@@ -113,7 +123,7 @@
                                                     </button>
                                                     <button type="submit"
                                                             class="btn btn-outline-primary">
-                                                        Aktiver ordre
+                                                        Se forespørgelse
                                                     </button>
                                                 </div>
                                             </div>
@@ -183,7 +193,7 @@
                                                 <div class="modal-header">
                                                     <h5 class="modal-title" id="exampleModalLabel">
                                                         Carport
-                                                        nr. ${requestScope.unusedcarportsinpreorder.get(count).id}</h5>
+                                                        nr. ${requestScope.unusedcarportsinpreorder.get(count).carport.id}</h5>
                                                     <button type="button" class="close"
                                                             data-dismiss="modal"
                                                             aria-label="Close">
@@ -192,17 +202,22 @@
                                                 </div>
                                                 <div class="modal-body">
                                                     <p>
-                                                        Bredde: ${requestScope.unusedcarportsinpreorder.get(count).width}</p>
+                                                        Bredde: ${requestScope.unusedcarportsinpreorder.get(count).carport.width}</p>
                                                     <p>
-                                                        Længde: ${requestScope.unusedcarportsinpreorder.get(count).length}</p>
+                                                        Længde: ${requestScope.unusedcarportsinpreorder.get(count).carport.length}</p>
                                                     <p>
-                                                        Tagtype/farve: ${requestScope.unusedcarportsinpreorder.get(count).roof}</p>
+                                                        Tagtype/farve: ${requestScope.unusedcarportsinpreorder.get(count).carport.roof}</p>
                                                     <p>Tag
-                                                        vinkel: ${requestScope.unusedcarportsinpreorder.get(count).roofAngle}
+                                                        vinkel: ${requestScope.unusedcarportsinpreorder.get(count).carport.roofAngle}
                                                         grader</p>
                                                     <c:if test="${!customer.additional.equals('')}">
                                                         <p>Evt.
                                                             bemærkning: ${customer.additional}</p>
+                                                    </c:if>
+                                                    <c:if test="${requestScope.unusedcarportsinpreorder.get(count).shed.length > 0}">
+                                                        <h5>Skur</h5>
+                                                        <p>Bredde: ${requestScope.unusedcarportsinpreorder.get(count).shed.width}</p>
+                                                        <p>Længde: ${requestScope.unusedcarportsinpreorder.get(count).shed.length}</p>
                                                     </c:if>
                                                 </div>
                                                 <div class="modal-footer">
