@@ -46,6 +46,8 @@ public abstract class ICommand {
         commands.put("listcustomerpage", new ListCustomerPage());
         commands.put("listbompage", new ListBomPage());
         commands.put("generatebom", new GenerateBom());
+        commands.put("editpreorder", new EditPreOrder());
+
     }
 
     static ICommand from(HttpServletRequest request) {

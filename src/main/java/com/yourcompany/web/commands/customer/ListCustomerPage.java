@@ -110,6 +110,10 @@ public class ListCustomerPage extends CustomerCommand {
         request.setAttribute("preordersalesmen", preOrderSalesmanUsers);
         request.setAttribute("takenpreorder", takenPreOrders);
 
+        //Carport & shed settings
+        request.setAttribute("carportsettings", api.getCarportFacade().getSettings());
+        request.setAttribute("shedsettings", api.getShedFacade().getShedSettings());
+
         return "customerpage";
     }
 }

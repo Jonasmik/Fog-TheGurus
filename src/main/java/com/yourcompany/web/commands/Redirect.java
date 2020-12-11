@@ -38,7 +38,8 @@ public class Redirect extends ICommand {
             case "index":
                 break;
             case "createorder":
-                request.setAttribute("settings", api.getCarportFacade().getSettings());
+                request.setAttribute("carportsettings", api.getCarportFacade().getSettings());
+                request.setAttribute("shedsettings", api.getShedFacade().getShedSettings());
                 break;
             case "customerpage":
                 return "redirect:listcustomerpage";

@@ -1,6 +1,7 @@
 package com.yourcompany.api.facades;
 
 import com.yourcompany.api.factories.ShedFactory;
+import com.yourcompany.api.settings.ShedSettings;
 import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.domain.shed.ShedRepository;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
@@ -35,6 +36,10 @@ public class ShedFacade {
 
     public Shed findByCarportId(int id) throws NoSuchShedExists {
         return repo.findByCarportId(id);
+    }
+
+    public ShedSettings getShedSettings() {
+        return new ShedSettings();
     }
 
 }

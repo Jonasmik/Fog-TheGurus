@@ -10,13 +10,17 @@ public class CarportSettings {
     private final int minLength = 240;
     private final int maxLength = 780;
     private final int intervalLength = 30;
+    private final int angleMin = 15;
+    private final int angleMax = 45;
+    private final int intervalAngle = 5;
+
 
     public List<Integer> getCarportWidths() {
-        List list = new ArrayList();
+        List widthList = new ArrayList();
         for (int i = minWidth; i <= maxWidth; i+=intervalWidth) {
-            list.add(i);
+            widthList.add(i);
         }
-        return list;
+        return widthList;
     }
 
     public List<Integer> getCarportLengths() {
@@ -25,6 +29,14 @@ public class CarportSettings {
             lenghtList.add(i);
         }
         return lenghtList;
+    }
+
+    public List<Integer> getCarportRoofAngle() {
+        List angleList = new ArrayList();
+        for (int i = angleMin; i <= angleMax; i+=intervalAngle) {
+            angleList.add(i);
+        }
+        return angleList;
     }
 
 }

@@ -50,7 +50,7 @@
                                 <c:if test="${sessionScope.carportwidth == null}">
                                     <option>Vælg bredde</option>
                                 </c:if>
-                                <c:forEach var="size" items="${requestScope.settings.carportWidths}">
+                                <c:forEach var="size" items="${requestScope.carportsettings.carportWidths}">
                                     <option <c:if test="${sessionScope.carportwidth == size}">selected</c:if>>
                                         ${size}</option>
                                 </c:forEach>
@@ -63,7 +63,7 @@
                                 <c:if test="${sessionScope.carportlength == null}">
                                     <option>Vælg Længde</option>
                                 </c:if>
-                                <c:forEach var="size" items="${requestScope.settings.carportLengths}">
+                                <c:forEach var="size" items="${requestScope.carportsettings.carportLengths}">
                                     <option <c:if test="${sessionScope.carportlength == size}">selected</c:if>>
                                             ${size}</option>
                                 </c:forEach>
@@ -88,15 +88,13 @@
                         <div class="form-group">
                             <label for="tagHældning">Taghældning</label>
                             <select class="form-control" id="tagHældning" name="roofangle">
-                                <c:if test="${sessionScope.carportangle != null}">
-                                    <option selected>${sessionScope.carportangle}</option>
-                                </c:if>
                                 <c:if test="${sessionScope.carportangle == null}">
-                                    <option>Vælg taghældning</option>
+                                    <option>Vælg vinkel</option>
                                 </c:if>
-                                <option>15</option>
-                                <option>20</option>
-                                <option>25</option>
+                                <c:forEach var="size" items="${requestScope.carportsettings.carportRoofAngle}">
+                                    <option <c:if test="${sessionScope.carportangle == size}">selected</c:if>>
+                                            ${size}</option>
+                                </c:forEach>
                             </select>
                         </div>
 
@@ -115,29 +113,25 @@
                                     redskabsrummet.</h4>
                                 <label for="redskabsRumBredde">Redskabsrum bredde</label>
                                 <select class="form-control" id="redskabsRumBredde" name="shedwidth">
-                                    <c:if test="${sessionScope.shedwidth != null}">
-                                        <option selected>${sessionScope.shedwidth}</option>
-                                    </c:if>
                                     <c:if test="${sessionScope.shedwidth == null}">
-                                        <option>Vælg bredde</option>
+                                        <option selected>Vælg bredde</option>
                                     </c:if>
-                                    <option>210</option>
-                                    <option>240</option>
-                                    <option>270</option>
+                                    <c:forEach var="size" items="${requestScope.shedsettings.shedWidths}">
+                                        <option <c:if test="${sessionScope.shedwidth == size}">selected</c:if>>
+                                                ${size}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="redskabsRumLængde">Redskabsum længde</label>
                                 <select class="form-control" id="redskabsRumLængde" name="shedlength">
-                                    <c:if test="${sessionScope.shedlength != null}">
-                                        <option selected>${sessionScope.shedlength}</option>
-                                    </c:if>
                                     <c:if test="${sessionScope.shedlength == null}">
-                                        <option>Vælg længde</option>
+                                        <option selected>Vælg længde</option>
                                     </c:if>
-                                    <option>210</option>
-                                    <option>240</option>
-                                    <option>270</option>
+                                    <c:forEach var="size" items="${requestScope.shedsettings.shedLengths}">
+                                        <option <c:if test="${sessionScope.shedlength == size}">selected</c:if>>
+                                                ${size}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>
@@ -291,32 +285,26 @@
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                             <label for="flatCarportWidth">Carport bredde</label>
                             <select class="form-control" id="flatCarportWidth" name="width">
-                                <c:if test="${sessionScope.carportwidth != null}">
-                                    <option selected>${sessionScope.carportwidth}</option>
-                                </c:if>
                                 <c:if test="${sessionScope.carportwidth == null}">
-                                    <option>Vælg Længde</option>
+                                    <option>Vælg bredde</option>
                                 </c:if>
-                                <option>240</option>
-                                <option>750</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <c:forEach var="size" items="${requestScope.carportsettings.carportWidths}">
+                                    <option <c:if test="${sessionScope.carportwidth == size}">selected</c:if>>
+                                            ${size}</option>
+                                </c:forEach>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="flatCarportLength">Carport Længde</label>
                             <select class="form-control" id="flatCarportLength" name="length">
-                                <c:if test="${sessionScope.carportlength != null}">
-                                    <option selected>${sessionScope.carportlength}</option>
-                                </c:if>
                                 <c:if test="${sessionScope.carportlength == null}">
                                     <option>Vælg Længde</option>
                                 </c:if>
-                                <option>240</option>
-                                <option>780</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <c:forEach var="size" items="${requestScope.carportsettings.carportLengths}">
+                                    <option <c:if test="${sessionScope.carportlength == size}">selected</c:if>>
+                                            ${size}</option>
+                                </c:forEach>
                             </select>
                         </div>
 
@@ -348,33 +336,25 @@
                                     redskabsrummet.</h4>
                                 <label for="flatRedskabsRumBredde">Redskabsrum bredde</label>
                                 <select class="form-control" id="flatRedskabsRumBredde" name="shedwidth" disabled>
-                                    <c:if test="${sessionScope.shedwidth != null}">
-                                        <option selected>${sessionScope.shedwidth}</option>
-                                    </c:if>
                                     <c:if test="${sessionScope.shedwidth == null}">
-                                        <option>Vælg bredde</option>
+                                        <option selected>Vælg bredde</option>
                                     </c:if>
-                                    <option>210</option>
-                                    <option>240</option>
-                                    <option>270</option>
-                                    <option>660</option>
-                                    <option>750</option>
+                                    <c:forEach var="size" items="${requestScope.shedsettings.shedWidths}">
+                                        <option <c:if test="${sessionScope.shedwidth == size}">selected</c:if>>
+                                                ${size}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="flatRedskabsRumLængde">Redskabsum længde</label>
                                 <select class="form-control" id="flatRedskabsRumLængde" name="shedlength">
-                                    <c:if test="${sessionScope.shedlength != null}">
-                                        <option selected>${sessionScope.shedlength}</option>
-                                    </c:if>
                                     <c:if test="${sessionScope.shedlength == null}">
-                                        <option>Vælg længde</option>
+                                        <option selected>Vælg længde</option>
                                     </c:if>
-                                    <option>210</option>
-                                    <option>240</option>
-                                    <option>270</option>
-                                    <option>660</option>
-                                    <option>750</option>
+                                    <c:forEach var="size" items="${requestScope.shedsettings.shedLengths}">
+                                        <option <c:if test="${sessionScope.shedlength == size}">selected</c:if>>
+                                                ${size}</option>
+                                    </c:forEach>
                                 </select>
                             </div>
                         </div>

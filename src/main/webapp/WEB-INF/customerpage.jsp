@@ -64,74 +64,180 @@
                         <c:set var="countuntakenpreorder" value="0" scope="page"/>
                         <c:forEach var="untakenpreorder"
                                    items="${requestScope.untakenpreorders}">
-                            <form action="Main" method="POST">
-                                <input type="hidden" name="target" value="listcustomerpage">
-                                <input type="hidden" name="carportlength"
-                                       value="${untakenpreorder.carport.length}">
-                                <input type="hidden" name="carportwidth"
-                                       value="${untakenpreorder.carport.width}">
-                                <tr>
-                                    <th scope="row">${untakenpreorder.preOrder.id}</th>
-                                    <td>${untakenpreorder.customer.additional}</td>
-                                    <td style="width: 20%;">
-                                        <button type="button"
-                                                class="btn btn-block btn-outline-info"
-                                                data-toggle="modal"
-                                                data-target="#$untakenpreorders${countuntakenpreorder}">
-                                            Se carport
-                                        </button>
-                                    </td>
-                                </tr>
-                                <div class="modal fade"
-                                     id="untakenpreorders${countuntakenpreorder}"
-                                     tabindex="-1"
-                                     aria-labelledby="untakenpreorders${countuntakenpreorder}"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="untakenpreorders">
-                                                    Forespørgelse
-                                                    nr. ${untakenpreorder.preOrder.id}</h5>
-                                                <button type="button" class="close"
-                                                        data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
+                            <tr>
+                                <th scope="row">${untakenpreorder.preOrder.id}</th>
+                                <td>${untakenpreorder.customer.additional}</td>
+                                <td style="width: 20%;">
+                                    <button type="button"
+                                            class="btn btn-block btn-outline-info"
+                                            data-toggle="modal"
+                                            data-target="#untakenpreorders${countuntakenpreorder}">
+                                        Se carport
+                                    </button>
+                                </td>
+                            </tr>
+                            <div class="modal fade"
+                                 id="untakenpreorders${countuntakenpreorder}"
+                                 tabindex="-1"
+                                 aria-labelledby="untakenpreorders${countuntakenpreorder}"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="untakenpreorders">
+                                                Forespørgelse
+                                                nr. ${untakenpreorder.preOrder.id}</h5>
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="Main" method="POST">
+                                                <input type="hidden" name="target" value="editpreorder">
+                                                <input type="hidden" name="carportid"
+                                                       value="${untakenpreorder.carport.id}">
+                                                <input type="hidden" name="shedid"
+                                                       value="${untakenpreorder.shed.id}">
                                                 <h5>Carport</h5>
-                                                <p>
-                                                    Bredde: ${untakenpreorder.carport.width}</p>
-                                                <p>
-                                                    Længde: ${untakenpreorder.carport.length}</p>
-                                                <p>
-                                                    Tagtype/farve: ${untakenpreorder.carport.roof}</p>
-                                                <p>Tag
-                                                    vinkel: ${untakenpreorder.carport.roofAngle}
-                                                    grader</p>
-                                                <c:if test="${untakenpreorder.shed.length > 0}">
-                                                    <h5>Skur</h5>
-                                                    <p>Bredde: ${untakenpreorder.shed.width}</p>
-                                                    <p>Længde: ${untakenpreorder.shed.length}</p>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="carportWidth">Bredde</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control" id="carportWidth"
+                                                                name="carportwidth">
+                                                            <c:forEach var="size"
+                                                                       items="${requestScope.carportsettings.carportWidths}">
+                                                                <option
+                                                                        <c:if test="${untakenpreorder.carport.width == size}">selected</c:if>>
+                                                                        ${size}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="carportLength">Længde</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control" id="carportLength"
+                                                                name="carportlength">
+                                                            <c:forEach var="size"
+                                                                       items="${requestScope.carportsettings.carportLengths}">
+                                                                <option
+                                                                        <c:if test="${untakenpreorder.carport.length == size}">selected</c:if>>
+                                                                        ${size}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="carportRoof">Tag type/farve</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control" id="carportRoof"
+                                                                name="carportroof">
+                                                            <c:choose>
+                                                                <c:when test="${untakenpreorder.carport.roof.equals('Plasttrapezplader')}">
+                                                                    <option selected>Plasttrapezplader</option>
+                                                                </c:when>
+
+                                                                <c:when test="${!untakenpreorder.carport.roof.equals('Plasttrapezplader')}">
+                                                                    <option selected>${untakenpreorder.carport.roof}</option>
+                                                                    <option>Betontagsten - Sort</option>
+                                                                    <option>Eternittag B6 - Grå</option>
+                                                                    <option>Eternittag B7 - Rødbrun</option>
+                                                                </c:when>
+                                                            </c:choose>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <c:if test="${untakenpreorder.carport.roofAngle > 0}">
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="carportRoofAngle">Tag vinkel</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control" id="carportRoofAngle"
+                                                                name="carportroofangle">
+                                                            <c:forEach var="size"
+                                                                       items="${requestScope.carportsettings.carportRoofAngle}">
+                                                                <option
+                                                                        <c:if test="${untakenpreorder.carport.roofAngle == size}">selected</c:if>>
+                                                                        ${size}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
                                                 </c:if>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button"
-                                                        class="btn btn-outline-secondary"
-                                                        data-dismiss="modal">Luk
-                                                </button>
+                                                <c:if test="${untakenpreorder.shed.length > 0}">
+                                                <h5>Skur</h5>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="ShedWidth">Brædde</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control" id="ShedWidth"
+                                                                name="shedwidth">
+                                                            <c:forEach var="size"
+                                                                       items="${requestScope.shedsettings.shedWidths}">
+                                                                <option
+                                                                        <c:if test="${untakenpreorder.shed.width == size}">selected</c:if>>
+                                                                        ${size}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="ShedLength">Længde</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control" id="ShedLength"
+                                                                name="shedlength">
+                                                            <c:forEach var="size"
+                                                                       items="${requestScope.shedsettings.shedLengths}">
+                                                                <option
+                                                                        <c:if test="${untakenpreorder.shed.length == size}">selected</c:if>>
+                                                                        ${size}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                </c:if>
+                                        </div>
+
+
+                                        <div class="modal-footer">
+                                            <button type="button"
+                                                    class="btn btn-outline-secondary"
+                                                    data-dismiss="modal">Luk
+                                            </button>
+                                            <button type="submit"
+                                                    class="btn btn-outline-success">Gem redigering
+                                            </button>
+                                            </form>
+                                            <form action="Main" method="POST">
+                                                <input type="hidden" name="target" value="listcustomerpage">
+                                                <input type="hidden" name="carportlength"
+                                                       value="${untakenpreorder.carport.length}">
+                                                <input type="hidden" name="carportwidth"
+                                                       value="${untakenpreorder.carport.width}">
                                                 <button type="submit"
                                                         class="btn btn-outline-primary">
                                                     Se tegning
                                                 </button>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                                <c:set var="countuntakenpreorder" value="${countuntakenpreorder + 1}"
-                                       scope="page"/>
-                            </form>
+                            </div>
+                            <c:set var="countuntakenpreorder" value="${countuntakenpreorder + 1}"
+                                   scope="page"/>
+
                         </c:forEach>
                         </tbody>
                     </table>

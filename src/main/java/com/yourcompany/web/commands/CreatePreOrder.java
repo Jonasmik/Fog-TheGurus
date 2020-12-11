@@ -88,7 +88,8 @@ public class CreatePreOrder extends ICommand {
                 }
             }
             session.setAttribute("carportpreview", CarportTopView.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
-            request.setAttribute("settings", api.getCarportFacade().getSettings());
+            request.setAttribute("carportsettings", api.getCarportFacade().getSettings());
+            request.setAttribute("shedsettings", api.getShedFacade().getShedSettings());
             return creationpage;
         }
 
