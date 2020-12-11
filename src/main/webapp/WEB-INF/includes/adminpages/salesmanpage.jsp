@@ -49,9 +49,7 @@
                             <!-- doublecountactive = used to jump to the next letter in alphabetactivepreorder
                                  countactivepreorder = used to know where in every list we are
                              -->
-                            <c:set var="doublecountactive" value="0" scope="page"/>
-                            <c:set var="alphabetactivepreorder"
-                                   value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
+                            <c:set var="countactive" value="0" scope="page"/>
                             <c:forEach var="activepreorder"
                                        items="${requestScope.activepreorder}">
                                 <form action="Main" method="POST">
@@ -67,15 +65,15 @@
                                         <td>
                                             <button type="button" class="btn btn-outline-info"
                                                     data-toggle="modal"
-                                                    data-target="#${alphabetactivepreorder.charAt(doublecountactive)}activepreorders">
+                                                    data-target="#activepreorders${countactive}">
                                                 Carport
                                             </button>
                                         </td>
                                     </tr>
                                     <div class="modal fade"
-                                         id="${alphabetactivepreorder.charAt(doublecountactive)}activepreorders"
+                                         id="activepreorders${countactive}"
                                          tabindex="-1"
-                                         aria-labelledby="${alphabetactivepreorder.charAt(doublecountactive)}ModalLabel"
+                                         aria-labelledby="activepreorders${countactive}"
                                          aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -97,9 +95,11 @@
                                                         Længde: ${activepreorder.carport.length}</p>
                                                     <p>
                                                         Tagtype/farve: ${activepreorder.carport.roof}</p>
-                                                    <p>Tag
-                                                        vinkel: ${activepreorder.carport.roofAngle}
-                                                        grader</p>
+                                                    <c:if test="${activepreorder.carport.roofAngle > 0}">
+                                                        <p>Tag
+                                                            vinkel: ${activepreorder.carport.roofAngle}
+                                                            grader</p>
+                                                    </c:if>
                                                     <c:if test="${!activepreorder.customer.additional.equals('')}">
                                                         <p>Evt.
                                                             bemærkning: ${activepreorder.customer.additional}</p>
@@ -123,7 +123,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <c:set var="doublecountactive" value="${doublecountactive + 2}"
+                                    <c:set var="countactive" value="${countactive + 1}"
                                            scope="page"/>
                                 </form>
                             </c:forEach>
@@ -153,9 +153,7 @@
                             <!-- doublecount = used to jump to the next letter in alphabet
                                  count  = used to know where in every list we are
                              -->
-                            <c:set var="doublecount" value="0" scope="page"/>
-                            <c:set var="alphabet"
-                                   value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
+                            <c:set var="intactivecount" value="0" scope="page"/>
                             <c:forEach var="unusedpreorder" items="${requestScope.unusedpreorders}">
                                 <form action="Main" method="POST">
                                     <input type="hidden" name="target" value="takepreorder">
@@ -170,14 +168,14 @@
                                         <td>
                                             <button type="button" class="btn btn-outline-info"
                                                     data-toggle="modal"
-                                                    data-target="#${alphabet.charAt(doublecount)}Modal">
+                                                    data-target="#inactivepreorder${intactivecount}">
                                                 Carport
                                             </button>
                                         </td>
                                     </tr>
                                     <div class="modal fade"
-                                         id="${alphabet.charAt(doublecount)}Modal" tabindex="-1"
-                                         aria-labelledby="${alphabet.charAt(doublecount)}ModalLabel"
+                                         id="inactivepreorder${intactivecount}" tabindex="-1"
+                                         aria-labelledby="inactivepreorder${intactivecount}"
                                          aria-hidden="true">
                                         <div class="modal-dialog">
                                             <div class="modal-content">
@@ -198,9 +196,11 @@
                                                         Længde: ${unusedpreorder.carport.length}</p>
                                                     <p>
                                                         Tagtype/farve: ${unusedpreorder.carport.roof}</p>
-                                                    <p>Tag
-                                                        vinkel: ${unusedpreorder.carport.roofAngle}
-                                                        grader</p>
+                                                    <c:if test="${unusedpreorder.carport.roofAngle > 0}">
+                                                        <p>Tag
+                                                            vinkel: ${unusedpreorder.carport.roofAngle}
+                                                            grader</p>
+                                                    </c:if>
                                                     <c:if test="${!unusedpreorder.customer.additional.equals('')}">
                                                         <p>Evt.
                                                             bemærkning: ${unusedpreorder.customer.additional}</p>
@@ -224,7 +224,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <c:set var="doublecount" value="${doublecount + 2}"
+                                    <c:set var="inactivecount" value="${intactivecount + 1}"
                                            scope="page"/>
                                 </form>
                             </c:forEach>

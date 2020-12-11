@@ -243,7 +243,7 @@
                                             </button>
                                             <form action="Main" method="POST">
                                                 <input type="hidden" name="target"
-                                                       value="listcustomerpage">
+                                                       value="generatecarportpicture">
                                                 <input type="hidden" name="carportlength"
                                                        value="${untakenpreorder.carport.length}">
                                                 <input type="hidden" name="carportwidth"
@@ -469,7 +469,7 @@
                                             </button>
                                             <form action="Main" method="POST">
                                                 <input type="hidden" name="target"
-                                                       value="listcustomerpage">
+                                                       value="generatecarportpicture">
                                                 <input type="hidden" name="carportlength"
                                                        value="${takenpreorder.carport.length}">
                                                 <input type="hidden" name="carportwidth"

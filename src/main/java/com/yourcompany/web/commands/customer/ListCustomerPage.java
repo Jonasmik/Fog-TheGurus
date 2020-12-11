@@ -34,23 +34,6 @@ public class ListCustomerPage extends CustomerCommand {
         String fail = "error";
         String error = "errorpage";
 
-        String carportWidth = request.getParameter("carportwidth");
-
-        if (carportWidth != null) {
-            String carportLength = request.getParameter("carportlength");
-            int newCarportWidth = 0;
-            int newCarportLength = 0;
-
-            try {
-                newCarportWidth = Integer.parseInt(carportWidth);
-                newCarportLength = Integer.parseInt(carportLength);
-            } catch (NumberFormatException e) {
-                request.setAttribute("error", "Din carport information blev ikke korrekt sat ind");
-                return "errorpage";
-            }
-            request.getSession()
-                .setAttribute("carportpreview", CarportTopView.carportTopView(newCarportWidth, newCarportLength, 0, 0));
-        }
 
         List<Customer> customers = new ArrayList<>();
         try {
