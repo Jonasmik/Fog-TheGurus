@@ -15,7 +15,6 @@ import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.web.ICommand;
 import com.yourcompany.web.svg.svgcalculations.CarportTopView;
-import com.yourcompany.web.svg.tags.Svg;
 import org.slf4j.Logger;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,6 +47,8 @@ public class CreatePreOrder extends ICommand {
 
         boolean wantsPreview = preview != null;
         if(wantsPreview) {
+            request.setAttribute("carportsettings", api.getCarportFacade().getSettings());
+            request.setAttribute("shedsettings", api.getShedFacade().getShedSettings());
 
             int newLength = 0;
             int newWidth = 0;
@@ -88,8 +89,6 @@ public class CreatePreOrder extends ICommand {
                 }
             }
             session.setAttribute("carportpreview", CarportTopView.carportTopView(newWidth, newLength, drawnShedWidth, drawnShedLength));
-            request.setAttribute("carportsettings", api.getCarportFacade().getSettings());
-            request.setAttribute("shedsettings", api.getShedFacade().getShedSettings());
             return creationpage;
         }
 

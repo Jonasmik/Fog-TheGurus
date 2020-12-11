@@ -92,7 +92,7 @@
                                     <option>Vælg vinkel</option>
                                 </c:if>
                                 <c:forEach var="size" items="${requestScope.carportsettings.carportRoofAngle}">
-                                    <option <c:if test="${sessionScope.carportangle == size}">selected</c:if>>
+                                    <option <c:if test="${sessionScope.carportangle != null && sessionScope.carportangle == size}">selected</c:if>>
                                             ${size}</option>
                                 </c:forEach>
                             </select>

@@ -95,7 +95,8 @@
                                         </div>
                                         <div class="modal-body">
                                             <form action="Main" method="POST">
-                                                <input type="hidden" name="target" value="editpreorder">
+                                                <input type="hidden" name="target"
+                                                       value="editpreorder">
                                                 <input type="hidden" name="carportid"
                                                        value="${untakenpreorder.carport.id}">
                                                 <input type="hidden" name="shedid"
@@ -106,7 +107,8 @@
                                                         <label for="carportWidth">Bredde</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select class="form-control" id="carportWidth"
+                                                        <select class="form-control"
+                                                                id="carportWidth"
                                                                 name="carportwidth">
                                                             <c:forEach var="size"
                                                                        items="${requestScope.carportsettings.carportWidths}">
@@ -122,7 +124,8 @@
                                                         <label for="carportLength">Længde</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select class="form-control" id="carportLength"
+                                                        <select class="form-control"
+                                                                id="carportLength"
                                                                 name="carportlength">
                                                             <c:forEach var="size"
                                                                        items="${requestScope.carportsettings.carportLengths}">
@@ -135,93 +138,112 @@
                                                 </div>
                                                 <div class="row" style="padding-bottom: 10px">
                                                     <div class="col-5">
-                                                        <label for="carportRoof">Tag type/farve</label>
+                                                        <label for="carportRoof">Tag
+                                                            type/farve</label>
                                                     </div>
                                                     <div class="col-7">
-                                                        <select class="form-control" id="carportRoof"
+                                                        <select class="form-control"
+                                                                id="carportRoof"
                                                                 name="carportroof">
                                                             <c:choose>
                                                                 <c:when test="${untakenpreorder.carport.roof.equals('Plasttrapezplader')}">
-                                                                    <option selected>Plasttrapezplader</option>
+                                                                    <option selected>
+                                                                        Plasttrapezplader
+                                                                    </option>
                                                                 </c:when>
 
                                                                 <c:when test="${!untakenpreorder.carport.roof.equals('Plasttrapezplader')}">
                                                                     <option selected>${untakenpreorder.carport.roof}</option>
-                                                                    <option>Betontagsten - Sort</option>
-                                                                    <option>Eternittag B6 - Grå</option>
-                                                                    <option>Eternittag B7 - Rødbrun</option>
+                                                                    <option>Betontagsten - Sort
+                                                                    </option>
+                                                                    <option>Eternittag B6 - Grå
+                                                                    </option>
+                                                                    <option>Eternittag B7 -
+                                                                        Rødbrun
+                                                                    </option>
                                                                 </c:when>
                                                             </c:choose>
                                                         </select>
                                                     </div>
                                                 </div>
                                                 <c:if test="${untakenpreorder.carport.roofAngle > 0}">
-                                                <div class="row" style="padding-bottom: 10px">
-                                                    <div class="col-5">
-                                                        <label for="carportRoofAngle">Tag vinkel</label>
+                                                    <div class="row" style="padding-bottom: 10px">
+                                                        <div class="col-5">
+                                                            <label for="carportRoofAngle">Tag
+                                                                vinkel</label>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <select class="form-control"
+                                                                    id="carportRoofAngle"
+                                                                    name="carportroofangle">
+                                                                <c:forEach var="size"
+                                                                           items="${requestScope.carportsettings.carportRoofAngle}">
+                                                                    <option
+                                                                            <c:if test="${untakenpreorder.carport.roofAngle == size}">selected</c:if>>
+                                                                            ${size}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-7">
-                                                        <select class="form-control" id="carportRoofAngle"
-                                                                name="carportroofangle">
-                                                            <c:forEach var="size"
-                                                                       items="${requestScope.carportsettings.carportRoofAngle}">
-                                                                <option
-                                                                        <c:if test="${untakenpreorder.carport.roofAngle == size}">selected</c:if>>
-                                                                        ${size}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 </c:if>
                                                 <c:if test="${untakenpreorder.shed.length > 0}">
-                                                <h5>Skur</h5>
-                                                <div class="row" style="padding-bottom: 10px">
-                                                    <div class="col-5">
-                                                        <label for="ShedWidth">Brædde</label>
+                                                    <h5>Skur</h5>
+                                                    <div class="row" style="padding-bottom: 10px">
+                                                        <div class="col-5">
+                                                            <label for="ShedWidth">Brædde</label>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <select class="form-control"
+                                                                    id="ShedWidth"
+                                                                    name="shedwidth">
+                                                                <c:forEach var="size"
+                                                                           items="${requestScope.shedsettings.shedWidths}">
+                                                                    <option
+                                                                            <c:if test="${untakenpreorder.shed.width == size}">selected</c:if>>
+                                                                            ${size}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                    <div class="col-7">
-                                                        <select class="form-control" id="ShedWidth"
-                                                                name="shedwidth">
-                                                            <c:forEach var="size"
-                                                                       items="${requestScope.shedsettings.shedWidths}">
-                                                                <option
-                                                                        <c:if test="${untakenpreorder.shed.width == size}">selected</c:if>>
-                                                                        ${size}</option>
-                                                            </c:forEach>
-                                                        </select>
+                                                    <div class="row" style="padding-bottom: 10px">
+                                                        <div class="col-5">
+                                                            <label for="ShedLength">Længde</label>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <select class="form-control"
+                                                                    id="ShedLength"
+                                                                    name="shedlength">
+                                                                <c:forEach var="size"
+                                                                           items="${requestScope.shedsettings.shedLengths}">
+                                                                    <option
+                                                                            <c:if test="${untakenpreorder.shed.length == size}">selected</c:if>>
+                                                                            ${size}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="row" style="padding-bottom: 10px">
-                                                    <div class="col-5">
-                                                        <label for="ShedLength">Længde</label>
-                                                    </div>
-                                                    <div class="col-7">
-                                                        <select class="form-control" id="ShedLength"
-                                                                name="shedlength">
-                                                            <c:forEach var="size"
-                                                                       items="${requestScope.shedsettings.shedLengths}">
-                                                                <option
-                                                                        <c:if test="${untakenpreorder.shed.length == size}">selected</c:if>>
-                                                                        ${size}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </div>
-                                                </div>
                                                 </c:if>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <button type="submit"
+                                                                class="btn btn-block btn-outline-success">
+                                                            Gem
+                                                            redigering
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         </div>
-
-
                                         <div class="modal-footer">
                                             <button type="button"
                                                     class="btn btn-outline-secondary"
                                                     data-dismiss="modal">Luk
                                             </button>
-                                            <button type="submit"
-                                                    class="btn btn-outline-success">Gem redigering
-                                            </button>
-                                            </form>
                                             <form action="Main" method="POST">
-                                                <input type="hidden" name="target" value="listcustomerpage">
+                                                <input type="hidden" name="target"
+                                                       value="listcustomerpage">
                                                 <input type="hidden" name="carportlength"
                                                        value="${untakenpreorder.carport.length}">
                                                 <input type="hidden" name="carportwidth"
@@ -265,76 +287,202 @@
                          -->
                         <c:set var="countactivepreorder" value="0" scope="page"/>
                         <c:forEach var="takenpreorder" items="${requestScope.takenpreorder}">
-                            <form action="Main" method="POST">
-                                <input type="hidden" name="target" value="listcustomerpage">
-                                <input type="hidden" name="carportlength"
-                                       value="${takenpreorder.carport.length}">
-                                <input type="hidden" name="carportwidth"
-                                       value="${takenpreorder.carport.width}">
-                                <tr>
-                                    <th scope="row">${takenpreorder.preOrder.id}</th>
-                                    <td>${takenpreorder.customer.additional}</td>
-                                    <td>
-                                        Navn: ${requestScope.preordersalesmen.get(countactivepreorder).name},
-                                        Kontakt
-                                        e-mail: ${requestScope.preordersalesmen.get(countactivepreorder).email}</td>
-                                    <td style="width: 20%">
-                                        <button type="button"
-                                                class="btn btn-block btn-outline-info"
-                                                data-toggle="modal"
-                                                data-target="#activepreorders${countactivepreorder}">
-                                            Se carport
-                                        </button>
-                                    </td>
-                                </tr>
-                                <div class="modal fade"
-                                     id="activepreorders${countactivepreorder}"
-                                     tabindex="-1"
-                                     aria-labelledby="activepreorders${countactivepreorder}"
-                                     aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title">
-                                                    Forespørgelse
-                                                    nr. ${takenpreorder.preOrder.id}</h5>
-                                                <button type="button" class="close"
-                                                        data-dismiss="modal"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">&times;</span>
-                                                </button>
-                                            </div>
-                                            <div class="modal-body">
+                            <tr>
+                                <th scope="row">${takenpreorder.preOrder.id}</th>
+                                <td>${takenpreorder.customer.additional}</td>
+                                <td>
+                                    Navn: ${requestScope.preordersalesmen.get(countactivepreorder).name},
+                                    Kontakt
+                                    e-mail: ${requestScope.preordersalesmen.get(countactivepreorder).email}</td>
+                                <td style="width: 20%">
+                                    <button type="button"
+                                            class="btn btn-block btn-outline-info"
+                                            data-toggle="modal"
+                                            data-target="#activepreorders${countactivepreorder}">
+                                        Se carport
+                                    </button>
+                                </td>
+                            </tr>
+                            <div class="modal fade"
+                                 id="activepreorders${countactivepreorder}"
+                                 tabindex="-1"
+                                 aria-labelledby="activepreorders${countactivepreorder}"
+                                 aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title">
+                                                Forespørgelse
+                                                nr. ${takenpreorder.preOrder.id}</h5>
+                                            <button type="button" class="close"
+                                                    data-dismiss="modal"
+                                                    aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="Main" method="POST">
+                                                <input type="hidden" name="target"
+                                                       value="editpreorder">
+                                                <input type="hidden" name="carportid"
+                                                       value="${untakenpreorder.carport.id}">
+                                                <input type="hidden" name="shedid"
+                                                       value="${untakenpreorder.shed.id}">
                                                 <h5>Carport</h5>
-                                                <p>
-                                                    Bredde: ${takenpreorder.carport.width}</p>
-                                                <p>
-                                                    Længde: ${takenpreorder.carport.length}</p>
-                                                <p>
-                                                    Tagtype/farve: ${takenpreorder.carport.roof}</p>
-                                                <p>Tag
-                                                    vinkel: ${takenpreorder.carport.roofAngle}
-                                                    grader</p>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="carportWidthTaken">Bredde</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control"
+                                                                id="carportWidthTaken"
+                                                                name="carportwidth">
+                                                            <c:forEach var="size"
+                                                                       items="${requestScope.carportsettings.carportWidths}">
+                                                                <option
+                                                                        <c:if test="${takenpreorder.carport.width == size}">selected</c:if>>
+                                                                        ${size}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="carportLengthTaken">Længde</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control"
+                                                                id="carportLengthTaken"
+                                                                name="carportlength">
+                                                            <c:forEach var="size"
+                                                                       items="${requestScope.carportsettings.carportLengths}">
+                                                                <option
+                                                                        <c:if test="${takenpreorder.carport.length == size}">selected</c:if>>
+                                                                        ${size}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div class="row" style="padding-bottom: 10px">
+                                                    <div class="col-5">
+                                                        <label for="carportRoofTaken">Tag
+                                                            type/farve</label>
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <select class="form-control"
+                                                                id="carportRoofTaken"
+                                                                name="carportroof">
+                                                            <c:choose>
+                                                                <c:when test="${takenpreorder.carport.roof.equals('Plasttrapezplader')}">
+                                                                    <option selected>
+                                                                        Plasttrapezplader
+                                                                    </option>
+                                                                </c:when>
+
+                                                                <c:when test="${!takenpreorder.carport.roof.equals('Plasttrapezplader')}">
+                                                                    <option selected>${takenpreorder.carport.roof}</option>
+                                                                    <option>Betontagsten - Sort
+                                                                    </option>
+                                                                    <option>Eternittag B6 - Grå
+                                                                    </option>
+                                                                    <option>Eternittag B7 -
+                                                                        Rødbrun
+                                                                    </option>
+                                                                </c:when>
+                                                            </c:choose>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <c:if test="${takenpreorder.carport.roofAngle > 0}">
+                                                    <div class="row" style="padding-bottom: 10px">
+                                                        <div class="col-5">
+                                                            <label for="carportAngleTaken">Tag
+                                                                vinkel</label>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <select class="form-control"
+                                                                    id="carportAngleTaken"
+                                                                    name="carportlength">
+                                                                <c:forEach var="size"
+                                                                           items="${requestScope.carportsettings.carportRoofAngle}">
+                                                                    <option
+                                                                            <c:if test="${takenpreorder.carport.roofAngle == size}">selected</c:if>>
+                                                                            ${size}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </c:if>
                                                 <c:if test="${takenpreorder.shed.length > 0}">
                                                     <h5>Skur</h5>
-                                                    <p>Bredde: ${takenpreorder.shed.width}</p>
-                                                    <p>Længde: ${takenpreorder.shed.length}</p>
+                                                    <div class="row" style="padding-bottom: 10px">
+                                                        <div class="col-5">
+                                                            <label for="ShedWidthTaken">Brædde</label>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <select class="form-control"
+                                                                    id="ShedWidthTaken"
+                                                                    name="shedwidth">
+                                                                <c:forEach var="size"
+                                                                           items="${requestScope.shedsettings.shedWidths}">
+                                                                    <option
+                                                                            <c:if test="${takenpreorder.shed.width == size}">selected</c:if>>
+                                                                            ${size}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row" style="padding-bottom: 10px">
+                                                        <div class="col-5">
+                                                            <label for="ShedLengthTaken">Længde</label>
+                                                        </div>
+                                                        <div class="col-7">
+                                                            <select class="form-control"
+                                                                    id="ShedLengthTaken"
+                                                                    name="shedlength">
+                                                                <c:forEach var="size"
+                                                                           items="${requestScope.shedsettings.shedLengths}">
+                                                                    <option
+                                                                            <c:if test="${takenpreorder.shed.length == size}">selected</c:if>>
+                                                                            ${size}</option>
+                                                                </c:forEach>
+                                                            </select>
+                                                        </div>
+                                                    </div>
                                                 </c:if>
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button"
-                                                        class="btn btn-outline-secondary"
-                                                        data-dismiss="modal">Luk
-                                                </button>
+                                                <div class="row">
+                                                    <div class="col-5">
+                                                    </div>
+                                                    <div class="col-7">
+                                                        <button type="submit"
+                                                                class="btn btn-block btn-outline-success">
+                                                            Gem redigering
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button"
+                                                    class="btn btn-outline-secondary"
+                                                    data-dismiss="modal">Luk
+                                            </button>
+                                            <form action="Main" method="POST">
+                                                <input type="hidden" name="target"
+                                                       value="listcustomerpage">
+                                                <input type="hidden" name="carportlength"
+                                                       value="${takenpreorder.carport.length}">
+                                                <input type="hidden" name="carportwidth"
+                                                       value="${takenpreorder.carport.width}">
                                                 <button type="submit"
                                                         class="btn btn-outline-primary">
                                                     Se tegning
                                                 </button>
-                                            </div>
+                                            </form>
                                         </div>
                                     </div>
                                 </div>
-                            </form>
+                            </div>
                             <c:set var="countactivepreorder" value="${countactivepreorder + 1}"
                                    scope="page"/>
                         </c:forEach>
