@@ -68,6 +68,7 @@ public class CreatePreOrder extends ICommand {
             boolean wantsAngledRoof = request.getParameter("angledroof") != null;
             if (wantsAngledRoof) {
                 angle = request.getParameter("roofangle");
+                System.out.println(angle);
                 session.setAttribute("carportangle", angle);
             }
 
