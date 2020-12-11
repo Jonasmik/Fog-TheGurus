@@ -6,6 +6,8 @@ import com.yourcompany.api.*;
 import com.yourcompany.api.facades.*;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.web.commands.*;
+import com.yourcompany.web.commands.bom.GenerateBom;
+import com.yourcompany.web.commands.bom.ListBomPage;
 import com.yourcompany.web.commands.customer.ListCustomerPage;
 import com.yourcompany.web.commands.salesman.ListSalesmanPage;
 import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
@@ -42,7 +44,8 @@ public abstract class ICommand {
         commands.put("takepreorder", new SalesmanTakePreOrder());
         commands.put("listsalesmanpage", new ListSalesmanPage());
         commands.put("listcustomerpage", new ListCustomerPage());
-        commands.put("showbompage", new ShowBomPage());
+        commands.put("listbompage", new ListBomPage());
+        commands.put("generatebom", new GenerateBom());
     }
 
     static ICommand from(HttpServletRequest request) {

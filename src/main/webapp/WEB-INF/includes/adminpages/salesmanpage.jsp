@@ -55,7 +55,7 @@
                             <c:forEach var="activepreorder"
                                        items="${requestScope.activepreorder}">
                                 <form action="Main" method="POST">
-                                    <input type="hidden" name="target" value="showbompage">
+                                    <input type="hidden" name="target" value="generatebom">
                                     <input type="hidden" name="carportid" value="${activepreorder.carport.id}">
                                     <tr>
                                         <th scope="row">${activepreorder.preOrder.id}</th>

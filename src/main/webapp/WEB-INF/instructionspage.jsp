@@ -21,7 +21,7 @@
                 <h1>Carport</h1>
                 <div class="alert alert-info border-secondary">
                     <div style="text-align: center">
-                        ${requestScope.carportpicture}
+                        ${sessionScope.carportpicture}
                     </div>
                 </div>
             </div>
@@ -55,7 +55,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <c:forEach var="bom" items="${requestScope.carportbom.bomItemList}">
+                        <c:forEach var="bom" items="${sessionScope.carportbom.bomItemList}">
                             <tr style="font-size: 14px">
                                 <td style="text-align: start;">${bom.material.width}x${bom.material.height}mm. ${bom.material.description}</td>
                                 <td style="text-align: center">${bom.length}</td>
