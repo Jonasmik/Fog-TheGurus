@@ -61,9 +61,7 @@
                         <!-- doublecount = used to jump to the next letter in alphabet
                              count  = used to know where in every list we are
                          -->
-                        <c:set var="doublecountuntaken" value="0" scope="page"/>
-                        <c:set var="alphabetuntakenpreorder"
-                               value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
+                        <c:set var="countuntakenpreorder" value="0" scope="page"/>
                         <c:forEach var="untakenpreorder"
                                    items="${requestScope.untakenpreorders}">
                             <form action="Main" method="POST">
@@ -79,15 +77,15 @@
                                         <button type="button"
                                                 class="btn btn-block btn-outline-info"
                                                 data-toggle="modal"
-                                                data-target="#${alphabetuntakenpreorder.charAt(doublecountuntaken)}untakenpreorders">
+                                                data-target="#$untakenpreorders${countuntakenpreorder}">
                                             Se carport
                                         </button>
                                     </td>
                                 </tr>
                                 <div class="modal fade"
-                                     id="${alphabetuntakenpreorder.charAt(doublecountuntaken)}untakenpreorders"
+                                     id="untakenpreorders${countuntakenpreorder}"
                                      tabindex="-1"
-                                     aria-labelledby="${alphabetuntakenpreorder.charAt(doublecountuntaken)}ModalLabel"
+                                     aria-labelledby="untakenpreorders${countuntakenpreorder}"
                                      aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -131,8 +129,8 @@
                                         </div>
                                     </div>
                                 </div>
-                                <c:set var="doublecountuntaken"
-                                       value="${doublecountuntaken + 2}" scope="page"/>
+                                <c:set var="countuntakenpreorder" value="${countuntakenpreorder + 1}"
+                                       scope="page"/>
                             </form>
                         </c:forEach>
                         </tbody>
@@ -159,9 +157,6 @@
                         <!-- doublecount = used to jump to the next letter in alphabet
                              count  = used to know where in every list we are
                          -->
-                        <c:set var="doublecountactive" value="0" scope="page"/>
-                        <c:set var="alphabetactivepreorder"
-                               value="A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z"/>
                         <c:set var="countactivepreorder" value="0" scope="page"/>
                         <c:forEach var="takenpreorder" items="${requestScope.takenpreorder}">
                             <form action="Main" method="POST">
@@ -181,20 +176,20 @@
                                         <button type="button"
                                                 class="btn btn-block btn-outline-info"
                                                 data-toggle="modal"
-                                                data-target="#${alphabetactivepreorder.charAt(doublecountactive)}activepreorders">
+                                                data-target="#activepreorders${countactivepreorder}">
                                             Se carport
                                         </button>
                                     </td>
                                 </tr>
                                 <div class="modal fade"
-                                     id="${alphabetactivepreorder.charAt(doublecountactive)}activepreorders"
+                                     id="activepreorders${countactivepreorder}"
                                      tabindex="-1"
-                                     aria-labelledby="${alphabetactivepreorder.charAt(doublecountactive)}ModalLabel"
+                                     aria-labelledby="activepreorders${countactivepreorder}"
                                      aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title" id="activepreorders">
+                                                <h5 class="modal-title">
                                                     Forespørgelse
                                                     nr. ${takenpreorder.preOrder.id}</h5>
                                                 <button type="button" class="close"
@@ -235,8 +230,6 @@
                                 </div>
                             </form>
                             <c:set var="countactivepreorder" value="${countactivepreorder + 1}"
-                                   scope="page"/>
-                            <c:set var="doublecountactive" value="${doublecountactive + 2}"
                                    scope="page"/>
                         </c:forEach>
                         </tbody>
