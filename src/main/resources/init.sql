@@ -98,3 +98,12 @@ CREATE TABLE orders (
                         FOREIGN KEY (customerid) REFERENCES customers(id),
                         FOREIGN KEY (offerid) REFERENCES offers(id)
 );
+
+CREATE TABLE carport_settings (
+    min_width INT,
+    max_width INT,
+    intervals_width INT,
+    min_height INT,
+
+
+)

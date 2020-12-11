@@ -47,32 +47,26 @@
                             <h4 style="padding-top: 10px; padding-bottom: 10px">Carport størelse</h4>
                             <label for="carportWidth">Carport bredde</label>
                             <select class="form-control" id="carportWidth" name="width">
-                                <c:if test="${sessionScope.carportwidth != null}">
-                                    <option selected>${sessionScope.carportwidth}</option>
-                                </c:if>
                                 <c:if test="${sessionScope.carportwidth == null}">
                                     <option>Vælg bredde</option>
                                 </c:if>
-                                <option>240</option>
-                                <option>750</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <c:forEach var="size" items="${requestScope.settings.carportWidths}">
+                                    <option <c:if test="${sessionScope.carportwidth == size}">selected</c:if>>
+                                        ${size}</option>
+                                </c:forEach>
                             </select>
                         </div>
 
                         <div class="form-group">
                             <label for="carportLength">Carport Længde</label>
                             <select class="form-control" id="carportLength" name="length">
-                                <c:if test="${sessionScope.carportlength != null}">
-                                    <option selected>${sessionScope.carportlength}</option>
-                                </c:if>
                                 <c:if test="${sessionScope.carportlength == null}">
                                     <option>Vælg Længde</option>
                                 </c:if>
-                                <option>240</option>
-                                <option>780</option>
-                                <option>4</option>
-                                <option>5</option>
+                                <c:forEach var="size" items="${requestScope.settings.carportLengths}">
+                                    <option <c:if test="${sessionScope.carportlength == size}">selected</c:if>>
+                                            ${size}</option>
+                                </c:forEach>
                             </select>
                         </div>
 

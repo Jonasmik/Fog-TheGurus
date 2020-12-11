@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Redirect extends ICommand {
+
+
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
 
@@ -36,6 +38,7 @@ public class Redirect extends ICommand {
             case "index":
                 break;
             case "createorder":
+                request.setAttribute("settings", api.getCarportFacade().getSettings());
                 break;
             case "customerpage":
                 return "redirect:listcustomerpage";

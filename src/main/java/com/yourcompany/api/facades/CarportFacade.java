@@ -1,6 +1,7 @@
 package com.yourcompany.api.facades;
 
 import com.yourcompany.api.factories.CarportFactory;
+import com.yourcompany.api.settings.CarportSettings;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.carport.CarportRepository;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
@@ -37,6 +38,10 @@ public class CarportFacade {
 
    public Carport createCarport(CarportFactory carportFactory) throws NoSuchCarportExists {
       return repo.createCarport(carportFactory);
+   }
+
+   public CarportSettings getSettings() {
+      return new CarportSettings();
    }
 
 }
