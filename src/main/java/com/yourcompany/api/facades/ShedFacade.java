@@ -38,6 +38,10 @@ public class ShedFacade {
         return repo.findByCarportId(id);
     }
 
+    public void updateShed(ShedFactory shedFactory, int id) throws NoSuchShedExists {
+        repo.updateShed(shedFactory, id);
+    }
+
     public ShedSettings getShedSettings() {
         return new ShedSettings();
     }

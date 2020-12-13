@@ -4,6 +4,7 @@ import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.carport.CarportRepository;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
+import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.sql.*;
@@ -74,6 +75,24 @@ public class DBCarportRepository implements CarportRepository {
             throw new NoSuchCarportExists();
         }
         return findById(id);
+    }
+
+    @Override
+    public void updateCarport(CarportFactory carportFactory, int id) throws NoSuchCarportExists {
+        try (Connection conn = db.connect()) {
+            PreparedStatement ps =
+                conn.prepareStatement(
+                    "UPDATE carport SET length = ?, width = ?, roof = ?, roofangle = ? WHERE id = ?;");
+            ps.setInt(1, carportFactory.getLength());
+            ps.setInt(2, carportFactory.getWidth());
+            ps.setString(3, carportFactory.getRoof());
+            ps.setInt(4, carportFactory.getRoofAngle());
+            ps.setInt(5, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (SQLException e) {
+            throw new NoSuchCarportExists();
+        }
     }
 
 }

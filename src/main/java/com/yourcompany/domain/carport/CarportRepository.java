@@ -11,4 +11,6 @@ public interface CarportRepository {
     Carport findById(int id) throws NoSuchCarportExists;
 
     Carport createCarport(CarportFactory carportFactory) throws NoSuchCarportExists;
+
+    void updateCarport(CarportFactory carportFactory, int id) throws  NoSuchCarportExists;
 }

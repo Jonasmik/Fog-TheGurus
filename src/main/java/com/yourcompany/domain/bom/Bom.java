@@ -41,14 +41,11 @@ public class Bom {
         int carportLengthCalculation = calculateWood(carport.getLength());
         int carportWidthCalculation = calculateWood(carport.getWidth());
 
-
         int stolpeAntal = 4;
 
-        if (carport.getLength() >= minimumLengthThirdPost){
+        if (carport.getLength() >= minimumLengthThirdPost) {
             stolpeAntal = stolpeAntal + 2;
         }
-
-
 
         if (shed.getLength() > 0) {
             skurDel = true;
@@ -68,18 +65,14 @@ public class Bom {
         }
         double calculateAmountOfRafters = carport.getLength() / (55 + 4.5);
         double calculateExtraRaftersSpace = ((carport.getLength() % (55 + 4.5))) / calculateAmountOfRafters;
-        int amountOfRafters = (int)(carport.getLength() / (55 + 4.5)+ calculateExtraRaftersSpace);
+        int amountOfRafters = (int) (carport.getLength() / (55 + 4.5) + calculateExtraRaftersSpace);
 
         l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), carport.getLength(), amountOfRafters,
-                "Stk", "Spær, monteres på rem"));
-
-
+            "Stk", "Spær, monteres på rem"));
 
         if (skurDel) {
             int rimShed = shed.getLength() * 2;
-             stolpeAntal = stolpeAntal + 4;
-
-
+            stolpeAntal = stolpeAntal + 4;
 
             int looseWoodLength = shed.getLength();
             int looseWoodWidth = shed.getWidth();
@@ -98,11 +91,13 @@ public class Bom {
 
             if (shed.getWidth() >= carport.getWidth() - 70) {
 
-                l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), carport.getLength()-shed.getLength() + 30, 2, "Stk",
+                l.add(
+                    new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), carport.getLength() - shed.getLength() + 30,
+                        2, "Stk",
                         "Remme i sider, sadles ned i stolper"));
                 l.add(new BomItem(repo.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), rimShed + 30, 1, "Stk",
                     "Remme i sider, sadles ned i stolper (skur del, deles)"));
-                stolpeAntal = stolpeAntal-1;
+                stolpeAntal = stolpeAntal - 1;
 
 
             } else {
@@ -128,11 +123,11 @@ public class Bom {
         }
 
         l.add(new BomItem(repo.findLumber(0, 19, 100, LumberType.TRYKIMP_BRÆDT), carportLengthCalculation + 30, 4,
-                "Stk", "vandbrædt på stern til siderne"));
+            "Stk", "vandbrædt på stern til siderne"));
         l.add(new BomItem(repo.findLumber(0, 19, 100, LumberType.TRYKIMP_BRÆDT), carportLengthCalculation + 30, 2,
-                "Stk", "vandbrædt på stern til forenden"));
+            "Stk", "vandbrædt på stern til forenden"));
         l.add(new BomItem(repo.findLumber(0, 97, 97, LumberType.TRYKIMP_STOLPE), 300, stolpeAntal, "Stk",
-                "Stolper nedgraves 90cm. i jord"));
+            "Stolper nedgraves 90cm. i jord"));
 
         //Plastmo	Ecolite	blåtonet 600 6 Stk tagplader	monteres	på	spær
         //Plastmogtag bredde er 109, med 9 cm overlap
@@ -145,14 +140,19 @@ public class Bom {
                 plastmogCalculation = (carport.getWidth() / plastmogWidth) + 1;
             }
 
-            l.add(new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), 240, plastmogCalculation, "Stk",
-                "tagplader monteres på spær"));
-            l.add(new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), 600, plastmogCalculation, "Stk",
-                "tagplader monteres på spær"));
+            l.add(
+                new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), 240, plastmogCalculation,
+                    "Stk",
+                    "tagplader monteres på spær"));
+            l.add(
+                new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), 600, plastmogCalculation,
+                    "Stk",
+                    "tagplader monteres på spær"));
 
 
         } else {
-            l.add(new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), carport.getLength(), plastmogCalculation,
+            l.add(new BomItem(repo.findLumber(0, plastmogWidth, 16, LumberType.PLASTMO_ECOLITE_BLÅTONET), carport.getLength(),
+                plastmogCalculation,
                 "Stk",
                 "tagplader monteres på spær"));
 

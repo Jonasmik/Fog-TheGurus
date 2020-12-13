@@ -40,6 +40,10 @@ public class CarportFacade {
       return repo.createCarport(carportFactory);
    }
 
+   public void updateCarport(CarportFactory carportFactory, int id) throws NoSuchCarportExists {
+      repo.updateCarport(carportFactory, id);
+   }
+
    public CarportSettings getSettings() {
       return new CarportSettings();
    }

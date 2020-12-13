@@ -31,6 +31,20 @@
         </div>
         <div class="col-md-8">
 
+            <c:if test="${sessionScope.correctinput != null}">
+                <div class="alert alert-success border-secondary">
+                    <h1>Opdatering</h1>
+                        ${sessionScope.correctinput}
+                </div>
+            </c:if>
+
+            <c:if test="${sessionScope.failinput != null}">
+                <div class="alert alert-danger border-secondary">
+                    <h1>Fejl</h1>
+                        ${sessionScope.failinput}
+                </div>
+            </c:if>
+
             <c:if test="${sessionScope.carportpreview != null}">
                 <div class="alert alert-info border-secondary">
                     <h1>Din carport</h1>
@@ -325,9 +339,9 @@
                                                 <input type="hidden" name="target"
                                                        value="editpreorder">
                                                 <input type="hidden" name="carportid"
-                                                       value="${untakenpreorder.carport.id}">
+                                                       value="${takenpreorder.carport.id}">
                                                 <input type="hidden" name="shedid"
-                                                       value="${untakenpreorder.shed.id}">
+                                                       value="${takenpreorder.shed.id}">
                                                 <h5>Carport</h5>
                                                 <div class="row" style="padding-bottom: 10px">
                                                     <div class="col-5">

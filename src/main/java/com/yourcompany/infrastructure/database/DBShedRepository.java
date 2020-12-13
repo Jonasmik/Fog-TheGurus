@@ -3,6 +3,7 @@ package com.yourcompany.infrastructure.database;
 import com.yourcompany.api.factories.ShedFactory;
 import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.domain.shed.ShedRepository;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
@@ -81,6 +82,22 @@ public class DBShedRepository implements ShedRepository {
             } else {
                 return new Shed(-1, 0, 0, id);
             }
+        } catch (SQLException e) {
+            throw new NoSuchShedExists();
+        }
+    }
+
+    @Override
+    public void updateShed(ShedFactory shedFactory, int id) throws NoSuchShedExists {
+        try (Connection conn = db.connect()) {
+            PreparedStatement ps =
+                conn.prepareStatement(
+                    "UPDATE shed SET width = ?, length = ? WHERE id = ?;");
+            ps.setInt(1, shedFactory.getWidth());
+            ps.setInt(2, shedFactory.getLength());
+            ps.setInt(3, id);
+            ps.executeUpdate();
+            ps.close();
         } catch (SQLException e) {
             throw new NoSuchShedExists();
         }
