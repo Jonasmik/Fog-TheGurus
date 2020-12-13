@@ -262,6 +262,8 @@
                                                        value="${untakenpreorder.carport.length}">
                                                 <input type="hidden" name="carportwidth"
                                                        value="${untakenpreorder.carport.width}">
+                                                <input type="hidden" name="shedlength" value="${untakenpreorder.shed.length}">
+                                                <input type="hidden" name="shedwidth" value="${untakenpreorder.shed.width}">
                                                 <button type="submit"
                                                         class="btn btn-outline-primary">
                                                     Se tegning
@@ -488,6 +490,8 @@
                                                        value="${takenpreorder.carport.length}">
                                                 <input type="hidden" name="carportwidth"
                                                        value="${takenpreorder.carport.width}">
+                                                <input type="hidden" name="shedlength" value="${takenpreorder.shed.length}">
+                                                <input type="hidden" name="shedwidth" value="${takenpreorder.shed.width}">
                                                 <button type="submit"
                                                         class="btn btn-outline-primary">
                                                     Se tegning

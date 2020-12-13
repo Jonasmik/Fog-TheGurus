@@ -25,6 +25,10 @@ public class EditPreOrder extends ICommand {
         String carportId = request.getParameter("carportid");
         String shedId = request.getParameter("shedid");
 
+        HttpSession session = request.getSession();
+        session.removeAttribute("failinput");
+        session.removeAttribute("correctinput");
+
         if (carportRoofAngle == null) {
             carportRoofAngle = "0";
         }
@@ -41,9 +45,8 @@ public class EditPreOrder extends ICommand {
         }
 
         boolean isValidLengths = false;
-        ShedFactory shedFactory = null;
-        if(shedLength != null) {
-            shedFactory = new ShedFactory();
+        ShedFactory shedFactory = new ShedFactory();
+        if (shedLength != null) {
             try {
                 shedFactory.setCarportID(carportId);
                 shedFactory.setLength(shedLength);
@@ -55,35 +58,36 @@ public class EditPreOrder extends ICommand {
 
             isValidLengths = checkShedLength(carportFactory.getLength(), carportFactory.getWidth(), shedFactory.getLength(),
                 shedFactory.getWidth());
+
+            if (isValidLengths) {
+
+                if (shedFactory.isValid()) {
+                    try {
+                        api.getShedFacade().updateShed(shedFactory, Integer.parseInt(shedId));
+                        session.removeAttribute("failinput");
+                    } catch (NoSuchShedExists noSuchShedExists) {
+                        request.setAttribute("error", "Der gik noget galt med din redigering");
+                        return "errorpage";
+                    }
+                }
+            } else {
+                session.setAttribute("failinput", "Ugyldige mål på dit skur");
+            }
         }
 
         if (carportFactory.isValid()) {
             try {
                 api.getCarportFacade().updateCarport(carportFactory, Integer.parseInt(carportId));
-                request.getSession().removeAttribute("failinput");
             } catch (NoSuchCarportExists noSuchCarportExists) {
                 request.setAttribute("error", "Din database for carporten blev ikke opdateret");
                 return "errorpage";
             }
         }
 
-        if(isValidLengths) {
-
-            if (shedFactory.isValid()) {
-                try {
-                    api.getShedFacade().updateShed(shedFactory, Integer.parseInt(shedId));
-                } catch (NoSuchShedExists noSuchShedExists) {
-                    request.setAttribute("error", "Der gik noget galt med din redigering");
-                    return "errorpage";
-                }
-            }
-        }
-
-        if (request.getSession().getAttribute("failinput") == null) {
-            request.getSession().setAttribute("correctinput", "Din forespørgsel er blevet opdateret");
+        if (session.getAttribute("failinput") == null) {
+            session.setAttribute("correctinput", "Din forespørgsel er blevet opdateret");
         } else {
-            request.getSession().setAttribute("failinput", "Ugyldige mål på dit skur");
-            request.getSession().removeAttribute("correctinput");
+            session.removeAttribute("correctinput");
         }
 
         return "redirect:listcustomerpage";
