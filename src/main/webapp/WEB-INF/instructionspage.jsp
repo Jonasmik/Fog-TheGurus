@@ -42,6 +42,9 @@
                             <th scope="col" style="text-align: center">Antal</th>
                             <th scope="col" style="text-align: center">Enhed</th>
                             <th scope="col" style="text-align: center">Beskrivelse</th>
+                            <c:if test="${sessionScope.user.role.equals('salesman')}">
+                                <th scope="col" style="text-align: center">Pris</th>
+                            </c:if>
                         </tr>
                         </thead>
 
@@ -52,6 +55,9 @@
                             <td></td>
                             <td></td>
                             <td></td>
+                            <c:if test="${sessionScope.user.role.equals('salesman')}">
+                                <td></td>
+                            </c:if>
                         </tr>
                         </thead>
                         <tbody>
@@ -62,15 +68,64 @@
                                 <td style="text-align: center">${bom.amount}</td>
                                 <td style="text-align: center">${bom.unit}</td>
                                 <td style="text-align: start">${bom.description}</td>
+                                <c:if test="${sessionScope.user.role.equals('salesman')}">
+                                    <td style="text-align: center;">40kr</td>
+                                </c:if>
                             </tr>
                         </c:forEach>
                         </tbody>
                     </table>
                 </div>
             </div>
+        </div>
+        <c:if test="${sessionScope.user.role.equals('salesman')}">
+        <div class="row" style="margin-top: 20px;">
+            <div class="col-md-9">
 
+            </div>
+            <div class="col-md-3">
+                <table class="table table-sm table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="text-align: center">Total pris</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td scope="col" style="text-align: center">Over 9000 kr.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
+    </c:if>
+
+    <c:if test="${sessionScope.user.role.equals('salesman')}">
+        <div class="container">
+            <form action="Main" method="POST">
+                <input type="hidden" name="target" value="unknowncontent">
+                <div class="row">
+                    <div class="col-md-9">
+                    </div>
+                    <div class="col-md-3">
+                        <label style="text-align: start" for="angledNoUserCity">Pris</label>
+                        <input type="text" id="angledNoUserCity"
+                               class="form-control"
+                               name="offerprice"
+                               placeholder="2013213" required="">
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 10px;">
+                    <div class="col-md-9">
+                    </div>
+                    <div class="col-md-3">
+                        <button type="submit" class="btn btn-block btn-primary">Giv tilbud</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </c:if>
 
 </main>
 

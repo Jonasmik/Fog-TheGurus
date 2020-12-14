@@ -157,6 +157,7 @@ public class Bom {
                 "tagplader monteres på spær"));
 
         }
+
         return new Bom(l);
     }
 

@@ -1,0 +1,17 @@
+@startuml
+hide empty description
+[*] -right-> Forespørgsel : Forespørgsel sendt : aktiveret
+
+Forespørgsel -----> Tilbud : \lTilbud Aktiveret \nForespørgsel deaktiveret
+note left
+Forespørgsel er altid deaktiveret
+hvis tilbud er aktiveret
+endnote
+Tilbud ----> Forespørgsel : tilbud afvist \lTilbud deaktiveret \lForespørgsel aktiveret
+note right
+Forespørgsel er altid deaktiveret
+hvis tilbud er aktiveret
+endnote
+Tilbud -right-> Ordre : Tilbud accepteret : alt bliver deaktiveret
+Ordre --> [*]
+@enduml

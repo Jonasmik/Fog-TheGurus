@@ -76,6 +76,7 @@ CREATE TABLE preorders (
                            customerid INT NOT NULL,
                            salesmanid INT DEFAULT NULL,
                            carportid INT NOT NULL,
+                           active BOOLEAN DEFAULT TRUE,
                            FOREIGN KEY (customerid) REFERENCES customers(id),
                            FOREIGN KEY (salesmanid) REFERENCES salesmen(id),
                            FOREIGN KEY (carportid) REFERENCES carport(id)
@@ -86,6 +87,7 @@ CREATE TABLE offers (
                         id INT PRIMARY KEY AUTO_INCREMENT,
                         preorderid INT NOT NULL,
                         price DOUBLE NOT NULL,
+                        active BOOLEAN DEFAULT TRUE,
                         FOREIGN KEY (preorderid) REFERENCES preorders(id)
 );
 
@@ -99,11 +101,3 @@ CREATE TABLE orders (
                         FOREIGN KEY (offerid) REFERENCES offers(id)
 );
 
-CREATE TABLE carport_settings (
-    min_width INT,
-    max_width INT,
-    intervals_width INT,
-    min_height INT,
-
-
-)

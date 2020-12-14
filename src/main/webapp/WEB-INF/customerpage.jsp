@@ -241,6 +241,7 @@
                                                     <div class="col-5">
                                                     </div>
                                                     <div class="col-7">
+                                                        <span style="text-align: end; font-size: 12px; font-weight: 300;">Ved redigering bliver dit tilbud deaktiveret</span>
                                                         <button type="submit"
                                                                 class="btn btn-block btn-outline-success">
                                                             Gem
@@ -470,6 +471,7 @@
                                                     <div class="col-5">
                                                     </div>
                                                     <div class="col-7">
+                                                        <span style="text-align: end; font-size: 12px; font-weight: 300;">Ved redigering bliver dit tilbud deaktiveret</span>
                                                         <button type="submit"
                                                                 class="btn btn-block btn-outline-success">
                                                             Gem redigering
