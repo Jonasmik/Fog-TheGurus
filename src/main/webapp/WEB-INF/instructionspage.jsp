@@ -61,6 +61,8 @@
                         </tr>
                         </thead>
                         <tbody>
+
+                        <c:set var="count" value="0" scope="page"/>
                         <c:forEach var="bom" items="${sessionScope.carportbom.bomItemList}">
                             <tr style="font-size: 14px">
                                 <td style="text-align: start;">${bom.material.width}x${bom.material.height}mm. ${bom.material.description}</td>
@@ -69,9 +71,11 @@
                                 <td style="text-align: center">${bom.unit}</td>
                                 <td style="text-align: start">${bom.description}</td>
                                 <c:if test="${sessionScope.user.role.equals('salesman')}">
-                                    <td style="text-align: center;">${bom.price} kr.</td>
+                                    <td style="text-align: center;">${sessionScope.materialprices.get(count)} kr.</td>
                                 </c:if>
                             </tr>
+                            <c:set var="count" value="${count + 1}"
+                                   scope="page"/>
                         </c:forEach>
                         </tbody>
                     </table>

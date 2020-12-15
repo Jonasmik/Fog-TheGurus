@@ -4,7 +4,6 @@ package com.yourcompany.web;
 import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.*;
-import com.yourcompany.api.facades.MaterialPriceFacade.BomFacade;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.web.commands.*;
 import com.yourcompany.web.commands.bom.GenerateBom;
