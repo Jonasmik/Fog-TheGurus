@@ -12,6 +12,7 @@ import com.yourcompany.web.commands.customer.GenerateCarportPicture;
 import com.yourcompany.web.commands.customer.ListCustomerPage;
 import com.yourcompany.web.commands.salesman.ListSalesmanPage;
 import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
+import com.yourcompany.web.commands.salesman.UpdateMaterial;
 import com.yourcompany.web.commands.user.AuthorizeUser;
 import com.yourcompany.web.commands.user.CreateUser;
 import com.yourcompany.web.commands.user.LogoutUser;
@@ -29,8 +30,8 @@ public abstract class ICommand {
      */
 
     /**
-     * Whenever you want to make a post or get from a .jsp site, give an input called (name=target).
-     * The value of that target you should make a string, like the example with redirect.
+     * Whenever you want to make a post or get from a .jsp site, give an input called (name=target). The value of that target you
+     * should make a string, like the example with redirect.
      */
 
     private static HashMap<String, ICommand> commands;
@@ -49,6 +50,7 @@ public abstract class ICommand {
         commands.put("listbompage", new ListBomPage());
         commands.put("generatebom", new GenerateBom());
         commands.put("editpreorder", new EditPreOrder());
+        commands.put("updatematerial", new UpdateMaterial());
 
     }
 
@@ -61,7 +63,7 @@ public abstract class ICommand {
     }
 
     //Creates the com.yourcompany.api, with this you will be able to just call com.yourcompany.api.get().YOURMETHOD()
-    protected static final Fog api;
+    public static final Fog api;
 
     static {
         api = createFog();
@@ -69,11 +71,12 @@ public abstract class ICommand {
 
     private static Fog createFog() {
         return new Fog(UserFacade.getInstance(),
-                CarportFacade.getInstance(),
-                ShedFacade.getInstance(),
-                CustomerFacade.getInstance(),
-                PreOrderFacade.getInstance(),
-                SalesmanFacade.getInstance());
+            CarportFacade.getInstance(),
+            ShedFacade.getInstance(),
+            CustomerFacade.getInstance(),
+            PreOrderFacade.getInstance(),
+            SalesmanFacade.getInstance(),
+            MaterialPriceFacade.getInstance());
     }
 
     //used by every command, and called by the invoker.

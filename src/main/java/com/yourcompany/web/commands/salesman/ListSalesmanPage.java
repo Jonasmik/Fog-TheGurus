@@ -1,6 +1,8 @@
 package com.yourcompany.web.commands.salesman;
 
 import com.yourcompany.domain.carport.Carport;
+import com.yourcompany.domain.material.MaterialPrice;
+import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
 import com.yourcompany.web.dtos.PreOrderDTO;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.preorder.PreOrder;
@@ -87,6 +89,17 @@ public class ListSalesmanPage extends SalesmanCommand {
 
             request.setAttribute("activepreorder", activePreOrderDTO);
         }
+
+        List<MaterialPrice> materialPriceList = null;
+        try {
+            materialPriceList = api.getMaterialPriceFacade().findAll();
+        } catch (NoSuchMaterialExist noSuchMaterialExist) {
+            request.setAttribute(fail, "Du har ikke nogle materialer :)");
+            return error;
+        }
+
+        request.setAttribute("materials", materialPriceList);
+
         //Salesmans active PreOrders END
         return "adminpage";
     }

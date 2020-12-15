@@ -69,7 +69,7 @@
                                 <td style="text-align: center">${bom.unit}</td>
                                 <td style="text-align: start">${bom.description}</td>
                                 <c:if test="${sessionScope.user.role.equals('salesman')}">
-                                    <td style="text-align: center;">40kr</td>
+                                    <td style="text-align: center;">${bom.price} kr.</td>
                                 </c:if>
                             </tr>
                         </c:forEach>
@@ -87,12 +87,12 @@
                 <table class="table table-sm table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col" style="text-align: center">Total pris</th>
+                        <th scope="col" style="text-align: center">Kost pris</th>
                     </tr>
                     </thead>
                     <tbody>
                     <tr>
-                        <td scope="col" style="text-align: center">Over 9000 kr.</td>
+                        <td scope="col" style="text-align: center">${sessionScope.cost} kr.</td>
                     </tr>
                     </tbody>
                 </table>
@@ -105,6 +105,7 @@
         <div class="container">
             <form action="Main" method="POST">
                 <input type="hidden" name="target" value="unknowncontent">
+                <input type="hidden" name="cost" value="${sessionScope.cost}">
                 <div class="row">
                     <div class="col-md-9">
                     </div>
@@ -113,7 +114,9 @@
                         <input type="text" id="angledNoUserCity"
                                class="form-control"
                                name="offerprice"
-                               placeholder="2013213" required="">
+                               value="${sessionScope.startprice}"
+                               required="">
+                        <span style="opacity: 0.8; font-size: 13px; font-weight: 500;">Start pris er 20% oven i kost pris</span>
                     </div>
                 </div>
                 <div class="row" style="margin-top: 10px;">

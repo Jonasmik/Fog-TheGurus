@@ -101,3 +101,12 @@ CREATE TABLE orders (
                         FOREIGN KEY (offerid) REFERENCES offers(id)
 );
 
+DROP TABLE IF EXISTS materialprice;
+CREATE TABLE materialprice (
+                               id INT PRIMARY KEY AUTO_INCREMENT,
+                               name VARCHAR(255) NOT NULL,
+                               meterprice DOUBLE NOT NULL
+);
+INSERT INTO materialprice(name, meterprice) VALUES ("TRYKIMP_BRÆDT", 25),
+                                                   ("TRYKIMP_STOLPE",49.95), ("LÆGTE_UBH",20), ("REGLAR_UB", 18), ("SPÆRTRÆ_UBH", 50),
+                                                   ("PLASTMO_ECOLITE_BLÅTONET", 46.667);

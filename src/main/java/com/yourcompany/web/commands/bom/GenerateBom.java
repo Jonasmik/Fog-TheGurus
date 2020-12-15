@@ -1,6 +1,8 @@
 package com.yourcompany.web.commands.bom;
 
+import com.yourcompany.api.facades.MaterialPriceFacade;
 import com.yourcompany.domain.bom.Bom;
+import com.yourcompany.domain.bom.Bom.BomItem;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.material.MaterialRepository;
 import com.yourcompany.domain.shed.Shed;
@@ -9,7 +11,6 @@ import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.infrastructure.listbased.ListMaterialRepository;
 import com.yourcompany.web.svg.svgcalculations.CarportTopView;
-import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -40,14 +41,27 @@ public class GenerateBom extends BomCommand {
         }
 
         MaterialRepository repo = new ListMaterialRepository();
-        session.setAttribute("carportpicture", CarportTopView.carportTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
+        Bom bom = null;
         try {
-            session.setAttribute("carportbom", Bom.createList(repo, carport, shed));
+            bom = api.getMaterialPriceFacade().createList(repo, carport, shed);
         } catch (
             NoSuchMaterialExist unsatisfiableCarport) {
             request.setAttribute("error", "Din stykliste blev ikke lavet");
             return "errorpage";
         }
+
+        double cost = 0;
+        for(BomItem b : bom.getBomItemList()){
+            cost = cost + b.getPrice();
+        }
+
+        int twentyPercentOfCost = (int) (cost * 0.2);
+        int startPrice = (int) (cost + twentyPercentOfCost);
+
+        session.setAttribute("carportpicture", CarportTopView.carportTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
+        session.setAttribute("carportbom", bom);
+        session.setAttribute("cost", cost);
+        session.setAttribute("startprice", startPrice);
 
         return "redirect:listbompage";
     }

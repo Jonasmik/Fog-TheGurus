@@ -54,7 +54,8 @@
                                        items="${requestScope.activepreorder}">
                                 <form action="Main" method="POST">
                                     <input type="hidden" name="target" value="generatebom">
-                                    <input type="hidden" name="carportid" value="${activepreorder.carport.id}">
+                                    <input type="hidden" name="carportid"
+                                           value="${activepreorder.carport.id}">
                                     <tr>
                                         <th scope="row">${activepreorder.preOrder.id}</th>
                                         <td>${activepreorder.customer.name}</td>
@@ -163,7 +164,8 @@
                                         <th scope="row">${unusedpreorder.preOrder.id}</th>
                                         <td>${unusedpreorder.customer.name}</td>
                                         <td>${unusedpreorder.customer.email}</td>
-                                        <td>By: ${unusedpreorder.customer.city}, Post nr: ${unusedpreorder.customer.zipcode},
+                                        <td>By: ${unusedpreorder.customer.city}, Post
+                                            nr: ${unusedpreorder.customer.zipcode},
                                             Addresse: ${unusedpreorder.customer.adress}</td>
                                         <td>
                                             <button type="button" class="btn btn-outline-info"
@@ -236,6 +238,36 @@
                 <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
                      aria-labelledby="v-pills-messages-tab">
                     <h3 style="padding-top: 20px;">Materialer</h3>
+                    <table class="table table-bordered">
+                        <thead>
+                        <tr>
+                            <th scope="col">Navn</th>
+                            <th scope="col">Meter pris kr.</th>
+                            <th scope="col">Rediger</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <c:forEach var="material" items="${requestScope.materials}">
+                            <form action="Main" method="POST">
+                                <input type="hidden" name="target" value="updatematerial">
+                                <input type="hidden" name="materialid" value="${material.id}">
+                                <tr>
+                                    <th scope="row">${material.name}</th>
+                                    <td>
+                                        <input name="newprice" value="${material.price}"
+                                               class="form-control"/>
+                                    </td>
+                                    <td>
+                                        <button type="submit"
+                                                class="btn btn-block btn-outline-success">
+                                            Gem <i class="fas fa-check"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </form>
+                        </c:forEach>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
