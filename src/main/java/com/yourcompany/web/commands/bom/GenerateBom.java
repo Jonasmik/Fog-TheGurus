@@ -1,6 +1,7 @@
 package com.yourcompany.web.commands.bom;
 
 import com.yourcompany.api.facades.MaterialPriceFacade;
+import com.yourcompany.api.facades.MaterialPriceFacade.BomFacade;
 import com.yourcompany.domain.bom.Bom;
 import com.yourcompany.domain.bom.Bom.BomItem;
 import com.yourcompany.domain.carport.Carport;
@@ -43,7 +44,7 @@ public class GenerateBom extends BomCommand {
         MaterialRepository repo = new ListMaterialRepository();
         Bom bom = null;
         try {
-            bom = api.getMaterialPriceFacade().createList(repo, carport, shed);
+            bom = Bom.createList(repo, carport, shed);
         } catch (
             NoSuchMaterialExist unsatisfiableCarport) {
             request.setAttribute("error", "Din stykliste blev ikke lavet");

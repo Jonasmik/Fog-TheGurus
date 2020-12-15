@@ -1,6 +1,7 @@
 package com.yourcompany.api;
 
 import com.yourcompany.api.facades.*;
+import com.yourcompany.api.facades.MaterialPriceFacade.BomFacade;
 
 public class Fog {
     private static final String VERSION = "0.1";
