@@ -98,7 +98,7 @@ public class GenerateBom extends BomCommand {
                 seperator += interval;
             }
         }
-        sb.append(costString.substring(costString.length() -2));
+        sb.append(costString.substring(length));
 
         return sb.toString();
     }

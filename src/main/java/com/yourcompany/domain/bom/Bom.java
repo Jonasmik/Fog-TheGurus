@@ -117,7 +117,8 @@ public class Bom {
 
                 l.add(new BomItem(materialRepository.findLumber(0, 45, 195, LumberType.SPÆRTRÆ_UBH), carport.getLength() + 30, 1,
                     "Stk",
-                    "Remme i sider, sadles ned i stolper, uden skur", findPrice(LumberType.SPÆRTRÆ_UBH, carport.getLength() + 30, 1)));
+                    "Remme i sider, sadles ned i stolper, uden skur",
+                    findPrice(LumberType.SPÆRTRÆ_UBH, carport.getLength() + 30, 1)));
             }
             l.add(new BomItem(materialRepository.findLumber(0, 38, 73, LumberType.LÆGTE_UBH), 420, 1, "Stk",
                 "Til z på bagside af dør", findPrice(LumberType.LÆGTE_UBH, 420, 1)));
@@ -163,7 +164,8 @@ public class Bom {
                 carport.getLength(),
                 plastmogCalculation,
                 "Stk",
-                "tagplader monteres på spær", findPrice(LumberType.PLASTMO_ECOLITE_BLÅTONET, carport.getLength(), plastmogCalculation)));
+                "tagplader monteres på spær",
+                findPrice(LumberType.PLASTMO_ECOLITE_BLÅTONET, carport.getLength(), plastmogCalculation)));
 
         }
 
@@ -184,7 +186,9 @@ public class Bom {
     }
 
     private static double round(double value, int places) {
-        if (places < 0) throw new IllegalArgumentException();
+        if (places < 0) {
+            throw new IllegalArgumentException();
+        }
 
         long factor = (long) Math.pow(10, places);
         value = value * factor;
