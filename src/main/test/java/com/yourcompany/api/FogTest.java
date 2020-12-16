@@ -26,7 +26,9 @@ class FogTest {
                 ShedFacade.getInstance(),
                 CustomerFacade.getInstance(),
                 PreOrderFacade.getInstance(),
-                SalesmanFacade.getInstance());
+                SalesmanFacade.getInstance(),
+                MaterialPriceFacade.getInstance(),
+                OfferFacade.getInstance());
     }
 
     @Nested

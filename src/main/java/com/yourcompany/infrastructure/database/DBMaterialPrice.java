@@ -15,11 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-public class DBMaterialPriceDB implements MaterialPriceRepository {
+public class DBMaterialPrice implements MaterialPriceRepository {
 
     private final Database db;
 
-    public DBMaterialPriceDB(Database db) {
+    public DBMaterialPrice(Database db) {
         this.db = db;
     }
 

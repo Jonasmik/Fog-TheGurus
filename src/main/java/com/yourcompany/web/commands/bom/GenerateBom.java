@@ -21,11 +21,15 @@ public class GenerateBom extends BomCommand {
     @Override
     protected String withBomExecute(HttpServletRequest request, HttpServletResponse response) {
         String carportId = request.getParameter("carportid");
+        String preOrderId = request.getParameter("preorderid");
+
         int newCarportId = 0;
+        int newPreOrderId = 0;
         HttpSession session = request.getSession();
 
         try {
             newCarportId = Integer.parseInt(carportId);
+            newPreOrderId = Integer.parseInt(preOrderId);
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
@@ -69,6 +73,8 @@ public class GenerateBom extends BomCommand {
         session.setAttribute("materialprices", materialPriceList);
         session.setAttribute("cost", costString);
         session.setAttribute("startprice", startPrice);
+        session.setAttribute( "preorderid", newPreOrderId);
+        session.setAttribute("realcost", cost);
 
         return "redirect:listbompage";
     }

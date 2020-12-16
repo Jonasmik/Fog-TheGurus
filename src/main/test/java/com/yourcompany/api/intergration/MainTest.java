@@ -7,6 +7,8 @@ import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.carport.CarportRepository;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.customer.CustomerRepository;
+import com.yourcompany.domain.material.MaterialPriceRepository;
+import com.yourcompany.domain.offer.OfferRepository;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.preorder.PreOrderRepository;
 import com.yourcompany.domain.salesman.Salesman;
@@ -17,14 +19,12 @@ import com.yourcompany.domain.user.UserRepository;
 import com.yourcompany.exceptions.carport.CarportValidations;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
-import com.yourcompany.exceptions.order.PreOrderValidationError;
 import com.yourcompany.exceptions.user.CustomerValidation;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.exceptions.user.UserValidationError;
 import com.yourcompany.infrastructure.database.*;
 import com.yourcompany.infrastructure.dbsetup.Database;
-import com.yourcompany.infrastructure.dbsetup.Migrate;
 import org.apache.ibatis.jdbc.ScriptRunner;
 import org.junit.jupiter.api.*;
 
@@ -87,7 +87,13 @@ public class MainTest {
         SalesmanRepository salesmanRepository = new DBSalesmanRepository(db);
         SalesmanFacade salesmanFacade = new SalesmanFacade(salesmanRepository);
 
-        api = new Fog(userFacade, carportFacade, shedFacade, customerFacade, preOrderFacade, salesmanFacade);
+        MaterialPriceRepository materialPriceRepository = new DBMaterialPrice(db);
+        MaterialPriceFacade materialPriceFacade = new MaterialPriceFacade(materialPriceRepository);
+
+        OfferRepository offerRepository = new DBOfferRepository(db);
+        OfferFacade offerFacade = new OfferFacade(offerRepository);
+
+        api = new Fog(userFacade, carportFacade, shedFacade, customerFacade, preOrderFacade, salesmanFacade, materialPriceFacade, offerFacade);
     }
 
     @Nested

@@ -56,6 +56,8 @@
                                     <input type="hidden" name="target" value="generatebom">
                                     <input type="hidden" name="carportid"
                                            value="${activepreorder.carport.id}">
+                                    <input type="hidden" name="preorderid"
+                                           value="${activepreorder.preOrder.id}">
                                     <tr>
                                         <th scope="row">${activepreorder.preOrder.id}</th>
                                         <td>${activepreorder.customer.name}</td>

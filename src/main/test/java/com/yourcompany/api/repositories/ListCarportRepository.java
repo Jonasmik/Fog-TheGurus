@@ -33,4 +33,9 @@ public class ListCarportRepository implements CarportRepository {
         carports.add(carport);
         return carport;
     }
+
+    @Override
+    public void updateCarport(CarportFactory carportFactory, int id) throws NoSuchCarportExists {
+
+    }
 }

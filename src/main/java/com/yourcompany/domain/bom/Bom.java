@@ -9,7 +9,7 @@ import com.yourcompany.domain.material.MaterialRepository.LumberType;
 import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
 
-import com.yourcompany.infrastructure.database.DBMaterialPriceDB;
+import com.yourcompany.infrastructure.database.DBMaterialPrice;
 import com.yourcompany.infrastructure.dbsetup.Database;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,7 +173,7 @@ public class Bom {
     }
 
     private static double findPrice(LumberType trykimpBrædt, int lenght, int amount) {
-        MaterialPriceRepository materialPriceRepository = new DBMaterialPriceDB(new Database());
+        MaterialPriceRepository materialPriceRepository = new DBMaterialPrice(new Database());
         MaterialPrice material = null;
         try {
             material = materialPriceRepository.findByName(String.valueOf(trykimpBrædt));

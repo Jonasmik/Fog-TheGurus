@@ -3,7 +3,7 @@ package com.yourcompany.api.facades;
 import com.yourcompany.domain.material.MaterialPrice;
 import com.yourcompany.domain.material.MaterialPriceRepository;
 import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
-import com.yourcompany.infrastructure.database.DBMaterialPriceDB;
+import com.yourcompany.infrastructure.database.DBMaterialPrice;
 import com.yourcompany.infrastructure.dbsetup.Database;
 import java.util.List;
 
@@ -19,7 +19,7 @@ public class MaterialPriceFacade {
     public static MaterialPriceFacade getInstance() {
         if (instance == null) {
             Database db = new Database();
-            MaterialPriceRepository materialPriceRepository = new DBMaterialPriceDB(db);
+            MaterialPriceRepository materialPriceRepository = new DBMaterialPrice(db);
             instance = new MaterialPriceFacade(materialPriceRepository);
         }
         return instance;

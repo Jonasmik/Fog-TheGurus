@@ -10,6 +10,9 @@ import com.yourcompany.web.commands.bom.GenerateBom;
 import com.yourcompany.web.commands.bom.ListBomPage;
 import com.yourcompany.web.commands.customer.GenerateCarportPicture;
 import com.yourcompany.web.commands.customer.ListCustomerPage;
+import com.yourcompany.web.commands.order.CreatePreOrder;
+import com.yourcompany.web.commands.order.EditPreOrder;
+import com.yourcompany.web.commands.order.OfferControl;
 import com.yourcompany.web.commands.salesman.ListSalesmanPage;
 import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
 import com.yourcompany.web.commands.salesman.UpdateMaterial;
@@ -51,6 +54,7 @@ public abstract class ICommand {
         commands.put("generatebom", new GenerateBom());
         commands.put("editpreorder", new EditPreOrder());
         commands.put("updatematerial", new UpdateMaterial());
+        commands.put("offercontrol", new OfferControl());
 
     }
 
@@ -76,7 +80,8 @@ public abstract class ICommand {
             CustomerFacade.getInstance(),
             PreOrderFacade.getInstance(),
             SalesmanFacade.getInstance(),
-            MaterialPriceFacade.getInstance());
+            MaterialPriceFacade.getInstance(),
+            OfferFacade.getInstance());
     }
 
     //used by every command, and called by the invoker.

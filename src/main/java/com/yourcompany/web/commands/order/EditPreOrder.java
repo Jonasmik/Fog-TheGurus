@@ -1,4 +1,4 @@
-package com.yourcompany.web.commands;
+package com.yourcompany.web.commands.order;
 
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.api.factories.ShedFactory;

@@ -108,8 +108,9 @@
     <c:if test="${sessionScope.user.role.equals('salesman')}">
         <div class="container">
             <form action="Main" method="POST">
-                <input type="hidden" name="target" value="unknowncontent">
-                <input type="hidden" name="cost" value="${sessionScope.cost}">
+                <input type="hidden" name="target" value="offercontrol">
+                <input type="hidden" name="preorderid" value="${sessionScope.preorderid}">
+                <input type="hidden" name="cost" value="${sessionScope.realcost}">
                 <div class="row">
                     <div class="col-md-9">
                     </div>

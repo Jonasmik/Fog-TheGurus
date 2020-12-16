@@ -1,4 +1,4 @@
-package com.yourcompany.web.commands;
+package com.yourcompany.web.commands.order;
 
 import com.yourcompany.api.factories.*;
 import com.yourcompany.domain.carport.Carport;

@@ -515,12 +515,31 @@
 
             <!-- Tilbud START -->
             <h3>Aktive tilbud</h3>
-            <c:if test="${requestScope.offer == null}">
+            <c:if test="${requestScope.listoffers == null}">
                 <p>Du har ikke nogle aktive tilbud</p>
             </c:if>
 
-            <c:if test="${requestScope.offer != null}">
-                <p>${requestScope.offer}</p>
+            <c:if test="${requestScope.listoffers != null}">
+                <table class="table table-sm table-bordered">
+                    <thead>
+                    <tr>
+                        <th scope="col" style="text-align: center">Forespørgelser Id</th>
+                        <th scope="col" style="text-align: center">Pris</th>
+                        <th scope="col" style="text-align: center">Muligheder</th>
+                    </tr>
+                    </thead>
+                    <c:forEach var="offer" items="${requestScope.listoffers}">
+                    <tbody>
+                    <tr>
+                        <td scope="col" style="text-align: center">${offer.preorderid}</td>
+                        <td scope="col" style="text-align: center">${offer.price}</td>
+                        <td scope="col" style="text-align: center">
+                            <button class="btn btn-block btn-success" type="submit">Accepter tilbud</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                    </c:forEach>
+                </table>
             </c:if>
             <!-- Tilbud END -->
 
