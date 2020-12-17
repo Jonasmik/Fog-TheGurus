@@ -19,10 +19,6 @@ public class ListPaymentPage extends PaymentCommand {
     protected String withPaymentExecute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
 
-        if (session.getAttribute("preorderid") == null) {
-            request.setAttribute("error", "Du har ikke valgt noget tilbud at acceptere");
-            return "errorpage";
-        }
 
         String preOrderId = (String) session.getAttribute("preorderid");
 

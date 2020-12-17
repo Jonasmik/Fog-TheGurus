@@ -5,10 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class GeneratePaymentPage extends PaymentCommand {
+public class GeneratePaymentPage extends ICommand {
 
     @Override
-    protected String withPaymentExecute(HttpServletRequest request, HttpServletResponse response) {
+    protected String execute(HttpServletRequest request, HttpServletResponse response) {
         String offerId = request.getParameter("offerid");
         String preOrderId = request.getParameter("preorderid");
         HttpSession session = request.getSession();

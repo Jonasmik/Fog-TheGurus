@@ -29,7 +29,6 @@ public class ListCustomerPage extends CustomerCommand {
         String fail = "error";
         String error = "errorpage";
 
-
         List<Customer> customers = new ArrayList<>();
         try {
             customers = api.getCustomerFacade().findAllByUserId(user.getId());
@@ -87,7 +86,7 @@ public class ListCustomerPage extends CustomerCommand {
         request.setAttribute("haspreorder", preOrder);
 
         //
-        if(!offers.isEmpty()){
+        if (!offers.isEmpty()) {
             request.setAttribute("listoffers", offers);
         }
 

@@ -11,6 +11,10 @@ public abstract class PaymentCommand extends ICommand {
             request.setAttribute("error", "Du er ikke en kunde");
             return "errorpage";
         }
+        if (request.getSession().getAttribute("preorderid") == null) {
+            request.setAttribute("error", "Du har ikke valgt noget tilbud at acceptere");
+            return "errorpage";
+        }
         return withPaymentExecute(request, response);
     }
 
