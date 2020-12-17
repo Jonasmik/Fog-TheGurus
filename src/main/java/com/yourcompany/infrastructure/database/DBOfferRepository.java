@@ -44,6 +44,23 @@ public class DBOfferRepository implements OfferRepository {
     }
 
     @Override
+    public Offer findById(int id) throws NoSuchOfferExists {
+        try(Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement(
+                "SELECT * FROM offers WHERE id = ?;");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            if(rs.next()) {
+                return loadOffer(rs);
+            } else {
+                throw new NoSuchOfferExists();
+            }
+        } catch (SQLException e) {
+            throw new NoSuchOfferExists();
+        }
+    }
+
+    @Override
     public Offer findActiveOfferByPreOrderId(int id) throws NoSuchOfferExists {
         try(Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(

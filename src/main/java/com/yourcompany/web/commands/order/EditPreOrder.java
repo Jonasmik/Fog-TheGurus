@@ -111,6 +111,11 @@ public class EditPreOrder extends ICommand {
             return "errorpage";
         }
 
+        if(session.getAttribute("offerid") != null) {
+            session.removeAttribute("offerid");
+            session.removeAttribute("preorderid");
+        }
+
         return "redirect:listcustomerpage";
     }
 

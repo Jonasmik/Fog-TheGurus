@@ -42,6 +42,7 @@ public class OfferFacade {
         repo.updateOfferStatus(id, status);
     }
 
-
-
+    public Offer findById(int newOfferId) throws NoSuchOfferExists {
+        return repo.findById(newOfferId);
+    }
 }

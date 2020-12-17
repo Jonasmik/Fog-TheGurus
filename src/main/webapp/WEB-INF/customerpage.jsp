@@ -533,15 +533,20 @@
                     </tr>
                     </thead>
                     <c:forEach var="offer" items="${requestScope.listoffers}">
-                    <tbody>
-                    <tr>
-                        <td scope="col" style="text-align: center">${offer.preorderid}</td>
-                        <td scope="col" style="text-align: center">${offer.price}</td>
-                        <td scope="col" style="text-align: center">
-                            <button class="btn btn-block btn-success" type="submit">Accepter tilbud</button>
-                        </td>
-                    </tr>
-                    </tbody>
+                        <form action="Main" method="POST">
+                            <input type="hidden" name="target" value="generatepaymentpage"/>
+                            <input type="hidden" name="preorderid" value="${offer.preorderid}"/>
+                            <input type="hidden" name="offerid" value="${offer.id}"/>
+                            <tbody>
+                            <tr>
+                                <td scope="col" style="text-align: center">${offer.preorderid}</td>
+                                <td scope="col" style="text-align: center">${offer.price}</td>
+                                <td scope="col" style="text-align: center">
+                                    <button class="btn btn-block btn-success" type="submit">Accepter tilbud</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </form>
                     </c:forEach>
                 </table>
             </c:if>

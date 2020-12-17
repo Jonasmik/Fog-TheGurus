@@ -13,6 +13,16 @@ public class Offer {
         this.active = active;
     }
 
+    @Override
+    public String toString() {
+        return "Offer{" +
+            "id=" + id +
+            ", preorderid=" + preorderid +
+            ", price=" + price +
+            ", active=" + active +
+            '}';
+    }
+
     public int getId() {
         return id;
     }
