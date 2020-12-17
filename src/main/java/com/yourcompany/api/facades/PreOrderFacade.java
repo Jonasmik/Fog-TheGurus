@@ -51,4 +51,7 @@ public class PreOrderFacade {
     public void takePreOrder(int id, int newPreOrderId) throws NoSuchPreOrderExists {
         repo.takePreOrder(id, newPreOrderId);
     }
+    public void updatePreOrderStatus(String columnName, int id, boolean status) throws NoSuchPreOrderExists {
+        repo.updatePreOrderStatus(columnName, id, status);
+    }
 }

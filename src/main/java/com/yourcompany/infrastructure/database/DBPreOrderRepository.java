@@ -24,8 +24,9 @@ public class DBPreOrderRepository implements PreOrderRepository {
             rs.getInt("preorders.id"),
             rs.getInt("preorders.customerid"),
             rs.getInt("preorders.salesmanid"),
-            rs.getInt("preorders.carportid")
-        );
+            rs.getInt("preorders.carportid"),
+            rs.getBoolean("preorders.active"),
+            rs.getBoolean("preorders.sold"));
     }
 
     @Override
@@ -47,14 +48,13 @@ public class DBPreOrderRepository implements PreOrderRepository {
     public PreOrder findBySalesmanId(int salesmanId) throws NoSuchPreOrderExists {
         try (Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
-                "SELECT * FROM preorders WHERE salesmanid = ?;");
+                "SELECT * FROM preorders WHERE salesmanid = ? AND active = true;");
             s.setInt(1, salesmanId);
             ResultSet rs = s.executeQuery();
             if (rs.next()) {
                 return loadPreOrder(rs);
             } else {
-                System.err.println("No version in properties.");
-                throw new NoSuchElementException("No preorder with salesmanid: " + salesmanId);
+                return null;
             }
         } catch (SQLException e) {
             throw new NoSuchPreOrderExists(e.getMessage());
@@ -133,6 +133,27 @@ public class DBPreOrderRepository implements PreOrderRepository {
             ps.setInt(2, preOrderId);
             ps.executeUpdate();
             ps.close();
+        } catch (SQLException e) {
+            throw new NoSuchPreOrderExists(e.getMessage());
+        }
+    }
+
+    @Override
+    public void updatePreOrderStatus(String columnName, int id, boolean status) throws NoSuchPreOrderExists {
+        try (Connection conn = db.connect()) {
+            PreparedStatement ps = null;
+            if (columnName.equals("active")){
+                ps = conn.prepareStatement(
+                                "UPDATE preorders SET active = ? WHERE id = ?;");
+            } else {
+                ps = conn.prepareStatement(
+                                "UPDATE preorders SET sold = ? WHERE id = ?;");
+            }
+            ps.setBoolean(1, status);
+            ps.setInt(2, id);
+            ps.executeUpdate();
+            ps.close();
+
         } catch (SQLException e) {
             throw new NoSuchPreOrderExists(e.getMessage());
         }

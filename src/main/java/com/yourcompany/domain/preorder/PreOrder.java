@@ -6,12 +6,16 @@ public class PreOrder {
     private final int customerId;
     private final int salesmanId;
     private final int carportId;
+    private final boolean active;
+    private final boolean sold;
 
-    public PreOrder(int id, int customerId, int salesmanId, int carportId) {
+    public PreOrder(int id, int customerId, int salesmanId, int carportId, boolean active, boolean sold) {
         this.id = id;
         this.customerId = customerId;
         this.salesmanId = salesmanId;
         this.carportId = carportId;
+        this.active = active;
+        this.sold = sold;
     }
 
     @Override
@@ -21,6 +25,8 @@ public class PreOrder {
                 ", customerId=" + customerId +
                 ", salesmanId=" + salesmanId +
                 ", carportId=" + carportId +
+                ", active=" + active +
+                ", sold=" + sold +
                 '}';
     }
 
@@ -38,5 +44,13 @@ public class PreOrder {
 
     public int getCarportId() {
         return carportId;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public boolean isSold() {
+        return sold;
     }
 }

@@ -2,8 +2,11 @@ package com.yourcompany.web.commands.order;
 
 import com.yourcompany.api.factories.CarportFactory;
 import com.yourcompany.api.factories.ShedFactory;
+import com.yourcompany.domain.offer.Offer;
 import com.yourcompany.exceptions.carport.CarportValidations;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
+import com.yourcompany.exceptions.order.NoSuchOfferExists;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.shed.ShedValidations;
 import com.yourcompany.web.ICommand;
@@ -24,6 +27,7 @@ public class EditPreOrder extends ICommand {
         String shedLength = request.getParameter("shedlength");
         String carportId = request.getParameter("carportid");
         String shedId = request.getParameter("shedid");
+        String preOrderId = request.getParameter("preorderid");
 
         HttpSession session = request.getSession();
         session.removeAttribute("failinput");
@@ -88,6 +92,23 @@ public class EditPreOrder extends ICommand {
             session.setAttribute("correctinput", "Din forespørgsel er blevet opdateret");
         } else {
             session.removeAttribute("correctinput");
+        }
+        int parsedPreOrderId = Integer.parseInt(preOrderId);
+        try {
+            api.getPreOrderFacade().updatePreOrderStatus("active", parsedPreOrderId, true);
+        } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
+            request.setAttribute("error", "Kunne ikke finde forespørgsel i databasen");
+            return "errorpage";
+        }
+        Offer offer = null;
+        try {
+            offer = api.getOfferFacade().findActiveOfferByPreOrderId(parsedPreOrderId);
+            if (offer != null){
+                api.getOfferFacade().updateOfferStatus(offer.getId(), false);
+            }
+        } catch (NoSuchOfferExists noSuchOfferExists) {
+            request.setAttribute("error", "Kunne ikke opdatere tilbud");
+            return "errorpage";
         }
 
         return "redirect:listcustomerpage";

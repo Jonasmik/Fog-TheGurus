@@ -68,7 +68,9 @@ public class ListSalesmanPage extends SalesmanCommand {
             for (Salesman s : salesmanList) {
                 try {
                     PreOrder preOrder = api.getPreOrderFacade().findBySalesmanId(s.getId());
-                    activePreOrders.add(preOrder);
+                    if (preOrder != null){
+                        activePreOrders.add(preOrder);
+                    }
                 } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
                     request.setAttribute(fail, "Der gik noget galt med at finde dine forespørgelser");
                     return error;

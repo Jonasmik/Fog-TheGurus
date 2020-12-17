@@ -3,6 +3,7 @@ package com.yourcompany.web.commands.order;
 import com.yourcompany.api.factories.OfferFactory;
 import com.yourcompany.domain.offer.Offer;
 import com.yourcompany.exceptions.order.NoSuchOfferExists;
+import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.order.OfferValidationError;
 import com.yourcompany.web.ICommand;
 
@@ -19,40 +20,53 @@ public class OfferControl extends ICommand {
         OfferFactory offerFactory = new OfferFactory();
 
 
-
         try {
             offerFactory.setPrice(offerPrice);
             offerFactory.setPreorderid(preOrderId);
             offerFactory.setActive(true);
         } catch (OfferValidationError offerValidationError) {
-            offerValidationError.printStackTrace();
-        }
-        if (offerFactory.getPrice() < Double.parseDouble(cost)) {
-            request.setAttribute("toocheap", "Carportens pris er for billig");
-            return "redirect:listbompage";
+            request.setAttribute("error", "Ikke gyldige attributer til carporten");
+            return "errorpage";
         }
 
-        Offer offer = null;
-        try {
-            offer = api.getOfferFacade().findByPreOrderId(offerFactory.getPreorderid());
-        } catch (NoSuchOfferExists noSuchOfferExists) {
-            noSuchOfferExists.printStackTrace();
-        }
-        if (offer == null) {
+        if (offerFactory.isValid()) {
+            if (offerFactory.getPrice() < Double.parseDouble(cost)) {
+                request.setAttribute("toocheap", "Carportens pris er for billig");
+                return "redirect:listbompage";
+            }
+
+            Offer offer = null;
             try {
-                api.getOfferFacade().createOffer(offerFactory);
+                offer = api.getOfferFacade().findByPreOrderId(offerFactory.getPreorderid());
             } catch (NoSuchOfferExists noSuchOfferExists) {
-                noSuchOfferExists.printStackTrace();
+                request.setAttribute("error", "Fejl i databasen");
+                return "errorpage";
+            }
+            if (offer == null) {
+                try {
+                    api.getOfferFacade().createOffer(offerFactory);
+                } catch (NoSuchOfferExists noSuchOfferExists) {
+                    request.setAttribute("error", "Fejl i databasen");
+                    return "errorpage";
+                }
+            } else {
+                try {
+                    api.getOfferFacade().updateOffer(offerFactory);
+                } catch (NoSuchOfferExists noSuchOfferExists) {
+                    request.setAttribute("error", "Kunne ikke finde tilbud i databasen");
+                    return "errorpage";
+                }
+            }
+            try {
+                api.getPreOrderFacade().updatePreOrderStatus("active", offerFactory.getPreorderid(), false);
+            } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
+                request.setAttribute("error", "Kunne ikke finde forespørgsel i databasen");
+                return "errorpage";
             }
         } else {
-            try {
-                api.getOfferFacade().updateOffer(offerFactory);
-            } catch (NoSuchOfferExists noSuchOfferExists) {
-                noSuchOfferExists.printStackTrace();
-            }
+            request.setAttribute("error", "Manglende eller ikke gyldige attributer til carporten ");
+            return "errorpage";
         }
-
-
 
 
         return "redirect:listsalesmanpage";

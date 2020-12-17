@@ -115,6 +115,8 @@
                                                        value="${untakenpreorder.carport.id}">
                                                 <input type="hidden" name="shedid"
                                                        value="${untakenpreorder.shed.id}">
+                                                <input type="hidden" name="preorderid"
+                                                       value="${untakenpreorder.preOrder.id}">
                                                 <h5>Carport</h5>
                                                 <div class="row" style="padding-bottom: 10px">
                                                     <div class="col-5">
@@ -345,6 +347,8 @@
                                                        value="${takenpreorder.carport.id}">
                                                 <input type="hidden" name="shedid"
                                                        value="${takenpreorder.shed.id}">
+                                                <input type="hidden" name="preorderid"
+                                                       value="${takenpreorder.preOrder.id}">
                                                 <h5>Carport</h5>
                                                 <div class="row" style="padding-bottom: 10px">
                                                     <div class="col-5">

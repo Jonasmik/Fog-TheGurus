@@ -29,11 +29,17 @@ public class OfferFacade {
     public void createOffer(OfferFactory offerFactory) throws NoSuchOfferExists{
         repo.createOffer(offerFactory);
     }
+    public Offer findActiveOfferByPreOrderId(int id) throws NoSuchOfferExists{
+        return repo.findActiveOfferByPreOrderId(id);
+    }
     public Offer findByPreOrderId(int id) throws NoSuchOfferExists{
         return repo.findByPreOrderId(id);
     }
     public void updateOffer(OfferFactory offerFactory) throws NoSuchOfferExists{
         repo.updateOffer(offerFactory);
+    }
+    public void updateOfferStatus(int id, boolean status) throws NoSuchOfferExists{
+        repo.updateOfferStatus(id, status);
     }
 
 

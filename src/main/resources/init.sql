@@ -77,6 +77,7 @@ CREATE TABLE preorders (
                            salesmanid INT DEFAULT NULL,
                            carportid INT NOT NULL,
                            active BOOLEAN DEFAULT TRUE,
+                           sold BOOLEAN DEFAULT FALSE,
                            FOREIGN KEY (customerid) REFERENCES customers(id),
                            FOREIGN KEY (salesmanid) REFERENCES salesmen(id),
                            FOREIGN KEY (carportid) REFERENCES carport(id)

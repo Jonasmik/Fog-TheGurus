@@ -1,16 +1,12 @@
 package com.yourcompany.web.commands.customer;
 
-import com.yourcompany.domain.bom.Bom;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.customer.Customer;
-import com.yourcompany.domain.material.MaterialRepository;
 import com.yourcompany.domain.offer.Offer;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
 import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.domain.user.User;
-import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
-import com.yourcompany.exceptions.bom.UnsatisfiableCarport;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchOfferExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
@@ -18,10 +14,7 @@ import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
 import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.exceptions.user.UserValidationError;
-import com.yourcompany.infrastructure.listbased.ListMaterialRepository;
 import com.yourcompany.web.dtos.PreOrderDTO;
-import com.yourcompany.web.svg.svgcalculations.CarportTopView;
-import com.yourcompany.web.svg.tags.Svg;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -66,7 +59,7 @@ public class ListCustomerPage extends CustomerCommand {
                         takenPreOrders.add(new PreOrderDTO(preOrder, c, carport, takenShed));
                         Salesman salesman = api.getSalesmanFacade().findById(preOrder.getSalesmanId());
                         salesmen.add(salesman);
-                        Offer offer = api.getOfferFacade().findByPreOrderId(preOrder.getId());
+                        Offer offer = api.getOfferFacade().findActiveOfferByPreOrderId(preOrder.getId());
                         if (offer != null) {
                             offers.add(offer);
                         }
