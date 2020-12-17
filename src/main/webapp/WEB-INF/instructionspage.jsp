@@ -43,7 +43,7 @@
                             <th scope="col" style="text-align: center">Enhed</th>
                             <th scope="col" style="text-align: center">Beskrivelse</th>
                             <c:if test="${sessionScope.user.role.equals('salesman')}">
-                                <th scope="col" style="text-align: center">Pris</th>
+                                <th scope="col">Pris</th>
                             </c:if>
                         </tr>
                         </thead>
@@ -71,7 +71,7 @@
                                 <td style="text-align: center">${bom.unit}</td>
                                 <td style="text-align: start">${bom.description}</td>
                                 <c:if test="${sessionScope.user.role.equals('salesman')}">
-                                    <td style="text-align: center;">${sessionScope.materialprices.get(count)} kr.</td>
+                                    <td>${sessionScope.materialprices.get(count)} kr.</td>
                                 </c:if>
                             </tr>
                             <c:set var="count" value="${count + 1}"
