@@ -93,7 +93,8 @@ public class MainTest {
         OfferRepository offerRepository = new DBOfferRepository(db);
         OfferFacade offerFacade = new OfferFacade(offerRepository);
 
-        api = new Fog(userFacade, carportFacade, shedFacade, customerFacade, preOrderFacade, salesmanFacade, materialPriceFacade, offerFacade);
+        api = new Fog(userFacade, carportFacade, shedFacade, customerFacade, preOrderFacade, salesmanFacade, materialPriceFacade, offerFacade,
+            OrderFacade.getInstance());
     }
 
     @Nested

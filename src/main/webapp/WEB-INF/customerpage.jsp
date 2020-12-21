@@ -527,9 +527,9 @@
                 <table class="table table-sm table-bordered">
                     <thead>
                     <tr>
-                        <th scope="col" style="text-align: center">Forespørgelser Id</th>
+                        <th scope="col" style="text-align: center">Forespørgelse Id</th>
                         <th scope="col" style="text-align: center">Pris</th>
-                        <th scope="col" style="text-align: center">Muligheder</th>
+                        <th scope="col" style="text-align: center"></th>
                     </tr>
                     </thead>
                     <c:forEach var="offer" items="${requestScope.listoffers}">
@@ -540,9 +540,9 @@
                             <tbody>
                             <tr>
                                 <td scope="col" style="text-align: center">${offer.preorderid}</td>
-                                <td scope="col" style="text-align: center">${offer.price}</td>
+                                <td scope="col" style="text-align: center">${offer.price} kr.</td>
                                 <td scope="col" style="text-align: center">
-                                    <button class="btn btn-block btn-success" type="submit">Accepter tilbud</button>
+                                    <button class="btn btn-block btn-success" type="submit">Se tilbud</button>
                                 </td>
                             </tr>
                             </tbody>

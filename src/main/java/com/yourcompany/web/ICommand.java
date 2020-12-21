@@ -4,17 +4,20 @@ package com.yourcompany.web;
 import com.yourcompany.api.*;
 
 import com.yourcompany.api.facades.*;
+import com.yourcompany.api.factories.OrderFactory;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.web.commands.*;
 import com.yourcompany.web.commands.bom.GenerateBom;
 import com.yourcompany.web.commands.bom.ListBomPage;
 import com.yourcompany.web.commands.customer.GenerateCarportPicture;
 import com.yourcompany.web.commands.customer.ListCustomerPage;
+import com.yourcompany.web.commands.order.AcceptOffer;
 import com.yourcompany.web.commands.payment.GeneratePaymentPage;
 import com.yourcompany.web.commands.order.CreatePreOrder;
 import com.yourcompany.web.commands.order.EditPreOrder;
 import com.yourcompany.web.commands.order.OfferControl;
 import com.yourcompany.web.commands.payment.ListPaymentPage;
+import com.yourcompany.web.commands.receipt.ListReceiptPage;
 import com.yourcompany.web.commands.salesman.ListSalesmanPage;
 import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
 import com.yourcompany.web.commands.salesman.UpdateMaterial;
@@ -59,6 +62,8 @@ public abstract class ICommand {
         commands.put("offercontrol", new OfferControl());
         commands.put("generatepaymentpage", new GeneratePaymentPage());
         commands.put("listpaymentpage", new ListPaymentPage());
+        commands.put("acceptoffer", new AcceptOffer());
+        commands.put("listreceiptpage", new ListReceiptPage());
 
     }
 
@@ -85,7 +90,8 @@ public abstract class ICommand {
             PreOrderFacade.getInstance(),
             SalesmanFacade.getInstance(),
             MaterialPriceFacade.getInstance(),
-            OfferFacade.getInstance());
+            OfferFacade.getInstance(),
+            OrderFacade.getInstance());
     }
 
     //used by every command, and called by the invoker.

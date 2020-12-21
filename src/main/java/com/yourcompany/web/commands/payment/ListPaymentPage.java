@@ -19,7 +19,6 @@ public class ListPaymentPage extends PaymentCommand {
     protected String withPaymentExecute(HttpServletRequest request, HttpServletResponse response) {
         HttpSession session = request.getSession();
 
-
         String preOrderId = (String) session.getAttribute("preorderid");
 
         String offerId = (String) session.getAttribute("offerid");
@@ -45,10 +44,11 @@ public class ListPaymentPage extends PaymentCommand {
             offer = api.getOfferFacade().findById(newOfferId);
         } catch (NoSuchPreOrderExists | NoSuchCarportExists | NoSuchShedExists | NoSuchOfferExists noSuchPreOrderExists) {
             request.setAttribute("error", "Der gik noget galt ved at finde dine informationer");
+            return "errorpage";
         }
 
-
-        request.setAttribute("carportpicture", CarportTopView.carportTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
+        request.setAttribute("carportpicture",
+            CarportTopView.carportTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
         request.setAttribute("carport", carport);
         request.setAttribute("shed", shed);
         request.setAttribute("offer", offer);

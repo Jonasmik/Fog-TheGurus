@@ -22,12 +22,6 @@
             <h1 style="padding-top: 20px; padding-bottom: 10px;">Tilbud nr. ${requestScope.offer.id}</h1>
             <h4>Carport</h4>
             <table class="table table-bordered table-sm">
-                <thead>
-                    <tr>
-                        <th scope="col">Kunde: ${sessionScope.user.name}</th>
-                        <th scope="col">${sessionScope.user.email}</th>
-                    </tr>
-                </thead>
                 <tbody>
                     <tr>
                         <td>Bredde</td>
@@ -82,7 +76,13 @@
         <div class="col-md-9">
         </div>
         <div class="col-md-3">
-            <button class="btn btn-block btn-primary">Køb</button>
+            <form action="Main" method="POST">
+                <input type="hidden" name="target" value="acceptoffer">
+                <input type="hidden" name="offerid" value="${requestScope.offer.id}">
+                <input type="hidden" name="preorderid" value="${requestScope.offer.preorderid}">
+
+                <button class="btn btn-block btn-primary">Køb</button>
+            </form>
         </div>
     </div>
 

@@ -12,10 +12,11 @@ public class Fog {
     private final SalesmanFacade salesmanFacade;
     private final MaterialPriceFacade materialPriceFacade;
     private final OfferFacade offerFacade;
+    private final OrderFacade orderFacade;
 
     public Fog(UserFacade userFacade, CarportFacade carportFacade, ShedFacade shedFacade, CustomerFacade customerFacade,
-               PreOrderFacade preOrderFacade, SalesmanFacade salesmanFacade,
-               MaterialPriceFacade materialPriceFacade, OfferFacade offerFacade) {
+        PreOrderFacade preOrderFacade, SalesmanFacade salesmanFacade,
+        MaterialPriceFacade materialPriceFacade, OfferFacade offerFacade, OrderFacade orderFacade) {
         this.userFacade = userFacade;
         this.carportFacade = carportFacade;
         this.shedFacade = shedFacade;
@@ -24,6 +25,7 @@ public class Fog {
         this.salesmanFacade = salesmanFacade;
         this.materialPriceFacade = materialPriceFacade;
         this.offerFacade = offerFacade;
+        this.orderFacade = orderFacade;
     }
 
     public static String getVERSION() {
@@ -60,5 +62,9 @@ public class Fog {
 
     public OfferFacade getOfferFacade() {
         return offerFacade;
+    }
+
+    public OrderFacade getOrderFacade() {
+        return orderFacade;
     }
 }
