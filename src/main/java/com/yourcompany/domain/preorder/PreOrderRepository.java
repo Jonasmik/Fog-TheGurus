@@ -9,7 +9,7 @@ public interface PreOrderRepository {
 
     List<PreOrder> findAllUnused() throws NoSuchPreOrderExists;
     PreOrder findBySalesmanId(int salesmanId) throws NoSuchPreOrderExists;
-    PreOrder findByCustomerId(int customerid) throws NoSuchPreOrderExists;
+    PreOrder findByCustomerId(int customerid, boolean sold) throws NoSuchPreOrderExists;
     PreOrder findPreOrderById(int id) throws NoSuchPreOrderExists;
     PreOrder createPreOrder(PreOrderFactory preOrderFactory) throws NoSuchPreOrderExists;
     void takePreOrder(int salesmanId, int preOrderId) throws NoSuchPreOrderExists;

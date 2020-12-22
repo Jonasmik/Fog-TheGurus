@@ -40,7 +40,7 @@ public class GenerateCarportPicture extends CustomerCommand {
             }
             request.getSession()
                 .setAttribute("carportpreview",
-                    CarportTopView.carportTopView(newCarportWidth, newCarportLength, newShedWidth, newShedLength));
+                    CarportTopView.unBoughtCarpotTopView(newCarportWidth, newCarportLength, newShedWidth, newShedLength));
         } else {
             request.getSession()
                 .setAttribute("carportpreview", CarportTopView.carportTopView(newCarportWidth, newCarportLength, 0, 0));

@@ -9,4 +9,6 @@ public interface OrderRepository {
 
     Order findOrderById(int id) throws NoSuchOrderExists;
 
+    Order findOrderByCustomerId(int id) throws NoSuchOrderExists;
+
 }

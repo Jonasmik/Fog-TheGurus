@@ -29,7 +29,7 @@
                            value="${requestScope.order.carport.id}">
                     <input type="hidden" name="preorderid"
                            value="${requestScope.order.preOrder.id}">
-                    <button style="margin-top: 150px" type="submit" class="btn btn-block btn-primary">Se stykliste</button>
+                    <button style="margin-top: 145px" type="submit" class="btn btn-block btn-primary">Se stykliste</button>
                 </form>
             </div>
         </div>
@@ -46,7 +46,7 @@
                     Adresse: ${requestScope.order.customer.adress} ${requestScope.order.customer.zipcode}</p>
                 </p>
             </div>
-            <div class="col-md-4" style="margin-top: 30px">
+            <div class="col-md-4" style="margin-top: 35px">
                 <h5>Carport</h5>
                 <p>Bredde: ${requestScope.order.carport.width}
                     <br>Længde: ${requestScope.order.carport.length}
@@ -55,7 +55,7 @@
                     <br>${requestScope.order.carport.roofAngle}
                     </c:if>
             </div>
-            <div class="col-md-4" style="margin-top: 30px">
+            <div class="col-md-4" style="margin-top: 35px">
                 <c:if test="${requestScope.order.shed.length > 0}">
                     <h5>Skur</h5>
                     <p>

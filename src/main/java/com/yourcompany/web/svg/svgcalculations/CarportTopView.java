@@ -128,6 +128,46 @@ public class CarportTopView {
         carportTopView.add(leftLengthInnerText.withStyle("stroke-width: 15"));
     }
 
+    private static void createUnBoughtArrowLines(Svg carportTopView, int xspacing, int yspacing,
+        int widthmm, int lengthmm, int length, int width) {
+
+        Tag markerTest = new Marker("beginArrow", 12, 12, 0, 6, "auto");
+        markerTest.add(new Path("M0,6 L12,0 L12,12 L0,6"));
+        carportTopView.add(markerTest);
+
+        Tag markerTest2 = new Marker("endArrow", 12, 12, 12, 6, "auto");
+        markerTest2.add(new Path("M0,0 L12,6 L0,12 L0,0"));
+        carportTopView.add(markerTest2);
+
+        //Bottom arrow
+        Tag bottomLengthMeasure = new Line(xspacing, yspacing + widthmm + 400, xspacing + lengthmm,
+            yspacing + widthmm + 400);
+        Tag lineStopLeftBottom = new Line(xspacing, yspacing + widthmm + 100, xspacing,
+            yspacing + widthmm + 500);
+        Tag lineStopRightBottom = new Line(xspacing + lengthmm, yspacing + widthmm + 100,
+            xspacing + lengthmm, yspacing + widthmm + 500);
+        Tag bottomLengthText = new Text(xspacing + (lengthmm / 2), yspacing + widthmm + 300,
+            "black", 200, "rotate(0 0,0)", +length + " cm");
+        carportTopView.add(bottomLengthMeasure.withStyle(
+            "stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
+        carportTopView.add(lineStopLeftBottom.withStyle("stroke: black; stroke-width: 15;"));
+        carportTopView.add(lineStopRightBottom.withStyle("stroke: black; stroke-width: 15;"));
+        carportTopView.add(bottomLengthText.withStyle("stroke-width: 15"));
+
+        //Left outer arrow
+        int halfWidth = yspacing + (widthmm / 2);
+        Tag leftOuterLengthMeasure = new Line(200, yspacing, 200, yspacing + widthmm);
+        Tag lineStopTopOuterLeft = new Line(100, yspacing, 900, yspacing);
+        Tag lineStopBottomOuterLeft = new Line(100, yspacing + widthmm, 900, yspacing + widthmm);
+        Tag leftLengthOuterText = new Text(450, yspacing + (widthmm / 2), "black", 200,
+            "rotate(-90 450, " + halfWidth + ")", +width + " cm");
+        carportTopView.add(leftOuterLengthMeasure.withStyle(
+            "stroke: black; stroke-width: 10; marker-start: url(#beginArrow); marker-end: url(#endArrow)"));
+        carportTopView.add(lineStopTopOuterLeft.withStyle("stroke: black; stroke-width: 15"));
+        carportTopView.add(lineStopBottomOuterLeft.withStyle("stroke: black; stroke-width: 15"));
+        carportTopView.add(leftLengthOuterText.withStyle("stroke-width: 15"));
+    }
+
     private static void createShed(Svg carportTopView, int xspacing, int yspacing, int lengthmm,
             int widthmm, int shedwidth, int shedlength) {
 
@@ -289,6 +329,48 @@ public class CarportTopView {
         Tag topUnderStern = new Rect(xspacing+25,yspacing,lengthmm-50,25);
         Tag bottomUnderStern = new Rect(xspacing+25,yspacing+widthmm-25,lengthmm-50,25);
         */
+
+        return carportTopView;
+    }
+
+    public static Tag unBoughtCarpotTopView(int width, int length, int shedwidth, int shedlength) {
+        int widthmm = width * 10;
+        int lengthmm = length * 10;
+        int sizeLength = lengthmm + 1200;
+        int sizeWidth = widthmm + 1200;
+        int shedLengthMM = shedlength * 10;
+        int shedWidthMM = shedwidth * 10;
+        int pillarWidth = 97;
+
+        Svg carportTopView = new Svg(500, 500, "0 0 " + sizeLength + " " + sizeWidth);
+
+        int xspacing = 1000;
+        int yspacing = 500;
+
+        // Generate roof
+        Tag roof = new Rect(xspacing, yspacing, lengthmm, widthmm);
+        carportTopView.add(roof.withStyle("fill: white; stroke: black; stroke-width: 10;"));
+
+        //Generate shed if shed > 0
+        if (shedlength > 0) {
+            createShed(carportTopView, xspacing, yspacing, lengthmm, widthmm, shedwidth,
+                shedlength);
+        }
+
+        //Generate rims
+        createRims(carportTopView, xspacing, yspacing, lengthmm, widthmm);
+
+        //Generate rafters
+        createRafters(carportTopView, lengthmm, xspacing, yspacing, widthmm);
+
+        //Generate Arrow lines
+        createUnBoughtArrowLines(carportTopView, xspacing, yspacing, widthmm, lengthmm, length, width);
+
+        //Generate ShedPosts
+        if (shedlength > 0) {
+            createShedPosts(carportTopView, xspacing, yspacing, lengthmm, widthmm, shedLengthMM,
+                shedWidthMM, pillarWidth);
+        }
 
         return carportTopView;
     }

@@ -3,7 +3,7 @@ package com.yourcompany.api;
 import com.yourcompany.api.facades.*;
 
 public class Fog {
-    private static final String VERSION = "0.1";
+    private static final String VERSION = "1.0";
     private final UserFacade userFacade;
     private final CarportFacade carportFacade;
     private final ShedFacade shedFacade;

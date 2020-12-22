@@ -72,4 +72,21 @@ public class DBOrderRepository implements OrderRepository {
         }
     }
 
+    @Override
+    public Order findOrderByCustomerId(int id) throws NoSuchOrderExists {
+        try(Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement(
+                "SELECT * FROM orders WHERE customerid = ?;");
+            s.setInt(1, id);
+            ResultSet rs = s.executeQuery();
+            if(rs.next()) {
+                return loadOrder(rs);
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            throw new NoSuchOrderExists();
+        }
+    }
+
 }

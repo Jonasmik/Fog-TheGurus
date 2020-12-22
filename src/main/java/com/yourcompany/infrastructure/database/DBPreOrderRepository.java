@@ -62,17 +62,17 @@ public class DBPreOrderRepository implements PreOrderRepository {
     }
 
     @Override
-    public PreOrder findByCustomerId(int customerid) throws NoSuchPreOrderExists {
+    public PreOrder findByCustomerId(int customerid, boolean sold) throws NoSuchPreOrderExists {
         try (Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
-                "SELECT * FROM preorders WHERE customerid = ?;");
+                "SELECT * FROM preorders WHERE customerid = ? AND sold = ?;");
             s.setInt(1, customerid);
+            s.setBoolean(2, sold);
             ResultSet rs = s.executeQuery();
             if (rs.next()) {
                 return loadPreOrder(rs);
             } else {
-                System.err.println("No version in properties.");
-                throw new NoSuchElementException("No preorder with customerid: " + customerid);
+                return null;
             }
         } catch (SQLException e) {
             throw new NoSuchPreOrderExists(e.getMessage());

@@ -7,4 +7,5 @@ public interface UserRepository {
     User authorizeUser(String email) throws UserValidationError;
     User createUser(UserFactory userFactory, byte[] salt, byte[] secret) throws UserValidationError;
     User findUserById(int id) throws UserValidationError;
+    User updateUserSettings(int id, String email, String name) throws UserValidationError;
 }

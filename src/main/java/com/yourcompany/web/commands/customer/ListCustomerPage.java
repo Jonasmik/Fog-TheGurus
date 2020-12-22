@@ -3,12 +3,14 @@ package com.yourcompany.web.commands.customer;
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.offer.Offer;
+import com.yourcompany.domain.order.Order;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.salesman.Salesman;
 import com.yourcompany.domain.shed.Shed;
 import com.yourcompany.domain.user.User;
 import com.yourcompany.exceptions.carport.NoSuchCarportExists;
 import com.yourcompany.exceptions.order.NoSuchOfferExists;
+import com.yourcompany.exceptions.order.NoSuchOrderExists;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
 import com.yourcompany.exceptions.shed.NoSuchShedExists;
 import com.yourcompany.exceptions.user.NoSuchCustomerExists;
@@ -40,11 +42,21 @@ public class ListCustomerPage extends CustomerCommand {
         List<PreOrderDTO> untakenPreOrders = new ArrayList<>();
         List<Salesman> salesmen = new ArrayList<>();
         List<Offer> offers = new ArrayList<>();
+        List<Order> orders = new ArrayList<>();
         PreOrder preOrder = null;
         if (customers != null) {
             try {
                 for (Customer c : customers) {
-                    preOrder = api.getPreOrderFacade().findByCustomerId(c.getId());
+                    preOrder = api.getPreOrderFacade().findByCustomerId(c.getId(), false);
+
+                    Order order = api.getOrderFacade().findOrderByCustomerId(c.getId());
+                    if(order != null) {
+                        orders.add(order);
+                    }
+
+                    if(preOrder == null) {
+                        continue;
+                    }
 
                     //if the preorder does not have a salesman assigned to them
                     if (preOrder.getSalesmanId() == 0) {
@@ -62,9 +74,11 @@ public class ListCustomerPage extends CustomerCommand {
                         if (offer != null) {
                             offers.add(offer);
                         }
+
                     }
+
                 }
-            } catch (NoSuchPreOrderExists | NoSuchCarportExists | NoSuchSalesmanExists | NoSuchShedExists | NoSuchOfferExists noSuchPreOrderExists) {
+            } catch (NoSuchPreOrderExists | NoSuchCarportExists | NoSuchSalesmanExists | NoSuchShedExists | NoSuchOfferExists | NoSuchOrderExists noSuchPreOrderExists) {
                 request.setAttribute(fail, "Der gik noget galt i generæringen af din bruger");
                 return error;
             }
@@ -89,6 +103,8 @@ public class ListCustomerPage extends CustomerCommand {
         if (!offers.isEmpty()) {
             request.setAttribute("listoffers", offers);
         }
+
+        request.setAttribute("listorders", orders);
 
         //Untaken preorder
         request.setAttribute("untakenpreorders", untakenPreOrders);

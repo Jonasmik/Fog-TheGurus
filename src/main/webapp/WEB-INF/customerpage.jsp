@@ -20,14 +20,53 @@
 
     <div class="row">
         <div class="col-md-4"
-             style="background-color: rgba(173,216,230, 0.2); border-radius: 30px; padding: 15px; height: 380px">
+             style="background-color: rgba(173,216,230, 0.2); border-radius: 30px; padding: 15px; height: 200px">
             <h3>Information</h3>
             <p>Navn: ${sessionScope.user.name}</p>
             <p>Email: ${sessionScope.user.email}</p>
-            <button type="button" class="btn btn-secondary">Rediger Information</button>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-block btn-secondary" data-toggle="modal"
+                    data-target="#editsettings">Rediger information
+            </button>
 
-            <h3 style="padding-top: 40px">Sikkerhed</h3>
-            <button type="button" class="btn btn-secondary">Rediger password</button>
+            <!-- Modal -->
+            <div class="modal fade" id="editsettings" tabindex="-1"
+                 aria-labelledby="editsettingsLabel" aria-hidden="true">
+                <form action="Main" method="POST">
+                    <input type="hidden" name="target" value="editinfosettings">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="editsettingsLabel">Bruger
+                                    redigering</h5>
+                                <button type="button" class="close" data-dismiss="modal"
+                                        aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="NameLabel">Navn</label>
+                                    <input type="text" class="form-control" value="${sessionScope.user.name}" name="name" id="NameLabel"
+                                           aria-describedby="NameHelp">
+                                </div>
+                                <div class="form-group">
+                                    <label for="inputEmail">E-mail</label>
+                                    <input type="email" value="${sessionScope.user.email}" name="email" class="form-control"
+                                           id="inputEmail">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">Close
+                                </button>
+                                <button type="submit" class="btn btn-primary">Gem redigering
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
         </div>
         <div class="col-md-8">
 
@@ -265,8 +304,10 @@
                                                        value="${untakenpreorder.carport.length}">
                                                 <input type="hidden" name="carportwidth"
                                                        value="${untakenpreorder.carport.width}">
-                                                <input type="hidden" name="shedlength" value="${untakenpreorder.shed.length}">
-                                                <input type="hidden" name="shedwidth" value="${untakenpreorder.shed.width}">
+                                                <input type="hidden" name="shedlength"
+                                                       value="${untakenpreorder.shed.length}">
+                                                <input type="hidden" name="shedwidth"
+                                                       value="${untakenpreorder.shed.width}">
                                                 <button type="submit"
                                                         class="btn btn-outline-primary">
                                                     Se tegning
@@ -496,8 +537,10 @@
                                                        value="${takenpreorder.carport.length}">
                                                 <input type="hidden" name="carportwidth"
                                                        value="${takenpreorder.carport.width}">
-                                                <input type="hidden" name="shedlength" value="${takenpreorder.shed.length}">
-                                                <input type="hidden" name="shedwidth" value="${takenpreorder.shed.width}">
+                                                <input type="hidden" name="shedlength"
+                                                       value="${takenpreorder.shed.length}">
+                                                <input type="hidden" name="shedwidth"
+                                                       value="${takenpreorder.shed.width}">
                                                 <button type="submit"
                                                         class="btn btn-outline-primary">
                                                     Se tegning
@@ -542,7 +585,9 @@
                                 <td scope="col" style="text-align: center">${offer.preorderid}</td>
                                 <td scope="col" style="text-align: center">${offer.price} kr.</td>
                                 <td scope="col" style="text-align: center">
-                                    <button class="btn btn-block btn-success" type="submit">Se tilbud</button>
+                                    <button class="btn btn-block btn-outline-info" type="submit">Se
+                                        tilbud
+                                    </button>
                                 </td>
                             </tr>
                             </tbody>
@@ -554,12 +599,41 @@
 
             <!-- Ordre START -->
             <h3>Afgivet ordre</h3>
-            <c:if test="${requestScope.order == null}">
-                <p>Du har ikke nogle aftivet ordre</p>
+            <c:if test="${empty requestScope.listorders}">
+                <p>Du har ikke nogle afgivet ordre</p>
             </c:if>
 
-            <c:if test="${requestScope.order != null}">
-                <p>Du har en afgivet ordre</p>
+            <c:if test="${not empty requestScope.listorders}">
+                <c:forEach var="order" items="${requestScope.listorders}">
+                    <form action="Main" method="POST">
+                        <input type="hidden" name="target" value="generatereceiptpage"/>
+                        <input type="hidden" name="orderid" value="${order.id}"/>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4">
+                                <table class="table table-sm table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center">Ordre
+                                            id. ${order.id}</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <tr>
+                                        <td>
+                                            <button class="btn btn-block btn-outline-info"
+                                                    type="submit">Se
+                                                kvitering
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </c:forEach>
+                </table>
             </c:if>
             <!-- Ordre END -->
         </div>

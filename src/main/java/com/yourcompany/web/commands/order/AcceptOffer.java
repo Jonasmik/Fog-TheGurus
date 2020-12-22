@@ -58,6 +58,15 @@ public class AcceptOffer extends ICommand {
             return "errorpage";
         }
 
+        try {
+            api.getOfferFacade().updateOfferStatus(offer.getId(), false);
+            api.getPreOrderFacade().updatePreOrderStatus("sold", preOrder.getId(), true);
+            api.getPreOrderFacade().updatePreOrderStatus("active", preOrder.getId(), false);
+        } catch (NoSuchOfferExists | NoSuchPreOrderExists noSuchOfferExists) {
+            request.setAttribute("error", "Kunne ikke deaktivere ordre");
+            return "error";
+        }
+
         session.setAttribute("orderid", order.getId());
         session.setAttribute("preorderid", preOrder.getId());
         session.setAttribute("offerid", offer.getId());

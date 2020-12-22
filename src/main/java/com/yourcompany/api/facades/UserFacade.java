@@ -59,5 +59,9 @@ public class UserFacade {
         return repo.findUserById(id);
     }
 
+    public User updateUserSettings(int id, String email, String name) throws UserValidationError {
+        return repo.updateUserSettings(id, email, name);
+    }
+
 }
 

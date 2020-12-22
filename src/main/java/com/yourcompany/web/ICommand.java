@@ -9,6 +9,7 @@ import com.yourcompany.domain.user.User;
 import com.yourcompany.web.commands.*;
 import com.yourcompany.web.commands.bom.GenerateBom;
 import com.yourcompany.web.commands.bom.ListBomPage;
+import com.yourcompany.web.commands.customer.EditInfoSettings;
 import com.yourcompany.web.commands.customer.GenerateCarportPicture;
 import com.yourcompany.web.commands.customer.ListCustomerPage;
 import com.yourcompany.web.commands.order.AcceptOffer;
@@ -17,6 +18,7 @@ import com.yourcompany.web.commands.order.CreatePreOrder;
 import com.yourcompany.web.commands.order.EditPreOrder;
 import com.yourcompany.web.commands.order.OfferControl;
 import com.yourcompany.web.commands.payment.ListPaymentPage;
+import com.yourcompany.web.commands.receipt.GenerateReceiptPage;
 import com.yourcompany.web.commands.receipt.ListReceiptPage;
 import com.yourcompany.web.commands.salesman.ListSalesmanPage;
 import com.yourcompany.web.commands.salesman.SalesmanTakePreOrder;
@@ -64,6 +66,8 @@ public abstract class ICommand {
         commands.put("listpaymentpage", new ListPaymentPage());
         commands.put("acceptoffer", new AcceptOffer());
         commands.put("listreceiptpage", new ListReceiptPage());
+        commands.put("generatereceiptpage", new GenerateReceiptPage());
+        commands.put("editinfosettings", new EditInfoSettings());
 
     }
 

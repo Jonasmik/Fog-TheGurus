@@ -31,8 +31,13 @@
                      aria-labelledby="v-pills-home-tab">
                     <h3 style="padding-top: 20px">Din profil</h3>
 
-                    <!-- Active salesman preorders START -->
                     <h4 style="padding-top: 20px">Dine forespørgelser</h4>
+                    <!-- Active salesman preorders START -->
+                    <c:if test="${empty requestScope.activepreorder}">
+                        <p>Der er ingen valgte forespørgelser</p>
+                    </c:if>
+
+                    <c:if test="${not empty requestScope.activepreorder}">
                     <div class="table-responsive">
                         <table class="table table-bordered">
                             <thead>

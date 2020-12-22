@@ -34,4 +34,8 @@ public class OrderFacade {
     public Order findOrderById(int id) throws NoSuchOrderExists {
         return repo.findOrderById(id);
     }
+
+    public Order findOrderByCustomerId(int id) throws NoSuchOrderExists {
+        return repo.findOrderByCustomerId(id);
+    }
 }

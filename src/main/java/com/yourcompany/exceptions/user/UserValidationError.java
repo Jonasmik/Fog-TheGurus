@@ -5,6 +5,6 @@ package com.yourcompany.exceptions.user;
  */
 public class UserValidationError extends Exception {
     public UserValidationError(String message) {
-
+        super(message);
     }
 }
