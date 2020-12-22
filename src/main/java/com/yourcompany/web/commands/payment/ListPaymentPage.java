@@ -48,7 +48,7 @@ public class ListPaymentPage extends PaymentCommand {
         }
 
         request.setAttribute("carportpicture",
-            CarportTopView.carportTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
+            CarportTopView.unBoughtCarpotTopView(carport.getWidth(), carport.getLength(), shed.getWidth(), shed.getLength()));
         request.setAttribute("carport", carport);
         request.setAttribute("shed", shed);
         request.setAttribute("offer", offer);
