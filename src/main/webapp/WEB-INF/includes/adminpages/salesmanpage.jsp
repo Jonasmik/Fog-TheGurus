@@ -142,6 +142,71 @@
                             </table>
                         </div>
                     </c:if>
+
+                    <!-- Ordre START -->
+                    <h3>Betalte ordre</h3>
+                    <c:if test="${empty requestScope.paidorders}">
+                        <p>Du har ikke nogle betalte ordre</p>
+                    </c:if>
+
+                    <c:if test="${not empty requestScope.paidorders}">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-bordered">
+                                    <thead>
+                                    <tr>
+                                        <th scope="col" style="text-align: center">id
+                                        </th>
+                                        <th scope="col" style="text-align: center">Kunde
+                                        </th>
+                                        <th scope="col">Evt.
+                                            besked
+                                        </th>
+                                        <th scope="col" style="text-align: center">
+                                            Kvitering
+                                        </th>
+                                    </tr>
+                                    </thead>
+                                    <c:forEach var="order" items="${requestScope.paidorders}">
+                                        <form action="Main" method="POST">
+                                            <input type="hidden" name="target"
+                                                   value="generatereceiptpage"/>
+                                            <input type="hidden" name="orderid"
+                                                   value="${order.order.id}"/>
+
+                                            <tbody>
+                                            <tr>
+                                                <td>
+                                                        ${order.order.id}
+                                                </td>
+                                                <td>
+                                                    Navn: ${order.customer.name}
+                                                    E-mail: ${order.customer.email}
+                                                    Adresse: ${order.customer.city} ${order.customer.zipcode} ${order.customer.adress}
+                                                </td>
+                                                <td>
+                                                    <c:if test="${order.customer.additional != null}">
+                                                        ${order.customer.additional}
+                                                    </c:if>
+                                                    <c:if test="${order.customer.additional == null}">
+                                                        Kunde har ikke nogen besked
+                                                    </c:if>
+                                                </td>
+                                                <td>
+                                                    <button class="btn btn-block btn-outline-info"
+                                                            type="submit">Se
+                                                        kvitering
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </form>
+                                    </c:forEach>
+                                </table>
+                            </div>
+                        </div>
+                    </c:if>
+                    <!-- Ordre END -->
                     <!-- Active salesman preorders END -->
                 </div>
                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel"

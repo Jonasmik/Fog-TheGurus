@@ -54,4 +54,8 @@ public class PreOrderFacade {
     public void updatePreOrderStatus(String columnName, int id, boolean status) throws NoSuchPreOrderExists {
         repo.updatePreOrderStatus(columnName, id, status);
     }
+
+    public List<PreOrder> findPaidPreOrdersBySalesmanId(int salesmanId) throws NoSuchPreOrderExists {
+        return repo.findPaidPreOrdersBySalesmanId(salesmanId);
+    }
 }

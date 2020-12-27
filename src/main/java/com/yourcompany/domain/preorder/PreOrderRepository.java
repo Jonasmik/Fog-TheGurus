@@ -14,4 +14,5 @@ public interface PreOrderRepository {
     PreOrder createPreOrder(PreOrderFactory preOrderFactory) throws NoSuchPreOrderExists;
     void takePreOrder(int salesmanId, int preOrderId) throws NoSuchPreOrderExists;
     void updatePreOrderStatus(String columnName, int id, boolean status) throws NoSuchPreOrderExists;
+    List<PreOrder> findPaidPreOrdersBySalesmanId(int salesmanId) throws NoSuchPreOrderExists;
 }

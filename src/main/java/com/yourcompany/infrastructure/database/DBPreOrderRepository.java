@@ -3,7 +3,9 @@ package com.yourcompany.infrastructure.database;
 import com.yourcompany.api.factories.PreOrderFactory;
 import com.yourcompany.domain.preorder.PreOrder;
 import com.yourcompany.domain.preorder.PreOrderRepository;
+import com.yourcompany.domain.salesman.Salesman;
 import com.yourcompany.exceptions.order.NoSuchPreOrderExists;
+import com.yourcompany.exceptions.user.NoSuchSalesmanExists;
 import com.yourcompany.infrastructure.dbsetup.Database;
 
 import java.sql.*;
@@ -142,12 +144,12 @@ public class DBPreOrderRepository implements PreOrderRepository {
     public void updatePreOrderStatus(String columnName, int id, boolean status) throws NoSuchPreOrderExists {
         try (Connection conn = db.connect()) {
             PreparedStatement ps = null;
-            if (columnName.equals("active")){
+            if (columnName.equals("active")) {
                 ps = conn.prepareStatement(
-                                "UPDATE preorders SET active = ? WHERE id = ?;");
+                    "UPDATE preorders SET active = ? WHERE id = ?;");
             } else {
                 ps = conn.prepareStatement(
-                                "UPDATE preorders SET sold = ? WHERE id = ?;");
+                    "UPDATE preorders SET sold = ? WHERE id = ?;");
             }
             ps.setBoolean(1, status);
             ps.setInt(2, id);
@@ -157,5 +159,21 @@ public class DBPreOrderRepository implements PreOrderRepository {
         } catch (SQLException e) {
             throw new NoSuchPreOrderExists(e.getMessage());
         }
+    }
+
+    @Override
+    public List<PreOrder> findPaidPreOrdersBySalesmanId(int salesmanId) throws NoSuchPreOrderExists {
+        List<PreOrder> preOrders = new ArrayList<>();
+        try (Connection conn = db.connect()) {
+            PreparedStatement s = conn.prepareStatement("SELECT * FROM preorders WHERE salesmanid = ? AND sold = TRUE");
+            s.setInt(1, salesmanId);
+            ResultSet rs = s.executeQuery();
+            while (rs.next()) {
+                preOrders.add(loadPreOrder(rs));
+            }
+        } catch (SQLException e) {
+            throw new NoSuchPreOrderExists(e.getMessage());
+        }
+        return preOrders;
     }
 }

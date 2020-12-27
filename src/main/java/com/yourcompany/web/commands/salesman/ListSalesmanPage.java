@@ -2,7 +2,13 @@ package com.yourcompany.web.commands.salesman;
 
 import com.yourcompany.domain.carport.Carport;
 import com.yourcompany.domain.material.MaterialPrice;
+import com.yourcompany.domain.offer.Offer;
+import com.yourcompany.domain.order.Order;
 import com.yourcompany.exceptions.bom.NoSuchMaterialExist;
+import com.yourcompany.exceptions.order.NoSuchOfferExists;
+import com.yourcompany.exceptions.order.NoSuchOrderExists;
+import com.yourcompany.exceptions.user.UserValidationError;
+import com.yourcompany.web.dtos.OrderDTO;
 import com.yourcompany.web.dtos.PreOrderDTO;
 import com.yourcompany.domain.customer.Customer;
 import com.yourcompany.domain.preorder.PreOrder;
@@ -65,14 +71,28 @@ public class ListSalesmanPage extends SalesmanCommand {
 
         if (salesmanList != null) {
             List<PreOrder> activePreOrders = new ArrayList<>();
+            List<PreOrder> soldPreOrders;
+            List<OrderDTO> soldOrders = new ArrayList<>();
             for (Salesman s : salesmanList) {
                 try {
                     PreOrder preOrder = api.getPreOrderFacade().findBySalesmanId(s.getId());
                     if (preOrder != null){
                         activePreOrders.add(preOrder);
                     }
-                } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
-                    request.setAttribute(fail, "Der gik noget galt med at finde dine forespørgelser");
+                    soldPreOrders = api.getPreOrderFacade().findPaidPreOrdersBySalesmanId(s.getId());
+                    if(!soldPreOrders.isEmpty()) {
+                        for(PreOrder p: soldPreOrders) {
+                            Order order = api.getOrderFacade().findOrderByCustomerId(p.getCustomerId());
+                            Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
+                            User user1 = api.getUserFacade().findUserById(customer.getUserid());
+                            Carport carport = api.getCarportFacade().findById(p.getCarportId());
+                            Shed shed = api.getShedFacade().findByCarportId(carport.getId());
+                            Offer offer = api.getOfferFacade().findByPreOrderId(p.getId());
+                            soldOrders.add(new OrderDTO(order, p, offer, customer, user1, carport, shed));
+                        }
+                    }
+                } catch (NoSuchPreOrderExists | NoSuchOrderExists | NoSuchCustomerExists | UserValidationError | NoSuchCarportExists | NoSuchShedExists | NoSuchOfferExists noSuchPreOrderExists) {
+                    request.setAttribute(fail, "Der gik noget galt med at finde dine informationer");
                     return error;
                 }
             }
@@ -89,6 +109,7 @@ public class ListSalesmanPage extends SalesmanCommand {
                 }
             }
 
+            request.setAttribute("paidorders", soldOrders);
             request.setAttribute("activepreorder", activePreOrderDTO);
         }
 
