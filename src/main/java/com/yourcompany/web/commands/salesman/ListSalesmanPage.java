@@ -76,12 +76,12 @@ public class ListSalesmanPage extends SalesmanCommand {
             for (Salesman s : salesmanList) {
                 try {
                     PreOrder preOrder = api.getPreOrderFacade().findBySalesmanId(s.getId());
-                    if (preOrder != null){
+                    if (preOrder != null) {
                         activePreOrders.add(preOrder);
                     }
                     soldPreOrders = api.getPreOrderFacade().findPaidPreOrdersBySalesmanId(s.getId());
-                    if(!soldPreOrders.isEmpty()) {
-                        for(PreOrder p: soldPreOrders) {
+                    if (!soldPreOrders.isEmpty()) {
+                        for (PreOrder p : soldPreOrders) {
                             Order order = api.getOrderFacade().findOrderByCustomerId(p.getCustomerId());
                             Customer customer = api.getCustomerFacade().findById(p.getCustomerId());
                             User user1 = api.getUserFacade().findUserById(customer.getUserid());

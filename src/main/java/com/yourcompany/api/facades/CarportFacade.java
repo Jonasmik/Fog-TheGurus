@@ -28,6 +28,11 @@ public class CarportFacade {
       return instance;
    }
 
+
+   /**
+    * @return List of carports
+    * @throws NoSuchCarportExists
+    */
    public List<Carport> findAll() throws NoSuchCarportExists {
       return repo.findAll();
    }
