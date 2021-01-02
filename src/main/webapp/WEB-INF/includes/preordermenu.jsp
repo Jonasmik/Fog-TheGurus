@@ -34,7 +34,7 @@
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile"
                        role="tab"
-                       aria-controls="profile" aria-selected="false">Carport med flat tag</a>
+                       aria-controls="profile" aria-selected="false">Carport med fladt tag</a>
                 </li>
             </ul>
 

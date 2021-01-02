@@ -1,0 +1,43 @@
+@startuml
+hide empty description
+hide circle
+hide methods
+hide members
+
+title Hjemmeside navigation
+
+class Hjem {
+}
+
+class Bestillingsside {
+}
+
+class Kundeside {
+}
+
+class Adminside {
+}
+
+class Profilside {
+}
+
+class Betalingsside {
+}
+
+class Kviteringsside {
+}
+
+Hjem -right-> Bestillingsside: Tryk på Bestil
+Hjem -right-> Kundeside: Tryk på Log ind
+Hjem -left-> Adminside: Tryk på Log ind
+Bestillingsside -down- Bestillingsside: Tryk på Send forespørgsel
+Kundeside --> Bestillingsside: Tryk på Bestil
+Kundeside -> Hjem: Tryk på Log ud
+Kundeside -> Profilside: Tryk på dit navn
+Adminside --> Din_profil: Tryk på Din profil
+Adminside --> Inaktive_forespørgsler: Tryk på Inaktive forespørgsler
+Adminside --> Materialer : Tryk på Materialer
+Adminside -> Hjem: Tryk på Log ud
+Profilside --> Betalingsside : Tryk på Se tilbud
+Betalingsside --> Kviteringsside : Tryk på Køb
+@enduml

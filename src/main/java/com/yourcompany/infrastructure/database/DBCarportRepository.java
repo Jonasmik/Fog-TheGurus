@@ -36,7 +36,7 @@ public class DBCarportRepository implements CarportRepository {
     public Carport findById(int id) throws NoSuchCarportExists {
         try(Connection conn = db.connect()) {
             PreparedStatement s = conn.prepareStatement(
-                    "SELECT * FROM carport WHERE id = ?;");
+                "SELECT * FROM carport WHERE id = ?;");
             s.setInt(1, id);
             ResultSet rs = s.executeQuery();
             if(rs.next()) {
