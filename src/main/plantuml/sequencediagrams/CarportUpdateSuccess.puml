@@ -1,0 +1,56 @@
+@startuml
+
+autonumber
+Title Edit preorder Sekvensdiagram
+actor Bruger
+
+Bruger -> Tomcat: POST
+
+
+box web
+control "Invoker/Servlet"
+Tomcat -> "Invoker/Servlet": doPost()
+"Invoker/Servlet" -> "Invoker/Servlet": processRequest()
+"Invoker/Servlet"-> ICommand: from()
+ICommand --> "Invoker/Servlet": EditPreOrder
+"Invoker/Servlet" -> EditPreOrder: execute()
+participant ListCustomerPage
+end box
+
+box api
+
+EditPreOrder -> CarportFacade: updateCarport()
+end box
+
+box domain
+
+CarportFacade -> CarportRepository: updateCarport()
+end box
+
+box database
+CarportRepository -> DBCarportRepository: updateCarport()
+
+end box
+
+database fogdb
+DBCarportRepository -> fogdb: executeUpdate()
+fogdb --> DBCarportRepository: Success
+DBCarportRepository --> CarportRepository: Success
+CarportRepository --> CarportFacade: Success
+CarportFacade --> EditPreOrder: Success
+EditPreOrder --> "Invoker/Servlet": return "redirect:listcustomerpage"
+"Invoker/Servlet" -> Bruger: forward()
+
+Bruger -> Tomcat: GET
+Tomcat -> "Invoker/Servlet": doGET()
+"Invoker/Servlet" -> "Invoker/Servlet": processRequest()
+"Invoker/Servlet" -> ICommand: from()
+"ICommand" --> "Invoker/Servlet": ListCustomerPage
+"Invoker/Servlet" -> ListCustomerPage: execute()
+ListCustomerPage --> "Invoker/Servlet": return "customerpage"
+"Invoker/Servlet" -> Bruger: customerpage.jsp
+
+
+
+
+@enduml

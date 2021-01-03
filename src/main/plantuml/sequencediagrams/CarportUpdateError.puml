@@ -1,0 +1,45 @@
+@startuml
+
+autonumber
+Title Edit preorder error Sekvensdiagram
+actor Bruger
+
+Bruger -> Tomcat: POST
+
+
+box web
+control "Invoker/Servlet"
+Tomcat -> "Invoker/Servlet": doPost()
+"Invoker/Servlet" -> "Invoker/Servlet": processRequest()
+"Invoker/Servlet"-> ICommand: from()
+ICommand --> "Invoker/Servlet": EditPreOrder
+"Invoker/Servlet" -> EditPreOrder: execute()
+end box
+
+box api
+
+EditPreOrder -> CarportFacade: updateCarport()
+end box
+
+box domain
+
+CarportFacade -> CarportRepository: updateCarport()
+end box
+
+box database
+CarportRepository -> DBCarportRepository: updateCarport()
+
+end box
+
+database fogdb
+DBCarportRepository -> fogdb: executeUpdate()
+fogdb --> DBCarportRepository: Throw NoSuchCarportExists
+DBCarportRepository --> CarportRepository: NoSuchCarportExists
+CarportRepository --> CarportFacade: NoSuchCarportExists
+CarportFacade --> EditPreOrder: NoSuchCarportExists
+EditPreOrder --> "Invoker/Servlet": return "errorpage"
+"Invoker/Servlet" -> Bruger: errorpage.jsp
+
+
+
+@enduml

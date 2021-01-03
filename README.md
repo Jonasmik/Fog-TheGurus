@@ -4,7 +4,7 @@ Some text about the gurus
 # Download
 
 1. Fork or download the project
-2. Change to your name in maven, web.xml etc.
-3. Setup Tomcat.
+2. Setup Tomcat.
+3. run init.sql in MySQL workbench
 4. Enjoy
 
