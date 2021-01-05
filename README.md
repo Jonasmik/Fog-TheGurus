@@ -6,7 +6,7 @@ The project was build during a 5week period.
 During the weeks we used scrum as our work tool, in which we had weekly review with the "customer" which was really our teacher.
 
 
-##Project purpose
+## Project purpose
 This project was build with Java, our backend is connected to a MySQL database.
 This program is using apache tomcat, to fire up our jsp sites.
 
