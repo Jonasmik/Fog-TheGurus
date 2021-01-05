@@ -1,0 +1,68 @@
+@startuml
+
+autonumber
+Title Create preorder Sekvensdiagram
+actor User
+
+User -> Tomcat: POST
+
+
+box web
+control "Invoker/Servlet"
+Tomcat -> "Invoker/Servlet": doPost()
+"Invoker/Servlet" -> "Invoker/Servlet": processRequest()
+"Invoker/Servlet"-> ICommand: from()
+ICommand --> "Invoker/Servlet": CreatePreOrder
+"Invoker/Servlet" -> CreatePreOrder: execute()
+end box
+
+box api
+
+CreatePreOrder -> CarportFacade: createCarport()
+participant CustomerFacade
+participant PreOrderFacade
+end box
+
+box domain
+
+CarportFacade -> CarportRepository: createCarport()
+participant CustomerRepository
+participant PreOrderRepository
+end box
+
+box database
+CarportRepository -> DBCarportRepository: createCarport()
+participant DBCustomerRepository
+participant DBPreOrderRepository
+end box
+
+database fogdb
+DBCarportRepository -> fogdb: executeUpdate()
+fogdb --> DBCarportRepository: Success\nreturn Carport
+DBCarportRepository --> CarportRepository: Success\nreturn Carport
+CarportRepository --> CarportFacade: Success\nreturn Carport
+CarportFacade --> CreatePreOrder: Success\nreturn Carport
+
+CreatePreOrder -> CustomerFacade: createCustomer()
+CustomerFacade -> CustomerRepository: createCustomer()
+CustomerRepository -> DBCustomerRepository: createCustomer()
+DBCustomerRepository -> fogdb: executeUpdate()
+fogdb --> DBCustomerRepository: Success\nreturn Customer
+DBCustomerRepository --> CustomerRepository: Success\nreturn Customer
+CustomerRepository --> CustomerFacade: Success\nreturn Customer
+CustomerFacade --> CreatePreOrder: Success\nreturn Customer
+
+CreatePreOrder -> PreOrderFacade: createPreOrder()
+PreOrderFacade -> PreOrderRepository: createPreOrder()
+PreOrderRepository -> DBPreOrderRepository: createPreOrder()
+DBPreOrderRepository -> fogdb: executeUpdate()
+fogdb --> DBPreOrderRepository: Success\nreturn PreOrder
+DBPreOrderRepository --> PreOrderRepository: Success\nreturn PreOrder
+PreOrderRepository --> PreOrderFacade: Success\nreturn PreOrder
+PreOrderFacade --> CreatePreOrder: Success\nreturn PreOrder
+
+CreatePreOrder --> "Invoker/Servlet": return "createorder"
+"Invoker/Servlet" -> User: createorder.jsp
+
+
+@enduml

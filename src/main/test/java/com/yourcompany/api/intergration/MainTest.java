@@ -45,10 +45,10 @@ public class MainTest {
         String URL = "jdbc:mysql://localhost:3306/?serverTimezone=CET";
         String USER = "fogdbtest";
 
-        InputStream stream = MainTest.class.getClassLoader().getResourceAsStream("init.sql");
+        InputStream stream = MainTest.class.getClassLoader().getResourceAsStream("testinit.sql");
         if (stream == null) {
             System.out.println("Migration file, does not exist: ");
-            throw new RuntimeException("init.sql");
+            throw new RuntimeException("testinit.sql");
         }
         try (Connection conn = DriverManager.getConnection(URL, USER, null)) {
             conn.setAutoCommit(false);

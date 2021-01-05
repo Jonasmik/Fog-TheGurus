@@ -2,6 +2,7 @@ drop database if exists fogdbtest;
 create database fogdbtest;
 use fogdbtest;
 
+DROP TABLE IF EXISTS properties;
 CREATE TABLE properties (
                             name VARCHAR(255) PRIMARY KEY,
                             value VARCHAR(255) NOT NULL
@@ -11,6 +12,7 @@ INSERT INTO properties (name, value) VALUES ("version", "0");
 
 
 
+DROP TABLE IF EXISTS users;
 CREATE TABLE users (
                        id INT PRIMARY KEY AUTO_INCREMENT,
                        name VARCHAR(25) NOT NULL,
@@ -24,6 +26,7 @@ CREATE TABLE users (
                        role VARCHAR(25) NOT NULL
 );
 
+DROP TABLE IF EXISTS carport;
 CREATE TABLE carport (
                          id INT PRIMARY KEY AUTO_INCREMENT,
                          length INT NOT NULL,
@@ -32,6 +35,7 @@ CREATE TABLE carport (
                          roofangle INT DEFAULT 0
 );
 
+DROP TABLE IF EXISTS shed;
 CREATE TABLE shed (
                       id INT PRIMARY KEY AUTO_INCREMENT,
                       width INT NOT NULL,
@@ -40,6 +44,7 @@ CREATE TABLE shed (
                       FOREIGN KEY (carportid) REFERENCES carport(id)
 );
 
+DROP TABLE IF EXISTS customers;
 CREATE TABLE customers (
                            id INT PRIMARY KEY AUTO_INCREMENT,
                            userid INT NOT NULL,
@@ -52,30 +57,37 @@ CREATE TABLE customers (
                            FOREIGN KEY (userid) REFERENCES users(id)
 );
 
+DROP TABLE IF EXISTS salesmen;
 CREATE TABLE salesmen (
                           id INT PRIMARY KEY AUTO_INCREMENT,
                           userid INT NOT NULL,
                           FOREIGN KEY (userid) REFERENCES users(id)
 );
 
+DROP TABLE IF EXISTS preorders;
 CREATE TABLE preorders (
                            id INT PRIMARY KEY AUTO_INCREMENT,
                            customerid INT NOT NULL,
                            salesmanid INT DEFAULT NULL,
                            carportid INT NOT NULL,
+                           active BOOLEAN DEFAULT TRUE,
+                           sold BOOLEAN DEFAULT FALSE,
                            FOREIGN KEY (customerid) REFERENCES customers(id),
                            FOREIGN KEY (salesmanid) REFERENCES salesmen(id),
                            FOREIGN KEY (carportid) REFERENCES carport(id)
 );
 
+DROP TABLE IF EXISTS offers;
 CREATE TABLE offers (
                         id INT PRIMARY KEY AUTO_INCREMENT,
                         preorderid INT NOT NULL,
                         price DOUBLE NOT NULL,
+                        active BOOLEAN DEFAULT TRUE,
                         FOREIGN KEY (preorderid) REFERENCES preorders(id)
 );
 
 
+DROP TABLE IF EXISTS orders;
 CREATE TABLE orders (
                         id INT PRIMARY KEY AUTO_INCREMENT,
                         customerid INT NOT NULL,
@@ -83,3 +95,13 @@ CREATE TABLE orders (
                         FOREIGN KEY (customerid) REFERENCES customers(id),
                         FOREIGN KEY (offerid) REFERENCES offers(id)
 );
+
+DROP TABLE IF EXISTS materialprice;
+CREATE TABLE materialprice (
+                               id INT PRIMARY KEY AUTO_INCREMENT,
+                               name VARCHAR(255) NOT NULL,
+                               meterprice DOUBLE NOT NULL
+);
+INSERT INTO materialprice(name, meterprice) VALUES ("TRYKIMP_BRÆDT", 25),
+                                                   ("TRYKIMP_STOLPE",49.95), ("LÆGTE_UBH",20), ("REGLAR_UB", 18), ("SPÆRTRÆ_UBH", 50),
+                                                   ("PLASTMO_ECOLITE_BLÅTONET", 46.667);

@@ -5,6 +5,6 @@ Some text about the gurus
 
 1. Fork or download the project
 2. Setup Tomcat.
-3. run init.sql in MySQL workbench
+3. run testinit.sql in MySQL workbench
 4. Enjoy
 

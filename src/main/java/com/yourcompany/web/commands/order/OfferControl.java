@@ -30,39 +30,48 @@ public class OfferControl extends ICommand {
         }
 
         if (offerFactory.isValid()) {
+
             if (offerFactory.getPrice() < Double.parseDouble(cost)) {
                 request.setAttribute("toocheap", "Carportens pris er for billig");
                 return "redirect:listbompage";
             }
 
             Offer offer = null;
+
             try {
                 offer = api.getOfferFacade().findByPreOrderId(offerFactory.getPreorderid());
             } catch (NoSuchOfferExists noSuchOfferExists) {
                 request.setAttribute("error", "Fejl i databasen");
                 return "errorpage";
             }
+
             if (offer == null) {
+
                 try {
                     api.getOfferFacade().createOffer(offerFactory);
                 } catch (NoSuchOfferExists noSuchOfferExists) {
                     request.setAttribute("error", "Fejl i databasen");
                     return "errorpage";
                 }
+
             } else {
+
                 try {
                     api.getOfferFacade().updateOffer(offerFactory);
                 } catch (NoSuchOfferExists noSuchOfferExists) {
                     request.setAttribute("error", "Kunne ikke finde tilbud i databasen");
                     return "errorpage";
                 }
+
             }
+
             try {
                 api.getPreOrderFacade().updatePreOrderStatus("active", offerFactory.getPreorderid(), false);
             } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
                 request.setAttribute("error", "Kunne ikke finde forespørgsel i databasen");
                 return "errorpage";
             }
+
         } else {
             request.setAttribute("error", "Manglende eller ikke gyldige attributer til carporten ");
             return "errorpage";

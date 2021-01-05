@@ -19,7 +19,6 @@ public class Invoker extends HttpServlet {
         try {
             request.setCharacterEncoding("UTF-8");
             response.setCharacterEncoding("UTF-8");
-
             ICommand action = ICommand.from(request);
             String view = action.execute(request, response);
 

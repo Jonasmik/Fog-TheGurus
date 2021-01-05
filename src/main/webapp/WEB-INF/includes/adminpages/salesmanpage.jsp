@@ -313,7 +313,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <c:set var="inactivecount" value="${intactivecount + 1}"
+                                        <c:set var="intactivecount" value="${intactivecount + 1}"
                                                scope="page"/>
                                     </form>
                                 </c:forEach>

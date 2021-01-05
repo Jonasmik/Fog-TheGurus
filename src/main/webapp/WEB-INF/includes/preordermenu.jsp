@@ -126,7 +126,7 @@
                         <div id="myFirstExtraRoom" style="display: none">
 
                             <div class="form-group">
-                                <h4 style="padding-top: 10px">Beregn 15 cm tagudhæng på hver side af
+                                <h4 style="padding-top: 10px">Beregn 35 cm tagudhæng på hver side af
                                     redskabsrummet.</h4>
                                 <label for="redskabsRumBredde">Redskabsrum bredde</label>
                                 <select class="form-control" id="redskabsRumBredde"
@@ -384,7 +384,7 @@
                         <div id="mySecondExtraRoom" style="display: none">
 
                             <div class="form-group">
-                                <h4 style="padding-top: 10px">Beregn 15 cm tagudhæng på hver side af
+                                <h4 style="padding-top: 10px">Beregn 35 cm tagudhæng på hver side af
                                     redskabsrummet.</h4>
                                 <label for="flatRedskabsRumBredde">Redskabsrum bredde</label>
                                 <select class="form-control" id="flatRedskabsRumBredde"

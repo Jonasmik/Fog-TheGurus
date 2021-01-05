@@ -13,7 +13,7 @@
 <jsp:include page="includes/navs/navbar.jsp" flush="true"/>
 
 <main role="main" class="container flex-shrink-0">
-
+    <jsp:include page="includes/modals/userlogoutmodal.jsp" flush="true"/>
     <div class="row" style="padding-top: 50px">
         <div class="col">
             ${requestScope.carportpicture}

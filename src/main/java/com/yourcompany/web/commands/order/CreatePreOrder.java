@@ -94,7 +94,8 @@ public class CreatePreOrder extends ICommand {
         }
 
 
-
+        request.setAttribute("carportsettings", api.getCarportFacade().getSettings());
+        request.setAttribute("shedsettings", api.getShedFacade().getShedSettings());
 
         //Create or login user if it doesnt exist
         if (user == null) {
