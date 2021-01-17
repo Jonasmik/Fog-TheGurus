@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarportSettings {
-    private final int minWidth = 240;
+
     private final int maxWidth = 750;
     private final int intervalWidth = 30;
     private final int minLength = 240;
@@ -16,7 +16,8 @@ public class CarportSettings {
 
 
     public List<Integer> getCarportWidths() {
-        List widthList = new ArrayList();
+        List widthList = new ArrayList<>();
+        int minWidth = 240;
         for (int i = minWidth; i <= maxWidth; i+=intervalWidth) {
             widthList.add(i);
         }

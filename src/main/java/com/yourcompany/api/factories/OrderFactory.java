@@ -7,6 +7,9 @@ public class OrderFactory {
     private int offer;
     private int customerId;
 
+    /**
+     * @return true or false
+     */
     public boolean isValid() {
         if(this.offer < 0) {
             return false;

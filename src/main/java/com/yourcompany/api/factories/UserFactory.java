@@ -1,6 +1,7 @@
 package com.yourcompany.api.factories;
 
 public class UserFactory {
+
     private String name;
     private String password;
     private String email;
@@ -8,13 +9,25 @@ public class UserFactory {
     private String zip;
     private String city;
 
-    public boolean isValid ()  {
-        if (name == null || name.isBlank()) return false;
-        if(password == null || password.isBlank()) return false;
-        if(email == null || email.isBlank()) return false;
-        if(address == null || address.isBlank()) return false;
-        if(zip == null || zip.isBlank()) return false;
-        if(city == null || city.isBlank()) return false;
+    public boolean isValid() {
+        if (name == null || name.isBlank()) {
+            return false;
+        }
+        if (password == null || password.isBlank()) {
+            return false;
+        }
+        if (email == null || email.isBlank()) {
+            return false;
+        }
+        if (address == null || address.isBlank()) {
+            return false;
+        }
+        if (zip == null || zip.isBlank()) {
+            return false;
+        }
+        if (city == null || city.isBlank()) {
+            return false;
+        }
         return true;
     }
 
@@ -27,7 +40,11 @@ public class UserFactory {
     }
 
     public void setEmail(String email) {
-        this.email = email;
+        if (!email.contains("@cphbusiness.dk")) {
+            this.email = null;
+        } else {
+            this.email = email;
+        }
     }
 
     public void setAddress(String address) {

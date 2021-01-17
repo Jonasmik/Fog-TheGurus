@@ -81,7 +81,7 @@
                 <input type="hidden" name="offerid" value="${requestScope.offer.id}">
                 <input type="hidden" name="preorderid" value="${requestScope.offer.preorderid}">
 
-                <button class="btn btn-block btn-primary">Køb</button>
+                <button type="submit" class="btn btn-block btn-primary">Køb</button>
             </form>
         </div>
     </div>

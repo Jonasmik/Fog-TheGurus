@@ -23,26 +23,19 @@ public class AcceptOffer extends ICommand {
 
     @Override
     protected String execute(HttpServletRequest request, HttpServletResponse response) {
-        //Generate receipt
-        User user = getUser(request.getSession());
-
-        HttpSession session = request.getSession();
 
         String offerId = request.getParameter("offerid");
         String preOrderId = request.getParameter("preorderid");
 
         PreOrder preOrder;
+        OrderFactory orderFactory = new OrderFactory();
         try {
             preOrder = api.getPreOrderFacade().findPreOrderById(Integer.parseInt(preOrderId));
+            orderFactory.setOffer(offerId);
+            orderFactory.setCustomerId(preOrder.getCustomerId());
         } catch (NoSuchPreOrderExists noSuchPreOrderExists) {
             request.setAttribute("error", "Kunne ikke generærer din ordre");
             return "errorpage";
-        }
-
-        OrderFactory orderFactory = new OrderFactory();
-        try {
-            orderFactory.setOffer(offerId);
-            orderFactory.setCustomerId(preOrder.getCustomerId());
         } catch (OrderValidation orderValidation) {
             request.setAttribute("error", "Validation af ordren gik ikke godt");
             return "errorpage";
@@ -50,11 +43,17 @@ public class AcceptOffer extends ICommand {
 
         Order order;
         Offer offer;
-        try {
-            order = api.getOrderFacade().createOrder(orderFactory);
-            offer = api.getOfferFacade().findById(orderFactory.getOffer());
-        } catch (NoSuchOrderExists | NoSuchOfferExists noSuchOrderExists) {
-            request.setAttribute("error", "Ordre kretering gik ikke godt");
+        if (orderFactory.isValid()) {
+            try {
+                order = api.getOrderFacade().createOrder(orderFactory);
+                offer = api.getOfferFacade().findById(orderFactory.getOffer());
+            } catch (NoSuchOrderExists | NoSuchOfferExists noSuchOrderExists) {
+                request.setAttribute("error", "Ordre kretering gik ikke godt");
+                return "errorpage";
+            }
+        } else {
+            request.setAttribute("error",
+                "Dit tilbud var ikke godt. Hvis dette bliver ved kan du altid kontakte os via email/telefon");
             return "errorpage";
         }
 
@@ -64,9 +63,10 @@ public class AcceptOffer extends ICommand {
             api.getPreOrderFacade().updatePreOrderStatus("active", preOrder.getId(), false);
         } catch (NoSuchOfferExists | NoSuchPreOrderExists noSuchOfferExists) {
             request.setAttribute("error", "Kunne ikke deaktivere ordre");
-            return "error";
+            return "errorpage";
         }
 
+        HttpSession session = request.getSession();
         session.setAttribute("orderid", order.getId());
         session.setAttribute("preorderid", preOrder.getId());
         session.setAttribute("offerid", offer.getId());
